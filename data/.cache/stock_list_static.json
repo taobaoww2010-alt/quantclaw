@@ -1,0 +1,22 @@
+[
+  { "code": "600519", "name": "贵州茅台", "industry": "白酒", "market": "上证" },
+  { "code": "600036", "name": "招商银行", "industry": "银行", "market": "上证" },
+  { "code": "601318", "name": "中国平安", "industry": "保险", "market": "上证" },
+  { "code": "000858", "name": "五粮液", "industry": "白酒", "market": "深证" },
+  { "code": "601166", "name": "兴业银行", "industry": "银行", "market": "上证" },
+  { "code": "002415", "name": "海康威视", "industry": "电子", "market": "中小板" },
+  { "code": "300750", "name": "宁德时代", "industry": "新能源", "market": "创业板" },
+  { "code": "002594", "name": "比亚迪", "industry": "汽车", "market": "中小板" },
+  { "code": "300059", "name": "东方财富", "industry": "券商", "market": "创业板" },
+  { "code": "600900", "name": "长江电力", "industry": "电力", "market": "上证" },
+  { "code": "000001", "name": "平安银行", "industry": "银行", "market": "深证" },
+  { "code": "600276", "name": "恒瑞医药", "industry": "医药", "market": "上证" },
+  { "code": "688981", "name": "中芯国际", "industry": "半导体", "market": "科创板" },
+  { "code": "688111", "name": "金山办公", "industry": "软件", "market": "科创板" },
+  { "code": "688008", "name": "澜起科技", "industry": "半导体", "market": "科创板" },
+  { "code": "688012", "name": "中微公司", "industry": "半导体", "market": "科创板" },
+  { "code": "600887", "name": "伊利股份", "industry": "乳业", "market": "上证" },
+  { "code": "000333", "name": "美的集团", "industry": "家电", "market": "深证" },
+  { "code": "601888", "name": "中国中免", "industry": "旅游零售", "market": "上证" },
+  { "code": "600030", "name": "中信证券", "industry": "券商", "market": "上证" }
+]

@@ -1,7 +1,7 @@
 {
-  "name": "openclaw",
+  "name": "quantclaw",
   "version": "2026.3.30",
-  "description": "Multi-channel AI gateway with extensible messaging integrations",
+  "description": "Multi-channel AI gateway with extensible messaging integrations — A-share quantitative trading edition",
   "keywords": [],
   "homepage": "https://github.com/openclaw/openclaw#readme",
   "bugs": {
