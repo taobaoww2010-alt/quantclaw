@@ -44,7 +44,7 @@ const opts = parseFlagArgs(
   {
     baseline: cliStartupBenchManifestPath,
     report: "",
-    entry: "openclaw.mjs",
+    entry: "quantclaw.mjs",
     preset: "all",
     runs: 1,
     warmup: 0,
