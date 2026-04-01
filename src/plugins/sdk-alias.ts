@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { resolveOpenClawPackageRootSync } from "../infra/openclaw-root.js";
+import { resolveQuantClawPackageRootSync } from "../infra/openclaw-root.js";
 
 type PluginSdkAliasCandidateKind = "dist" | "src";
 export type PluginSdkResolutionPreference = "auto" | "dist" | "src";
@@ -61,11 +61,11 @@ function hasTrustedOpenClawRootIndicator(params: {
   const hasCliEntryExport = Object.prototype.hasOwnProperty.call(packageExports, "./cli-entry");
   const hasOpenClawBin =
     (typeof params.packageJson.bin === "string" &&
-      params.packageJson.bin.toLowerCase().includes("openclaw")) ||
+      params.packageJson.bin.toLowerCase().includes("quantclaw")) ||
     (typeof params.packageJson.bin === "object" &&
       params.packageJson.bin !== null &&
       typeof params.packageJson.bin.openclaw === "string");
-  const hasOpenClawEntrypoint = fs.existsSync(path.join(params.packageRoot, "openclaw.mjs"));
+  const hasOpenClawEntrypoint = fs.existsSync(path.join(params.packageRoot, "quantclaw.mjs"));
   return hasCliEntryExport || hasOpenClawBin || hasOpenClawEntrypoint;
 }
 
@@ -88,7 +88,7 @@ function resolveTrustedOpenClawRootFromArgvHint(params: {
   if (!params.argv1) {
     return null;
   }
-  const packageRoot = resolveOpenClawPackageRootSync({
+  const packageRoot = resolveQuantClawPackageRootSync({
     cwd: params.cwd,
     argv1: params.argv1,
   });
@@ -122,13 +122,13 @@ export function resolveLoaderPackageRoot(
   params: LoaderModuleResolveParams & { modulePath: string },
 ): string | null {
   const cwd = params.cwd ?? path.dirname(params.modulePath);
-  const fromModulePath = resolveOpenClawPackageRootSync({ cwd });
+  const fromModulePath = resolveQuantClawPackageRootSync({ cwd });
   if (fromModulePath) {
     return fromModulePath;
   }
   const argv1 = params.argv1 ?? process.argv[1];
   const moduleUrl = params.moduleUrl ?? (params.modulePath ? undefined : import.meta.url);
-  return resolveOpenClawPackageRootSync({
+  return resolveQuantClawPackageRootSync({
     cwd,
     ...(argv1 ? { argv1 } : {}),
     ...(moduleUrl ? { moduleUrl } : {}),
@@ -139,11 +139,11 @@ function resolveLoaderPluginSdkPackageRoot(
   params: LoaderModuleResolveParams & { modulePath: string },
 ): string | null {
   const cwd = params.cwd ?? path.dirname(params.modulePath);
-  const fromCwd = resolveOpenClawPackageRootSync({ cwd });
+  const fromCwd = resolveQuantClawPackageRootSync({ cwd });
   const fromExplicitHints =
     resolveTrustedOpenClawRootFromArgvHint({ cwd, argv1: params.argv1 }) ??
     (params.moduleUrl
-      ? resolveOpenClawPackageRootSync({
+      ? resolveQuantClawPackageRootSync({
           cwd,
           moduleUrl: params.moduleUrl,
         })
@@ -368,8 +368,8 @@ export function buildPluginLoaderAliasMap(
   });
   const extensionApiAlias = resolveExtensionApiAlias({ modulePath, pluginSdkResolution });
   return {
-    ...(extensionApiAlias ? { "openclaw/extension-api": extensionApiAlias } : {}),
-    ...(pluginSdkAlias ? { "openclaw/plugin-sdk": pluginSdkAlias } : {}),
+    ...(extensionApiAlias ? { "quantclaw/extension-api": extensionApiAlias } : {}),
+    ...(pluginSdkAlias ? { "quantclaw/plugin-sdk": pluginSdkAlias } : {}),
     ...resolvePluginSdkScopedAliasMap({ modulePath, argv1, moduleUrl, pluginSdkResolution }),
   };
 }

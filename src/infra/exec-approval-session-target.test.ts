@@ -26,7 +26,7 @@ const baseRequest: ExecApprovalRequest = {
 };
 
 function createTempDir(): string {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-exec-approval-session-target-"));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-exec-approval-session-target-"));
   tempDirs.push(dir);
   return dir;
 }

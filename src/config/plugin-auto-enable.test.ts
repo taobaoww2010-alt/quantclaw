@@ -17,13 +17,13 @@ import { validateConfigObject } from "./validation.js";
 const tempDirs: string[] = [];
 
 function makeTempDir() {
-  return makeTrackedTempDir("openclaw-plugin-auto-enable", tempDirs);
+  return makeTrackedTempDir("quantclaw-plugin-auto-enable", tempDirs);
 }
 
 function writePluginManifestFixture(params: { rootDir: string; id: string; channels: string[] }) {
   mkdirSafeDir(params.rootDir);
   fs.writeFileSync(
-    path.join(params.rootDir, "openclaw.plugin.json"),
+    path.join(params.rootDir, "quantclaw.plugin.json"),
     JSON.stringify(
       {
         id: params.id,
@@ -60,7 +60,7 @@ function makeRegistry(
       origin: "config" as const,
       rootDir: `/fake/${p.id}`,
       source: `/fake/${p.id}/index.js`,
-      manifestPath: `/fake/${p.id}/openclaw.plugin.json`,
+      manifestPath: `/fake/${p.id}/quantclaw.plugin.json`,
     })),
     diagnostics: [],
   };
@@ -139,7 +139,7 @@ describe("applyPluginAutoEnable", () => {
     const result = applyPluginAutoEnable({
       config: {
         browser: {
-          defaultProfile: "openclaw",
+          defaultProfile: "quantclaw",
         },
         plugins: {
           allow: ["telegram"],
@@ -342,7 +342,7 @@ describe("applyPluginAutoEnable", () => {
       config: {},
       env: {
         IRC_HOST: "irc.libera.chat",
-        IRC_NICK: "openclaw-bot",
+        IRC_NICK: "quantclaw-bot",
       },
     });
 
@@ -594,7 +594,7 @@ describe("applyPluginAutoEnable", () => {
             origin: "config" as const,
             rootDir: "/fake/acme",
             source: "/fake/acme/index.js",
-            manifestPath: "/fake/acme/openclaw.plugin.json",
+            manifestPath: "/fake/acme/quantclaw.plugin.json",
             contracts: {
               webSearchProviders: ["acme-search"],
             },

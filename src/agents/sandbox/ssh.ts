@@ -120,7 +120,7 @@ export async function createSshSandboxSessionFromConfigText(params: {
   if (!host) {
     throw new Error("Failed to parse SSH config output.");
   }
-  const configDir = await fs.mkdtemp(path.join(resolveSshTmpRoot(), "openclaw-sandbox-ssh-"));
+  const configDir = await fs.mkdtemp(path.join(resolveSshTmpRoot(), "quantclaw-sandbox-ssh-"));
   const configPath = path.join(configDir, "config");
   await fs.writeFile(configPath, params.configText, { encoding: "utf8", mode: 0o600 });
   await fs.chmod(configPath, 0o600);
@@ -139,7 +139,7 @@ export async function createSshSandboxSessionFromSettings(
     throw new Error(`Invalid sandbox SSH target: ${settings.target}`);
   }
 
-  const configDir = await fs.mkdtemp(path.join(resolveSshTmpRoot(), "openclaw-sandbox-ssh-"));
+  const configDir = await fs.mkdtemp(path.join(resolveSshTmpRoot(), "quantclaw-sandbox-ssh-"));
   try {
     const materializedIdentity = settings.identityData
       ? await writeSecretMaterial(configDir, "identity", settings.identityData)
@@ -155,7 +155,7 @@ export async function createSshSandboxSessionFromSettings(
       materializedCertificate ?? resolveOptionalLocalPath(settings.certificateFile);
     const knownHostsFile =
       materializedKnownHosts ?? resolveOptionalLocalPath(settings.knownHostsFile);
-    const hostAlias = "openclaw-sandbox";
+    const hostAlias = "quantclaw-sandbox";
     const configPath = path.join(configDir, "config");
     const lines = [
       `Host ${hostAlias}`,
@@ -261,7 +261,7 @@ export async function uploadDirectoryToSshTarget(params: {
     "/bin/sh",
     "-c",
     'mkdir -p -- "$1" && tar -xf - -C "$1"',
-    "openclaw-sandbox-upload",
+    "quantclaw-sandbox-upload",
     params.remoteDir,
   ]);
   const sshArgv = buildSshSandboxArgv({

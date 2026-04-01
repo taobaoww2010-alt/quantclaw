@@ -132,7 +132,7 @@ vi.mock("../context-engine-maintenance.js", () => ({
 }));
 
 vi.mock("../../docs-path.js", () => ({
-  resolveOpenClawDocsPath: async () => undefined,
+  resolveQuantClawDocsPath: async () => undefined,
 }));
 
 vi.mock("../../pi-project-settings.js", () => ({
@@ -327,7 +327,7 @@ vi.mock("../cache-ttl.js", () => ({
   appendCacheTtlTimestamp: (
     sessionManager: { appendCustomEntry?: (customType: string, data: unknown) => void },
     data: unknown,
-  ) => sessionManager.appendCustomEntry?.("openclaw.cache-ttl", data),
+  ) => sessionManager.appendCustomEntry?.("quantclaw.cache-ttl", data),
   isCacheTtlEligibleProvider: (provider?: string) => provider === "anthropic",
 }));
 
@@ -641,8 +641,8 @@ export async function createContextEngineAttemptRunner(params: {
   tempPaths: string[];
 }) {
   const { maintain: rawMaintain, ...contextEngineRest } = params.contextEngine;
-  const workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-ctx-engine-workspace-"));
-  const agentDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-ctx-engine-agent-"));
+  const workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-ctx-engine-workspace-"));
+  const agentDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-ctx-engine-agent-"));
   const sessionFile = path.join(workspaceDir, "session.jsonl");
   params.tempPaths.push(workspaceDir, agentDir);
   await fs.writeFile(sessionFile, "", "utf8");

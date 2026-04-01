@@ -258,7 +258,7 @@ describe("secrets runtime target coverage", () => {
 
   it("handles every openclaw.json registry target when configured as active", async () => {
     const entries = listSecretTargetRegistryEntries().filter(
-      (entry) => entry.configFile === "openclaw.json",
+      (entry) => entry.configFile === "quantclaw.json",
     );
     for (const [index, entry] of entries.entries()) {
       const envId = `OPENCLAW_SECRET_TARGET_${index}`;
@@ -266,7 +266,7 @@ describe("secrets runtime target coverage", () => {
       const snapshot = await prepareSecretsRuntimeSnapshot({
         config: buildConfigForOpenClawTarget(entry, envId),
         env: { [envId]: expectedValue },
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/quantclaw-agent-main"],
         loadAuthStore: () => ({ version: 1, profiles: {} }),
       });
       const resolved = getPath(snapshot.config, toConcretePathSegments(entry.pathPattern));
@@ -290,7 +290,7 @@ describe("secrets runtime target coverage", () => {
       const snapshot = await prepareSecretsRuntimeSnapshot({
         config: {} as OpenClawConfig,
         env: { [envId]: expectedValue },
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/quantclaw-agent-main"],
         loadAuthStore: () => buildAuthStoreForTarget(entry, envId),
       });
       const store = snapshot.authStores[0]?.store;

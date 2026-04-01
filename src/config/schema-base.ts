@@ -66,7 +66,7 @@ function computeBaseConfigSchemaStablePayload(): BaseConfigSchemaStablePayload {
     target: "draft-07",
     unrepresentable: "any",
   });
-  schema.title = "OpenClawConfig";
+  schema.title = "☯️ QuantClawConfig";
   const baseHints = mapSensitivePaths(OpenClawSchema, "", buildBaseHints());
   const sensitiveUrlPaths = collectMatchingSchemaPaths(
     OpenClawSchema,

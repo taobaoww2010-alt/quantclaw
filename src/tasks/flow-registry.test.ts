@@ -13,7 +13,7 @@ import {
 const ORIGINAL_STATE_DIR = process.env.OPENCLAW_STATE_DIR;
 
 async function withFlowRegistryTempDir<T>(run: (root: string) => Promise<T>): Promise<T> {
-  return await withTempDir({ prefix: "openclaw-flow-registry-" }, async (root) => {
+  return await withTempDir({ prefix: "quantclaw-flow-registry-" }, async (root) => {
     process.env.OPENCLAW_STATE_DIR = root;
     resetFlowRegistryForTests();
     try {

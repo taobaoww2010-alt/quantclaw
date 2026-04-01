@@ -20,7 +20,7 @@ export const isNixMode = resolveIsNixMode();
 // Support the remaining legacy pre-rebrand state dir.
 const LEGACY_STATE_DIRNAMES = [".clawdbot"] as const;
 const NEW_STATE_DIRNAME = ".openclaw";
-const CONFIG_FILENAME = "openclaw.json";
+const CONFIG_FILENAME = "quantclaw.json";
 const LEGACY_CONFIG_FILENAMES = ["clawdbot.json"] as const;
 
 function resolveDefaultHomeDir(): string {
@@ -220,7 +220,7 @@ export const DEFAULT_GATEWAY_PORT = 18789;
 export function resolveGatewayLockDir(tmpdir: () => string = os.tmpdir): string {
   const base = tmpdir();
   const uid = typeof process.getuid === "function" ? process.getuid() : undefined;
-  const suffix = uid != null ? `openclaw-${uid}` : "openclaw";
+  const suffix = uid != null ? `quantclaw-${uid}` : "quantclaw";
   return path.join(base, suffix);
 }
 

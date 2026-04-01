@@ -92,7 +92,7 @@ describe("abort detection", () => {
     sessionIdsByKey?: Record<string, string>;
     nowMs?: number;
   }) {
-    const root = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-abort-"));
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-abort-"));
     const storePath = path.join(root, "sessions.json");
     const cfg = {
       session: { store: storePath },
@@ -201,7 +201,7 @@ describe("abort detection", () => {
   });
 
   it("triggerBodyNormalized extracts /stop from RawBody for abort detection", async () => {
-    const root = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-abort-"));
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-abort-"));
     const storePath = path.join(root, "sessions.json");
     const cfg = { session: { store: storePath } } as OpenClawConfig;
 
@@ -231,7 +231,7 @@ describe("abort detection", () => {
       "exit",
       "interrupt",
       "stop openclaw",
-      "openclaw stop",
+      "quantclaw stop",
       "stop action",
       "stop current action",
       "stop run",
@@ -294,8 +294,8 @@ describe("abort detection", () => {
     expect(isAbortRequestText("stopp")).toBe(true);
     expect(isAbortRequestText("pare")).toBe(true);
     expect(isAbortRequestText(" توقف ")).toBe(true);
-    expect(isAbortRequestText("/stop@openclaw_bot", { botUsername: "openclaw_bot" })).toBe(true);
-    expect(isAbortRequestText("/Stop@openclaw_bot", { botUsername: "openclaw_bot" })).toBe(true);
+    expect(isAbortRequestText("/stop@openclaw_bot", { botUsername: "quantclaw_bot" })).toBe(true);
+    expect(isAbortRequestText("/Stop@openclaw_bot", { botUsername: "quantclaw_bot" })).toBe(true);
 
     expect(isAbortRequestText("/status")).toBe(false);
     expect(isAbortRequestText("do not do that")).toBe(true);

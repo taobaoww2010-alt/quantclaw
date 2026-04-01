@@ -443,7 +443,7 @@ export async function handleOpenAiHttpRequest(
 
   const payload = coerceRequest(handled.body);
   const stream = Boolean(payload.stream);
-  const model = typeof payload.model === "string" ? payload.model : "openclaw";
+  const model = typeof payload.model === "string" ? payload.model : "quantclaw";
   const user = typeof payload.user === "string" ? payload.user : undefined;
 
   const { agentId, sessionKey, messageChannel } = resolveGatewayRequestContext({

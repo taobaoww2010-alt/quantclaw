@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { OpenClawSchema } from "./zod-schema.js";
 
-describe("OpenClawSchema talk validation", () => {
+describe("☯️ QuantClawSchema talk validation", () => {
   it("accepts a positive integer talk.silenceTimeoutMs", () => {
     expect(() =>
       OpenClawSchema.parse({

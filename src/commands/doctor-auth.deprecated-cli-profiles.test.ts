@@ -42,9 +42,9 @@ function makePrompter(confirmValue: boolean): DoctorPrompter {
 }
 
 beforeEach(() => {
-  envSnapshot = captureEnv(["OPENCLAW_AGENT_DIR", "PI_CODING_AGENT_DIR"]);
-  tempAgentDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-auth-"));
-  process.env.OPENCLAW_AGENT_DIR = tempAgentDir;
+  envSnapshot = captureEnv(["QUANTCLAW_AGENT_DIR", "PI_CODING_AGENT_DIR"]);
+  tempAgentDir = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-auth-"));
+  process.env.QUANTCLAW_AGENT_DIR = tempAgentDir;
   process.env.PI_CODING_AGENT_DIR = tempAgentDir;
   resolvePluginProvidersMock.mockReset();
   resolvePluginProvidersMock.mockReturnValue([]);

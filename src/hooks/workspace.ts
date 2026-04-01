@@ -262,30 +262,30 @@ export function discoverWorkspaceHookEntries(
   const bundledHooks = bundledHooksDir
     ? loadHookEntriesFromDir({
         dir: bundledHooksDir,
-        source: "openclaw-bundled",
+        source: "quantclaw-bundled",
       })
     : [];
   const extraHooks = extraDirs.flatMap((dir) => {
     const resolved = resolveUserPath(dir);
     return loadHookEntriesFromDir({
       dir: resolved,
-      source: "openclaw-managed",
+      source: "quantclaw-managed",
     });
   });
   const pluginHooks = pluginHookDirs.flatMap(({ dir, pluginId }) =>
     loadHookEntriesFromDir({
       dir,
-      source: "openclaw-plugin",
+      source: "quantclaw-plugin",
       pluginId,
     }),
   );
   const managedHooks = loadHookEntriesFromDir({
     dir: managedHooksDir,
-    source: "openclaw-managed",
+    source: "quantclaw-managed",
   });
   const workspaceHooks = loadHookEntriesFromDir({
     dir: workspaceHooksDir,
-    source: "openclaw-workspace",
+    source: "quantclaw-workspace",
   });
 
   return [...extraHooks, ...bundledHooks, ...pluginHooks, ...managedHooks, ...workspaceHooks];

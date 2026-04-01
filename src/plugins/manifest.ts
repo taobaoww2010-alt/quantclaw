@@ -5,7 +5,7 @@ import { matchBoundaryFileOpenFailure, openBoundaryFileSync } from "../infra/bou
 import { isRecord } from "../utils.js";
 import type { PluginConfigUiHint, PluginKind } from "./types.js";
 
-export const PLUGIN_MANIFEST_FILENAME = "openclaw.plugin.json";
+export const PLUGIN_MANIFEST_FILENAME = "quantclaw.plugin.json";
 export const PLUGIN_MANIFEST_FILENAMES = [PLUGIN_MANIFEST_FILENAME] as const;
 
 export type PluginManifestChannelConfig = {
@@ -343,7 +343,7 @@ export function loadPluginManifest(
   };
 }
 
-// package.json "openclaw" metadata (used for setup/catalog)
+// package.json "quantclaw" metadata (used for setup/catalog)
 export type PluginPackageChannel = {
   id?: string;
   label?: string;

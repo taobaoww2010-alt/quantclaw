@@ -12,7 +12,7 @@ import {
 const tempDirs: string[] = [];
 
 async function makeTempDir(): Promise<string> {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-push-apns-auth-test-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-push-apns-auth-test-"));
   tempDirs.push(dir);
   return dir;
 }

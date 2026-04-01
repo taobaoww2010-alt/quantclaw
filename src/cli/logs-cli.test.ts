@@ -27,7 +27,7 @@ describe("logs cli", () => {
 
   it("writes output directly to stdout/stderr", async () => {
     callGatewayFromCli.mockResolvedValueOnce({
-      file: "/tmp/openclaw.log",
+      file: "/tmp/quantclaw.log",
       cursor: 1,
       size: 123,
       lines: ["raw line"],
@@ -56,7 +56,7 @@ describe("logs cli", () => {
 
   it("wires --local-time through CLI parsing and emits local timestamps", async () => {
     callGatewayFromCli.mockResolvedValueOnce({
-      file: "/tmp/openclaw.log",
+      file: "/tmp/quantclaw.log",
       lines: [
         JSON.stringify({
           time: "2025-01-01T12:00:00.000Z",
@@ -83,7 +83,7 @@ describe("logs cli", () => {
 
   it("warns when the output pipe closes", async () => {
     callGatewayFromCli.mockResolvedValueOnce({
-      file: "/tmp/openclaw.log",
+      file: "/tmp/quantclaw.log",
       lines: ["line one"],
     });
 

@@ -6,7 +6,7 @@ import { loadConfig } from "../config/config.js";
 import type { OpenClawConfig } from "../config/config.js";
 import { computeBackoff, type BackoffPolicy } from "../infra/backoff.js";
 import { consumeRootOptionToken, FLAG_TERMINATOR } from "../infra/cli-root-options.js";
-import { resolveOpenClawAgentDir } from "./agent-paths.js";
+import { resolveQuantClawAgentDir } from "./agent-paths.js";
 import { lookupCachedContextTokens, MODEL_CONTEXT_TOKEN_CACHE } from "./context-cache.js";
 import { normalizeProviderId } from "./model-selection.js";
 
@@ -90,14 +90,14 @@ function loadModelsConfigRuntime() {
   return modelsConfigRuntimePromise;
 }
 
-function isLikelyOpenClawCliProcess(argv: string[] = process.argv): boolean {
+function isLikelyQuantClawCliProcess(argv: string[] = process.argv): boolean {
   const entryBasename = path
     .basename(argv[1] ?? "")
     .trim()
     .toLowerCase();
   return (
-    entryBasename === "openclaw" ||
-    entryBasename === "openclaw.mjs" ||
+    entryBasename === "quantclaw" ||
+    entryBasename === "quantclaw.mjs" ||
     entryBasename === "entry.js" ||
     entryBasename === "entry.mjs"
   );
@@ -150,9 +150,9 @@ function shouldEagerWarmContextWindowCache(argv: string[] = process.argv): boole
   // This module can also land inside shared dist chunks that are imported from
   // plugin-sdk/library surfaces during smoke tests and plugin loading. If we do
   // eager warmup for those generic Node script imports, merely importing the
-  // built plugin-sdk can call ensureOpenClawModelsJson(), which cascades into
+  // built plugin-sdk can call ensureQuantClawModelsJson(), which cascades into
   // plugin discovery and breaks dist/source singleton assumptions.
-  if (!isLikelyOpenClawCliProcess(argv)) {
+  if (!isLikelyQuantClawCliProcess(argv)) {
     return false;
   }
   const [primary] = getCommandPathFromArgv(argv);
@@ -197,7 +197,7 @@ function ensureContextWindowCacheLoaded(): Promise<void> {
 
   loadPromise = (async () => {
     try {
-      await (await loadModelsConfigRuntime()).ensureOpenClawModelsJson(cfg);
+      await (await loadModelsConfigRuntime()).ensureQuantClawModelsJson(cfg);
     } catch {
       // Continue with best-effort discovery/overrides.
     }
@@ -205,7 +205,7 @@ function ensureContextWindowCacheLoaded(): Promise<void> {
     try {
       const { discoverAuthStorage, discoverModels } =
         await import("./pi-model-discovery-runtime.js");
-      const agentDir = resolveOpenClawAgentDir();
+      const agentDir = resolveQuantClawAgentDir();
       const authStorage = discoverAuthStorage(agentDir);
       const modelRegistry = discoverModels(authStorage, agentDir) as unknown as ModelRegistryLike;
       const models =

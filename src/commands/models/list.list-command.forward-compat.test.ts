@@ -139,7 +139,7 @@ function installModelsListCommandForwardCompatMocks() {
   }));
 
   vi.doMock("../../agents/models-config.js", () => ({
-    ensureOpenClawModelsJson: vi.fn(async () => ({ wrote: false })),
+    ensureQuantClawModelsJson: vi.fn(async () => ({ wrote: false })),
   }));
 
   vi.doMock("../../agents/model-catalog.js", () => ({

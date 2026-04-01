@@ -40,7 +40,7 @@ export function relaunchGatewayScheduledTask(env: NodeJS.ProcessEnv = process.en
   const taskName = resolveWindowsTaskName(env);
   const scriptPath = path.join(
     resolvePreferredOpenClawTmpDir(),
-    `openclaw-schtasks-restart-${randomUUID()}.cmd`,
+    `quantclaw-schtasks-restart-${randomUUID()}.cmd`,
   );
   const quotedScriptPath = quoteCmdScriptArg(scriptPath);
   try {

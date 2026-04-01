@@ -24,20 +24,20 @@ describe("renderGatewayServiceStartHints", () => {
   it("resolves daemon container context from either env key", () => {
     expect(
       resolveDaemonContainerContext({
-        OPENCLAW_CONTAINER: "openclaw-demo-container",
+        OPENCLAW_CONTAINER: "quantclaw-demo-container",
       } as NodeJS.ProcessEnv),
-    ).toBe("openclaw-demo-container");
+    ).toBe("quantclaw-demo-container");
     expect(
       resolveDaemonContainerContext({
-        OPENCLAW_CONTAINER_HINT: "openclaw-demo-container",
+        OPENCLAW_CONTAINER_HINT: "quantclaw-demo-container",
       } as NodeJS.ProcessEnv),
-    ).toBe("openclaw-demo-container");
+    ).toBe("quantclaw-demo-container");
   });
 
   it("prepends a single container restart hint when OPENCLAW_CONTAINER is set", () => {
     expect(
       renderGatewayServiceStartHints({
-        OPENCLAW_CONTAINER: "openclaw-demo-container",
+        OPENCLAW_CONTAINER: "quantclaw-demo-container",
       } as NodeJS.ProcessEnv),
     ).toEqual(
       expect.arrayContaining([
@@ -49,7 +49,7 @@ describe("renderGatewayServiceStartHints", () => {
   it("prepends a single container restart hint when OPENCLAW_CONTAINER_HINT is set", () => {
     expect(
       renderGatewayServiceStartHints({
-        OPENCLAW_CONTAINER_HINT: "openclaw-demo-container",
+        OPENCLAW_CONTAINER_HINT: "quantclaw-demo-container",
       } as NodeJS.ProcessEnv),
     ).toEqual(
       expect.arrayContaining([
@@ -67,7 +67,7 @@ describe("filterContainerGenericHints", () => {
           "systemd user services are unavailable; install/enable systemd or run the gateway under your supervisor.",
           "If you're in a container, run the gateway in the foreground instead of `openclaw gateway`.",
         ],
-        { OPENCLAW_CONTAINER: "openclaw-demo-container" } as NodeJS.ProcessEnv,
+        { OPENCLAW_CONTAINER: "quantclaw-demo-container" } as NodeJS.ProcessEnv,
       ),
     ).toEqual([]);
   });
@@ -79,7 +79,7 @@ describe("filterContainerGenericHints", () => {
           "systemd user services are unavailable; install/enable systemd or run the gateway under your supervisor.",
           "If you're in a container, run the gateway in the foreground instead of `openclaw gateway`.",
         ],
-        { OPENCLAW_CONTAINER_HINT: "openclaw-demo-container" } as NodeJS.ProcessEnv,
+        { OPENCLAW_CONTAINER_HINT: "quantclaw-demo-container" } as NodeJS.ProcessEnv,
       ),
     ).toEqual([]);
   });

@@ -7,7 +7,7 @@ import {
   withModelsTempHome as withTempHome,
   withTempEnv,
 } from "./models-config.e2e-harness.js";
-import { ensureOpenClawModelsJson } from "./models-config.js";
+import { ensureQuantClawModelsJson } from "./models-config.js";
 
 installModelsConfigTestHooks();
 
@@ -28,7 +28,7 @@ describe("models-config", () => {
           },
         };
 
-        const { agentDir } = await ensureOpenClawModelsJson(cfg);
+        const { agentDir } = await ensureQuantClawModelsJson(cfg);
 
         expect(process.env.OPENROUTER_API_KEY).toBeUndefined();
         expect(process.env[TEST_ENV_VAR]).toBeUndefined();
@@ -56,7 +56,7 @@ describe("models-config", () => {
           },
         };
 
-        const { agentDir } = await ensureOpenClawModelsJson(cfg);
+        const { agentDir } = await ensureQuantClawModelsJson(cfg);
 
         const modelsJson = JSON.parse(await fs.readFile(`${agentDir}/models.json`, "utf8")) as {
           providers?: { openrouter?: { apiKey?: string } };

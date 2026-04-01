@@ -161,7 +161,7 @@ function buildContainerExecArgs(params: {
     envFlag,
     "OPENCLAW_CLI_CONTAINER_BYPASS=1",
     params.containerName,
-    "openclaw",
+    "quantclaw",
     ...params.argv,
   ];
 }
@@ -172,9 +172,9 @@ function buildContainerExecEnv(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
   // and gateway auth/runtime state rather than inheriting host overrides.
   delete next.OPENCLAW_PROFILE;
   delete next.OPENCLAW_GATEWAY_PORT;
-  delete next.OPENCLAW_GATEWAY_URL;
-  delete next.OPENCLAW_GATEWAY_TOKEN;
-  delete next.OPENCLAW_GATEWAY_PASSWORD;
+  delete next.QUANTCLAW_GATEWAY_URL;
+  delete next.QUANTCLAW_GATEWAY_TOKEN;
+  delete next.QUANTCLAW_GATEWAY_PASSWORD;
   // The child CLI should render container-aware follow-up commands via
   // OPENCLAW_CONTAINER_HINT, but it should not treat itself as still
   // container-targeted for validation/routing.
@@ -183,7 +183,7 @@ function buildContainerExecEnv(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
 }
 
 function isBlockedContainerCommand(argv: string[]): boolean {
-  if (getPrimaryCommand(["node", "openclaw", ...argv]) === "update") {
+  if (getPrimaryCommand(["node", "quantclaw", ...argv]) === "update") {
     return true;
   }
   for (let i = 0; i < argv.length; i += 1) {
@@ -231,7 +231,7 @@ export function maybeRunCliInContainer(
   }
   if (isBlockedContainerCommand(parsed.argv.slice(2))) {
     throw new Error(
-      "openclaw update is not supported with --container; rebuild or restart the container image instead.",
+      "quantclaw update is not supported with --container; rebuild or restart the container image instead.",
     );
   }
 

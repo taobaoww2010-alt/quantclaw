@@ -59,7 +59,7 @@ function createLsofResult(overrides: Partial<MockLsofResult> = {}): MockLsofResu
 
 function createOpenClawBusyResult(pid: number, overrides: Partial<MockLsofResult> = {}) {
   return createLsofResult({
-    stdout: lsofOutput([{ pid, cmd: "openclaw-gateway" }]),
+    stdout: lsofOutput([{ pid, cmd: "quantclaw-gateway" }]),
     ...overrides,
   });
 }
@@ -141,8 +141,8 @@ describe.skipIf(isWindows)("restart-stale-pids", () => {
         error: null,
         status: 0,
         stdout: lsofOutput([
-          { pid: stalePid, cmd: "openclaw-gateway" },
-          { pid: process.pid, cmd: "openclaw-gateway" },
+          { pid: stalePid, cmd: "quantclaw-gateway" },
+          { pid: process.pid, cmd: "quantclaw-gateway" },
         ]),
         stderr: "",
       });
@@ -151,7 +151,7 @@ describe.skipIf(isWindows)("restart-stale-pids", () => {
       expect(pids).not.toContain(process.pid);
     });
 
-    it("excludes pids whose command does not include 'openclaw'", () => {
+    it("excludes pids whose command does not include 'quantclaw'", () => {
       const otherPid = process.pid + 2;
       mockSpawnSync.mockReturnValue({
         error: null,
@@ -217,8 +217,8 @@ describe.skipIf(isWindows)("restart-stale-pids", () => {
         error: null,
         status: 0,
         stdout: lsofOutput([
-          { pid: pid1, cmd: "openclaw-gateway" },
-          { pid: pid2, cmd: "openclaw-gateway" },
+          { pid: pid1, cmd: "quantclaw-gateway" },
+          { pid: pid2, cmd: "quantclaw-gateway" },
         ]),
         stderr: "",
       });
@@ -345,7 +345,7 @@ describe.skipIf(isWindows)("restart-stale-pids", () => {
         return {
           error: null,
           status: 0,
-          stdout: lsofOutput([{ pid: stalePid, cmd: "openclaw-gateway" }]),
+          stdout: lsofOutput([{ pid: stalePid, cmd: "quantclaw-gateway" }]),
           stderr: "",
         };
       });
@@ -396,7 +396,7 @@ describe.skipIf(isWindows)("restart-stale-pids", () => {
           return {
             error: null,
             status: 0,
-            stdout: lsofOutput([{ pid: stalePid, cmd: "openclaw-gateway" }]),
+            stdout: lsofOutput([{ pid: stalePid, cmd: "quantclaw-gateway" }]),
             stderr: "",
           };
         }
@@ -426,7 +426,7 @@ describe.skipIf(isWindows)("restart-stale-pids", () => {
           return {
             error: null,
             status: 0,
-            stdout: lsofOutput([{ pid: stalePid, cmd: "openclaw-gateway" }]),
+            stdout: lsofOutput([{ pid: stalePid, cmd: "quantclaw-gateway" }]),
             stderr: "",
           };
         }
@@ -435,7 +435,7 @@ describe.skipIf(isWindows)("restart-stale-pids", () => {
           return {
             error: null,
             status: 0,
-            stdout: lsofOutput([{ pid: stalePid, cmd: "openclaw-gateway" }]),
+            stdout: lsofOutput([{ pid: stalePid, cmd: "quantclaw-gateway" }]),
             stderr: "",
           };
         }
@@ -597,8 +597,8 @@ describe.skipIf(isWindows)("restart-stale-pids", () => {
   // parsePidsFromLsofOutput — branch-coverage for mid-loop && short-circuits
   // -------------------------------------------------------------------------
   describe("parsePidsFromLsofOutput — branch coverage (lines 67-69)", () => {
-    it("skips a mid-loop entry when the command does not include 'openclaw'", () => {
-      // Exercises the false branch of currentCmd.toLowerCase().includes("openclaw")
+    it("skips a mid-loop entry when the command does not include 'quantclaw'", () => {
+      // Exercises the false branch of currentCmd.toLowerCase().includes("quantclaw")
       // inside the mid-loop flush: a non-openclaw cmd between two entries must not
       // be pushed, but the following openclaw entry still must be.
       const stalePid = process.pid + 700;

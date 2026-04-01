@@ -39,7 +39,7 @@ vi.mock("../mcp/channel-server.js", () => ({
 const tempDirs: string[] = [];
 
 async function createWorkspace(): Promise<string> {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-cli-mcp-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-cli-mcp-"));
   tempDirs.push(dir);
   return dir;
 }
@@ -69,7 +69,7 @@ describe("mcp cli", () => {
   });
 
   it("sets and shows a configured MCP server", async () => {
-    await withTempHome("openclaw-cli-mcp-home-", async () => {
+    await withTempHome("quantclaw-cli-mcp-home-", async () => {
       const workspaceDir = await createWorkspace();
       vi.spyOn(process, "cwd").mockReturnValue(workspaceDir);
 
@@ -83,7 +83,7 @@ describe("mcp cli", () => {
   });
 
   it("fails when removing an unknown MCP server", async () => {
-    await withTempHome("openclaw-cli-mcp-home-", async () => {
+    await withTempHome("quantclaw-cli-mcp-home-", async () => {
       const workspaceDir = await createWorkspace();
       vi.spyOn(process, "cwd").mockReturnValue(workspaceDir);
 
@@ -95,7 +95,7 @@ describe("mcp cli", () => {
   });
 
   it("starts the channel bridge with parsed serve options", async () => {
-    await withTempHome("openclaw-cli-mcp-home-", async () => {
+    await withTempHome("quantclaw-cli-mcp-home-", async () => {
       const workspaceDir = await createWorkspace();
       const tokenFile = path.join(workspaceDir, "gateway.token");
       vi.spyOn(process, "cwd").mockReturnValue(workspaceDir);

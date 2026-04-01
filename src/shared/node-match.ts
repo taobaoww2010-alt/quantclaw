@@ -38,7 +38,7 @@ function formatNodeCandidateLabel(node: NodeMatchCandidate): string {
 
 function isCurrentOpenClawClient(clientId: string | undefined): boolean {
   const normalized = clientId?.trim().toLowerCase() ?? "";
-  return normalized.startsWith("openclaw-");
+  return normalized.startsWith("quantclaw-");
 }
 
 function isLegacyClawdbotClient(clientId: string | undefined): boolean {

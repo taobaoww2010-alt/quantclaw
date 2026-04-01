@@ -550,9 +550,9 @@ describe("gateway hot reload", () => {
   it("fails startup when an active exec ref id contains traversal segments", async () => {
     await writeGatewayTraversalExecRefConfig();
     const previousGatewayAuth = testState.gatewayAuth;
-    const previousGatewayTokenEnv = process.env.OPENCLAW_GATEWAY_TOKEN;
+    const previousGatewayTokenEnv = process.env.QUANTCLAW_GATEWAY_TOKEN;
     testState.gatewayAuth = undefined;
-    delete process.env.OPENCLAW_GATEWAY_TOKEN;
+    delete process.env.QUANTCLAW_GATEWAY_TOKEN;
     try {
       await expect(withGatewayServer(async () => {})).rejects.toThrow(
         /must not include "\." or "\.\." path segments/i,
@@ -560,9 +560,9 @@ describe("gateway hot reload", () => {
     } finally {
       testState.gatewayAuth = previousGatewayAuth;
       if (previousGatewayTokenEnv === undefined) {
-        delete process.env.OPENCLAW_GATEWAY_TOKEN;
+        delete process.env.QUANTCLAW_GATEWAY_TOKEN;
       } else {
-        process.env.OPENCLAW_GATEWAY_TOKEN = previousGatewayTokenEnv;
+        process.env.QUANTCLAW_GATEWAY_TOKEN = previousGatewayTokenEnv;
       }
     }
   });
@@ -815,9 +815,9 @@ process.stdin.on("end", () => {
     });
 
     const previousGatewayAuth = testState.gatewayAuth;
-    const previousGatewayTokenEnv = process.env.OPENCLAW_GATEWAY_TOKEN;
+    const previousGatewayTokenEnv = process.env.QUANTCLAW_GATEWAY_TOKEN;
     testState.gatewayAuth = undefined;
-    delete process.env.OPENCLAW_GATEWAY_TOKEN;
+    delete process.env.QUANTCLAW_GATEWAY_TOKEN;
 
     const started = await startServerWithClient();
     const { server, ws, envSnapshot } = started;
@@ -853,9 +853,9 @@ process.stdin.on("end", () => {
     } finally {
       testState.gatewayAuth = previousGatewayAuth;
       if (previousGatewayTokenEnv === undefined) {
-        delete process.env.OPENCLAW_GATEWAY_TOKEN;
+        delete process.env.QUANTCLAW_GATEWAY_TOKEN;
       } else {
-        process.env.OPENCLAW_GATEWAY_TOKEN = previousGatewayTokenEnv;
+        process.env.QUANTCLAW_GATEWAY_TOKEN = previousGatewayTokenEnv;
       }
       envSnapshot.restore();
       ws.close();

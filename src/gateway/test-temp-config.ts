@@ -9,8 +9,8 @@ export async function withTempConfig(params: {
 }): Promise<void> {
   const prevConfigPath = process.env.OPENCLAW_CONFIG_PATH;
 
-  const dir = await mkdtemp(path.join(os.tmpdir(), params.prefix ?? "openclaw-test-config-"));
-  const configPath = path.join(dir, "openclaw.json");
+  const dir = await mkdtemp(path.join(os.tmpdir(), params.prefix ?? "quantclaw-test-config-"));
+  const configPath = path.join(dir, "quantclaw.json");
 
   process.env.OPENCLAW_CONFIG_PATH = configPath;
 

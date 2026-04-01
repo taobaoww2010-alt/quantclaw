@@ -89,7 +89,7 @@ fs.writeFileSync(
   "utf8",
 );
 fs.writeFileSync(
-  path.join(distPluginDir, "openclaw.plugin.json"),
+  path.join(distPluginDir, "quantclaw.plugin.json"),
   JSON.stringify(
     {
       id: pluginId,

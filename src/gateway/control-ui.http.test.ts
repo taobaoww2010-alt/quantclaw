@@ -13,7 +13,7 @@ describe("handleControlUiHttpRequest", () => {
     indexHtml?: string;
     fn: (tmp: string) => Promise<T>;
   }) {
-    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-ui-"));
+    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-ui-"));
     try {
       await fs.writeFile(path.join(tmp, "index.html"), params.indexHtml ?? "<html></html>\n");
       return await params.fn(tmp);
@@ -96,7 +96,7 @@ describe("handleControlUiHttpRequest", () => {
     siblingDir: string;
     fn: (paths: { root: string; sibling: string }) => Promise<T>;
   }) {
-    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-ui-root-"));
+    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-ui-root-"));
     try {
       const root = path.join(tmp, "ui");
       const sibling = path.join(tmp, params.siblingDir);
@@ -229,7 +229,7 @@ describe("handleControlUiHttpRequest", () => {
   });
 
   it("serves local avatar bytes through hardened avatar handler", async () => {
-    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-avatar-http-"));
+    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-avatar-http-"));
     try {
       const avatarPath = path.join(tmp, "main.png");
       await fs.writeFile(avatarPath, "avatar-bytes\n");
@@ -249,8 +249,8 @@ describe("handleControlUiHttpRequest", () => {
   });
 
   it("rejects avatar symlink paths from resolver", async () => {
-    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-avatar-http-link-"));
-    const outside = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-avatar-http-outside-"));
+    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-avatar-http-link-"));
+    const outside = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-avatar-http-outside-"));
     try {
       const outsideFile = path.join(outside, "secret.txt");
       await fs.writeFile(outsideFile, "outside-secret\n");
@@ -274,7 +274,7 @@ describe("handleControlUiHttpRequest", () => {
     await withControlUiRoot({
       fn: async (tmp) => {
         const assetsDir = path.join(tmp, "assets");
-        const outsideDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-ui-outside-"));
+        const outsideDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-ui-outside-"));
         try {
           const outsideFile = path.join(outsideDir, "secret.txt");
           await fs.mkdir(assetsDir, { recursive: true });
@@ -337,7 +337,7 @@ describe("handleControlUiHttpRequest", () => {
   it("rejects symlinked SPA fallback index.html outside control-ui root", async () => {
     await withControlUiRoot({
       fn: async (tmp) => {
-        const outsideDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-ui-index-outside-"));
+        const outsideDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-ui-index-outside-"));
         try {
           const outsideIndex = path.join(outsideDir, "index.html");
           await fs.writeFile(outsideIndex, "<html>outside</html>\n");
@@ -360,7 +360,7 @@ describe("handleControlUiHttpRequest", () => {
   it("rejects hardlinked index.html for non-package control-ui roots", async () => {
     await withControlUiRoot({
       fn: async (tmp) => {
-        const outsideDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-ui-index-hardlink-"));
+        const outsideDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-ui-index-hardlink-"));
         try {
           const outsideIndex = path.join(outsideDir, "index.html");
           await fs.writeFile(outsideIndex, "<html>outside-hardlink</html>\n");

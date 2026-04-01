@@ -215,7 +215,7 @@ describe("installHooksFromPath", () => {
         "---",
         "name: one-hook",
         "description: One hook",
-        'metadata: {"openclaw":{"events":["command:new"]}}',
+        'metadata: {"quantclaw":{"events":["command:new"]}}',
         "---",
         "",
         "# One Hook",
@@ -250,7 +250,7 @@ describe("installHooksFromPath", () => {
         "---",
         "name: my-hook",
         "description: My hook",
-        'metadata: {"openclaw":{"events":["command:new"]}}',
+        'metadata: {"quantclaw":{"events":["command:new"]}}',
         "---",
         "",
         "# My Hook",
@@ -277,12 +277,12 @@ describe("installHooksFromPath", () => {
       {
         hooks: ["../outside"],
         setupLink: false,
-        expected: "openclaw.hooks entry escapes package directory",
+        expected: "quantclaw.hooks entry escapes package directory",
       },
       {
         hooks: ["./linked"],
         setupLink: true,
-        expected: "openclaw.hooks entry resolves outside package directory",
+        expected: "quantclaw.hooks entry resolves outside package directory",
       },
     ] as const;
 

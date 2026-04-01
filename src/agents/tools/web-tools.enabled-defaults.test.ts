@@ -790,7 +790,7 @@ describe("web_search kimi provider", () => {
                       type: "function",
                       function: {
                         name: "$web_search",
-                        arguments: JSON.stringify({ q: "openclaw" }),
+                        arguments: JSON.stringify({ q: "quantclaw" }),
                       },
                     },
                   ],
@@ -798,7 +798,7 @@ describe("web_search kimi provider", () => {
               },
             ],
             search_results: [
-              { title: "OpenClaw", url: "https://openclaw.ai/docs", content: "docs" },
+              { title: "☯️ QuantClaw", url: "https://openclaw.ai/docs", content: "docs" },
             ],
           }),
           { status: 200, headers: { "content-type": "application/json" } },

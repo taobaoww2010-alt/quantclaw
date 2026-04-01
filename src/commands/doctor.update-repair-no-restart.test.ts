@@ -63,7 +63,7 @@ describe("doctor command update-mode repairs", () => {
     serviceReadCommand.mockResolvedValueOnce({
       programArguments: ["node", "cli", "gateway", "--port", "18789"],
       environment: {
-        OPENCLAW_GATEWAY_TOKEN: "stale-token",
+        QUANTCLAW_GATEWAY_TOKEN: "stale-token",
       },
     });
     auditGatewayServiceConfig.mockResolvedValueOnce({
@@ -71,7 +71,7 @@ describe("doctor command update-mode repairs", () => {
       issues: [
         {
           code: "gateway-token-mismatch",
-          message: "Gateway service OPENCLAW_GATEWAY_TOKEN does not match gateway.auth.token",
+          message: "Gateway service QUANTCLAW_GATEWAY_TOKEN does not match gateway.auth.token",
           level: "recommended",
         },
       ],

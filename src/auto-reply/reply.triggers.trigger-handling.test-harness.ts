@@ -24,7 +24,7 @@ function getSharedMocks<T>(key: string, create: () => T): T {
   return store[symbol];
 }
 
-const piEmbeddedMocks = getSharedMocks("openclaw.trigger-handling.pi-embedded-mocks", () => ({
+const piEmbeddedMocks = getSharedMocks("quantclaw.trigger-handling.pi-embedded-mocks", () => ({
   abortEmbeddedPiRun: vi.fn().mockReturnValue(false),
   compactEmbeddedPiSession: vi.fn(),
   runEmbeddedPiAgent: vi.fn(),
@@ -80,7 +80,7 @@ export function getProviderUsageMocks(): AnyMocks {
 
 vi.mock("../infra/provider-usage.js", () => providerUsageMocks);
 
-const modelCatalogMocks = getSharedMocks("openclaw.trigger-handling.model-catalog-mocks", () => ({
+const modelCatalogMocks = getSharedMocks("quantclaw.trigger-handling.model-catalog-mocks", () => ({
   loadModelCatalog: vi.fn().mockResolvedValue([
     {
       provider: "anthropic",
@@ -125,20 +125,23 @@ vi.doMock("../plugins/provider-runtime.runtime.js", () => ({
   refreshProviderOAuthCredentialWithPlugin: async () => undefined,
 }));
 
-const modelFallbackMocks = getSharedMocks("openclaw.trigger-handling.model-fallback-mocks", () => ({
-  runWithModelFallback: vi.fn(
-    async (params: {
-      provider: string;
-      model: string;
-      run: (provider: string, model: string, runOptions?: unknown) => Promise<unknown>;
-    }) => ({
-      result: await params.run(params.provider, params.model),
-      provider: params.provider,
-      model: params.model,
-      attempts: [],
-    }),
-  ),
-}));
+const modelFallbackMocks = getSharedMocks(
+  "quantclaw.trigger-handling.model-fallback-mocks",
+  () => ({
+    runWithModelFallback: vi.fn(
+      async (params: {
+        provider: string;
+        model: string;
+        run: (provider: string, model: string, runOptions?: unknown) => Promise<unknown>;
+      }) => ({
+        result: await params.run(params.provider, params.model),
+        provider: params.provider,
+        model: params.model,
+        attempts: [],
+      }),
+    ),
+  }),
+);
 
 export function getModelFallbackMocks(): AnyMocks {
   return modelFallbackMocks;
@@ -153,7 +156,7 @@ vi.doMock("../infra/git-commit.js", () => ({
   resolveCommitHash: vi.fn(() => "abcdef0"),
 }));
 
-const webSessionMocks = getSharedMocks("openclaw.trigger-handling.web-session-mocks", () => ({
+const webSessionMocks = getSharedMocks("quantclaw.trigger-handling.web-session-mocks", () => ({
   webAuthExists: vi.fn().mockResolvedValue(true),
   getWebAuthAgeMs: vi.fn().mockReturnValue(120_000),
   readWebSelfId: vi.fn().mockReturnValue({ e164: "+1999" }),
@@ -233,7 +236,7 @@ function setTempHomeEnv(home: string): void {
 }
 
 beforeAll(async () => {
-  suiteTempHomeRoot = await fs.mkdtemp(join(os.tmpdir(), "openclaw-triggers-suite-"));
+  suiteTempHomeRoot = await fs.mkdtemp(join(os.tmpdir(), "quantclaw-triggers-suite-"));
 });
 
 afterAll(async () => {
@@ -275,7 +278,7 @@ export function makeCfg(home: string): OpenClawConfig {
     agents: {
       defaults: {
         model: { primary: "anthropic/claude-opus-4-5" },
-        workspace: join(home, "openclaw"),
+        workspace: join(home, "quantclaw"),
         // Test harness: avoid 1s coalescer idle sleeps that dominate trigger suites.
         blockStreamingCoalesce: { idleMs: 1 },
         // Trigger tests assert routing/authorization behavior, not delivery pacing.

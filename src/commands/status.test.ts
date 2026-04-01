@@ -297,7 +297,7 @@ vi.mock("../plugins/memory-runtime.js", () => ({
         files: 2,
         chunks: 3,
         dirty: false,
-        workspaceDir: "/tmp/openclaw",
+        workspaceDir: "/tmp/quantclaw",
         dbPath: "/tmp/memory.sqlite",
         provider: "openai",
         model: "text-embedding-3-small",
@@ -411,7 +411,7 @@ vi.mock("../gateway/session-utils.js", async (importOriginal) => {
   };
 });
 vi.mock("../infra/openclaw-root.js", () => ({
-  resolveOpenClawPackageRoot: vi.fn().mockResolvedValue("/tmp/openclaw"),
+  resolveQuantClawPackageRoot: vi.fn().mockResolvedValue("/tmp/quantclaw"),
 }));
 vi.mock("../infra/os-summary.js", () => ({
   resolveOsSummary: () => ({
@@ -423,11 +423,11 @@ vi.mock("../infra/os-summary.js", () => ({
 }));
 vi.mock("../infra/update-check.js", () => ({
   checkUpdateStatus: vi.fn().mockResolvedValue({
-    root: "/tmp/openclaw",
+    root: "/tmp/quantclaw",
     installKind: "git",
     packageManager: "pnpm",
     git: {
-      root: "/tmp/openclaw",
+      root: "/tmp/quantclaw",
       branch: "main",
       upstream: "origin/main",
       dirty: false,
@@ -438,8 +438,8 @@ vi.mock("../infra/update-check.js", () => ({
     deps: {
       manager: "pnpm",
       status: "ok",
-      lockfilePath: "/tmp/openclaw/pnpm-lock.yaml",
-      markerPath: "/tmp/openclaw/node_modules/.modules.yaml",
+      lockfilePath: "/tmp/quantclaw/pnpm-lock.yaml",
+      markerPath: "/tmp/quantclaw/node_modules/.modules.yaml",
     },
     registry: { latestVersion: "0.0.0" },
   }),
@@ -670,7 +670,7 @@ describe("statusCommand", () => {
     ]);
     const logs = await runStatusAndGetLogs();
     for (const token of [
-      "OpenClaw status",
+      "☯️ QuantClaw status",
       "Overview",
       "Security audit",
       "Summary:",
@@ -700,8 +700,8 @@ describe("statusCommand", () => {
     expect(
       logs.some(
         (line) =>
-          line.includes("openclaw status --all") ||
-          line.includes("openclaw --profile isolated status --all"),
+          line.includes("quantclaw status --all") ||
+          line.includes("quantclaw --profile isolated status --all"),
       ),
     ).toBe(true);
   });
@@ -814,7 +814,7 @@ describe("statusCommand", () => {
     const joined = await runStatusAndGetJoinedLogs();
     expect(joined).toContain("node → gateway.example.com:19000 · no local gateway");
     expect(joined).not.toContain("Gateway: local · ws://127.0.0.1:18789");
-    expect(joined).toContain("openclaw --profile isolated node status");
+    expect(joined).toContain("quantclaw --profile isolated node status");
     expect(joined).not.toContain("Fix reachability first");
   });
 
@@ -823,7 +823,7 @@ describe("statusCommand", () => {
       session: {},
       channels: { whatsapp: { allowFrom: ["*"] } },
     });
-    await withEnvVar("OPENCLAW_GATEWAY_TOKEN", "abcd1234", async () => {
+    await withEnvVar("QUANTCLAW_GATEWAY_TOKEN", "abcd1234", async () => {
       mockProbeGatewayResult({
         ok: true,
         connectLatencyMs: 123,

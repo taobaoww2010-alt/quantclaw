@@ -55,7 +55,7 @@ function setBundledManifestIdsByRoot(manifestIds: Record<string, string>) {
       : {
           ok: false,
           error: "invalid manifest",
-          manifestPath: `${rootDir}/openclaw.plugin.json`,
+          manifestPath: `${rootDir}/quantclaw.plugin.json`,
         },
   );
 }
@@ -190,7 +190,7 @@ describe("bundled plugin sources", () => {
   it("forwards an explicit env to bundled discovery helpers", () => {
     setBundledDiscoveryCandidates([]);
 
-    const env = { HOME: "/tmp/openclaw-home" } as NodeJS.ProcessEnv;
+    const env = { HOME: "/tmp/quantclaw-home" } as NodeJS.ProcessEnv;
 
     resolveBundledPluginSources({
       workspaceDir: "/workspace",

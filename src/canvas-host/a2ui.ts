@@ -86,7 +86,7 @@ export function injectCanvasLiveReload(html: string): string {
   // Works on:
   // - iOS: window.webkit.messageHandlers.openclawCanvasA2UIAction.postMessage(...)
   // - Android: window.openclawCanvasA2UIAction.postMessage(...)
-  const handlerNames = ["openclawCanvasA2UIAction"];
+  const handlerNames = ["quantclawCanvasA2UIAction"];
   function postToNode(payload) {
     try {
       const raw = typeof payload === "string" ? payload : JSON.stringify(payload);

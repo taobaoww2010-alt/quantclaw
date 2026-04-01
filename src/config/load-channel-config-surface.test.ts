@@ -39,7 +39,7 @@ afterEach(() => {
 
 describe("loadChannelConfigSurfaceModule", () => {
   it("falls back to Jiti when bun is unavailable", async () => {
-    const repoRoot = makeTempRoot("openclaw-config-surface-");
+    const repoRoot = makeTempRoot("quantclaw-config-surface-");
     const packageRoot = path.join(repoRoot, "extensions", "demo");
     const modulePath = path.join(packageRoot, "src", "config-schema.js");
 
@@ -78,7 +78,7 @@ describe("loadChannelConfigSurfaceModule", () => {
   });
 
   it("retries from an isolated package copy when extension-local node_modules is broken", async () => {
-    const repoRoot = makeTempRoot("openclaw-config-surface-");
+    const repoRoot = makeTempRoot("quantclaw-config-surface-");
     const packageRoot = path.join(repoRoot, "extensions", "demo");
     const modulePath = path.join(packageRoot, "src", "config-schema.js");
 

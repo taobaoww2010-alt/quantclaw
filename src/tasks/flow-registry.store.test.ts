@@ -24,7 +24,7 @@ function createStoredFlow(): FlowRecord {
 }
 
 async function withFlowRegistryTempDir<T>(run: (root: string) => Promise<T>): Promise<T> {
-  return await withTempDir({ prefix: "openclaw-flow-store-" }, async (root) => {
+  return await withTempDir({ prefix: "quantclaw-flow-store-" }, async (root) => {
     process.env.OPENCLAW_STATE_DIR = root;
     resetFlowRegistryForTests();
     try {

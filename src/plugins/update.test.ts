@@ -155,10 +155,10 @@ function createCodexAppServerInstallConfig(params: {
   return {
     plugins: {
       installs: {
-        "openclaw-codex-app-server": {
+        "quantclaw-codex-app-server": {
           source: "npm" as const,
           spec: params.spec,
-          installPath: "/tmp/openclaw-codex-app-server",
+          installPath: "/tmp/quantclaw-codex-app-server",
           ...(params.resolvedName ? { resolvedName: params.resolvedName } : {}),
           ...(params.resolvedSpec ? { resolvedSpec: params.resolvedSpec } : {}),
         },
@@ -216,10 +216,10 @@ function expectCodexAppServerInstallState(params: {
   version: string;
   resolvedSpec?: string;
 }) {
-  expect(params.result.config.plugins?.installs?.["openclaw-codex-app-server"]).toMatchObject({
+  expect(params.result.config.plugins?.installs?.["quantclaw-codex-app-server"]).toMatchObject({
     source: "npm",
     spec: params.spec,
-    installPath: "/tmp/openclaw-codex-app-server",
+    installPath: "/tmp/quantclaw-codex-app-server",
     version: params.version,
     ...(params.resolvedSpec ? { resolvedSpec: params.resolvedSpec } : {}),
   });
@@ -267,22 +267,22 @@ describe("updateNpmInstalledPlugins", () => {
     {
       name: "skips recorded integrity checks when an explicit npm version override changes the spec",
       config: createNpmInstallConfig({
-        pluginId: "openclaw-codex-app-server",
-        spec: "openclaw-codex-app-server@0.2.0-beta.3",
+        pluginId: "quantclaw-codex-app-server",
+        spec: "quantclaw-codex-app-server@0.2.0-beta.3",
         integrity: "sha512-old",
-        installPath: "/tmp/openclaw-codex-app-server",
+        installPath: "/tmp/quantclaw-codex-app-server",
       }),
-      pluginIds: ["openclaw-codex-app-server"],
+      pluginIds: ["quantclaw-codex-app-server"],
       specOverrides: {
-        "openclaw-codex-app-server": "openclaw-codex-app-server@0.2.0-beta.4",
+        "quantclaw-codex-app-server": "quantclaw-codex-app-server@0.2.0-beta.4",
       },
       installerResult: createSuccessfulNpmUpdateResult({
-        pluginId: "openclaw-codex-app-server",
-        targetDir: "/tmp/openclaw-codex-app-server",
+        pluginId: "quantclaw-codex-app-server",
+        targetDir: "/tmp/quantclaw-codex-app-server",
         version: "0.2.0-beta.4",
       }),
       expectedCall: {
-        spec: "openclaw-codex-app-server@0.2.0-beta.4",
+        spec: "quantclaw-codex-app-server@0.2.0-beta.4",
         expectedIntegrity: undefined,
       },
     },
@@ -358,42 +358,42 @@ describe("updateNpmInstalledPlugins", () => {
       name: "reuses a recorded npm dist-tag spec for id-based updates",
       installerResult: {
         ok: true,
-        pluginId: "openclaw-codex-app-server",
-        targetDir: "/tmp/openclaw-codex-app-server",
+        pluginId: "quantclaw-codex-app-server",
+        targetDir: "/tmp/quantclaw-codex-app-server",
         version: "0.2.0-beta.4",
         extensions: ["index.ts"],
       },
       config: createCodexAppServerInstallConfig({
-        spec: "openclaw-codex-app-server@beta",
-        resolvedName: "openclaw-codex-app-server",
-        resolvedSpec: "openclaw-codex-app-server@0.2.0-beta.3",
+        spec: "quantclaw-codex-app-server@beta",
+        resolvedName: "quantclaw-codex-app-server",
+        resolvedSpec: "quantclaw-codex-app-server@0.2.0-beta.3",
       }),
-      expectedSpec: "openclaw-codex-app-server@beta",
+      expectedSpec: "quantclaw-codex-app-server@beta",
       expectedVersion: "0.2.0-beta.4",
     },
     {
       name: "uses and persists an explicit npm spec override during updates",
       installerResult: {
         ok: true,
-        pluginId: "openclaw-codex-app-server",
-        targetDir: "/tmp/openclaw-codex-app-server",
+        pluginId: "quantclaw-codex-app-server",
+        targetDir: "/tmp/quantclaw-codex-app-server",
         version: "0.2.0-beta.4",
         extensions: ["index.ts"],
         npmResolution: {
-          name: "openclaw-codex-app-server",
+          name: "quantclaw-codex-app-server",
           version: "0.2.0-beta.4",
-          resolvedSpec: "openclaw-codex-app-server@0.2.0-beta.4",
+          resolvedSpec: "quantclaw-codex-app-server@0.2.0-beta.4",
         },
       },
       config: createCodexAppServerInstallConfig({
-        spec: "openclaw-codex-app-server",
+        spec: "quantclaw-codex-app-server",
       }),
       specOverrides: {
-        "openclaw-codex-app-server": "openclaw-codex-app-server@beta",
+        "quantclaw-codex-app-server": "quantclaw-codex-app-server@beta",
       },
-      expectedSpec: "openclaw-codex-app-server@beta",
+      expectedSpec: "quantclaw-codex-app-server@beta",
       expectedVersion: "0.2.0-beta.4",
-      expectedResolvedSpec: "openclaw-codex-app-server@0.2.0-beta.4",
+      expectedResolvedSpec: "quantclaw-codex-app-server@0.2.0-beta.4",
     },
   ] as const)(
     "$name",
@@ -409,13 +409,13 @@ describe("updateNpmInstalledPlugins", () => {
 
       const result = await updateNpmInstalledPlugins({
         config,
-        pluginIds: ["openclaw-codex-app-server"],
+        pluginIds: ["quantclaw-codex-app-server"],
         ...(specOverrides ? { specOverrides } : {}),
       });
 
       expectNpmUpdateCall({
         spec: expectedSpec,
-        expectedPluginId: "openclaw-codex-app-server",
+        expectedPluginId: "quantclaw-codex-app-server",
       });
       expectCodexAppServerInstallState({
         result,
@@ -479,7 +479,7 @@ describe("updateNpmInstalledPlugins", () => {
     installPluginFromNpmSpecMock.mockResolvedValue({
       ok: true,
       pluginId: "@openclaw/voice-call",
-      targetDir: "/tmp/openclaw-voice-call",
+      targetDir: "/tmp/quantclaw-voice-call",
       version: "0.0.2",
       extensions: ["index.ts"],
     });
@@ -525,7 +525,7 @@ describe("updateNpmInstalledPlugins", () => {
     expect(result.config.plugins?.installs?.["@openclaw/voice-call"]).toMatchObject({
       source: "npm",
       spec: "@openclaw/voice-call",
-      installPath: "/tmp/openclaw-voice-call",
+      installPath: "/tmp/quantclaw-voice-call",
       version: "0.0.2",
     });
     expect(result.config.plugins?.installs?.["voice-call"]).toBeUndefined();
@@ -677,7 +677,7 @@ describe("syncPluginsForUpdateChannel", () => {
   });
 
   it("uses the provided env when matching bundled load and install paths", async () => {
-    const bundledHome = "/tmp/openclaw-home";
+    const bundledHome = "/tmp/quantclaw-home";
     mockBundledSources(
       createBundledSource({
         localPath: `${bundledHome}/plugins/feishu`,

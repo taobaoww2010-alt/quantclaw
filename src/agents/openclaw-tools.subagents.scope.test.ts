@@ -74,7 +74,7 @@ async function expectLeafSubagentControlForbidden(params: {
   expect(callGatewayMock).not.toHaveBeenCalled();
 }
 
-describe("openclaw-tools: subagents scope isolation", () => {
+describe("quantclaw-tools: subagents scope isolation", () => {
   let storePath = "";
 
   beforeEach(() => {

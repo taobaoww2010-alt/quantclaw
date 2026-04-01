@@ -162,7 +162,7 @@ describe("task-registry store runtime", () => {
     if (process.platform === "win32") {
       return;
     }
-    const stateDir = mkdtempSync(path.join(os.tmpdir(), "openclaw-task-store-"));
+    const stateDir = mkdtempSync(path.join(os.tmpdir(), "quantclaw-task-store-"));
     process.env.OPENCLAW_STATE_DIR = stateDir;
 
     createTaskRecord({

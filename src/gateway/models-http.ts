@@ -34,7 +34,7 @@ function toOpenAiModel(id: string): OpenAiModelObject {
     id,
     object: "model",
     created: 0,
-    owned_by: "openclaw",
+    owned_by: "quantclaw",
     permission: [],
   };
 }

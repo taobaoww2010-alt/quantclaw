@@ -64,7 +64,7 @@ describe("readGatewayServiceState", () => {
     const service = createService({
       isLoaded: vi.fn(async () => true),
       readCommand: vi.fn(async () => ({
-        programArguments: ["openclaw", "gateway", "run"],
+        programArguments: ["quantclaw", "gateway", "run"],
         environment: { OPENCLAW_GATEWAY_PORT: "18789" },
       })),
       readRuntime: vi.fn(async () => ({ status: "running" })),
@@ -96,7 +96,7 @@ describe("startGatewayService", () => {
 
   it("restarts stopped installed services and returns post-start state", async () => {
     const readCommand = vi.fn(async () => ({
-      programArguments: ["openclaw", "gateway", "run"],
+      programArguments: ["quantclaw", "gateway", "run"],
       environment: { OPENCLAW_GATEWAY_PORT: "18789" },
     }));
     const isLoaded = vi
@@ -129,7 +129,7 @@ describe("startGatewayService", () => {
     const readCommand = vi
       .fn<GatewayService["readCommand"]>()
       .mockResolvedValueOnce({
-        programArguments: ["openclaw", "gateway", "run"],
+        programArguments: ["quantclaw", "gateway", "run"],
       })
       .mockResolvedValueOnce(null);
     const service = createService({

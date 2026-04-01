@@ -159,7 +159,7 @@ export async function maybeRemoveDeprecatedCliAuthProfiles(
         provider: entry.providerId,
         config: cfg,
         env: process.env,
-      }) ?? formatCliCommand("openclaw configure");
+      }) ?? formatCliCommand("quantclaw configure");
     lines.push(`- ${entry.profileId} (${entry.providerLabel}): use ${authCommand}`);
   }
   note(lines.join("\n"), "Auth profiles");

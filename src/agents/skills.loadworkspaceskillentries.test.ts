@@ -10,7 +10,7 @@ import { writePluginWithSkill } from "./test-helpers/skill-plugin-fixtures.js";
 const tempDirs: string[] = [];
 
 async function createTempWorkspaceDir() {
-  const workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-"));
+  const workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-"));
   tempDirs.push(workspaceDir);
   return workspaceDir;
 }

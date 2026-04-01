@@ -89,7 +89,7 @@ describe("loadEnabledBundleMcpConfig", () => {
   it("loads enabled Claude bundle MCP config and absolutizes relative args", async () => {
     await withBundleHomeEnv(
       tempHarness,
-      "openclaw-bundle-mcp",
+      "quantclaw-bundle-mcp",
       async ({ homeDir, workspaceDir }) => {
         const { pluginRoot, serverPath } = await createBundleProbePlugin(homeDir);
 
@@ -129,7 +129,7 @@ describe("loadEnabledBundleMcpConfig", () => {
   it("merges inline bundle MCP servers and skips disabled bundles", async () => {
     await withBundleHomeEnv(
       tempHarness,
-      "openclaw-bundle-inline",
+      "quantclaw-bundle-inline",
       async ({ homeDir, workspaceDir }) => {
         await writeClaudeBundleManifest({
           homeDir,
@@ -179,7 +179,7 @@ describe("loadEnabledBundleMcpConfig", () => {
   it("resolves inline Claude MCP paths from the plugin root and expands CLAUDE_PLUGIN_ROOT", async () => {
     await withBundleHomeEnv(
       tempHarness,
-      "openclaw-bundle-inline-placeholder",
+      "quantclaw-bundle-inline-placeholder",
       async ({ homeDir, workspaceDir }) => {
         const pluginRoot = await writeClaudeBundleManifest({
           homeDir,

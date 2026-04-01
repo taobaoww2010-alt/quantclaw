@@ -128,14 +128,14 @@ async function prepareAndActivate(params: { config: OpenClawConfig; env?: NodeJS
   const snapshot = await secretsRuntime.prepareSecretsRuntimeSnapshot({
     config: params.config,
     env: params.env,
-    agentDirs: ["/tmp/openclaw-agent-main"],
+    agentDirs: ["/tmp/quantclaw-agent-main"],
     loadAuthStore: () => ({ version: 1, profiles: {} }),
   });
   secretsRuntime.activateSecretsRuntimeSnapshot(snapshot);
   return snapshot;
 }
 
-describe("openclaw tools runtime web metadata wiring", () => {
+describe("quantclaw tools runtime web metadata wiring", () => {
   const priorFetch = global.fetch;
 
   beforeAll(async () => {

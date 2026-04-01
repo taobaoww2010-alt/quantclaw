@@ -41,7 +41,7 @@ describe("resolveOpenAiCompatModelOverride", () => {
       resolveOpenAiCompatModelOverride({
         req: createReq({ "x-openclaw-model": "claude-cli/opus" }),
         agentId: "main",
-        model: "openclaw",
+        model: "quantclaw",
       }),
     ).resolves.toEqual({
       errorMessage: "Model 'claude-cli/opus' is not allowed for agent 'main'.",

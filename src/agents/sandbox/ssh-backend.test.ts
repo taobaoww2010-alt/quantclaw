@@ -73,8 +73,8 @@ function createConfig(): OpenClawConfig {
 function createSession() {
   return {
     command: "ssh",
-    configPath: path.join(os.tmpdir(), "openclaw-test-ssh-config"),
-    host: "openclaw-sandbox",
+    configPath: path.join(os.tmpdir(), "quantclaw-test-ssh-config"),
+    host: "quantclaw-sandbox",
   };
 }
 
@@ -171,9 +171,9 @@ describe("ssh sandbox backend", () => {
   it("describes runtimes via the configured ssh target", async () => {
     const result = await sshSandboxBackendManager.describeRuntime({
       entry: {
-        containerName: "openclaw-ssh-worker-abcd1234",
+        containerName: "quantclaw-ssh-worker-abcd1234",
         backendId: "ssh",
-        runtimeLabel: "openclaw-ssh-worker-abcd1234",
+        runtimeLabel: "quantclaw-ssh-worker-abcd1234",
         sessionKey: "agent:worker",
         createdAtMs: 1,
         lastUsedAtMs: 1,
@@ -204,9 +204,9 @@ describe("ssh sandbox backend", () => {
   it("removes runtimes by deleting the remote scope root", async () => {
     await sshSandboxBackendManager.removeRuntime({
       entry: {
-        containerName: "openclaw-ssh-worker-abcd1234",
+        containerName: "quantclaw-ssh-worker-abcd1234",
         backendId: "ssh",
-        runtimeLabel: "openclaw-ssh-worker-abcd1234",
+        runtimeLabel: "quantclaw-ssh-worker-abcd1234",
         sessionKey: "agent:worker",
         createdAtMs: 1,
         lastUsedAtMs: 1,
@@ -254,8 +254,8 @@ describe("ssh sandbox backend", () => {
         workspaceAccess: "rw",
         workspaceRoot: "~/.openclaw/sandboxes",
         docker: {
-          image: "openclaw-sandbox:bookworm-slim",
-          containerPrefix: "openclaw-sbx-",
+          image: "quantclaw-sandbox:bookworm-slim",
+          containerPrefix: "quantclaw-sbx-",
           workdir: "/workspace",
           readOnlyRoot: true,
           tmpfs: ["/tmp"],
@@ -272,8 +272,8 @@ describe("ssh sandbox backend", () => {
         },
         browser: {
           enabled: false,
-          image: "openclaw-browser",
-          containerPrefix: "openclaw-browser-",
+          image: "quantclaw-browser",
+          containerPrefix: "quantclaw-browser-",
           network: "bridge",
           cdpPort: 9222,
           vncPort: 5900,

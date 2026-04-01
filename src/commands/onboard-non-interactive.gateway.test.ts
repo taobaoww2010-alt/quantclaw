@@ -148,7 +148,7 @@ async function expectLocalJsonSetupFailure(stateDir: string, runtimeWithCapture:
       {
         nonInteractive: true,
         mode: "local",
-        workspace: path.join(stateDir, "openclaw"),
+        workspace: path.join(stateDir, "quantclaw"),
         authChoice: "skip",
         skipSkills: true,
         skipHealth: false,
@@ -195,18 +195,18 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
       "OPENCLAW_SKIP_CRON",
       "OPENCLAW_SKIP_CANVAS_HOST",
       "OPENCLAW_SKIP_BROWSER_CONTROL_SERVER",
-      "OPENCLAW_GATEWAY_TOKEN",
-      "OPENCLAW_GATEWAY_PASSWORD",
+      "QUANTCLAW_GATEWAY_TOKEN",
+      "QUANTCLAW_GATEWAY_PASSWORD",
     ]);
     process.env.OPENCLAW_SKIP_CHANNELS = "1";
     process.env.OPENCLAW_SKIP_GMAIL_WATCHER = "1";
     process.env.OPENCLAW_SKIP_CRON = "1";
     process.env.OPENCLAW_SKIP_CANVAS_HOST = "1";
     process.env.OPENCLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
-    delete process.env.OPENCLAW_GATEWAY_TOKEN;
-    delete process.env.OPENCLAW_GATEWAY_PASSWORD;
+    delete process.env.QUANTCLAW_GATEWAY_TOKEN;
+    delete process.env.QUANTCLAW_GATEWAY_PASSWORD;
 
-    tempHome = await makeTempWorkspace("openclaw-onboard-");
+    tempHome = await makeTempWorkspace("quantclaw-onboard-");
     process.env.HOME = tempHome;
 
     await loadGatewayOnboardModules();
@@ -235,7 +235,7 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
   it("writes gateway token auth into config", async () => {
     await withStateDir("state-noninteractive-", async (stateDir) => {
       const token = "tok_test_123";
-      const workspace = path.join(stateDir, "openclaw");
+      const workspace = path.join(stateDir, "quantclaw");
 
       await runNonInteractiveSetup(
         {
@@ -267,12 +267,12 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
     });
   }, 60_000);
 
-  it("uses OPENCLAW_GATEWAY_TOKEN when --gateway-token is omitted", async () => {
+  it("uses QUANTCLAW_GATEWAY_TOKEN when --gateway-token is omitted", async () => {
     await withStateDir("state-env-token-", async (stateDir) => {
       const envToken = "tok_env_fallback_123";
-      const workspace = path.join(stateDir, "openclaw");
-      const prevToken = process.env.OPENCLAW_GATEWAY_TOKEN;
-      process.env.OPENCLAW_GATEWAY_TOKEN = envToken;
+      const workspace = path.join(stateDir, "quantclaw");
+      const prevToken = process.env.QUANTCLAW_GATEWAY_TOKEN;
+      process.env.QUANTCLAW_GATEWAY_TOKEN = envToken;
 
       try {
         await runNonInteractiveSetup(
@@ -299,9 +299,9 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
         expect(cfg?.gateway?.auth?.token).toBe(envToken);
       } finally {
         if (prevToken === undefined) {
-          delete process.env.OPENCLAW_GATEWAY_TOKEN;
+          delete process.env.QUANTCLAW_GATEWAY_TOKEN;
         } else {
-          process.env.OPENCLAW_GATEWAY_TOKEN = prevToken;
+          process.env.QUANTCLAW_GATEWAY_TOKEN = prevToken;
         }
       }
     });
@@ -310,9 +310,9 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
   it("writes gateway token SecretRef from --gateway-token-ref-env", async () => {
     await withStateDir("state-env-token-ref-", async (stateDir) => {
       const envToken = "tok_env_ref_123";
-      const workspace = path.join(stateDir, "openclaw");
-      const prevToken = process.env.OPENCLAW_GATEWAY_TOKEN;
-      process.env.OPENCLAW_GATEWAY_TOKEN = envToken;
+      const workspace = path.join(stateDir, "quantclaw");
+      const prevToken = process.env.QUANTCLAW_GATEWAY_TOKEN;
+      process.env.QUANTCLAW_GATEWAY_TOKEN = envToken;
 
       try {
         await runNonInteractiveSetup(
@@ -326,7 +326,7 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
             installDaemon: false,
             gatewayBind: "loopback",
             gatewayAuth: "token",
-            gatewayTokenRefEnv: "OPENCLAW_GATEWAY_TOKEN",
+            gatewayTokenRefEnv: "QUANTCLAW_GATEWAY_TOKEN",
           },
           runtime,
         );
@@ -340,13 +340,13 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
         expect(cfg?.gateway?.auth?.token).toEqual({
           source: "env",
           provider: "default",
-          id: "OPENCLAW_GATEWAY_TOKEN",
+          id: "QUANTCLAW_GATEWAY_TOKEN",
         });
       } finally {
         if (prevToken === undefined) {
-          delete process.env.OPENCLAW_GATEWAY_TOKEN;
+          delete process.env.QUANTCLAW_GATEWAY_TOKEN;
         } else {
-          process.env.OPENCLAW_GATEWAY_TOKEN = prevToken;
+          process.env.QUANTCLAW_GATEWAY_TOKEN = prevToken;
         }
       }
     });
@@ -354,7 +354,7 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
 
   it("fails when --gateway-token-ref-env points to a missing env var", async () => {
     await withStateDir("state-env-token-ref-missing-", async (stateDir) => {
-      const workspace = path.join(stateDir, "openclaw");
+      const workspace = path.join(stateDir, "quantclaw");
       const previous = process.env.MISSING_GATEWAY_TOKEN_ENV;
       delete process.env.MISSING_GATEWAY_TOKEN_ENV;
       try {
@@ -430,7 +430,7 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
           {
             nonInteractive: true,
             mode: "local",
-            workspace: path.join(stateDir, "openclaw"),
+            workspace: path.join(stateDir, "quantclaw"),
             authChoice: "skip",
             skipSkills: true,
             skipHealth: false,
@@ -457,7 +457,7 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
         {
           nonInteractive: true,
           mode: "local",
-          workspace: path.join(stateDir, "openclaw"),
+          workspace: path.join(stateDir, "quantclaw"),
           authChoice: "skip",
           skipSkills: true,
           skipHealth: false,
@@ -567,10 +567,10 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
     }
     await withStateDir("state-lan-", async (stateDir) => {
       process.env.OPENCLAW_STATE_DIR = stateDir;
-      process.env.OPENCLAW_CONFIG_PATH = path.join(stateDir, "openclaw.json");
+      process.env.OPENCLAW_CONFIG_PATH = path.join(stateDir, "quantclaw.json");
 
       const port = getPseudoPort(40_000);
-      const workspace = path.join(stateDir, "openclaw");
+      const workspace = path.join(stateDir, "quantclaw");
 
       await runNonInteractiveSetup(
         {

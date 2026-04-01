@@ -13,8 +13,8 @@ async function withTempConfig(
   configContent: string,
   run: (configPath: string) => Promise<void>,
 ): Promise<void> {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-env-io-"));
-  const configPath = path.join(dir, "openclaw.json");
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-env-io-"));
+  const configPath = path.join(dir, "quantclaw.json");
   await fs.writeFile(configPath, configContent);
   try {
     await run(configPath);

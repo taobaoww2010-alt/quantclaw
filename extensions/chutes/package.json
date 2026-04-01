@@ -4,7 +4,7 @@
   "private": true,
   "description": "OpenClaw Chutes.ai provider plugin",
   "type": "module",
-  "openclaw": {
+  "quantclaw": {
     "extensions": [
       "./index.ts"
     ]

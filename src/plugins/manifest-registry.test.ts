@@ -26,11 +26,11 @@ function mkdirSafe(dir: string) {
 }
 
 function makeTempDir() {
-  return makeTrackedTempDir("openclaw-manifest-registry", tempDirs);
+  return makeTrackedTempDir("quantclaw-manifest-registry", tempDirs);
 }
 
 function writeManifest(dir: string, manifest: Record<string, unknown>) {
-  fs.writeFileSync(path.join(dir, "openclaw.plugin.json"), JSON.stringify(manifest), "utf-8");
+  fs.writeFileSync(path.join(dir, "quantclaw.plugin.json"), JSON.stringify(manifest), "utf-8");
 }
 
 function writeTextFile(rootDir: string, relativePath: string, value: string) {
@@ -61,7 +61,7 @@ function createPluginCandidate(params: {
   rootDir: string;
   sourceName?: string;
   origin: "bundled" | "global" | "workspace" | "config";
-  format?: "openclaw" | "bundle";
+  format?: "quantclaw" | "bundle";
   bundleFormat?: "codex" | "claude" | "cursor";
   packageManifest?: OpenClawPackageManifest;
   packageDir?: string;
@@ -93,7 +93,7 @@ function hermeticEnv(overrides: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv {
   return {
     OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
     OPENCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE: "1",
-    OPENCLAW_VERSION: undefined,
+    QUANTCLAW_VERSION: undefined,
     VITEST: "true",
     ...overrides,
   };
@@ -127,8 +127,8 @@ function prepareLinkedManifestFixture(params: { id: string; mode: "symlink" | "h
 } {
   const rootDir = makeTempDir();
   const outsideDir = makeTempDir();
-  const outsideManifest = path.join(outsideDir, "openclaw.plugin.json");
-  const linkedManifest = path.join(rootDir, "openclaw.plugin.json");
+  const outsideManifest = path.join(outsideDir, "quantclaw.plugin.json");
+  const linkedManifest = path.join(rootDir, "quantclaw.plugin.json");
   fs.writeFileSync(path.join(rootDir, "index.ts"), "export default function () {}", "utf-8");
   fs.writeFileSync(
     outsideManifest,
@@ -476,7 +476,7 @@ describe("loadPluginManifestRegistry", () => {
         idHint: "telegram",
         rootDir: dir,
         origin: "bundled",
-        bundledManifestPath: path.join(dir, "openclaw.plugin.json"),
+        bundledManifestPath: path.join(dir, "quantclaw.plugin.json"),
         bundledManifest: {
           id: "telegram",
           configSchema: { type: "object" },
@@ -521,7 +521,7 @@ describe("loadPluginManifestRegistry", () => {
     {
       name: "skips plugins whose minHostVersion is newer than the current host",
       minHostVersion: ">=2026.3.22",
-      env: { OPENCLAW_VERSION: "2026.3.21" } as NodeJS.ProcessEnv,
+      env: { QUANTCLAW_VERSION: "2026.3.21" } as NodeJS.ProcessEnv,
       expectedMessage: "plugin requires OpenClaw >=2026.3.22, but this host is 2026.3.21",
       expectWarn: false,
     },
@@ -534,7 +534,7 @@ describe("loadPluginManifestRegistry", () => {
     {
       name: "warns distinctly when host version cannot be determined",
       minHostVersion: ">=2026.3.22",
-      env: { OPENCLAW_VERSION: "unknown" } as NodeJS.ProcessEnv,
+      env: { QUANTCLAW_VERSION: "unknown" } as NodeJS.ProcessEnv,
       expectedMessage: "host version could not be determined",
       expectWarn: true,
     },
@@ -970,14 +970,14 @@ describe("loadPluginManifestRegistry", () => {
       cache: true,
       candidates,
       env: hermeticEnv({
-        OPENCLAW_VERSION: "2026.3.21",
+        QUANTCLAW_VERSION: "2026.3.21",
       }),
     });
     const newerHost = loadPluginManifestRegistry({
       cache: true,
       candidates,
       env: hermeticEnv({
-        OPENCLAW_VERSION: "2026.3.22",
+        QUANTCLAW_VERSION: "2026.3.22",
       }),
     });
 

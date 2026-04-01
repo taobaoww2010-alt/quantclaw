@@ -170,7 +170,7 @@ function throwBootstrapGuiSessionError(params: {
       `LaunchAgent ${params.actionHint} requires a logged-in macOS GUI session for this user (${params.domain}).`,
       "This usually means you are running from SSH/headless context or as the wrong user (including sudo).",
       `Fix: sign in to the macOS desktop as the target user and rerun \`${params.actionHint}\`.`,
-      "Headless deployments should use a dedicated logged-in user session or a custom LaunchDaemon (not shipped): https://docs.openclaw.ai/gateway",
+      "Headless deployments should use a dedicated logged-in user session or a custom LaunchDaemon (not shipped): https://docs.quantclaw.ai/gateway",
     ].join("\n"),
   );
 }
@@ -530,7 +530,7 @@ async function activateLaunchAgent(params: { env: GatewayServiceEnv; plistPath: 
     domain,
     serviceTarget: `${domain}/${label}`,
     plistPath: params.plistPath,
-    actionHint: "openclaw gateway install --force",
+    actionHint: "quantclaw gateway install --force",
   });
 }
 
@@ -599,7 +599,7 @@ export async function restartLaunchAgent({
     domain,
     serviceTarget,
     plistPath,
-    actionHint: "openclaw gateway restart",
+    actionHint: "quantclaw gateway restart",
   });
 
   const retry = await execLaunchctl(["kickstart", "-k", serviceTarget]);

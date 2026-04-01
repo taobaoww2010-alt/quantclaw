@@ -44,7 +44,7 @@ describe("avatar policy", () => {
 
   it("detects avatar-like path strings", () => {
     expect(looksLikeAvatarPath("avatars/openclaw.svg")).toBe(true);
-    expect(looksLikeAvatarPath("openclaw.webp")).toBe(true);
+    expect(looksLikeAvatarPath("quantclaw.webp")).toBe(true);
     expect(looksLikeAvatarPath("avatar.ico")).toBe(true);
     expect(looksLikeAvatarPath("A")).toBe(false);
   });

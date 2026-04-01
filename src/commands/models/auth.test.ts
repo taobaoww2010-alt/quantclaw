@@ -144,9 +144,9 @@ describe("modelsAuthLoginCommand", () => {
     mocks.upsertAuthProfile.mockReset();
 
     mocks.resolveDefaultAgentId.mockReturnValue("main");
-    mocks.resolveAgentDir.mockReturnValue("/tmp/openclaw/agents/main");
-    mocks.resolveAgentWorkspaceDir.mockReturnValue("/tmp/openclaw/workspace");
-    mocks.resolveDefaultAgentWorkspaceDir.mockReturnValue("/tmp/openclaw/workspace");
+    mocks.resolveAgentDir.mockReturnValue("/tmp/quantclaw/agents/main");
+    mocks.resolveAgentWorkspaceDir.mockReturnValue("/tmp/quantclaw/workspace");
+    mocks.resolveDefaultAgentWorkspaceDir.mockReturnValue("/tmp/quantclaw/workspace");
     mocks.loadValidConfigOrThrow.mockImplementation(async () => currentConfig);
     mocks.updateConfig.mockImplementation(
       async (mutator: (cfg: OpenClawConfig) => OpenClawConfig) => {
@@ -204,7 +204,7 @@ describe("modelsAuthLoginCommand", () => {
         type: "oauth",
         provider: "openai-codex",
       }),
-      agentDir: "/tmp/openclaw/agents/main",
+      agentDir: "/tmp/quantclaw/agents/main",
     });
     expect(lastUpdatedConfig?.auth?.profiles?.["openai-codex:user@example.com"]).toMatchObject({
       provider: "openai-codex",
@@ -300,7 +300,7 @@ describe("modelsAuthLoginCommand", () => {
     expect(mocks.clearAuthProfileCooldown).toHaveBeenCalledWith({
       store: fakeStore,
       profileId: "openai-codex:user@example.com",
-      agentDir: "/tmp/openclaw/agents/main",
+      agentDir: "/tmp/quantclaw/agents/main",
     });
     // Verify clearing happens before login attempt
     const clearOrder = mocks.clearAuthProfileCooldown.mock.invocationCallOrder[0];
@@ -326,14 +326,14 @@ describe("modelsAuthLoginCommand", () => {
 
     await modelsAuthLoginCommand({ provider: "openai-codex" }, runtime);
 
-    expect(mocks.loadAuthProfileStoreForRuntime).toHaveBeenCalledWith("/tmp/openclaw/agents/main");
+    expect(mocks.loadAuthProfileStoreForRuntime).toHaveBeenCalledWith("/tmp/quantclaw/agents/main");
   });
 
   it("reports loaded plugin providers when requested provider is unavailable", async () => {
     const runtime = createRuntime();
 
     await expect(modelsAuthLoginCommand({ provider: "anthropic" }, runtime)).rejects.toThrow(
-      'Unknown provider "anthropic". Loaded providers: openai-codex. Verify plugins via `openclaw plugins list --json`.',
+      'Unknown provider "anthropic". Loaded providers: openai-codex. Verify plugins via `quantclaw plugins list --json`.',
     );
   });
 
@@ -374,7 +374,7 @@ describe("modelsAuthLoginCommand", () => {
         provider: "openai",
         token: "tok-fresh",
       },
-      agentDir: "/tmp/openclaw/agents/main",
+      agentDir: "/tmp/quantclaw/agents/main",
     });
   });
 
@@ -417,7 +417,7 @@ describe("modelsAuthLoginCommand", () => {
         provider: "moonshot",
         token: "moonshot-token",
       },
-      agentDir: "/tmp/openclaw/agents/main",
+      agentDir: "/tmp/quantclaw/agents/main",
     });
   });
 });

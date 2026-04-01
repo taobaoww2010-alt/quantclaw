@@ -8,7 +8,7 @@
     "@sinclair/typebox": "0.34.49",
     "openai": "^6.33.0"
   },
-  "openclaw": {
+  "quantclaw": {
     "extensions": [
       "./index.ts"
     ],

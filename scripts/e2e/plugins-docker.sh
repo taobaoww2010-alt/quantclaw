@@ -235,7 +235,7 @@ module.exports = {
   },
 };
 JS
-  cat > "$dir/openclaw.plugin.json" <<'JSON'
+  cat > "$dir/quantclaw.plugin.json" <<'JSON'
 {
   "id": "placeholder",
   "configSchema": {
@@ -244,7 +244,7 @@ JS
   }
 }
 JSON
-  node - <<'NODE' "$dir/openclaw.plugin.json" "$id"
+  node - <<'NODE' "$dir/quantclaw.plugin.json" "$id"
 const fs = require("node:fs");
 const file = process.argv[2];
 const id = process.argv[3];
@@ -271,7 +271,7 @@ module.exports = {
   },
 };
 JS
-cat > "$demo_plugin_root/openclaw.plugin.json" <<'JSON'
+cat > "$demo_plugin_root/quantclaw.plugin.json" <<'JSON'
 {
   "id": "demo-plugin",
   "configSchema": {
@@ -331,7 +331,7 @@ module.exports = {
   },
 };
 JS
-cat > "$pack_dir/package/openclaw.plugin.json" <<'JSON'
+cat > "$pack_dir/package/quantclaw.plugin.json" <<'JSON'
 {
   "id": "demo-plugin-tgz",
   "configSchema": {
@@ -378,7 +378,7 @@ module.exports = {
   },
 };
 JS
-cat > "$dir_plugin/openclaw.plugin.json" <<'JSON'
+cat > "$dir_plugin/quantclaw.plugin.json" <<'JSON'
 {
   "id": "demo-plugin-dir",
   "configSchema": {
@@ -425,7 +425,7 @@ module.exports = {
   },
 };
 JS
-cat > "$file_pack_dir/package/openclaw.plugin.json" <<'JSON'
+cat > "$file_pack_dir/package/quantclaw.plugin.json" <<'JSON'
 {
   "id": "demo-plugin-file",
   "configSchema": {
@@ -526,7 +526,7 @@ module.exports = {
   },
 };
 JS
-cat > "$slash_install_dir/openclaw.plugin.json" <<'JSON'
+cat > "$slash_install_dir/quantclaw.plugin.json" <<'JSON'
 {
   "id": "slash-install-plugin",
   "configSchema": {

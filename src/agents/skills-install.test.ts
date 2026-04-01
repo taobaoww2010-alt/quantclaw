@@ -32,7 +32,7 @@ async function writeInstallableSkill(workspaceDir: string, name: string): Promis
     `---
 name: ${name}
 description: test skill
-metadata: {"openclaw":{"install":[{"id":"deps","kind":"node","package":"example-package"}]}}
+metadata: {"quantclaw":{"install":[{"id":"deps","kind":"node","package":"example-package"}]}}
 ---
 
 # ${name}
@@ -43,11 +43,11 @@ metadata: {"openclaw":{"install":[{"id":"deps","kind":"node","package":"example-
   return skillDir;
 }
 
-const workspaceSuite = createFixtureSuite("openclaw-skills-install-");
+const workspaceSuite = createFixtureSuite("quantclaw-skills-install-");
 let tempHome: TempHomeEnv;
 
 beforeAll(async () => {
-  tempHome = await createTempHomeEnv("openclaw-skills-install-home-");
+  tempHome = await createTempHomeEnv("quantclaw-skills-install-home-");
   await workspaceSuite.setup();
 });
 
@@ -169,7 +169,7 @@ describe("installSkill code safety scanning", () => {
       expect(handler.mock.calls[0]?.[0]).toMatchObject({
         targetName: "policy-skill",
         targetType: "skill",
-        origin: "openclaw-workspace",
+        origin: "quantclaw-workspace",
         sourcePath: expect.stringContaining("policy-skill"),
         sourcePathKind: "directory",
         request: {
@@ -189,7 +189,7 @@ describe("installSkill code safety scanning", () => {
         },
       });
       expect(handler.mock.calls[0]?.[1]).toEqual({
-        origin: "openclaw-workspace",
+        origin: "quantclaw-workspace",
         targetType: "skill",
         requestKind: "skill-install",
       });

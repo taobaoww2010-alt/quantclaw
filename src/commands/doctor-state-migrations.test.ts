@@ -15,7 +15,7 @@ import {
 let tempRoot: string | null = null;
 
 async function makeTempRoot() {
-  const root = await fs.promises.mkdtemp(path.join(os.tmpdir(), "openclaw-doctor-"));
+  const root = await fs.promises.mkdtemp(path.join(os.tmpdir(), "quantclaw-doctor-"));
   tempRoot = root;
   return root;
 }

@@ -185,7 +185,7 @@ export async function ensureSandboxBrowser(params: {
     }
     const registry = await readBrowserRegistry();
     const registryEntry = registry.entries.find((entry) => entry.containerName === containerName);
-    currentHash = await readDockerContainerLabel(containerName, "openclaw.configHash");
+    currentHash = await readDockerContainerLabel(containerName, "quantclaw.configHash");
     hashMismatch = !currentHash || currentHash !== expectedHash;
     if (!currentHash) {
       currentHash = registryEntry?.configHash ?? null;
@@ -204,7 +204,7 @@ export async function ensureSandboxBrowser(params: {
             const agentId = resolveSandboxAgentId(params.scopeKey) ?? "main";
             return `openclaw sandbox recreate --browser --agent ${agentId}`;
           }
-          return "openclaw sandbox recreate --browser --all";
+          return "quantclaw sandbox recreate --browser --all";
         })();
         defaultRuntime.log(
           `Sandbox browser config changed for ${containerName} (recently used). Recreate to apply: ${hint}`,
@@ -230,8 +230,8 @@ export async function ensureSandboxBrowser(params: {
       cfg: browserDockerCfg,
       scopeKey: params.scopeKey,
       labels: {
-        "openclaw.sandboxBrowser": "1",
-        "openclaw.browserConfigEpoch": SANDBOX_BROWSER_SECURITY_HASH_EPOCH,
+        "quantclaw.sandboxBrowser": "1",
+        "quantclaw.browserConfigEpoch": SANDBOX_BROWSER_SECURITY_HASH_EPOCH,
       },
       configHash: expectedHash,
       includeBinds: false,

@@ -34,7 +34,7 @@ vi.mock("../../cli/plugins-install-persist.js", () => ({
   persistPluginInstall: persistPluginInstallMock,
 }));
 
-const workspaceHarness = createCommandWorkspaceHarness("openclaw-command-plugins-install-");
+const workspaceHarness = createCommandWorkspaceHarness("quantclaw-command-plugins-install-");
 
 describe("handleCommands /plugins install", () => {
   afterEach(async () => {
@@ -54,7 +54,7 @@ describe("handleCommands /plugins install", () => {
     });
     persistPluginInstallMock.mockResolvedValue({});
 
-    await withTempHome("openclaw-command-plugins-home-", async () => {
+    await withTempHome("quantclaw-command-plugins-home-", async () => {
       const workspaceDir = await workspaceHarness.createWorkspace();
       const pluginDir = path.join(workspaceDir, "fixtures", "path-install-plugin");
       await fs.mkdir(pluginDir, { recursive: true });
@@ -114,7 +114,7 @@ describe("handleCommands /plugins install", () => {
     });
     persistPluginInstallMock.mockResolvedValue({});
 
-    await withTempHome("openclaw-command-plugins-home-", async () => {
+    await withTempHome("quantclaw-command-plugins-home-", async () => {
       const workspaceDir = await workspaceHarness.createWorkspace();
       const params = buildCommandTestParams(
         "/plugins install clawhub:@openclaw/clawhub-demo@1.2.3",
@@ -174,7 +174,7 @@ describe("handleCommands /plugins install", () => {
     });
     persistPluginInstallMock.mockResolvedValue({});
 
-    await withTempHome("openclaw-command-plugins-home-", async () => {
+    await withTempHome("quantclaw-command-plugins-home-", async () => {
       const workspaceDir = await workspaceHarness.createWorkspace();
       const params = buildCommandTestParams(
         "/plugin add clawhub:@openclaw/alias-demo@1.0.0",

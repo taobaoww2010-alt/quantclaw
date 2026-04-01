@@ -19,7 +19,7 @@ export const FIELD_HELP: Record<string, string> = {
   "wizard.lastRunAt":
     "ISO timestamp for when the setup wizard most recently completed on this host. Use this to confirm setup recency during support and operational audits.",
   "wizard.lastRunVersion":
-    "OpenClaw version recorded at the time of the most recent wizard run on this config. Use this when diagnosing behavior differences across version-to-version setup changes.",
+    "☯️ QuantClaw version recorded at the time of the most recent wizard run on this config. Use this when diagnosing behavior differences across version-to-version setup changes.",
   "wizard.lastRunCommit":
     "Source commit identifier recorded for the last wizard execution in development builds. Use this to correlate setup behavior with exact source state during debugging.",
   "wizard.lastRunCommand":
@@ -264,7 +264,7 @@ export const FIELD_HELP: Record<string, string> = {
   "browser.profiles.*.userDataDir":
     "Per-profile Chromium user data directory for existing-session attachment through Chrome DevTools MCP. Use this for host-local Brave, Edge, Chromium, or non-default Chrome profiles when the built-in auto-connect path would pick the wrong browser data directory.",
   "browser.profiles.*.driver":
-    'Per-profile browser driver mode. Use "openclaw" (or legacy "clawd") for CDP-based profiles, or use "existing-session" for host-local Chrome DevTools MCP attachment.',
+    'Per-profile browser driver mode. Use "quantclaw" (or legacy "clawd") for CDP-based profiles, or use "existing-session" for host-local Chrome DevTools MCP attachment.',
   "browser.profiles.*.attachOnly":
     "Per-profile attach-only override that skips local browser launch and only attaches to an existing CDP endpoint. Useful when one profile is externally managed but others are locally launched.",
   "browser.profiles.*.color":
@@ -1009,7 +1009,7 @@ export const FIELD_HELP: Record<string, string> = {
   "plugins.entries.*.config":
     "Plugin-defined configuration payload interpreted by that plugin's own schema and validation rules. Use only documented fields from the plugin to prevent ignored or invalid settings.",
   "plugins.installs":
-    "CLI-managed install metadata (used by `openclaw plugins update` to locate install sources).",
+    "CLI-managed install metadata (used by `quantclaw plugins update` to locate install sources).",
   "plugins.installs.*.source": 'Install source ("npm", "archive", or "path").',
   "plugins.installs.*.spec": "Original npm spec used for install (if source is npm).",
   "plugins.installs.*.sourcePath": "Original archive/path used for install (if any).",

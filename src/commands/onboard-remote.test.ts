@@ -320,13 +320,13 @@ describe("promptRemoteGatewayConfig", () => {
   });
 
   it("supports storing remote auth as an external env secret ref", async () => {
-    process.env.OPENCLAW_GATEWAY_TOKEN = "remote-token-value";
+    process.env.QUANTCLAW_GATEWAY_TOKEN = "remote-token-value";
     const text: WizardPrompter["text"] = vi.fn(async (params) => {
       if (params.message === "Gateway WebSocket URL") {
         return "wss://remote.example.com:18789";
       }
       if (params.message === "Environment variable name") {
-        return "OPENCLAW_GATEWAY_TOKEN";
+        return "QUANTCLAW_GATEWAY_TOKEN";
       }
       return "";
     }) as WizardPrompter["text"];
@@ -358,7 +358,7 @@ describe("promptRemoteGatewayConfig", () => {
     expect(next.gateway?.remote?.token).toEqual({
       source: "env",
       provider: "default",
-      id: "OPENCLAW_GATEWAY_TOKEN",
+      id: "QUANTCLAW_GATEWAY_TOKEN",
     });
   });
 });

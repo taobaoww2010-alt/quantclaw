@@ -150,7 +150,7 @@ function validateClawHubPluginPackage(params: {
   }
   if (pkg.family === "skill") {
     return buildClawHubInstallFailure(
-      `"${pkg.name}" is a skill. Use "openclaw skills install ${pkg.name}" instead.`,
+      `"${pkg.name}" is a skill. Use "quantclaw skills install ${pkg.name}" instead.`,
       CLAWHUB_INSTALL_ERROR_CODE.SKILL_PACKAGE,
     );
   }

@@ -140,7 +140,7 @@ export function registerDefaultAuthTokenSuite(): void {
       for (const testCase of [
         {
           env: {
-            OPENCLAW_VERSION: " ",
+            QUANTCLAW_VERSION: " ",
             OPENCLAW_SERVICE_VERSION: "2.4.6-service",
             npm_package_version: "1.0.0-package",
           },
@@ -148,7 +148,7 @@ export function registerDefaultAuthTokenSuite(): void {
         },
         {
           env: {
-            OPENCLAW_VERSION: "9.9.9-cli",
+            QUANTCLAW_VERSION: "9.9.9-cli",
             OPENCLAW_SERVICE_VERSION: "2.4.6-service",
             npm_package_version: "1.0.0-package",
           },
@@ -156,7 +156,7 @@ export function registerDefaultAuthTokenSuite(): void {
         },
         {
           env: {
-            OPENCLAW_VERSION: " ",
+            QUANTCLAW_VERSION: " ",
             OPENCLAW_SERVICE_VERSION: "\t",
             npm_package_version: "1.0.0-package",
           },

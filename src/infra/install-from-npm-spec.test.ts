@@ -24,7 +24,7 @@ describe("installFromValidatedNpmSpecArchive", () => {
       installFromValidatedNpmSpecArchive({
         spec: "  nope  ",
         timeoutMs: 30_000,
-        tempDirPrefix: "openclaw-npm-",
+        tempDirPrefix: "quantclaw-npm-",
         installFromArchive: vi.fn(),
         archiveInstallParams: {},
       }),
@@ -53,7 +53,7 @@ describe("installFromValidatedNpmSpecArchive", () => {
       installFromValidatedNpmSpecArchive({
         spec: "  @openclaw/demo@beta  ",
         timeoutMs: 45_000,
-        tempDirPrefix: "openclaw-npm-",
+        tempDirPrefix: "quantclaw-npm-",
         expectedIntegrity: "sha512-demo",
         onIntegrityDrift,
         warn,
@@ -63,7 +63,7 @@ describe("installFromValidatedNpmSpecArchive", () => {
     ).resolves.toBe(finalized);
 
     expect(installFromNpmSpecArchiveWithInstallerMock).toHaveBeenCalledWith({
-      tempDirPrefix: "openclaw-npm-",
+      tempDirPrefix: "quantclaw-npm-",
       spec: "@openclaw/demo@beta",
       timeoutMs: 45_000,
       expectedIntegrity: "sha512-demo",

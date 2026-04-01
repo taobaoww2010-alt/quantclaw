@@ -8,7 +8,7 @@ export function resolveTaskStateDir(env: NodeJS.ProcessEnv = process.env): strin
     return resolveStateDir(env);
   }
   if (env.VITEST || env.NODE_ENV === "test") {
-    return path.join(os.tmpdir(), "openclaw-test-state", String(process.pid));
+    return path.join(os.tmpdir(), "quantclaw-test-state", String(process.pid));
   }
   return resolveStateDir(env);
 }

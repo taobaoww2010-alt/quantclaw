@@ -187,7 +187,7 @@ export function copyBundledPluginMetadata(params = {}) {
     }
 
     const pluginDir = path.join(extensionsRoot, dirent.name);
-    const manifestPath = path.join(pluginDir, "openclaw.plugin.json");
+    const manifestPath = path.join(pluginDir, "quantclaw.plugin.json");
     const distPluginDir = path.join(distExtensionsRoot, dirent.name);
     const packageJsonPath = path.join(pluginDir, "package.json");
     const packageJson = fs.existsSync(packageJsonPath)
@@ -200,7 +200,7 @@ export function copyBundledPluginMetadata(params = {}) {
 
     sourcePluginDirs.add(dirent.name);
 
-    const distManifestPath = path.join(distPluginDir, "openclaw.plugin.json");
+    const distManifestPath = path.join(distPluginDir, "quantclaw.plugin.json");
     const distPackageJsonPath = path.join(distPluginDir, "package.json");
     if (!fs.existsSync(manifestPath)) {
       removePathIfExists(distPluginDir);

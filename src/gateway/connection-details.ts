@@ -49,7 +49,7 @@ export function buildGatewayConnectionDetailsWithResolvers(
       : undefined;
   const envUrlOverride = cliUrlOverride
     ? undefined
-    : trimToUndefined(process.env.OPENCLAW_GATEWAY_URL);
+    : trimToUndefined(process.env.QUANTCLAW_GATEWAY_URL);
   const urlOverride = cliUrlOverride ?? envUrlOverride;
   const remoteUrl =
     typeof remote?.url === "string" && remote.url.trim().length > 0 ? remote.url.trim() : undefined;
@@ -59,7 +59,7 @@ export function buildGatewayConnectionDetailsWithResolvers(
   const url = urlOverride || remoteUrl || localUrl;
   const urlSource = urlOverride
     ? urlSourceHint === "env"
-      ? "env OPENCLAW_GATEWAY_URL"
+      ? "env QUANTCLAW_GATEWAY_URL"
       : "cli --url"
     : remoteUrl
       ? "config gateway.remote.url"
@@ -87,7 +87,7 @@ export function buildGatewayConnectionDetailsWithResolvers(
           ? undefined
           : "Break-glass (trusted private networks only): set OPENCLAW_ALLOW_INSECURE_PRIVATE_WS=1",
         "Doctor: openclaw doctor --fix",
-        "Docs: https://docs.openclaw.ai/gateway/remote",
+        "Docs: https://docs.quantclaw.ai/gateway/remote",
       ].join("\n"),
     );
   }

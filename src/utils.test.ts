@@ -32,7 +32,7 @@ async function withTempDir<T>(
 
 describe("ensureDir", () => {
   it("creates nested directory", async () => {
-    await withTempDir("openclaw-test-", async (tmp) => {
+    await withTempDir("quantclaw-test-", async (tmp) => {
       const target = path.join(tmp, "nested", "dir");
       await ensureDir(target);
       expect(fs.existsSync(target)).toBe(true);
@@ -88,7 +88,7 @@ describe("jidToE164", () => {
   });
 
   it("maps @lid from authDir mapping files", async () => {
-    await withTempDir("openclaw-auth-", (authDir) => {
+    await withTempDir("quantclaw-auth-", (authDir) => {
       const mappingPath = path.join(authDir, "lid-mapping-456_reverse.json");
       fs.writeFileSync(mappingPath, JSON.stringify("5559876"));
       expect(jidToE164("456@lid", { authDir })).toBe("+5559876");
@@ -96,7 +96,7 @@ describe("jidToE164", () => {
   });
 
   it("maps @hosted.lid from authDir mapping files", async () => {
-    await withTempDir("openclaw-auth-", (authDir) => {
+    await withTempDir("quantclaw-auth-", (authDir) => {
       const mappingPath = path.join(authDir, "lid-mapping-789_reverse.json");
       fs.writeFileSync(mappingPath, JSON.stringify(4440001));
       expect(jidToE164("789@hosted.lid", { authDir })).toBe("+4440001");
@@ -108,8 +108,8 @@ describe("jidToE164", () => {
   });
 
   it("falls back through lidMappingDirs in order", async () => {
-    await withTempDir("openclaw-lid-a-", async (first) => {
-      await withTempDir("openclaw-lid-b-", (second) => {
+    await withTempDir("quantclaw-lid-a-", async (first) => {
+      await withTempDir("quantclaw-lid-b-", (second) => {
         const mappingPath = path.join(second, "lid-mapping-321_reverse.json");
         fs.writeFileSync(mappingPath, JSON.stringify("123321"));
         expect(jidToE164("321@lid", { lidMappingDirs: [first, second] })).toBe("+123321");
@@ -120,7 +120,7 @@ describe("jidToE164", () => {
 
 describe("resolveConfigDir", () => {
   it("prefers ~/.openclaw when legacy dir is missing", async () => {
-    const root = await fs.promises.mkdtemp(path.join(os.tmpdir(), "openclaw-config-dir-"));
+    const root = await fs.promises.mkdtemp(path.join(os.tmpdir(), "quantclaw-config-dir-"));
     try {
       const newDir = path.join(root, ".openclaw");
       await fs.promises.mkdir(newDir, { recursive: true });
@@ -133,11 +133,11 @@ describe("resolveConfigDir", () => {
 
   it("expands OPENCLAW_STATE_DIR using the provided env", () => {
     const env = {
-      HOME: "/tmp/openclaw-home",
+      HOME: "/tmp/quantclaw-home",
       OPENCLAW_STATE_DIR: "~/state",
     } as NodeJS.ProcessEnv;
 
-    expect(resolveConfigDir(env)).toBe(path.resolve("/tmp/openclaw-home", "state"));
+    expect(resolveConfigDir(env)).toBe(path.resolve("/tmp/quantclaw-home", "state"));
   });
 });
 
@@ -211,7 +211,7 @@ describe("resolveUserPath", () => {
 
   it("expands ~/ to home dir", () => {
     expect(resolveUserPath("~/openclaw", {}, () => "/Users/thoffman")).toBe(
-      path.resolve("/Users/thoffman", "openclaw"),
+      path.resolve("/Users/thoffman", "quantclaw"),
     );
   });
 
@@ -223,18 +223,20 @@ describe("resolveUserPath", () => {
     vi.stubEnv("OPENCLAW_HOME", "/srv/openclaw-home");
     vi.stubEnv("HOME", "/home/other");
 
-    expect(resolveUserPath("~/openclaw")).toBe(path.resolve("/srv/openclaw-home", "openclaw"));
+    expect(resolveUserPath("~/openclaw")).toBe(path.resolve("/srv/openclaw-home", "quantclaw"));
 
     vi.unstubAllEnvs();
   });
 
   it("uses the provided env for tilde expansion", () => {
     const env = {
-      HOME: "/tmp/openclaw-home",
+      HOME: "/tmp/quantclaw-home",
       OPENCLAW_HOME: "/srv/openclaw-home",
     } as NodeJS.ProcessEnv;
 
-    expect(resolveUserPath("~/openclaw", env)).toBe(path.resolve("/srv/openclaw-home", "openclaw"));
+    expect(resolveUserPath("~/openclaw", env)).toBe(
+      path.resolve("/srv/openclaw-home", "quantclaw"),
+    );
   });
 
   it("keeps blank paths blank", () => {

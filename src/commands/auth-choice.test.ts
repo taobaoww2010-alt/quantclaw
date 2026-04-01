@@ -570,7 +570,7 @@ function createDefaultProviderPlugins() {
 describe("applyAuthChoice", () => {
   const lifecycle = createAuthTestLifecycle([
     "OPENCLAW_STATE_DIR",
-    "OPENCLAW_AGENT_DIR",
+    "QUANTCLAW_AGENT_DIR",
     "PI_CODING_AGENT_DIR",
     "ANTHROPIC_API_KEY",
     "OPENROUTER_API_KEY",
@@ -597,7 +597,7 @@ describe("applyAuthChoice", () => {
     if (activeStateDir) {
       await fs.rm(activeStateDir, { recursive: true, force: true });
     }
-    const env = await setupAuthTestEnv("openclaw-auth-");
+    const env = await setupAuthTestEnv("quantclaw-auth-");
     activeStateDir = env.stateDir;
     lifecycle.setStateDir(env.stateDir);
   }
@@ -1365,7 +1365,7 @@ describe("applyAuthChoice", () => {
           providers: {
             filemain: {
               source: "file",
-              path: "/tmp/openclaw-missing-secrets.json",
+              path: "/tmp/quantclaw-missing-secrets.json",
               mode: "json",
             },
           },

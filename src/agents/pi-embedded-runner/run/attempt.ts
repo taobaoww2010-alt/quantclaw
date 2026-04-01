@@ -28,7 +28,7 @@ import { buildTtsSystemPromptHint } from "../../../tts/tts.js";
 import { resolveUserPath } from "../../../utils.js";
 import { normalizeMessageChannel } from "../../../utils/message-channel.js";
 import { isReasoningTagProvider } from "../../../utils/provider-utils.js";
-import { resolveOpenClawAgentDir } from "../../agent-paths.js";
+import { resolveQuantClawAgentDir } from "../../agent-paths.js";
 import { resolveSessionAgentIds } from "../../agent-scope.js";
 import { createAnthropicPayloadLogger } from "../../anthropic-payload-log.js";
 import { createAnthropicVertexStreamFnForModel } from "../../anthropic-vertex-stream.js";
@@ -48,7 +48,7 @@ import {
   resolveChannelReactionGuidance,
 } from "../../channel-tools.js";
 import { DEFAULT_CONTEXT_TOKENS } from "../../defaults.js";
-import { resolveOpenClawDocsPath } from "../../docs-path.js";
+import { resolveQuantClawDocsPath } from "../../docs-path.js";
 import { isTimeoutError } from "../../failover-error.js";
 import { resolveImageSanitizationLimits } from "../../image-sanitization.js";
 import { buildModelAliasLines } from "../../model-alias-lines.js";
@@ -395,7 +395,7 @@ export async function runEmbeddedAttempt(
       ? ["Reminder: commit your changes in this workspace after edits."]
       : undefined;
 
-    const agentDir = params.agentDir ?? resolveOpenClawAgentDir();
+    const agentDir = params.agentDir ?? resolveQuantClawAgentDir();
 
     const { defaultAgentId, sessionAgentId } = resolveSessionAgentIds({
       sessionKey: params.sessionKey,
@@ -611,7 +611,7 @@ export async function runEmbeddedAttempt(
     });
     const isDefaultAgent = sessionAgentId === defaultAgentId;
     const promptMode = resolvePromptModeForSession(params.sessionKey);
-    const docsPath = await resolveOpenClawDocsPath({
+    const docsPath = await resolveQuantClawDocsPath({
       workspaceDir: effectiveWorkspace,
       argv1: process.argv[1],
       cwd: effectiveWorkspace,
@@ -1686,7 +1686,7 @@ export async function runEmbeddedAttempt(
 
         if (promptError && promptErrorSource === "prompt" && !compactionOccurredThisAttempt) {
           try {
-            sessionManager.appendCustomEntry("openclaw:prompt-error", {
+            sessionManager.appendCustomEntry("quantclaw:prompt-error", {
               timestamp: Date.now(),
               runId: params.runId,
               sessionId: params.sessionId,

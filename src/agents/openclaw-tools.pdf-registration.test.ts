@@ -7,7 +7,7 @@ import "./test-helpers/fast-core-tools.js";
 import { createOpenClawTools } from "./openclaw-tools.js";
 
 async function withTempAgentDir<T>(run: (agentDir: string) => Promise<T>): Promise<T> {
-  const agentDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-tools-pdf-"));
+  const agentDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-tools-pdf-"));
   try {
     return await run(agentDir);
   } finally {

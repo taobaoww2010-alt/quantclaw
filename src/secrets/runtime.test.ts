@@ -250,7 +250,7 @@ describe("secrets runtime snapshot", () => {
         SLACK_WORK_APP_TOKEN_REF: "slack-work-app-ref",
         WEB_SEARCH_API_KEY: "web-search-ref", // pragma: allowlist secret
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () =>
         loadAuthStoreWithProfiles({
           "openai:default": {
@@ -341,7 +341,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         MATRIX_ACCESS_TOKEN: "default-matrix-token",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -365,7 +365,7 @@ describe("secrets runtime snapshot", () => {
       prepareSecretsRuntimeSnapshot({
         config: asConfig({}),
         env: {},
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/quantclaw-agent-main"],
         loadAuthStore,
       }),
     ).rejects.toThrow(`Environment variable "${missingEnvVar}" is missing or empty.`);
@@ -374,7 +374,7 @@ describe("secrets runtime snapshot", () => {
       config: asConfig({}),
       env: {},
       includeAuthStoreRefs: false,
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore,
     });
 
@@ -401,7 +401,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         MATRIX_OPS_ACCESS_TOKEN: "ops-token",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -486,7 +486,7 @@ describe("secrets runtime snapshot", () => {
     const snapshot = await prepareSecretsRuntimeSnapshot({
       config: asConfig(config),
       env,
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -575,7 +575,7 @@ describe("secrets runtime snapshot", () => {
     const snapshot = await prepareSecretsRuntimeSnapshot({
       config: asConfig(config),
       env,
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -670,7 +670,7 @@ describe("secrets runtime snapshot", () => {
     const snapshot = await prepareSecretsRuntimeSnapshot({
       config,
       env: { MY_TOKEN: "resolved-token-value" },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () =>
         loadAuthStoreWithProfiles({
           "custom:inline-token": {
@@ -697,7 +697,7 @@ describe("secrets runtime snapshot", () => {
     const snapshot = await prepareSecretsRuntimeSnapshot({
       config,
       env: { MY_KEY: "resolved-key-value" },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () =>
         loadAuthStoreWithProfiles({
           "custom:inline-key": {
@@ -727,7 +727,7 @@ describe("secrets runtime snapshot", () => {
         PRIMARY_KEY: "primary-key-value",
         SHADOW_KEY: "shadow-key-value",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () =>
         loadAuthStoreWithProfiles({
           "custom:explicit-keyref": {
@@ -767,7 +767,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         WEB_SEARCH_API_KEY: "web-search-ref", // pragma: allowlist secret
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -806,7 +806,7 @@ describe("secrets runtime snapshot", () => {
         WEB_SEARCH_API_KEY: "web-search-ref", // pragma: allowlist secret
         WEB_SEARCH_GEMINI_API_KEY: "web-search-gemini-ref", // pragma: allowlist secret
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -846,7 +846,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         WEB_SEARCH_GEMINI_API_KEY: "web-search-gemini-ref", // pragma: allowlist secret
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -877,7 +877,7 @@ describe("secrets runtime snapshot", () => {
           },
         }),
         env: {},
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/quantclaw-agent-main"],
         loadAuthStore: () => ({ version: 1, profiles: {} }),
       }),
     ).rejects.toThrow("[WEB_SEARCH_KEY_UNRESOLVED_NO_FALLBACK]");
@@ -900,7 +900,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         WEB_SEARCH_GEMINI_API_KEY: "web-search-gemini-ref", // pragma: allowlist secret
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -925,7 +925,7 @@ describe("secrets runtime snapshot", () => {
     if (process.platform === "win32") {
       return;
     }
-    const root = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-secrets-file-provider-"));
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-secrets-file-provider-"));
     const secretsPath = path.join(root, "secrets.json");
     try {
       await fs.writeFile(
@@ -971,7 +971,7 @@ describe("secrets runtime snapshot", () => {
 
       const snapshot = await prepareSecretsRuntimeSnapshot({
         config,
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/quantclaw-agent-main"],
         loadAuthStore: () => ({ version: 1, profiles: {} }),
       });
 
@@ -985,7 +985,7 @@ describe("secrets runtime snapshot", () => {
     if (process.platform === "win32") {
       return;
     }
-    const root = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-secrets-file-provider-bad-"));
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-secrets-file-provider-bad-"));
     const secretsPath = path.join(root, "secrets.json");
     try {
       await fs.writeFile(secretsPath, JSON.stringify(["not-an-object"]), "utf8");
@@ -1007,7 +1007,7 @@ describe("secrets runtime snapshot", () => {
               ...createOpenAiFileModelsConfig(),
             },
           }),
-          agentDirs: ["/tmp/openclaw-agent-main"],
+          agentDirs: ["/tmp/quantclaw-agent-main"],
           loadAuthStore: () => ({ version: 1, profiles: {} }),
         }),
       ).rejects.toThrow("payload is not a JSON object");
@@ -1069,7 +1069,7 @@ describe("secrets runtime snapshot", () => {
     const snapshot = await prepareSecretsRuntimeSnapshot({
       config,
       env: {},
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1113,7 +1113,7 @@ describe("secrets runtime snapshot", () => {
         },
       }),
       env: {},
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1144,7 +1144,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         GATEWAY_PASSWORD_REF: "resolved-gateway-password", // pragma: allowlist secret
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1165,7 +1165,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         GATEWAY_TOKEN_REF: "resolved-gateway-token",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1187,7 +1187,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         GATEWAY_TOKEN_REF: "resolved-gateway-token",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1211,7 +1211,7 @@ describe("secrets runtime snapshot", () => {
           },
         }),
         env: {},
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/quantclaw-agent-main"],
         loadAuthStore: () => ({ version: 1, profiles: {} }),
       }),
     ).rejects.toThrow(/MISSING_GATEWAY_TOKEN_REF/i);
@@ -1234,7 +1234,7 @@ describe("secrets runtime snapshot", () => {
           },
         }),
         env: {},
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/quantclaw-agent-main"],
         loadAuthStore: () => ({ version: 1, profiles: {} }),
       }),
     ).rejects.toThrow(/must not include "\." or "\.\." path segments/i);
@@ -1253,7 +1253,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         GATEWAY_PASSWORD_REF: "resolved-gateway-password", // pragma: allowlist secret
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1281,7 +1281,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         REMOTE_GATEWAY_TOKEN: "remote-token",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1310,7 +1310,7 @@ describe("secrets runtime snapshot", () => {
           },
         }),
         env: {},
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/quantclaw-agent-main"],
         loadAuthStore: () => ({ version: 1, profiles: {} }),
       });
 
@@ -1347,7 +1347,7 @@ describe("secrets runtime snapshot", () => {
         REMOTE_TOKEN: "resolved-remote-token",
         REMOTE_PASSWORD: "resolved-remote-password", // pragma: allowlist secret
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1371,7 +1371,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         REMOTE_PASSWORD: "resolved-remote-password", // pragma: allowlist secret
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1394,7 +1394,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         ZALO_BOT_TOKEN: "resolved-zalo-token",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1421,7 +1421,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         ZALO_WORK_BOT_TOKEN: "resolved-zalo-work-token",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1450,7 +1450,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         ZALO_TOP_LEVEL_TOKEN: "resolved-zalo-top-level-token",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1477,7 +1477,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         ZALO_DEFAULT_TOKEN: "resolved-zalo-default-token",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1506,7 +1506,7 @@ describe("secrets runtime snapshot", () => {
         NEXTCLOUD_BOT_SECRET: "resolved-nextcloud-bot-secret", // pragma: allowlist secret
         NEXTCLOUD_API_PASSWORD: "resolved-nextcloud-api-password", // pragma: allowlist secret
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1548,7 +1548,7 @@ describe("secrets runtime snapshot", () => {
         NEXTCLOUD_WORK_BOT_SECRET: "resolved-nextcloud-work-bot-secret", // pragma: allowlist secret
         NEXTCLOUD_WORK_API_PASSWORD: "resolved-nextcloud-work-api-password", // pragma: allowlist secret
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1583,7 +1583,7 @@ describe("secrets runtime snapshot", () => {
         REMOTE_GATEWAY_TOKEN: "tailscale-remote-token",
         REMOTE_GATEWAY_PASSWORD: "tailscale-remote-password", // pragma: allowlist secret
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1621,7 +1621,7 @@ describe("secrets runtime snapshot", () => {
         },
       }),
       env: {},
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1655,7 +1655,7 @@ describe("secrets runtime snapshot", () => {
           },
         }),
         env: {},
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/quantclaw-agent-main"],
         loadAuthStore: () => ({ version: 1, profiles: {} }),
       }),
     ).rejects.toThrow('Environment variable "MISSING_ENABLED_TELEGRAM_TOKEN" is missing or empty.');
@@ -1681,7 +1681,7 @@ describe("secrets runtime snapshot", () => {
           },
         }),
         env: {},
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/quantclaw-agent-main"],
         loadAuthStore: () => ({ version: 1, profiles: {} }),
       }),
     ).rejects.toThrow('Environment variable "MISSING_ENABLED_TELEGRAM_TOKEN" is missing or empty.');
@@ -1716,7 +1716,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         TELEGRAM_WORK_TOKEN: "telegram-work-token",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1753,7 +1753,7 @@ describe("secrets runtime snapshot", () => {
           },
         }),
         env: {},
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/quantclaw-agent-main"],
         loadAuthStore: () => ({ version: 1, profiles: {} }),
       }),
     ).rejects.toThrow(
@@ -1780,7 +1780,7 @@ describe("secrets runtime snapshot", () => {
         },
       }),
       env: {},
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1809,7 +1809,7 @@ describe("secrets runtime snapshot", () => {
         },
       }),
       env: {},
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1843,7 +1843,7 @@ describe("secrets runtime snapshot", () => {
         },
       }),
       env: {},
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1879,7 +1879,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         TELEGRAM_BASE_TOKEN: "telegram-base-token",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1912,7 +1912,7 @@ describe("secrets runtime snapshot", () => {
         },
       }),
       env: {},
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1943,7 +1943,7 @@ describe("secrets runtime snapshot", () => {
         },
       }),
       env: {},
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -1978,7 +1978,7 @@ describe("secrets runtime snapshot", () => {
         },
       }),
       env: {},
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -2018,7 +2018,7 @@ describe("secrets runtime snapshot", () => {
         },
       }),
       env: {},
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -2063,7 +2063,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         GOOGLECHAT_WORK_SERVICE_ACCOUNT: "work-service-account-json",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -2100,7 +2100,7 @@ describe("secrets runtime snapshot", () => {
           },
         }),
         env: {},
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/quantclaw-agent-main"],
         loadAuthStore: () => ({ version: 1, profiles: {} }),
       }),
     ).rejects.toThrow('Environment variable "MISSING_DISCORD_BASE_TOKEN" is missing or empty.');
@@ -2126,7 +2126,7 @@ describe("secrets runtime snapshot", () => {
         },
       }),
       env: {},
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -2155,7 +2155,7 @@ describe("secrets runtime snapshot", () => {
         },
       }),
       env: {},
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -2207,7 +2207,7 @@ describe("secrets runtime snapshot", () => {
         },
       }),
       env: {},
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -2300,7 +2300,7 @@ describe("secrets runtime snapshot", () => {
         DISCORD_BASE_PK_TOKEN: "base-pk-token",
         DISCORD_ENABLED_OVERRIDE_TTS_OPENAI: "enabled-override-tts-openai",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -2380,7 +2380,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         DISCORD_ENABLED_ONLY_TTS_OPENAI: "enabled-only-tts-openai",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -2437,7 +2437,7 @@ describe("secrets runtime snapshot", () => {
         env: {
           DISCORD_BASE_TTS_OK: "base-tts-openai",
         },
-        agentDirs: ["/tmp/openclaw-agent-main"],
+        agentDirs: ["/tmp/quantclaw-agent-main"],
         loadAuthStore: () => ({ version: 1, profiles: {} }),
       }),
     ).rejects.toThrow(
@@ -2475,7 +2475,7 @@ describe("secrets runtime snapshot", () => {
       env: {
         GH_TOKEN_SECRET: "ghp-object-token",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -2533,7 +2533,7 @@ describe("secrets runtime snapshot", () => {
         GH_TOKEN_SECRET: "ghp-inline-token",
         SECOND_SECRET: "ghp-second-token",
       },
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -2577,7 +2577,7 @@ describe("secrets runtime snapshot", () => {
     const snapshot = await prepareSecretsRuntimeSnapshot({
       config,
       env: {},
-      agentDirs: ["/tmp/openclaw-agent-main"],
+      agentDirs: ["/tmp/quantclaw-agent-main"],
       loadAuthStore: () => ({ version: 1, profiles: {} }),
     });
 
@@ -2605,7 +2605,7 @@ describe("secrets runtime snapshot", () => {
   });
 
   it("does not write inherited auth stores during runtime secret activation", async () => {
-    const root = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-secrets-runtime-"));
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-secrets-runtime-"));
     const stateDir = path.join(root, ".openclaw");
     const mainAgentDir = path.join(stateDir, "agents", "main", "agent");
     const workerStorePath = path.join(stateDir, "agents", "worker", "agent", "auth-profiles.json");

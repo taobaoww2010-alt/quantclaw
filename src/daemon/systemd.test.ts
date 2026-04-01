@@ -27,8 +27,8 @@ type ExecFileError = Error & {
 };
 
 const TEST_SERVICE_HOME = "/home/test";
-const TEST_MANAGED_HOME = "/tmp/openclaw-test-home";
-const GATEWAY_SERVICE = "openclaw-gateway.service";
+const TEST_MANAGED_HOME = "/tmp/quantclaw-test-home";
+const GATEWAY_SERVICE = "quantclaw-gateway.service";
 
 const createExecFileError = (
   message: string,
@@ -184,7 +184,7 @@ describe("isSystemdServiceEnabled", () => {
     err.code = "ENOENT";
     vi.spyOn(fs, "access").mockRejectedValueOnce(err);
 
-    const result = await isSystemdServiceEnabled({ env: { HOME: "/tmp/openclaw-test-home" } });
+    const result = await isSystemdServiceEnabled({ env: { HOME: "/tmp/quantclaw-test-home" } });
 
     expect(result).toBe(false);
     expect(execFileMock).not.toHaveBeenCalled();
@@ -288,7 +288,7 @@ describe("isSystemdServiceEnabled", () => {
     vi.spyOn(fs, "access").mockResolvedValue(undefined);
     execFileMock
       .mockImplementationOnce((_cmd, args, _opts, cb) => {
-        expect(args).toEqual(["--user", "is-enabled", "openclaw-gateway.service"]);
+        expect(args).toEqual(["--user", "is-enabled", "quantclaw-gateway.service"]);
         const err = new Error("Failed to connect to bus") as Error & { code?: number };
         err.code = 1;
         cb(err, "", "Failed to connect to bus");
@@ -296,13 +296,13 @@ describe("isSystemdServiceEnabled", () => {
       .mockImplementationOnce((_cmd, args, _opts, cb) => {
         expect(args[0]).toBe("--machine");
         expect(String(args[1])).toMatch(/^[^@]+@$/);
-        expect(args.slice(2)).toEqual(["--user", "is-enabled", "openclaw-gateway.service"]);
+        expect(args.slice(2)).toEqual(["--user", "is-enabled", "quantclaw-gateway.service"]);
         const err = new Error("permission denied") as Error & { code?: number };
         err.code = 1;
         cb(err, "", "permission denied");
       });
     await expect(
-      isSystemdServiceEnabled({ env: { HOME: "/tmp/openclaw-test-home" } }),
+      isSystemdServiceEnabled({ env: { HOME: "/tmp/quantclaw-test-home" } }),
     ).rejects.toThrow("systemctl is-enabled unavailable: permission denied");
   });
 
@@ -317,7 +317,7 @@ describe("isSystemdServiceEnabled", () => {
       err.code = 4;
       cb(err, "not-found\n", "");
     });
-    const result = await isSystemdServiceEnabled({ env: { HOME: "/tmp/openclaw-test-home" } });
+    const result = await isSystemdServiceEnabled({ env: { HOME: "/tmp/quantclaw-test-home" } });
     expect(result).toBe(false);
   });
 });
@@ -436,24 +436,24 @@ describe("splitArgsPreservingQuotes", () => {
 
   it("supports systemd-style backslash escaping", () => {
     expect(
-      splitArgsPreservingQuotes('openclaw --name "My \\"Bot\\"" --foo bar', {
+      splitArgsPreservingQuotes('quantclaw --name "My \\"Bot\\"" --foo bar', {
         escapeMode: "backslash",
       }),
-    ).toEqual(["openclaw", "--name", 'My "Bot"', "--foo", "bar"]);
+    ).toEqual(["quantclaw", "--name", 'My "Bot"', "--foo", "bar"]);
   });
 
   it("supports schtasks-style escaped quotes while preserving other backslashes", () => {
     expect(
-      splitArgsPreservingQuotes('openclaw --path "C:\\\\Program Files\\\\OpenClaw"', {
+      splitArgsPreservingQuotes('quantclaw --path "C:\\\\Program Files\\\\OpenClaw"', {
         escapeMode: "backslash-quote-only",
       }),
-    ).toEqual(["openclaw", "--path", "C:\\\\Program Files\\\\OpenClaw"]);
+    ).toEqual(["quantclaw", "--path", "C:\\\\Program Files\\\\OpenClaw"]);
 
     expect(
-      splitArgsPreservingQuotes('openclaw --label "My \\"Quoted\\" Name"', {
+      splitArgsPreservingQuotes('quantclaw --label "My \\"Quoted\\" Name"', {
         escapeMode: "backslash-quote-only",
       }),
-    ).toEqual(["openclaw", "--label", 'My "Quoted" Name']);
+    ).toEqual(["quantclaw", "--label", 'My "Quoted" Name']);
   });
 });
 
@@ -475,14 +475,14 @@ describe("readSystemdServiceExecStart", () => {
     vi.restoreAllMocks();
   });
 
-  it("loads OPENCLAW_GATEWAY_TOKEN from EnvironmentFile", async () => {
+  it("loads QUANTCLAW_GATEWAY_TOKEN from EnvironmentFile", async () => {
     const readFileSpy = mockReadGatewayServiceFile(
       ["[Service]", "ExecStart=/usr/bin/openclaw gateway run", "EnvironmentFile=%h/.openclaw/.env"],
-      { [`${TEST_SERVICE_HOME}/.openclaw/.env`]: "OPENCLAW_GATEWAY_TOKEN=env-file-token\n" },
+      { [`${TEST_SERVICE_HOME}/.openclaw/.env`]: "QUANTCLAW_GATEWAY_TOKEN=env-file-token\n" },
     );
 
     const command = await readSystemdServiceExecStart({ HOME: TEST_SERVICE_HOME });
-    expect(command?.environment?.OPENCLAW_GATEWAY_TOKEN).toBe("env-file-token");
+    expect(command?.environment?.QUANTCLAW_GATEWAY_TOKEN).toBe("env-file-token");
     expect(readFileSpy).toHaveBeenCalledTimes(2);
   });
 
@@ -492,14 +492,14 @@ describe("readSystemdServiceExecStart", () => {
         "[Service]",
         "ExecStart=/usr/bin/openclaw gateway run",
         "EnvironmentFile=%h/.openclaw/.env",
-        'Environment="OPENCLAW_GATEWAY_TOKEN=inline-token"',
+        'Environment="QUANTCLAW_GATEWAY_TOKEN=inline-token"',
       ],
-      { [`${TEST_SERVICE_HOME}/.openclaw/.env`]: "OPENCLAW_GATEWAY_TOKEN=env-file-token\n" },
+      { [`${TEST_SERVICE_HOME}/.openclaw/.env`]: "QUANTCLAW_GATEWAY_TOKEN=env-file-token\n" },
     );
 
     const command = await readSystemdServiceExecStart({ HOME: TEST_SERVICE_HOME });
-    expect(command?.environment?.OPENCLAW_GATEWAY_TOKEN).toBe("env-file-token");
-    expect(command?.environmentValueSources?.OPENCLAW_GATEWAY_TOKEN).toBe("file");
+    expect(command?.environment?.QUANTCLAW_GATEWAY_TOKEN).toBe("env-file-token");
+    expect(command?.environmentValueSources?.QUANTCLAW_GATEWAY_TOKEN).toBe("file");
   });
 
   it("ignores missing optional EnvironmentFile entries", async () => {
@@ -521,18 +521,18 @@ describe("readSystemdServiceExecStart", () => {
         ].join("\n");
       }
       if (pathValue === "/home/test/.openclaw/first.env") {
-        return "OPENCLAW_GATEWAY_TOKEN=first-token\n"; // pragma: allowlist secret
+        return "QUANTCLAW_GATEWAY_TOKEN=first-token\n"; // pragma: allowlist secret
       }
       if (pathValue === "/home/test/.openclaw/second env.env") {
-        return 'OPENCLAW_GATEWAY_PASSWORD="second password"\n'; // pragma: allowlist secret
+        return 'QUANTCLAW_GATEWAY_PASSWORD="second password"\n'; // pragma: allowlist secret
       }
       throw new Error(`unexpected readFile path: ${pathValue}`);
     });
 
     const command = await readSystemdServiceExecStart({ HOME: "/home/test" });
     expect(command?.environment).toEqual({
-      OPENCLAW_GATEWAY_TOKEN: "first-token",
-      OPENCLAW_GATEWAY_PASSWORD: "second password", // pragma: allowlist secret
+      QUANTCLAW_GATEWAY_TOKEN: "first-token",
+      QUANTCLAW_GATEWAY_PASSWORD: "second password", // pragma: allowlist secret
     });
   });
 
@@ -548,20 +548,20 @@ describe("readSystemdServiceExecStart", () => {
       }
       if (pathValue.endsWith("/.config/systemd/user/gateway.env")) {
         return [
-          "OPENCLAW_GATEWAY_TOKEN=relative-token", // pragma: allowlist secret
-          "OPENCLAW_GATEWAY_PASSWORD=relative-password", // pragma: allowlist secret
+          "QUANTCLAW_GATEWAY_TOKEN=relative-token", // pragma: allowlist secret
+          "QUANTCLAW_GATEWAY_PASSWORD=relative-password", // pragma: allowlist secret
         ].join("\n");
       }
       if (pathValue.endsWith("/.config/systemd/user/override.env")) {
-        return "OPENCLAW_GATEWAY_TOKEN=override-token\n"; // pragma: allowlist secret
+        return "QUANTCLAW_GATEWAY_TOKEN=override-token\n"; // pragma: allowlist secret
       }
       throw new Error(`unexpected readFile path: ${pathValue}`);
     });
 
     const command = await readSystemdServiceExecStart({ HOME: "/home/test" });
     expect(command?.environment).toEqual({
-      OPENCLAW_GATEWAY_TOKEN: "override-token",
-      OPENCLAW_GATEWAY_PASSWORD: "relative-password", // pragma: allowlist secret
+      QUANTCLAW_GATEWAY_TOKEN: "override-token",
+      QUANTCLAW_GATEWAY_PASSWORD: "relative-password", // pragma: allowlist secret
     });
   });
 
@@ -579,8 +579,8 @@ describe("readSystemdServiceExecStart", () => {
         return [
           "# comment",
           "; another comment",
-          'OPENCLAW_GATEWAY_TOKEN="quoted token"', // pragma: allowlist secret
-          "OPENCLAW_GATEWAY_PASSWORD=quoted-password", // pragma: allowlist secret
+          'QUANTCLAW_GATEWAY_TOKEN="quoted token"', // pragma: allowlist secret
+          "QUANTCLAW_GATEWAY_PASSWORD=quoted-password", // pragma: allowlist secret
         ].join("\n");
       }
       throw new Error(`unexpected readFile path: ${pathValue}`);
@@ -588,12 +588,12 @@ describe("readSystemdServiceExecStart", () => {
 
     const command = await readSystemdServiceExecStart({ HOME: "/home/test" });
     expect(command?.environment).toEqual({
-      OPENCLAW_GATEWAY_TOKEN: "quoted token",
-      OPENCLAW_GATEWAY_PASSWORD: "quoted-password", // pragma: allowlist secret
+      QUANTCLAW_GATEWAY_TOKEN: "quoted token",
+      QUANTCLAW_GATEWAY_PASSWORD: "quoted-password", // pragma: allowlist secret
     });
     expect(command?.environmentValueSources).toEqual({
-      OPENCLAW_GATEWAY_TOKEN: "file",
-      OPENCLAW_GATEWAY_PASSWORD: "file", // pragma: allowlist secret
+      QUANTCLAW_GATEWAY_TOKEN: "file",
+      QUANTCLAW_GATEWAY_PASSWORD: "file", // pragma: allowlist secret
     });
   });
 });
@@ -647,7 +647,7 @@ describe("systemd service control", () => {
     execFileMock
       .mockImplementationOnce((_cmd, _args, _opts, cb) => cb(null, "", ""))
       .mockImplementationOnce((_cmd, args, _opts, cb) => {
-        assertUserSystemctlArgs(args, "restart", "openclaw-gateway-work.service");
+        assertUserSystemctlArgs(args, "restart", "quantclaw-gateway-work.service");
         cb(null, "", "");
       });
     await assertRestartSuccess({ OPENCLAW_PROFILE: "work" });

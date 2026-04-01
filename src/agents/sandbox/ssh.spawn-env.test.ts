@@ -69,8 +69,8 @@ describe("ssh subprocess env sanitization", () => {
     await runSshSandboxCommand({
       session: {
         command: "ssh",
-        configPath: "/tmp/openclaw-test-ssh-config",
-        host: "openclaw-sandbox",
+        configPath: "/tmp/quantclaw-test-ssh-config",
+        host: "quantclaw-sandbox",
       },
       remoteCommand: "true",
     });
@@ -108,8 +108,8 @@ describe("ssh subprocess env sanitization", () => {
     await uploadDirectoryToSshTarget({
       session: {
         command: "ssh",
-        configPath: "/tmp/openclaw-test-ssh-config",
-        host: "openclaw-sandbox",
+        configPath: "/tmp/quantclaw-test-ssh-config",
+        host: "quantclaw-sandbox",
       },
       localDir: "/tmp/workspace",
       remoteDir: "/remote/workspace",

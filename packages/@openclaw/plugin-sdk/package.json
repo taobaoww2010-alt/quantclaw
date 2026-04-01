@@ -1,0 +1,7 @@
+{
+  "name": "@openclaw/plugin-sdk",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "../../src/plugin-sdk/index.ts"
+}

@@ -177,7 +177,7 @@ describeLive("gateway live (cli backend)", () => {
     clearRuntimeConfigSnapshot();
     const previous = {
       configPath: process.env.OPENCLAW_CONFIG_PATH,
-      token: process.env.OPENCLAW_GATEWAY_TOKEN,
+      token: process.env.QUANTCLAW_GATEWAY_TOKEN,
       skipChannels: process.env.OPENCLAW_SKIP_CHANNELS,
       skipGmail: process.env.OPENCLAW_SKIP_GMAIL_WATCHER,
       skipCron: process.env.OPENCLAW_SKIP_CRON,
@@ -198,7 +198,7 @@ describeLive("gateway live (cli backend)", () => {
     }
 
     const token = `test-${randomUUID()}`;
-    process.env.OPENCLAW_GATEWAY_TOKEN = token;
+    process.env.QUANTCLAW_GATEWAY_TOKEN = token;
 
     const rawModel = process.env.OPENCLAW_LIVE_CLI_BACKEND_MODEL ?? DEFAULT_MODEL;
     const parsed = parseModelRef(rawModel, "claude-cli");
@@ -246,7 +246,7 @@ describeLive("gateway live (cli backend)", () => {
       );
     }
 
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-live-cli-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-live-cli-"));
     const disableMcpConfig = process.env.OPENCLAW_LIVE_CLI_BACKEND_DISABLE_MCP_CONFIG !== "0";
     let cliArgs = baseCliArgs;
     if (providerId === "claude-cli" && disableMcpConfig) {
@@ -281,7 +281,7 @@ describeLive("gateway live (cli backend)", () => {
         },
       },
     };
-    const tempConfigPath = path.join(tempDir, "openclaw.json");
+    const tempConfigPath = path.join(tempDir, "quantclaw.json");
     await fs.writeFile(tempConfigPath, `${JSON.stringify(nextCfg, null, 2)}\n`);
     process.env.OPENCLAW_CONFIG_PATH = tempConfigPath;
 
@@ -408,9 +408,9 @@ describeLive("gateway live (cli backend)", () => {
         process.env.OPENCLAW_CONFIG_PATH = previous.configPath;
       }
       if (previous.token === undefined) {
-        delete process.env.OPENCLAW_GATEWAY_TOKEN;
+        delete process.env.QUANTCLAW_GATEWAY_TOKEN;
       } else {
-        process.env.OPENCLAW_GATEWAY_TOKEN = previous.token;
+        process.env.QUANTCLAW_GATEWAY_TOKEN = previous.token;
       }
       if (previous.skipChannels === undefined) {
         delete process.env.OPENCLAW_SKIP_CHANNELS;

@@ -10,7 +10,7 @@ import {
   NODE_EXEC_APPROVALS_COMMANDS,
   NODE_SYSTEM_RUN_COMMANDS,
 } from "../infra/node-commands.js";
-import { ensureOpenClawCliOnPath } from "../infra/path-env.js";
+import { ensureQuantClawCliOnPath } from "../infra/path-env.js";
 import { resolveBrowserConfig } from "../plugin-sdk/browser-runtime.js";
 import { GATEWAY_CLIENT_MODES, GATEWAY_CLIENT_NAMES } from "../utils/message-channel.js";
 import { VERSION } from "../version.js";
@@ -104,7 +104,7 @@ class SkillBinsCache implements SkillBinsProvider {
 }
 
 function ensureNodePathEnv(): string {
-  ensureOpenClawCliOnPath({ pathEnv: process.env.PATH ?? "" });
+  ensureQuantClawCliOnPath({ pathEnv: process.env.PATH ?? "" });
   const current = process.env.PATH ?? "";
   if (current.trim()) {
     return current;

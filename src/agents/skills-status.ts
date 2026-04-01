@@ -189,7 +189,7 @@ function buildSkillStatus(
   const isConfigSatisfied = (pathStr: string) => isConfigPathTruthy(config, pathStr);
   const skillSource = resolveSkillSource(entry.skill);
   const bundled =
-    skillSource === "openclaw-bundled" ||
+    skillSource === "quantclaw-bundled" ||
     (skillSource === "unknown" && bundledNames?.has(entry.skill.name) === true);
 
   const { emoji, homepage, required, missing, requirementsSatisfied, configChecks } =

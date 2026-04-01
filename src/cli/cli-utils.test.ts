@@ -19,14 +19,14 @@ describe("waitForever", () => {
 
 describe("shouldSkipRespawnForArgv", () => {
   it.each([
-    { argv: ["node", "openclaw", "--help"] },
-    { argv: ["node", "openclaw", "-V"] },
+    { argv: ["node", "quantclaw", "--help"] },
+    { argv: ["node", "quantclaw", "-V"] },
   ] as const)("skips respawn for argv %j", ({ argv }) => {
     expect(shouldSkipRespawnForArgv([...argv]), argv.join(" ")).toBe(true);
   });
 
   it("keeps respawn path for normal commands", () => {
-    expect(shouldSkipRespawnForArgv(["node", "openclaw", "status"])).toBe(false);
+    expect(shouldSkipRespawnForArgv(["node", "quantclaw", "status"])).toBe(false);
   });
 });
 
@@ -51,10 +51,12 @@ describe("dns cli", () => {
     try {
       const program = new Command();
       registerDnsCli(program);
-      await program.parseAsync(["dns", "setup", "--domain", "openclaw.internal"], { from: "user" });
+      await program.parseAsync(["dns", "setup", "--domain", "quantclaw.internal"], {
+        from: "user",
+      });
       const output = log.mock.calls.map((call) => call.join(" ")).join("\\n");
       expect(output).toContain("DNS setup");
-      expect(output).toContain("openclaw.internal");
+      expect(output).toContain("quantclaw.internal");
     } finally {
       log.mockRestore();
     }

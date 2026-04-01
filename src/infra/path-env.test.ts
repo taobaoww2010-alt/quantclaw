@@ -37,9 +37,9 @@ vi.mock("./env.js", () => ({
   isTruthyEnvValue: (value?: string) => value === "1" || value === "true",
 }));
 
-let ensureOpenClawCliOnPath: typeof import("./path-env.js").ensureOpenClawCliOnPath;
+let ensureQuantClawCliOnPath: typeof import("./path-env.js").ensureQuantClawCliOnPath;
 
-describe("ensureOpenClawCliOnPath", () => {
+describe("ensureQuantClawCliOnPath", () => {
   const envKeys = [
     "PATH",
     "OPENCLAW_PATH_BOOTSTRAPPED",
@@ -52,7 +52,7 @@ describe("ensureOpenClawCliOnPath", () => {
   let envSnapshot: Record<(typeof envKeys)[number], string | undefined>;
 
   beforeAll(async () => {
-    ({ ensureOpenClawCliOnPath } = await import("./path-env.js"));
+    ({ ensureQuantClawCliOnPath } = await import("./path-env.js"));
   });
 
   beforeEach(() => {
@@ -77,9 +77,9 @@ describe("ensureOpenClawCliOnPath", () => {
   });
 
   function setupAppCliRoot(name: string) {
-    const tmp = abs(`/tmp/openclaw-path/${name}`);
+    const tmp = abs(`/tmp/quantclaw-path/${name}`);
     const appBinDir = path.join(tmp, "AppBin");
-    const appCli = path.join(appBinDir, "openclaw");
+    const appCli = path.join(appBinDir, "quantclaw");
     setDir(tmp);
     setDir(appBinDir);
     setExe(appCli);
@@ -93,7 +93,7 @@ describe("ensureOpenClawCliOnPath", () => {
     platform: NodeJS.Platform;
     allowProjectLocalBin?: boolean;
   }) {
-    ensureOpenClawCliOnPath(params);
+    ensureQuantClawCliOnPath(params);
     return (process.env.PATH ?? "").split(path.delimiter);
   }
 
@@ -133,7 +133,7 @@ describe("ensureOpenClawCliOnPath", () => {
   it("is idempotent", () => {
     process.env.PATH = "/bin";
     process.env.OPENCLAW_PATH_BOOTSTRAPPED = "1";
-    ensureOpenClawCliOnPath({
+    ensureQuantClawCliOnPath({
       execPath: "/tmp/does-not-matter",
       cwd: "/tmp",
       homeDir: "/tmp",
@@ -177,7 +177,7 @@ describe("ensureOpenClawCliOnPath", () => {
     ({ envValue, allowProjectLocalBin }) => {
       const { tmp, appCli } = setupAppCliRoot("case-project-local");
       const localBinDir = path.join(tmp, "node_modules", ".bin");
-      const localCli = path.join(localBinDir, "openclaw");
+      const localCli = path.join(localBinDir, "quantclaw");
       setDir(path.join(tmp, "node_modules"));
       setDir(localBinDir);
       setExe(localCli);
@@ -296,7 +296,7 @@ describe("ensureOpenClawCliOnPath", () => {
     {
       name: "appends Linuxbrew dirs after system dirs",
       setup: () => {
-        const tmp = abs("/tmp/openclaw-path/case-linuxbrew");
+        const tmp = abs("/tmp/quantclaw-path/case-linuxbrew");
         const execDir = path.join(tmp, "exec");
         setDir(tmp);
         setDir(execDir);

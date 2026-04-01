@@ -286,12 +286,12 @@ describe("buildServiceEnvironment", () => {
       expect(env.PATH).toContain("/usr/bin");
     }
     expect(env.OPENCLAW_GATEWAY_PORT).toBe("18789");
-    expect(env.OPENCLAW_GATEWAY_TOKEN).toBeUndefined();
-    expect(env.OPENCLAW_SERVICE_MARKER).toBe("openclaw");
+    expect(env.QUANTCLAW_GATEWAY_TOKEN).toBeUndefined();
+    expect(env.OPENCLAW_SERVICE_MARKER).toBe("quantclaw");
     expect(env.OPENCLAW_SERVICE_KIND).toBe("gateway");
     expect(typeof env.OPENCLAW_SERVICE_VERSION).toBe("string");
-    expect(env.OPENCLAW_SYSTEMD_UNIT).toBe("openclaw-gateway.service");
-    expect(env.OPENCLAW_WINDOWS_TASK_NAME).toBe("OpenClaw Gateway");
+    expect(env.OPENCLAW_SYSTEMD_UNIT).toBe("quantclaw-gateway.service");
+    expect(env.OPENCLAW_WINDOWS_TASK_NAME).toBe("☯️ QuantClaw Gateway");
     if (process.platform === "darwin") {
       expect(env.OPENCLAW_LAUNCHD_LABEL).toBe("ai.openclaw.gateway");
     }
@@ -318,8 +318,8 @@ describe("buildServiceEnvironment", () => {
       env: { HOME: "/home/user", OPENCLAW_PROFILE: "work" },
       port: 18789,
     });
-    expect(env.OPENCLAW_SYSTEMD_UNIT).toBe("openclaw-gateway-work.service");
-    expect(env.OPENCLAW_WINDOWS_TASK_NAME).toBe("OpenClaw Gateway (work)");
+    expect(env.OPENCLAW_SYSTEMD_UNIT).toBe("quantclaw-gateway-work.service");
+    expect(env.OPENCLAW_WINDOWS_TASK_NAME).toBe("☯️ QuantClaw Gateway (work)");
     if (process.platform === "darwin") {
       expect(env.OPENCLAW_LAUNCHD_LABEL).toBe("ai.openclaw.work");
     }
@@ -356,7 +356,7 @@ describe("buildServiceEnvironment", () => {
     });
 
     expect(env).not.toHaveProperty("PATH");
-    expect(env.OPENCLAW_WINDOWS_TASK_NAME).toBe("OpenClaw Gateway");
+    expect(env.OPENCLAW_WINDOWS_TASK_NAME).toBe("☯️ QuantClaw Gateway");
   });
 
   it("prepends extra runtime directories to the gateway service PATH", () => {
@@ -381,21 +381,21 @@ describe("buildNodeServiceEnvironment", () => {
     expect(env.HOME).toBe("/home/user");
   });
 
-  it("passes through OPENCLAW_GATEWAY_TOKEN for node services", () => {
+  it("passes through QUANTCLAW_GATEWAY_TOKEN for node services", () => {
     const env = buildNodeServiceEnvironment({
-      env: { HOME: "/home/user", OPENCLAW_GATEWAY_TOKEN: " node-token " },
+      env: { HOME: "/home/user", QUANTCLAW_GATEWAY_TOKEN: " node-token " },
     });
-    expect(env.OPENCLAW_GATEWAY_TOKEN).toBe("node-token");
+    expect(env.QUANTCLAW_GATEWAY_TOKEN).toBe("node-token");
   });
 
-  it("omits OPENCLAW_GATEWAY_TOKEN when the env var is empty", () => {
+  it("omits QUANTCLAW_GATEWAY_TOKEN when the env var is empty", () => {
     const env = buildNodeServiceEnvironment({
       env: {
         HOME: "/home/user",
-        OPENCLAW_GATEWAY_TOKEN: "   ",
+        QUANTCLAW_GATEWAY_TOKEN: "   ",
       },
     });
-    expect(env.OPENCLAW_GATEWAY_TOKEN).toBeUndefined();
+    expect(env.QUANTCLAW_GATEWAY_TOKEN).toBeUndefined();
   });
 
   it("forwards proxy environment variables for node services", () => {

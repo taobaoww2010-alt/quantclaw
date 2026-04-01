@@ -212,8 +212,8 @@ describe("noteWorkspaceStatus", () => {
       const body = String(recoveryCalls[0]?.[0]);
       expect(body).toContain("flow-orphaned: waiting linear flow has no linked tasks");
       expect(body).toContain("flow-blocked: blocked flow points at missing task task-missing");
-      expect(body).toContain("openclaw flows show <flow-id>");
-      expect(body).toContain("openclaw flows cancel <flow-id>");
+      expect(body).toContain("quantclaw flows show <flow-id>");
+      expect(body).toContain("quantclaw flows cancel <flow-id>");
     } finally {
       noteSpy.mockRestore();
     }

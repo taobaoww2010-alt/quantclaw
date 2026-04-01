@@ -305,7 +305,7 @@ describe("provider usage loading", () => {
         env: {
           OPENCLAW_STATE_DIR: (home) => path.join(home, ".openclaw"),
         },
-        prefix: "openclaw-provider-usage-",
+        prefix: "quantclaw-provider-usage-",
       },
     );
   });

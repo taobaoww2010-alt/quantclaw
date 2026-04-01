@@ -20,7 +20,7 @@ import {
 } from "./skills.js";
 import { getActiveSkillEnvKeys } from "./skills/env-overrides.js";
 
-const fixtureSuite = createFixtureSuite("openclaw-skills-suite-");
+const fixtureSuite = createFixtureSuite("quantclaw-skills-suite-");
 let tempHome: TempHomeEnv | null = null;
 
 const resolveTestSkillDirs = (workspaceDir: string) => ({
@@ -61,13 +61,13 @@ async function writeEnvSkill(workspaceDir: string) {
     dir: skillDir,
     name: "env-skill",
     description: "Needs env",
-    metadata: '{"openclaw":{"requires":{"env":["ENV_KEY"]},"primaryEnv":"ENV_KEY"}}',
+    metadata: '{"quantclaw":{"requires":{"env":["ENV_KEY"]},"primaryEnv":"ENV_KEY"}}',
   });
 }
 
 beforeAll(async () => {
   await fixtureSuite.setup();
-  tempHome = await createTempHomeEnv("openclaw-skills-home-");
+  tempHome = await createTempHomeEnv("quantclaw-skills-home-");
   await fs.mkdir(path.join(tempHome.home, ".openclaw", "agents", "main", "sessions"), {
     recursive: true,
   });
@@ -438,7 +438,7 @@ describe("applySkillEnvOverrides", () => {
       name: "unsafe-env-skill",
       description: "Needs env",
       metadata:
-        '{"openclaw":{"requires":{"env":["OPENAI_API_KEY","NODE_OPTIONS"]},"primaryEnv":"OPENAI_API_KEY"}}',
+        '{"quantclaw":{"requires":{"env":["OPENAI_API_KEY","NODE_OPTIONS"]},"primaryEnv":"OPENAI_API_KEY"}}',
     });
 
     const entries = loadWorkspaceSkillEntries(workspaceDir, resolveTestSkillDirs(workspaceDir));
@@ -478,7 +478,7 @@ describe("applySkillEnvOverrides", () => {
       dir: skillDir,
       name: "dangerous-env-skill",
       description: "Needs env",
-      metadata: '{"openclaw":{"requires":{"env":["BASH_ENV","SHELL"]}}}',
+      metadata: '{"quantclaw":{"requires":{"env":["BASH_ENV","SHELL"]}}}',
     });
 
     const entries = loadWorkspaceSkillEntries(workspaceDir, resolveTestSkillDirs(workspaceDir));
@@ -518,7 +518,7 @@ describe("applySkillEnvOverrides", () => {
       dir: skillDir,
       name: "snapshot-env-skill",
       description: "Needs env",
-      metadata: '{"openclaw":{"requires":{"env":["OPENAI_API_KEY"]}}}',
+      metadata: '{"quantclaw":{"requires":{"env":["OPENAI_API_KEY"]}}}',
     });
 
     const config = {

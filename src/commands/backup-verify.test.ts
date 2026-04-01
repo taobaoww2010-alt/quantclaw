@@ -104,7 +104,7 @@ describe("backupVerifyCommand", () => {
   }
 
   beforeAll(async () => {
-    tempHome = await createTempHomeEnv("openclaw-backup-verify-test-");
+    tempHome = await createTempHomeEnv("quantclaw-backup-verify-test-");
   });
 
   beforeEach(async () => {
@@ -121,9 +121,9 @@ describe("backupVerifyCommand", () => {
 
   it("verifies an archive created by backup create", async () => {
     const stateDir = path.join(tempHome.home, ".openclaw");
-    const archiveDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-backup-verify-out-"));
+    const archiveDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-backup-verify-out-"));
     try {
-      await fs.writeFile(path.join(stateDir, "openclaw.json"), JSON.stringify({}), "utf8");
+      await fs.writeFile(path.join(stateDir, "quantclaw.json"), JSON.stringify({}), "utf8");
       await fs.writeFile(path.join(stateDir, "state.txt"), "hello\n", "utf8");
 
       const runtime = createBackupVerifyRuntime();
@@ -140,7 +140,7 @@ describe("backupVerifyCommand", () => {
   });
 
   it("fails when the archive does not contain a manifest", async () => {
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-backup-no-manifest-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-backup-no-manifest-"));
     const archivePath = path.join(tempDir, "broken.tar.gz");
     try {
       const root = path.join(tempDir, "root");
@@ -158,7 +158,7 @@ describe("backupVerifyCommand", () => {
   });
 
   it("fails when the manifest references a missing asset payload", async () => {
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-backup-missing-asset-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-backup-missing-asset-"));
     const archivePath = path.join(tempDir, "broken.tar.gz");
     try {
       const rootName = "2026-03-09T00-00-00.000Z-openclaw-backup";
@@ -198,7 +198,7 @@ describe("backupVerifyCommand", () => {
     const traversalPath = `${TEST_ARCHIVE_ROOT}/payload/../escaped.txt`;
     await withBrokenArchiveFixture(
       {
-        tempPrefix: "openclaw-backup-traversal-",
+        tempPrefix: "quantclaw-backup-traversal-",
         manifestAssetArchivePath: traversalPath,
         payloads: [{ fileName: "payload.txt", contents: "payload\n", archivePath: traversalPath }],
       },
@@ -215,7 +215,7 @@ describe("backupVerifyCommand", () => {
     const invalidPath = `${TEST_ARCHIVE_ROOT}/payload\\..\\escaped.txt`;
     await withBrokenArchiveFixture(
       {
-        tempPrefix: "openclaw-backup-backslash-",
+        tempPrefix: "quantclaw-backup-backslash-",
         manifestAssetArchivePath: invalidPath,
         payloads: [{ fileName: "payload.txt", contents: "payload\n", archivePath: invalidPath }],
       },
@@ -230,9 +230,9 @@ describe("backupVerifyCommand", () => {
 
   it("ignores payload manifest.json files when locating the backup manifest", async () => {
     const stateDir = path.join(tempHome.home, ".openclaw");
-    const externalWorkspace = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-workspace-"));
+    const externalWorkspace = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-workspace-"));
     const configPath = path.join(tempHome.home, "custom-config.json");
-    const archiveDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-backup-verify-out-"));
+    const archiveDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-backup-verify-out-"));
     try {
       process.env.OPENCLAW_CONFIG_PATH = configPath;
       await fs.writeFile(
@@ -246,7 +246,7 @@ describe("backupVerifyCommand", () => {
         }),
         "utf8",
       );
-      await fs.writeFile(path.join(stateDir, "openclaw.json"), JSON.stringify({}), "utf8");
+      await fs.writeFile(path.join(stateDir, "quantclaw.json"), JSON.stringify({}), "utf8");
       await fs.writeFile(path.join(stateDir, "state.txt"), "hello\n", "utf8");
       await fs.writeFile(
         path.join(externalWorkspace, "manifest.json"),
@@ -275,7 +275,7 @@ describe("backupVerifyCommand", () => {
     const payloadArchivePath = `${TEST_ARCHIVE_ROOT}/payload/posix/tmp/.openclaw/payload.txt`;
     await withBrokenArchiveFixture(
       {
-        tempPrefix: "openclaw-backup-duplicate-manifest-",
+        tempPrefix: "quantclaw-backup-duplicate-manifest-",
         manifestAssetArchivePath: payloadArchivePath,
         payloads: [{ fileName: "payload.txt", contents: "payload\n" }],
         buildTarEntries: ({ manifestPath, payloadPaths }) => [
@@ -297,7 +297,7 @@ describe("backupVerifyCommand", () => {
     const payloadArchivePath = `${TEST_ARCHIVE_ROOT}/payload/posix/tmp/.openclaw/payload.txt`;
     await withBrokenArchiveFixture(
       {
-        tempPrefix: "openclaw-backup-duplicate-payload-",
+        tempPrefix: "quantclaw-backup-duplicate-payload-",
         manifestAssetArchivePath: payloadArchivePath,
         payloads: [
           { fileName: "payload-a.txt", contents: "payload-a\n", archivePath: payloadArchivePath },

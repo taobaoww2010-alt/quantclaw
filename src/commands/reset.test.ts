@@ -55,7 +55,7 @@ describe("resetCommand", () => {
       dryRun: true,
     });
 
-    expect(runtime.log).toHaveBeenCalledWith(expect.stringContaining("openclaw backup create"));
+    expect(runtime.log).toHaveBeenCalledWith(expect.stringContaining("quantclaw backup create"));
   });
 
   it("does not recommend backup for config-only reset", async () => {
@@ -66,6 +66,8 @@ describe("resetCommand", () => {
       dryRun: true,
     });
 
-    expect(runtime.log).not.toHaveBeenCalledWith(expect.stringContaining("openclaw backup create"));
+    expect(runtime.log).not.toHaveBeenCalledWith(
+      expect.stringContaining("quantclaw backup create"),
+    );
   });
 });

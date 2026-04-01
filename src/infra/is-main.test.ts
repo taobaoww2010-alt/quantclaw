@@ -42,7 +42,7 @@ describe("isMainModule", () => {
         argv: ["node", "/repo/openclaw.mjs"],
         cwd: "/repo",
         env: {},
-        wrapperEntryPairs: [{ wrapperBasename: "openclaw.mjs", entryBasename: "entry.js" }],
+        wrapperEntryPairs: [{ wrapperBasename: "quantclaw.mjs", entryBasename: "entry.js" }],
       }),
     ).toBe(true);
   });
@@ -62,7 +62,7 @@ describe("isMainModule", () => {
         argv: ["node", "/repo/openclaw.mjs"],
         cwd: "/repo",
         env: {},
-        wrapperEntryPairs: [{ wrapperBasename: "openclaw.mjs", entryBasename: "entry.js" }],
+        wrapperEntryPairs: [{ wrapperBasename: "quantclaw.mjs", entryBasename: "entry.js" }],
       }),
     ).toBe(false);
   });

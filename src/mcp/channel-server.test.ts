@@ -39,7 +39,7 @@ async function connectMcpWithoutGateway(params?: { claudeChannelMode?: "auto" | 
   };
 }
 
-describe("openclaw channel mcp server", () => {
+describe("quantclaw channel mcp server", () => {
   describe("gateway-backed flows", () => {
     describe("gateway integration", () => {
       test("lists conversations and reads messages", async () => {

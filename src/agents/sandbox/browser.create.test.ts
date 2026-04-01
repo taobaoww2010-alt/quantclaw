@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { collectDockerFlagValues, findDockerArgsCall } from "./test-args.js";
-import { SANDBOX_MOUNT_FORMAT_VERSION } from "./workspace-mounts.js";
 import type { SandboxConfig } from "./types.js";
+import { SANDBOX_MOUNT_FORMAT_VERSION } from "./workspace-mounts.js";
 
 let BROWSER_BRIDGES: Map<string, unknown>;
 let ensureSandboxBrowser: typeof import("./browser.js").ensureSandboxBrowser;
@@ -60,10 +60,10 @@ function buildConfig(enableNoVnc: boolean): SandboxConfig {
     backend: "docker",
     scope: "session",
     workspaceAccess: "none",
-    workspaceRoot: "/tmp/openclaw-sandboxes",
+    workspaceRoot: "/tmp/quantclaw-sandboxes",
     docker: {
-      image: "openclaw-sandbox:bookworm-slim",
-      containerPrefix: "openclaw-sbx-",
+      image: "quantclaw-sandbox:bookworm-slim",
+      containerPrefix: "quantclaw-sbx-",
       workdir: "/workspace",
       readOnlyRoot: true,
       tmpfs: ["/tmp", "/var/tmp", "/run"],
@@ -73,15 +73,15 @@ function buildConfig(enableNoVnc: boolean): SandboxConfig {
     },
     ssh: {
       command: "ssh",
-      workspaceRoot: "/tmp/openclaw-sandboxes",
+      workspaceRoot: "/tmp/quantclaw-sandboxes",
       strictHostKeyChecking: true,
       updateHostKeys: true,
     },
     browser: {
       enabled: true,
-      image: "openclaw-sandbox-browser:bookworm-slim",
-      containerPrefix: "openclaw-sbx-browser-",
-      network: "openclaw-sandbox-browser",
+      image: "quantclaw-sandbox-browser:bookworm-slim",
+      containerPrefix: "quantclaw-sbx-browser-",
+      network: "quantclaw-sandbox-browser",
       cdpPort: 9222,
       vncPort: 5900,
       noVncPort: 6080,

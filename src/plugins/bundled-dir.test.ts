@@ -41,7 +41,7 @@ function createOpenClawRoot(params: {
   }
   fs.writeFileSync(
     path.join(repoRoot, "package.json"),
-    `${JSON.stringify({ name: "openclaw" }, null, 2)}\n`,
+    `${JSON.stringify({ name: "quantclaw" }, null, 2)}\n`,
     "utf8",
   );
   return repoRoot;
@@ -138,7 +138,7 @@ describe("resolveBundledPluginsDir", () => {
     [
       "prefers the staged runtime bundled plugin tree from the package root",
       {
-        prefix: "openclaw-bundled-dir-runtime-",
+        prefix: "quantclaw-bundled-dir-runtime-",
         hasDistRuntimeExtensions: true,
         hasDistExtensions: true,
       },
@@ -149,7 +149,7 @@ describe("resolveBundledPluginsDir", () => {
     [
       "falls back to built dist/extensions in installed package roots",
       {
-        prefix: "openclaw-bundled-dir-dist-",
+        prefix: "quantclaw-bundled-dir-dist-",
         hasDistExtensions: true,
       },
       {
@@ -159,7 +159,7 @@ describe("resolveBundledPluginsDir", () => {
     [
       "prefers source extensions under vitest to avoid stale staged plugins",
       {
-        prefix: "openclaw-bundled-dir-vitest-",
+        prefix: "quantclaw-bundled-dir-vitest-",
         hasExtensions: true,
         hasDistRuntimeExtensions: true,
         hasDistExtensions: true,
@@ -172,7 +172,7 @@ describe("resolveBundledPluginsDir", () => {
     [
       "prefers source extensions in a git checkout even without vitest env",
       {
-        prefix: "openclaw-bundled-dir-git-",
+        prefix: "quantclaw-bundled-dir-git-",
         hasExtensions: true,
         hasSrc: true,
         hasDistRuntimeExtensions: true,
@@ -197,11 +197,11 @@ describe("resolveBundledPluginsDir", () => {
       name: "prefers the running CLI package root over an unrelated cwd checkout",
       createScenario: () => {
         const installedRoot = createOpenClawRoot({
-          prefix: "openclaw-bundled-dir-installed-",
+          prefix: "quantclaw-bundled-dir-installed-",
           hasDistExtensions: true,
         });
         const cwdRepoRoot = createOpenClawRoot({
-          prefix: "openclaw-bundled-dir-cwd-",
+          prefix: "quantclaw-bundled-dir-cwd-",
           hasExtensions: true,
           hasSrc: true,
           hasGitCheckout: true,
@@ -209,7 +209,7 @@ describe("resolveBundledPluginsDir", () => {
         return {
           installedRoot,
           cwd: cwdRepoRoot,
-          argv1: path.join(installedRoot, "openclaw.mjs"),
+          argv1: path.join(installedRoot, "quantclaw.mjs"),
         };
       },
     },
@@ -217,12 +217,12 @@ describe("resolveBundledPluginsDir", () => {
       name: "falls back to the running installed package when the override path is stale",
       createScenario: () => {
         const installedRoot = createOpenClawRoot({
-          prefix: "openclaw-bundled-dir-override-",
+          prefix: "quantclaw-bundled-dir-override-",
           hasDistExtensions: true,
         });
         return {
           installedRoot,
-          argv1: path.join(installedRoot, "openclaw.mjs"),
+          argv1: path.join(installedRoot, "quantclaw.mjs"),
           bundledDirOverride: path.join(installedRoot, "missing-extensions"),
         };
       },

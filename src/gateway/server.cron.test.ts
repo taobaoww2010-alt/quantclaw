@@ -43,7 +43,7 @@ let cronSuiteCaseId = 0;
 
 async function getCronSuiteTempRoot(): Promise<string> {
   if (!cronSuiteTempRootPromise) {
-    cronSuiteTempRootPromise = fs.mkdtemp(path.join(os.tmpdir(), "openclaw-gw-cron-suite-"));
+    cronSuiteTempRootPromise = fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-gw-cron-suite-"));
   }
   return await cronSuiteTempRootPromise;
 }
@@ -236,7 +236,7 @@ describe("gateway server cron", () => {
 
   test("handles cron CRUD, normalization, and patch semantics", { timeout: 20_000 }, async () => {
     const { prevSkipCron } = await setupCronTestRun({
-      tempPrefix: "openclaw-gw-cron-",
+      tempPrefix: "quantclaw-gw-cron-",
       sessionConfig: { mainKey: "primary" },
       cronEnabled: false,
     });
@@ -465,7 +465,7 @@ describe("gateway server cron", () => {
 
   test("writes cron run history and auto-runs due jobs", async () => {
     const { prevSkipCron } = await setupCronTestRun({
-      tempPrefix: "openclaw-gw-cron-log-",
+      tempPrefix: "quantclaw-gw-cron-log-",
     });
 
     const { server, ws } = await startServerWithClient();
@@ -562,7 +562,7 @@ describe("gateway server cron", () => {
 
   test("returns from cron.run immediately while isolated work continues in background", async () => {
     const { prevSkipCron } = await setupCronTestRun({
-      tempPrefix: "openclaw-gw-cron-run-detached-",
+      tempPrefix: "quantclaw-gw-cron-run-detached-",
     });
 
     const { server, ws } = await startServerWithClient();
@@ -629,7 +629,7 @@ describe("gateway server cron", () => {
     );
 
     const { prevSkipCron } = await setupCronTestRun({
-      tempPrefix: "openclaw-gw-cron-run-busy-",
+      tempPrefix: "quantclaw-gw-cron-run-busy-",
       jobs: [
         {
           id: "busy-job",
@@ -682,7 +682,7 @@ describe("gateway server cron", () => {
   test("returns not-due without starting background work", async () => {
     const now = Date.now();
     const { prevSkipCron } = await setupCronTestRun({
-      tempPrefix: "openclaw-gw-cron-run-not-due-",
+      tempPrefix: "quantclaw-gw-cron-run-not-due-",
       jobs: [
         {
           id: "future-job",
@@ -731,7 +731,7 @@ describe("gateway server cron", () => {
       state: {},
     };
     const { prevSkipCron } = await setupCronTestRun({
-      tempPrefix: "openclaw-gw-cron-webhook-",
+      tempPrefix: "quantclaw-gw-cron-webhook-",
       cronEnabled: false,
       jobs: [legacyNotifyJob],
     });
@@ -895,7 +895,7 @@ describe("gateway server cron", () => {
 
   test("ignores non-string cron.webhookToken values without crashing webhook delivery", async () => {
     const { prevSkipCron } = await setupCronTestRun({
-      tempPrefix: "openclaw-gw-cron-webhook-secretinput-",
+      tempPrefix: "quantclaw-gw-cron-webhook-secretinput-",
       cronEnabled: false,
     });
 

@@ -255,7 +255,7 @@ export async function loadCompactHooksHarness(): Promise<{
   }));
 
   vi.doMock("../models-config.js", () => ({
-    ensureOpenClawModelsJson: vi.fn(async () => {}),
+    ensureQuantClawModelsJson: vi.fn(async () => {}),
   }));
 
   vi.doMock("../model-auth.js", () => ({
@@ -317,7 +317,7 @@ export async function loadCompactHooksHarness(): Promise<{
   }));
 
   vi.doMock("../docs-path.js", () => ({
-    resolveOpenClawDocsPath: vi.fn(async () => undefined),
+    resolveQuantClawDocsPath: vi.fn(async () => undefined),
   }));
 
   vi.doMock("../channel-tools.js", () => ({
@@ -409,7 +409,7 @@ export async function loadCompactHooksHarness(): Promise<{
   }));
 
   vi.doMock("../agent-paths.js", () => ({
-    resolveOpenClawAgentDir: vi.fn(() => "/tmp"),
+    resolveQuantClawAgentDir: vi.fn(() => "/tmp"),
   }));
 
   vi.doMock("../agent-scope.js", () => ({

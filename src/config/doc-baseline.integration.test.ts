@@ -149,7 +149,7 @@ describe("config doc baseline integration", () => {
   });
 
   it("supports check mode for stale generated artifacts", async () => {
-    const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-config-doc-baseline-"));
+    const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-config-doc-baseline-"));
     tempRoots.push(tempRoot);
     const rendered = getSharedRendered();
 

@@ -160,7 +160,7 @@ export function renderRuntimeHints(
     }
   })();
   if (runtime.missingUnit) {
-    hints.push(`Service not installed. Run: ${formatCliCommand("openclaw gateway install", env)}`);
+    hints.push(`Service not installed. Run: ${formatCliCommand("quantclaw gateway install", env)}`);
     if (fileLog) {
       hints.push(`File logs: ${fileLog}`);
     }
@@ -185,8 +185,8 @@ export function renderGatewayServiceStartHints(env: NodeJS.ProcessEnv = process.
   const profile = env.OPENCLAW_PROFILE;
   const container = resolveDaemonContainerContext(env);
   const hints = buildPlatformServiceStartHints({
-    installCommand: formatCliCommand("openclaw gateway install", env),
-    startCommand: formatCliCommand("openclaw gateway", env),
+    installCommand: formatCliCommand("quantclaw gateway install", env),
+    startCommand: formatCliCommand("quantclaw gateway", env),
     launchAgentPlistPath: `~/Library/LaunchAgents/${resolveGatewayLaunchAgentLabel(profile)}.plist`,
     systemdServiceName: resolveGatewaySystemdServiceName(profile),
     windowsTaskName: resolveGatewayWindowsTaskName(profile),

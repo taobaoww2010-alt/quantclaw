@@ -18,7 +18,7 @@ const runNodeSourceRoots = ["src", BUNDLED_PLUGIN_ROOT_DIR];
 const runNodeConfigFiles = ["tsconfig.json", "package.json", "tsdown.config.ts"];
 export const runNodeWatchedPaths = [...runNodeSourceRoots, ...runNodeConfigFiles];
 const extensionSourceFilePattern = /\.(?:[cm]?[jt]sx?)$/;
-const extensionRestartMetadataFiles = new Set(["openclaw.plugin.json", "package.json"]);
+const extensionRestartMetadataFiles = new Set(["quantclaw.plugin.json", "package.json"]);
 
 const normalizePath = (filePath) => String(filePath ?? "").replaceAll("\\", "/");
 

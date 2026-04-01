@@ -25,15 +25,15 @@ function writeRuntimeFixtureText(rootDir: string, relativePath: string, value: s
 }
 
 function createBundledWhatsAppRuntimeFixture() {
-  const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-whatsapp-boundary-"));
+  const rootDir = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-whatsapp-boundary-"));
   tempDirs.push(rootDir);
   for (const [relativePath, value] of Object.entries({
     "package.json": JSON.stringify(
       {
-        name: "openclaw",
+        name: "quantclaw",
         type: "module",
         bin: {
-          openclaw: "openclaw.mjs",
+          openclaw: "quantclaw.mjs",
         },
         exports: {
           "./plugin-sdk": {
@@ -44,14 +44,14 @@ function createBundledWhatsAppRuntimeFixture() {
       null,
       2,
     ),
-    "openclaw.mjs": "export {};\n",
+    "quantclaw.mjs": "export {};\n",
     [bundledDistPluginFile("whatsapp", "index.js")]: "export default {};\n",
     [bundledDistPluginFile("whatsapp", "light-runtime-api.js")]:
       'export { getActiveWebListener } from "../../active-listener.js";\n',
     [bundledDistPluginFile("whatsapp", "runtime-api.js")]:
       'export { getActiveWebListener, setActiveWebListener } from "../../active-listener.js";\n',
     "dist/active-listener.js": [
-      'const key = Symbol.for("openclaw.whatsapp.activeListenerState");',
+      'const key = Symbol.for("quantclaw.whatsapp.activeListenerState");',
       "const g = globalThis;",
       "if (!g[key]) {",
       "  g[key] = { listeners: new Map(), current: null };",

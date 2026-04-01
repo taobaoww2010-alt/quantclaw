@@ -6,7 +6,7 @@
   "dependencies": {
     "acpx": "0.3.1"
   },
-  "openclaw": {
+  "quantclaw": {
     "extensions": [
       "./index.ts"
     ]

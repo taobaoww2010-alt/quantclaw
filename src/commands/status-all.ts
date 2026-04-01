@@ -17,7 +17,7 @@ import { normalizeControlUiBasePath } from "../gateway/control-ui-shared.js";
 import { resolveGatewayProbeAuthSafeWithSecretInputs } from "../gateway/probe-auth.js";
 import { probeGateway } from "../gateway/probe.js";
 import { collectChannelStatusIssues } from "../infra/channels-status-issues.js";
-import { resolveOpenClawPackageRoot } from "../infra/openclaw-root.js";
+import { resolveQuantClawPackageRoot } from "../infra/openclaw-root.js";
 import { resolveOsSummary } from "../infra/os-summary.js";
 import { inspectPortUsage } from "../infra/ports.js";
 import { readRestartSentinel } from "../infra/restart-sentinel.js";
@@ -95,7 +95,7 @@ export async function statusAllCommand(
     progress.tick();
 
     progress.setLabel("Checking for updates…");
-    const root = await resolveOpenClawPackageRoot({
+    const root = await resolveQuantClawPackageRoot({
       moduleUrl: import.meta.url,
       argv1: process.argv[1],
       cwd: process.cwd(),
@@ -325,7 +325,7 @@ export async function statusAllCommand(
       ...(probeAuthResolution.warning
         ? [{ Item: "Gateway auth warning", Value: probeAuthResolution.warning }]
         : []),
-      { Item: "Security", Value: `Run: ${formatCliCommand("openclaw security audit --deep")}` },
+      { Item: "Security", Value: `Run: ${formatCliCommand("quantclaw security audit --deep")}` },
       gatewaySelfLine
         ? { Item: "Gateway self", Value: gatewaySelfLine }
         : { Item: "Gateway self", Value: "unknown" },

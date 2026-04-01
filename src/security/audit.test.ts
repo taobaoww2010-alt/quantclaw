@@ -321,7 +321,7 @@ async function runInstallMetadataAudit(
     includeFilesystem: true,
     includeChannelSecurity: false,
     stateDir,
-    configPath: path.join(stateDir, "openclaw.json"),
+    configPath: path.join(stateDir, "quantclaw.json"),
     execDockerRawFn: execDockerRawUnavailable,
   });
 }
@@ -350,7 +350,7 @@ describe("security audit", () => {
     const tmp = await makeTmpDir(label);
     const stateDir = path.join(tmp, "state");
     await fs.mkdir(stateDir, { recursive: true, mode: 0o700 });
-    const configPath = path.join(stateDir, "openclaw.json");
+    const configPath = path.join(stateDir, "quantclaw.json");
     await fs.writeFile(configPath, "{}\n", "utf-8");
     if (!isWindows) {
       await fs.chmod(configPath, 0o600);
@@ -384,7 +384,7 @@ describe("security audit", () => {
       includeFilesystem: true,
       includeChannelSecurity: false,
       stateDir: sharedExtensionsStateDir,
-      configPath: path.join(sharedExtensionsStateDir, "openclaw.json"),
+      configPath: path.join(sharedExtensionsStateDir, "quantclaw.json"),
       execDockerRawFn: execDockerRawUnavailable,
     });
   };
@@ -430,7 +430,7 @@ description: test skill
   };
 
   beforeAll(async () => {
-    fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-security-audit-"));
+    fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-security-audit-"));
     isolatedHome = path.join(fixtureRoot, "home");
     const isolatedEnv = createPathResolutionEnv(isolatedHome, { OPENCLAW_HOME: isolatedHome });
     for (const key of pathResolutionEnvKeys) {
@@ -505,8 +505,8 @@ description: test skill
         run: async () =>
           withEnvAsync(
             {
-              OPENCLAW_GATEWAY_TOKEN: undefined,
-              OPENCLAW_GATEWAY_PASSWORD: undefined,
+              QUANTCLAW_GATEWAY_TOKEN: undefined,
+              QUANTCLAW_GATEWAY_PASSWORD: undefined,
             },
             async () =>
               audit({
@@ -531,7 +531,7 @@ description: test skill
                   password: {
                     source: "env",
                     provider: "default",
-                    id: "OPENCLAW_GATEWAY_PASSWORD",
+                    id: "QUANTCLAW_GATEWAY_PASSWORD",
                   },
                 },
               },
@@ -552,7 +552,7 @@ description: test skill
                 token: {
                   source: "env",
                   provider: "default",
-                  id: "OPENCLAW_GATEWAY_TOKEN",
+                  id: "QUANTCLAW_GATEWAY_TOKEN",
                 },
               },
             },
@@ -845,7 +845,7 @@ description: test skill
     const riskyGlobalTrustedDirs =
       process.platform === "win32"
         ? [String.raw`C:\Users\ci-user\bin`, String.raw`C:\Users\ci-user\.local\bin`]
-        : ["/usr/local/bin", "/tmp/openclaw-safe-bins"];
+        : ["/usr/local/bin", "/tmp/quantclaw-safe-bins"];
     const cases = [
       {
         name: "warns for risky global and relative trusted dirs",
@@ -1108,7 +1108,7 @@ description: test skill
           const tmp = await makeTmpDir(testCase.label);
           const stateDir = path.join(tmp, "state");
           await fs.mkdir(stateDir, { recursive: true });
-          const configPath = path.join(stateDir, "openclaw.json");
+          const configPath = path.join(stateDir, "quantclaw.json");
           await fs.writeFile(configPath, "{}\n", "utf-8");
 
           return runSecurityAudit({
@@ -1145,20 +1145,20 @@ description: test skill
               if (args[0] === "ps") {
                 return {
                   stdout: Buffer.from(
-                    "openclaw-sbx-browser-old\nopenclaw-sbx-browser-missing-hash\n",
+                    "quantclaw-sbx-browser-old\nopenclaw-sbx-browser-missing-hash\n",
                   ),
                   stderr: Buffer.alloc(0),
                   code: 0,
                 };
               }
-              if (args[0] === "inspect" && args.at(-1) === "openclaw-sbx-browser-old") {
+              if (args[0] === "inspect" && args.at(-1) === "quantclaw-sbx-browser-old") {
                 return {
                   stdout: Buffer.from("abc123\tepoch-v0\n"),
                   stderr: Buffer.alloc(0),
                   code: 0,
                 };
               }
-              if (args[0] === "inspect" && args.at(-1) === "openclaw-sbx-browser-missing-hash") {
+              if (args[0] === "inspect" && args.at(-1) === "quantclaw-sbx-browser-missing-hash") {
                 return {
                   stdout: Buffer.from("<no value>\t<no value>\n"),
                   stderr: Buffer.alloc(0),
@@ -1181,7 +1181,7 @@ description: test skill
           const staleEpoch = res.findings.find(
             (f) => f.checkId === "sandbox.browser_container.hash_epoch_stale",
           );
-          expect(staleEpoch?.detail).toContain("openclaw-sbx-browser-old");
+          expect(staleEpoch?.detail).toContain("quantclaw-sbx-browser-old");
         },
       },
       {
@@ -1221,19 +1221,19 @@ description: test skill
             execDockerRawFn: (async (args: string[]) => {
               if (args[0] === "ps") {
                 return {
-                  stdout: Buffer.from("openclaw-sbx-browser-exposed\n"),
+                  stdout: Buffer.from("quantclaw-sbx-browser-exposed\n"),
                   stderr: Buffer.alloc(0),
                   code: 0,
                 };
               }
-              if (args[0] === "inspect" && args.at(-1) === "openclaw-sbx-browser-exposed") {
+              if (args[0] === "inspect" && args.at(-1) === "quantclaw-sbx-browser-exposed") {
                 return {
                   stdout: Buffer.from("hash123\t2026-02-21-novnc-auth-default\n"),
                   stderr: Buffer.alloc(0),
                   code: 0,
                 };
               }
-              if (args[0] === "port" && args.at(-1) === "openclaw-sbx-browser-exposed") {
+              if (args[0] === "port" && args.at(-1) === "quantclaw-sbx-browser-exposed") {
                 return {
                   stdout: Buffer.from("6080/tcp -> 0.0.0.0:49101\n9222/tcp -> 127.0.0.1:49100\n"),
                   stderr: Buffer.alloc(0),
@@ -1310,7 +1310,7 @@ description: test skill
     await fs.writeFile(targetConfigPath, "{}\n", "utf-8");
     await fs.chmod(targetConfigPath, 0o444);
 
-    const configPath = path.join(stateDir, "openclaw.json");
+    const configPath = path.join(stateDir, "quantclaw.json");
     await fs.symlink(targetConfigPath, configPath);
 
     const res = await runSecurityAudit({
@@ -1388,7 +1388,7 @@ description: test skill
         .map((testCase) => ({
           run: async () => {
             const fixture = await testCase.setup();
-            const configPath = path.join(fixture.stateDir, "openclaw.json");
+            const configPath = path.join(fixture.stateDir, "quantclaw.json");
             await fs.writeFile(configPath, "{}\n", "utf-8");
             if (!isWindows) {
               await fs.chmod(configPath, 0o600);
@@ -1736,7 +1736,7 @@ description: test skill
             password: {
               source: "env",
               provider: "default",
-              id: "OPENCLAW_GATEWAY_PASSWORD",
+              id: "QUANTCLAW_GATEWAY_PASSWORD",
             },
           },
         },
@@ -3112,7 +3112,7 @@ description: test skill
           hooks: { enabled: true, token: "shared-gateway-token-1234567890" },
         } satisfies OpenClawConfig,
         env: {
-          OPENCLAW_GATEWAY_TOKEN: "shared-gateway-token-1234567890",
+          QUANTCLAW_GATEWAY_TOKEN: "shared-gateway-token-1234567890",
         },
         expectedFinding: "hooks.token_reuse_gateway_token",
         expectedSeverity: "critical" as const,
@@ -3294,7 +3294,7 @@ description: test skill
       await fs.chmod(includePath, 0o644);
     }
 
-    const configPath = path.join(stateDir, "openclaw.json");
+    const configPath = path.join(stateDir, "quantclaw.json");
     await fs.writeFile(configPath, `{ "$include": "./extra.json5" }\n`, "utf-8");
     await fs.chmod(configPath, 0o600);
 
@@ -3848,10 +3848,10 @@ description: test skill
     const makeProbeEnv = (env?: { token?: string; password?: string }) => {
       const probeEnv: NodeJS.ProcessEnv = {};
       if (env?.token !== undefined) {
-        probeEnv.OPENCLAW_GATEWAY_TOKEN = env.token;
+        probeEnv.QUANTCLAW_GATEWAY_TOKEN = env.token;
       }
       if (env?.password !== undefined) {
-        probeEnv.OPENCLAW_GATEWAY_PASSWORD = env.password;
+        probeEnv.QUANTCLAW_GATEWAY_PASSWORD = env.password;
       }
       return probeEnv;
     };

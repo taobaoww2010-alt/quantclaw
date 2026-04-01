@@ -202,7 +202,7 @@ function packOpenClawToTempDir(packDir: string): string {
 async function readPackedRootPackageJson(archivePath: string): Promise<{
   dependencies?: Record<string, string>;
 }> {
-  const extractDir = mkdtempSync(join(os.tmpdir(), "openclaw-packed-root-package-json-"));
+  const extractDir = mkdtempSync(join(os.tmpdir(), "quantclaw-packed-root-package-json-"));
   try {
     await tar.x({
       file: archivePath,
@@ -226,7 +226,7 @@ function readGeneratedFacadeTypeMap(): string {
 }
 
 function buildLegacyPluginSourceAlias(): string {
-  return ["openclaw", ["plugin", "source"].join("-")].join("/") + "/";
+  return ["quantclaw", ["plugin", "source"].join("-")].join("/") + "/";
 }
 
 function collectExtensionFiles(dir: string): string[] {
@@ -339,7 +339,7 @@ describe("plugin-sdk package contract guardrails", () => {
   });
 
   it("keeps matrix crypto WASM in the packed artifact manifest", async () => {
-    const tempRoot = mkdtempSync(join(os.tmpdir(), "openclaw-matrix-wasm-pack-"));
+    const tempRoot = mkdtempSync(join(os.tmpdir(), "quantclaw-matrix-wasm-pack-"));
     try {
       const packDir = join(tempRoot, "pack");
       mkdirSync(packDir, { recursive: true });

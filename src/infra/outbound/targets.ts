@@ -1,4 +1,4 @@
-import { mapAllowFromEntries } from "openclaw/plugin-sdk/channel-config-helpers";
+import { mapAllowFromEntries } from "@openclaw/plugin-sdk/channel-config-helpers";
 import { normalizeChatType, type ChatType } from "../../channels/chat-type.js";
 import type { ChannelOutboundTargetMode } from "../../channels/plugins/types.js";
 import { formatCliCommand } from "../../cli/command-format.js";
@@ -215,7 +215,7 @@ export function resolveOutboundTarget(params: {
     return {
       ok: false,
       error: new Error(
-        `Delivering to WebChat is not supported via \`${formatCliCommand("openclaw agent")}\`; use WhatsApp/Telegram or run with --deliver=false.`,
+        `Delivering to WebChat is not supported via \`${formatCliCommand("quantclaw agent")}\`; use WhatsApp/Telegram or run with --deliver=false.`,
       ),
     };
   }

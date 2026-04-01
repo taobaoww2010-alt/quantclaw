@@ -52,7 +52,7 @@ vi.mock("../agents/subagent-control.js", () => ({
 }));
 
 async function withTaskExecutorStateDir(run: (root: string) => Promise<void>): Promise<void> {
-  await withTempDir({ prefix: "openclaw-task-executor-" }, async (root) => {
+  await withTempDir({ prefix: "quantclaw-task-executor-" }, async (root) => {
     process.env.OPENCLAW_STATE_DIR = root;
     resetTaskRegistryForTests();
     resetFlowRegistryForTests();

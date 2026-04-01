@@ -5,7 +5,7 @@ type TestMock = ReturnType<typeof vi.fn>;
 export const loadConfigMock: TestMock = vi.fn();
 export const resolveGatewayPortMock: TestMock = vi.fn();
 export const resolveStateDirMock: TestMock = vi.fn(
-  (env: NodeJS.ProcessEnv) => env.OPENCLAW_STATE_DIR ?? "/tmp/openclaw",
+  (env: NodeJS.ProcessEnv) => env.OPENCLAW_STATE_DIR ?? "/tmp/quantclaw",
 );
 export const resolveConfigPathMock: TestMock = vi.fn(
   (env: NodeJS.ProcessEnv, stateDir: string) =>

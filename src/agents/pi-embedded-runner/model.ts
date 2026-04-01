@@ -12,7 +12,7 @@ import {
   runProviderDynamicModel,
   normalizeProviderResolvedModelWithPlugin,
 } from "../../plugins/provider-runtime.js";
-import { resolveOpenClawAgentDir } from "../agent-paths.js";
+import { resolveQuantClawAgentDir } from "../agent-paths.js";
 import { DEFAULT_CONTEXT_TOKENS } from "../defaults.js";
 import { buildModelAliasLines } from "../model-alias-lines.js";
 import { isSecretRefHeaderValueMarker } from "../model-auth-markers.js";
@@ -602,7 +602,7 @@ export function resolveModel(
   authStorage: AuthStorage;
   modelRegistry: ModelRegistry;
 } {
-  const resolvedAgentDir = agentDir ?? resolveOpenClawAgentDir();
+  const resolvedAgentDir = agentDir ?? resolveQuantClawAgentDir();
   const authStorage = options?.authStorage ?? discoverAuthStorage(resolvedAgentDir);
   const modelRegistry = options?.modelRegistry ?? discoverModels(authStorage, resolvedAgentDir);
   const runtimeHooks = resolveRuntimeHooks(options);
@@ -649,7 +649,7 @@ export async function resolveModelAsync(
   authStorage: AuthStorage;
   modelRegistry: ModelRegistry;
 }> {
-  const resolvedAgentDir = agentDir ?? resolveOpenClawAgentDir();
+  const resolvedAgentDir = agentDir ?? resolveQuantClawAgentDir();
   const authStorage = options?.authStorage ?? discoverAuthStorage(resolvedAgentDir);
   const modelRegistry = options?.modelRegistry ?? discoverModels(authStorage, resolvedAgentDir);
   const runtimeHooks = resolveRuntimeHooks(options);

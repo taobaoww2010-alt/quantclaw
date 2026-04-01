@@ -39,7 +39,7 @@ function makeEntry(params: {
       description: `desc:${params.name}`,
       filePath,
       baseDir,
-      source: params.source ?? "openclaw-workspace",
+      source: params.source ?? "quantclaw-workspace",
     }),
     frontmatter: {},
     metadata: {
@@ -117,7 +117,7 @@ describe("buildWorkspaceSkillStatus", () => {
   it("marks bundled skills blocked by allowlist", async () => {
     const entry = makeEntry({
       name: "peekaboo",
-      source: "openclaw-bundled",
+      source: "quantclaw-bundled",
     });
 
     const report = buildWorkspaceSkillStatus("/tmp/ws", {
@@ -133,7 +133,7 @@ describe("buildWorkspaceSkillStatus", () => {
   });
 
   it("does not mark an overridden workspace skill as bundled by bundled name alone", async () => {
-    const bundledDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-bundled-"));
+    const bundledDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-bundled-"));
     tempDirs.push(bundledDir);
     await writeSkill({
       dir: path.join(bundledDir, "peekaboo"),
@@ -146,7 +146,7 @@ describe("buildWorkspaceSkillStatus", () => {
         entries: [
           makeEntry({
             name: "peekaboo",
-            source: "openclaw-workspace",
+            source: "quantclaw-workspace",
           }),
         ],
         config: { skills: { allowBundled: ["other-skill"] } },
@@ -154,7 +154,7 @@ describe("buildWorkspaceSkillStatus", () => {
       const skill = report.skills.find((reportEntry) => reportEntry.name === "peekaboo");
 
       expect(skill).toBeDefined();
-      expect(skill?.source).toBe("openclaw-workspace");
+      expect(skill?.source).toBe("quantclaw-workspace");
       expect(skill?.bundled).toBe(false);
       expect(skill?.blockedByAllowlist).toBe(false);
       expect(skill?.eligible).toBe(true);

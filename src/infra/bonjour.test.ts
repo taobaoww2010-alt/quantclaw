@@ -145,7 +145,7 @@ describe("gateway bonjour advertiser", () => {
 
     expect(createService).toHaveBeenCalledTimes(1);
     const [gatewayCall] = createService.mock.calls as Array<[Record<string, unknown>]>;
-    expect(gatewayCall?.[0]?.type).toBe("openclaw-gw");
+    expect(gatewayCall?.[0]?.type).toBe("quantclaw-gw");
     const gatewayType = asString(gatewayCall?.[0]?.type, "");
     expect(gatewayType.length).toBeLessThanOrEqual(15);
     expect(gatewayCall?.[0]?.port).toBe(18789);
@@ -347,7 +347,7 @@ describe("gateway bonjour advertiser", () => {
       });
 
       console.log(
-        "[test._openclaw-gw._tcp.local.] failed probing with reason: Error: Can't probe for a service which is announced already. Received announcing for service test._openclaw-gw._tcp.local.. Trying again in 2 seconds!",
+        "[test._quantclaw-gw._tcp.local.] failed probing with reason: Error: Can't probe for a service which is announced already. Received announcing for service test._quantclaw-gw._tcp.local.. Trying again in 2 seconds!",
       );
       console.log("ordinary console line");
 
@@ -459,10 +459,10 @@ describe("gateway bonjour advertiser", () => {
     });
 
     const [gatewayCall] = createService.mock.calls as Array<[ServiceCall]>;
-    expect(gatewayCall?.[0]?.name).toBe("openclaw (OpenClaw)");
+    expect(gatewayCall?.[0]?.name).toBe("quantclaw (OpenClaw)");
     expect(gatewayCall?.[0]?.domain).toBe("local");
-    expect(gatewayCall?.[0]?.hostname).toBe("openclaw");
-    expect((gatewayCall?.[0]?.txt as Record<string, string>)?.lanHost).toBe("openclaw.local");
+    expect(gatewayCall?.[0]?.hostname).toBe("quantclaw");
+    expect((gatewayCall?.[0]?.txt as Record<string, string>)?.lanHost).toBe("quantclaw.local");
 
     await started.stop();
   });

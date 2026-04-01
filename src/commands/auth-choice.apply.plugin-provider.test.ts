@@ -38,9 +38,9 @@ vi.mock("../agents/workspace.js", () => ({
   resolveDefaultAgentWorkspaceDir,
 }));
 
-const resolveOpenClawAgentDir = vi.hoisted(() => vi.fn(() => "/tmp/agent"));
+const resolveQuantClawAgentDir = vi.hoisted(() => vi.fn(() => "/tmp/agent"));
 vi.mock("../agents/agent-paths.js", () => ({
-  resolveOpenClawAgentDir,
+  resolveQuantClawAgentDir,
 }));
 
 const applyAuthProfileConfig = vi.hoisted(() => vi.fn((config) => config));

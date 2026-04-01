@@ -19,7 +19,7 @@ describe("bundle plugin hooks", () => {
   let previousBundledHooksDir: string | undefined;
 
   beforeAll(async () => {
-    fixtureRoot = await fsp.mkdtemp(path.join(os.tmpdir(), "openclaw-plugin-hooks-"));
+    fixtureRoot = await fsp.mkdtemp(path.join(os.tmpdir(), "quantclaw-plugin-hooks-"));
   });
 
   beforeEach(async () => {
@@ -62,7 +62,7 @@ describe("bundle plugin hooks", () => {
         "---",
         "name: bundle-hook",
         'description: "Bundle hook"',
-        'metadata: {"openclaw":{"events":["command:new"]}}',
+        'metadata: {"quantclaw":{"events":["command:new"]}}',
         "---",
         "",
         "# Bundle hook",
@@ -104,7 +104,7 @@ describe("bundle plugin hooks", () => {
 
     expect(entries).toHaveLength(1);
     expect(entries[0]?.hook.name).toBe("bundle-hook");
-    expect(entries[0]?.hook.source).toBe("openclaw-plugin");
+    expect(entries[0]?.hook.source).toBe("quantclaw-plugin");
     expect(entries[0]?.hook.pluginId).toBe("sample-bundle");
     expect(entries[0]?.hook.baseDir).toBe(
       fs.realpathSync.native(path.join(bundleRoot, "hooks", "bundle-hook")),

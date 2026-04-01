@@ -75,8 +75,8 @@ afterEach(() => {
 
 describe("plugin-sdk facade runtime", () => {
   it("honors bundled plugin dir overrides outside the package root", () => {
-    const overrideA = createBundledPluginDir("openclaw-facade-runtime-a-", "override-a");
-    const overrideB = createBundledPluginDir("openclaw-facade-runtime-b-", "override-b");
+    const overrideA = createBundledPluginDir("quantclaw-facade-runtime-a-", "override-a");
+    const overrideB = createBundledPluginDir("quantclaw-facade-runtime-b-", "override-b");
 
     process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = overrideA;
     const fromA = loadBundledPluginPublicSurfaceModuleSync<{ marker: string }>({
@@ -94,7 +94,7 @@ describe("plugin-sdk facade runtime", () => {
   });
 
   it("returns the same object identity on repeated calls (sentinel consistency)", () => {
-    const dir = createBundledPluginDir("openclaw-facade-identity-", "identity-check");
+    const dir = createBundledPluginDir("quantclaw-facade-identity-", "identity-check");
     process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = dir;
 
     const first = loadBundledPluginPublicSurfaceModuleSync<{ marker: string }>({
@@ -110,7 +110,7 @@ describe("plugin-sdk facade runtime", () => {
   });
 
   it("breaks circular facade re-entry during module evaluation", () => {
-    const dir = createCircularPluginDir("openclaw-facade-circular-");
+    const dir = createCircularPluginDir("quantclaw-facade-circular-");
     process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = dir;
 
     const loaded = loadBundledPluginPublicSurfaceModuleSync<{ marker: string }>({
@@ -122,7 +122,7 @@ describe("plugin-sdk facade runtime", () => {
   });
 
   it("clears the cache on load failure so retries re-execute", () => {
-    const dir = createThrowingPluginDir("openclaw-facade-throw-");
+    const dir = createThrowingPluginDir("quantclaw-facade-throw-");
     process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = dir;
 
     expect(() =>

@@ -33,7 +33,7 @@ function createPlugin(
 ) {
   const pluginDir = path.join(repoRoot, "extensions", params.id);
   fs.mkdirSync(pluginDir, { recursive: true });
-  writeJson(path.join(pluginDir, "openclaw.plugin.json"), {
+  writeJson(path.join(pluginDir, "quantclaw.plugin.json"), {
     id: params.id,
     configSchema: { type: "object" },
     ...params.manifest,
@@ -48,7 +48,7 @@ function createPlugin(
 function readBundledManifest(repoRoot: string, pluginId: string) {
   return JSON.parse(
     fs.readFileSync(
-      path.join(repoRoot, "dist", "extensions", pluginId, "openclaw.plugin.json"),
+      path.join(repoRoot, "dist", "extensions", pluginId, "quantclaw.plugin.json"),
       "utf8",
     ),
   ) as { skills?: string[] };
@@ -96,7 +96,7 @@ describe("rewritePackageExtensions", () => {
 
 describe("copyBundledPluginMetadata", () => {
   it("copies plugin manifests, package metadata, and local skill directories", () => {
-    const repoRoot = makeRepoRoot("openclaw-bundled-plugin-meta-");
+    const repoRoot = makeRepoRoot("quantclaw-bundled-plugin-meta-");
     const pluginDir = createPlugin(repoRoot, {
       id: "acpx",
       packageName: "@openclaw/acpx",
@@ -113,7 +113,7 @@ describe("copyBundledPluginMetadata", () => {
     copyBundledPluginMetadata({ repoRoot });
 
     expect(
-      fs.existsSync(path.join(repoRoot, "dist", "extensions", "acpx", "openclaw.plugin.json")),
+      fs.existsSync(path.join(repoRoot, "dist", "extensions", "acpx", "quantclaw.plugin.json")),
     ).toBe(true);
     expect(
       fs.readFileSync(
@@ -127,7 +127,7 @@ describe("copyBundledPluginMetadata", () => {
   });
 
   it("relocates node_modules-backed skill paths into bundled-skills and rewrites the manifest", () => {
-    const repoRoot = makeRepoRoot("openclaw-bundled-plugin-node-modules-");
+    const repoRoot = makeRepoRoot("quantclaw-bundled-plugin-node-modules-");
     const pluginDir = createTlonSkillPlugin(repoRoot);
     const storeSkillDir = path.join(
       repoRoot,
@@ -179,7 +179,7 @@ describe("copyBundledPluginMetadata", () => {
   });
 
   it("falls back to repo-root hoisted node_modules skill paths", () => {
-    const repoRoot = makeRepoRoot("openclaw-bundled-plugin-hoisted-skill-");
+    const repoRoot = makeRepoRoot("quantclaw-bundled-plugin-hoisted-skill-");
     const pluginDir = createTlonSkillPlugin(repoRoot);
     const hoistedSkillDir = path.join(repoRoot, "node_modules", "@tloncorp", "tlon-skill");
     fs.mkdirSync(hoistedSkillDir, { recursive: true });
@@ -198,7 +198,7 @@ describe("copyBundledPluginMetadata", () => {
   });
 
   it("omits missing declared skill paths and removes stale generated outputs", () => {
-    const repoRoot = makeRepoRoot("openclaw-bundled-plugin-missing-skill-");
+    const repoRoot = makeRepoRoot("quantclaw-bundled-plugin-missing-skill-");
     createTlonSkillPlugin(repoRoot);
     const staleBundledSkillDir = path.join(
       bundledPluginDir(repoRoot, "tlon"),
@@ -221,7 +221,7 @@ describe("copyBundledPluginMetadata", () => {
   });
 
   it("retries transient skill copy races from concurrent runtime postbuilds", () => {
-    const repoRoot = makeRepoRoot("openclaw-bundled-plugin-retry-");
+    const repoRoot = makeRepoRoot("quantclaw-bundled-plugin-retry-");
     const pluginDir = createPlugin(repoRoot, {
       id: "diffs",
       packageName: "@openclaw/diffs",
@@ -258,7 +258,7 @@ describe("copyBundledPluginMetadata", () => {
   });
 
   it("removes generated outputs for plugins no longer present in source", () => {
-    const repoRoot = makeRepoRoot("openclaw-bundled-plugin-removed-");
+    const repoRoot = makeRepoRoot("quantclaw-bundled-plugin-removed-");
     const staleBundledSkillDir = path.join(
       repoRoot,
       "dist",
@@ -283,11 +283,14 @@ describe("copyBundledPluginMetadata", () => {
       "export default {}\n",
       "utf8",
     );
-    writeJson(path.join(repoRoot, "dist", "extensions", "removed-plugin", "openclaw.plugin.json"), {
-      id: "removed-plugin",
-      configSchema: { type: "object" },
-      skills: ["./bundled-skills/@scope/skill"],
-    });
+    writeJson(
+      path.join(repoRoot, "dist", "extensions", "removed-plugin", "quantclaw.plugin.json"),
+      {
+        id: "removed-plugin",
+        configSchema: { type: "object" },
+        skills: ["./bundled-skills/@scope/skill"],
+      },
+    );
     writeJson(path.join(repoRoot, "dist", "extensions", "removed-plugin", "package.json"), {
       name: "@openclaw/removed-plugin",
     });
@@ -299,13 +302,13 @@ describe("copyBundledPluginMetadata", () => {
   });
 
   it("removes stale dist outputs when a source extension directory no longer has a manifest", () => {
-    const repoRoot = makeRepoRoot("openclaw-bundled-plugin-manifestless-source-");
+    const repoRoot = makeRepoRoot("quantclaw-bundled-plugin-manifestless-source-");
     const sourcePluginDir = path.join(repoRoot, "extensions", "google-gemini-cli-auth");
     fs.mkdirSync(path.join(sourcePluginDir, "node_modules"), { recursive: true });
     const staleDistDir = path.join(repoRoot, "dist", "extensions", "google-gemini-cli-auth");
     fs.mkdirSync(staleDistDir, { recursive: true });
     fs.writeFileSync(path.join(staleDistDir, "index.js"), "export default {}\n", "utf8");
-    writeJson(path.join(staleDistDir, "openclaw.plugin.json"), {
+    writeJson(path.join(staleDistDir, "quantclaw.plugin.json"), {
       id: "google-gemini-cli-auth",
       configSchema: { type: "object" },
     });

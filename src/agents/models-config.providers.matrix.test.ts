@@ -160,7 +160,7 @@ describe("implicit provider resolution matrix", () => {
   it.each(MATRIX_CASES)(
     "$name",
     async ({ env, authProfiles, explicitProviders, assertProviders }) => {
-      const agentDir = mkdtempSync(join(tmpdir(), "openclaw-test-"));
+      const agentDir = mkdtempSync(join(tmpdir(), "quantclaw-test-"));
       await writeAuthProfiles(agentDir, authProfiles);
 
       const providers = await resolveImplicitProvidersForTest({

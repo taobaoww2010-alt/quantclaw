@@ -873,7 +873,7 @@ describe("gateway agent handler", () => {
   });
 
   it("tracks async gateway agent runs in the shared task registry", async () => {
-    await withTempDir({ prefix: "openclaw-gateway-agent-task-" }, async (root) => {
+    await withTempDir({ prefix: "quantclaw-gateway-agent-task-" }, async (root) => {
       process.env.OPENCLAW_STATE_DIR = root;
       resetTaskRegistryForTests();
       primeMainAgentRun();

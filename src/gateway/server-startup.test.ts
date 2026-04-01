@@ -1,7 +1,7 @@
 import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import type { OpenClawConfig } from "../config/config.js";
 
-const ensureOpenClawModelsJsonMock = vi.fn<
+const ensureQuantClawModelsJsonMock = vi.fn<
   (config: unknown, agentDir: unknown) => Promise<{ agentDir: string; wrote: boolean }>
 >(async () => ({ agentDir: "/tmp/agent", wrote: false }));
 const resolveModelMock = vi.fn<
@@ -21,12 +21,12 @@ const resolveModelMock = vi.fn<
 }));
 
 vi.mock("../agents/agent-paths.js", () => ({
-  resolveOpenClawAgentDir: () => "/tmp/agent",
+  resolveQuantClawAgentDir: () => "/tmp/agent",
 }));
 
 vi.mock("../agents/models-config.js", () => ({
-  ensureOpenClawModelsJson: (config: unknown, agentDir: unknown) =>
-    ensureOpenClawModelsJsonMock(config, agentDir),
+  ensureQuantClawModelsJson: (config: unknown, agentDir: unknown) =>
+    ensureQuantClawModelsJsonMock(config, agentDir),
 }));
 
 vi.mock("../agents/pi-embedded-runner/model.js", () => ({
@@ -49,7 +49,7 @@ describe("gateway startup primary model warmup", () => {
   });
 
   beforeEach(() => {
-    ensureOpenClawModelsJsonMock.mockClear();
+    ensureQuantClawModelsJsonMock.mockClear();
     resolveModelMock.mockClear();
   });
 
@@ -69,7 +69,7 @@ describe("gateway startup primary model warmup", () => {
       log: { warn: vi.fn() },
     });
 
-    expect(ensureOpenClawModelsJsonMock).toHaveBeenCalledWith(cfg, "/tmp/agent");
+    expect(ensureQuantClawModelsJsonMock).toHaveBeenCalledWith(cfg, "/tmp/agent");
     expect(resolveModelMock).toHaveBeenCalledWith("openai-codex", "gpt-5.4", "/tmp/agent", cfg, {
       skipProviderRuntimeHooks: true,
     });
@@ -81,7 +81,7 @@ describe("gateway startup primary model warmup", () => {
       log: { warn: vi.fn() },
     });
 
-    expect(ensureOpenClawModelsJsonMock).not.toHaveBeenCalled();
+    expect(ensureQuantClawModelsJsonMock).not.toHaveBeenCalled();
     expect(resolveModelMock).not.toHaveBeenCalled();
   });
 });

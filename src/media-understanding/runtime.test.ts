@@ -74,7 +74,7 @@ describe("media-understanding runtime helpers", () => {
   });
 
   it("describes images through the active media-understanding registry", async () => {
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-media-runtime-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-media-runtime-"));
     const imagePath = path.join(tempDir, "sample.jpg");
     await fs.writeFile(imagePath, Buffer.from("image-bytes"));
 
@@ -124,7 +124,7 @@ describe("media-understanding runtime helpers", () => {
   });
 
   it("returns undefined when no media output is produced", async () => {
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-media-runtime-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-media-runtime-"));
     const imagePath = path.join(tempDir, "sample.jpg");
     await fs.writeFile(imagePath, Buffer.from("image-bytes"));
 

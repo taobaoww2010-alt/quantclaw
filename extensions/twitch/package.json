@@ -8,7 +8,7 @@
     "@twurple/auth": "^8.0.3",
     "@twurple/chat": "^8.0.3"
   },
-  "openclaw": {
+  "quantclaw": {
     "extensions": [
       "./index.ts"
     ],

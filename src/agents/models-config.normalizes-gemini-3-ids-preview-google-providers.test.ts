@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import type { OpenClawConfig } from "../config/config.js";
 import type { ModelDefinitionConfig } from "../config/types.models.js";
 import { installModelsConfigTestHooks, withModelsTempHome } from "./models-config.e2e-harness.js";
-import { ensureOpenClawModelsJson } from "./models-config.js";
+import { ensureQuantClawModelsJson } from "./models-config.js";
 import { readGeneratedModelsJson } from "./models-config.test-utils.js";
 
 function createGoogleModelsConfig(models: ModelDefinitionConfig[]): OpenClawConfig {
@@ -66,7 +66,7 @@ describe("models-config", () => {
         },
       ]);
 
-      await ensureOpenClawModelsJson(cfg);
+      await ensureQuantClawModelsJson(cfg);
       await expectGeneratedProvider("google", {
         ids: ["gemini-3-pro-preview", "gemini-3-flash-preview"],
       });
@@ -88,7 +88,7 @@ describe("models-config", () => {
         },
       ]);
 
-      await ensureOpenClawModelsJson(cfg);
+      await ensureQuantClawModelsJson(cfg);
       await expectGeneratedProvider("google", {
         ids: ["gemini-3-flash-preview"],
       });
@@ -121,7 +121,7 @@ describe("models-config", () => {
         },
       } satisfies OpenClawConfig;
 
-      await ensureOpenClawModelsJson(cfg);
+      await ensureQuantClawModelsJson(cfg);
       await expectGeneratedProvider("google-paid", {
         ids: ["gemini-3-pro-preview"],
         baseUrl: "https://generativelanguage.googleapis.com/v1beta",
@@ -154,7 +154,7 @@ describe("models-config", () => {
         },
       } satisfies OpenClawConfig;
 
-      await ensureOpenClawModelsJson(cfg);
+      await ensureQuantClawModelsJson(cfg);
       await expectGeneratedProvider("google", {
         ids: ["gemini-3-flash-preview"],
         baseUrl: "https://generativelanguage.googleapis.com/v1beta",

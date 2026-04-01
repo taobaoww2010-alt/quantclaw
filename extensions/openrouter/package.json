@@ -4,7 +4,7 @@
   "private": true,
   "description": "OpenClaw OpenRouter provider plugin",
   "type": "module",
-  "openclaw": {
+  "quantclaw": {
     "extensions": [
       "./index.ts"
     ]

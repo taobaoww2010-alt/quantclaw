@@ -21,7 +21,7 @@ function resolveTestLockDir() {
 async function makeEnv() {
   const dir = path.join(fixtureRoot, `case-${fixtureCount++}`);
   await fs.mkdir(dir, { recursive: true });
-  const configPath = path.join(dir, "openclaw.json");
+  const configPath = path.join(dir, "quantclaw.json");
   await fs.writeFile(configPath, "{}", "utf8");
   return {
     ...process.env,
@@ -149,7 +149,7 @@ async function writeRecentLockFile(env: NodeJS.ProcessEnv, startTime = 111) {
 
 describe("gateway lock", () => {
   beforeAll(async () => {
-    fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-gateway-lock-"));
+    fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-gateway-lock-"));
   });
 
   beforeEach(() => {

@@ -470,10 +470,10 @@ function expectNoCrossPluginSdkFacadeImports(file: string, imports: string[]): v
     return;
   }
   for (const specifier of imports) {
-    if (!specifier.startsWith("openclaw/plugin-sdk/")) {
+    if (!specifier.startsWith("quantclaw/plugin-sdk/")) {
       continue;
     }
-    const targetSubpath = specifier.slice("openclaw/plugin-sdk/".length);
+    const targetSubpath = specifier.slice("quantclaw/plugin-sdk/".length);
     const targetExtensionId =
       BUNDLED_EXTENSION_IDS.find(
         (extensionId) =>

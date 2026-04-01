@@ -73,7 +73,7 @@ function expectAliasPreserved(cfg: OpenClawConfig, modelRef: string, alias: stri
 describe("writeOAuthCredentials", () => {
   const lifecycle = createAuthTestLifecycle([
     "OPENCLAW_STATE_DIR",
-    "OPENCLAW_AGENT_DIR",
+    "QUANTCLAW_AGENT_DIR",
     "PI_CODING_AGENT_DIR",
     "OPENCLAW_OAUTH_DIR",
   ]);
@@ -85,8 +85,8 @@ describe("writeOAuthCredentials", () => {
     await lifecycle.cleanup();
   });
 
-  it("writes auth-profiles.json under OPENCLAW_AGENT_DIR when set", async () => {
-    const env = await setupAuthTestEnv("openclaw-oauth-");
+  it("writes auth-profiles.json under QUANTCLAW_AGENT_DIR when set", async () => {
+    const env = await setupAuthTestEnv("quantclaw-oauth-");
     lifecycle.setStateDir(env.stateDir);
 
     const creds = {
@@ -112,7 +112,7 @@ describe("writeOAuthCredentials", () => {
   });
 
   it("writes OAuth credentials to all sibling agent dirs when syncSiblingAgents=true", async () => {
-    tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-oauth-sync-"));
+    tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-oauth-sync-"));
     process.env.OPENCLAW_STATE_DIR = tempStateDir;
 
     const mainAgentDir = path.join(tempStateDir, "agents", "main", "agent");
@@ -122,7 +122,7 @@ describe("writeOAuthCredentials", () => {
     await fs.mkdir(kidAgentDir, { recursive: true });
     await fs.mkdir(workerAgentDir, { recursive: true });
 
-    process.env.OPENCLAW_AGENT_DIR = kidAgentDir;
+    process.env.QUANTCLAW_AGENT_DIR = kidAgentDir;
     process.env.PI_CODING_AGENT_DIR = kidAgentDir;
 
     const creds = {
@@ -149,7 +149,7 @@ describe("writeOAuthCredentials", () => {
   });
 
   it("writes OAuth credentials only to target dir by default", async () => {
-    tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-oauth-nosync-"));
+    tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-oauth-nosync-"));
     process.env.OPENCLAW_STATE_DIR = tempStateDir;
 
     const mainAgentDir = path.join(tempStateDir, "agents", "main", "agent");
@@ -157,7 +157,7 @@ describe("writeOAuthCredentials", () => {
     await fs.mkdir(mainAgentDir, { recursive: true });
     await fs.mkdir(kidAgentDir, { recursive: true });
 
-    process.env.OPENCLAW_AGENT_DIR = kidAgentDir;
+    process.env.QUANTCLAW_AGENT_DIR = kidAgentDir;
     process.env.PI_CODING_AGENT_DIR = kidAgentDir;
 
     const creds = {
@@ -181,7 +181,7 @@ describe("writeOAuthCredentials", () => {
   });
 
   it("syncs siblings from explicit agentDir outside OPENCLAW_STATE_DIR", async () => {
-    tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-oauth-external-"));
+    tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-oauth-external-"));
     process.env.OPENCLAW_STATE_DIR = tempStateDir;
 
     // Create standard-layout agents tree *outside* OPENCLAW_STATE_DIR
@@ -225,7 +225,7 @@ describe("writeOAuthCredentials", () => {
 describe("setMinimaxApiKey", () => {
   const lifecycle = createAuthTestLifecycle([
     "OPENCLAW_STATE_DIR",
-    "OPENCLAW_AGENT_DIR",
+    "QUANTCLAW_AGENT_DIR",
     "PI_CODING_AGENT_DIR",
   ]);
 
@@ -233,8 +233,8 @@ describe("setMinimaxApiKey", () => {
     await lifecycle.cleanup();
   });
 
-  it("writes to OPENCLAW_AGENT_DIR when set", async () => {
-    const env = await setupAuthTestEnv("openclaw-minimax-", { agentSubdir: "custom-agent" });
+  it("writes to QUANTCLAW_AGENT_DIR when set", async () => {
+    const env = await setupAuthTestEnv("quantclaw-minimax-", { agentSubdir: "custom-agent" });
     lifecycle.setStateDir(env.stateDir);
 
     await setMinimaxApiKey("sk-minimax-test");

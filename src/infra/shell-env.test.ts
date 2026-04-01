@@ -129,10 +129,10 @@ describe("shell env fallback", () => {
 
   it("resolves timeout from env with default fallback", () => {
     expect(resolveShellEnvFallbackTimeoutMs({} as NodeJS.ProcessEnv)).toBe(15000);
-    expect(resolveShellEnvFallbackTimeoutMs({ OPENCLAW_SHELL_ENV_TIMEOUT_MS: "42" })).toBe(42);
+    expect(resolveShellEnvFallbackTimeoutMs({ QUANTCLAW_SHELL_ENV_TIMEOUT_MS: "42" })).toBe(42);
     expect(
       resolveShellEnvFallbackTimeoutMs({
-        OPENCLAW_SHELL_ENV_TIMEOUT_MS: "nope",
+        QUANTCLAW_SHELL_ENV_TIMEOUT_MS: "nope",
       }),
     ).toBe(15000);
   });

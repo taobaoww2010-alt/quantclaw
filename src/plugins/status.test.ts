@@ -249,7 +249,7 @@ describe("buildPluginStatusReport", () => {
   });
 
   it("forwards an explicit env to plugin loading", () => {
-    const env = { HOME: "/tmp/openclaw-home" } as NodeJS.ProcessEnv;
+    const env = { HOME: "/tmp/quantclaw-home" } as NodeJS.ProcessEnv;
 
     buildPluginStatusReport({
       config: {},
@@ -349,7 +349,7 @@ describe("buildPluginStatusReport", () => {
     const report = buildPluginStatusReport({
       config: {},
       env: {
-        OPENCLAW_VERSION: "2026.3.23-1",
+        QUANTCLAW_VERSION: "2026.3.23-1",
       } as NodeJS.ProcessEnv,
     });
 

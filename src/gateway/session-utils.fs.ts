@@ -491,7 +491,7 @@ function extractLatestUsageFromTranscriptChunk(
           : typeof parsed.model === "string"
             ? parsed.model.trim()
             : undefined;
-      const isDeliveryMirror = modelProvider === "openclaw" && model === "delivery-mirror";
+      const isDeliveryMirror = modelProvider === "quantclaw" && model === "delivery-mirror";
       const hasMeaningfulUsage =
         hasNonzeroUsage(usage) ||
         typeof totalTokens === "number" ||

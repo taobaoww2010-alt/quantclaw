@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { resolveOpenClawAgentDir } from "../agents/agent-paths.js";
+import { resolveQuantClawAgentDir } from "../agents/agent-paths.js";
 import { collectProviderApiKeys } from "../agents/live-auth-keys.js";
 import { isLiveTestEnabled } from "../agents/live-test-helpers.js";
 import { resolveApiKeyForProvider } from "../agents/model-auth.js";
@@ -113,7 +113,7 @@ async function resolveLiveAuthForProvider(
 describeLive("image generation live (provider sweep)", () => {
   it("generates images for every configured image-generation variant with available auth", async () => {
     const cfg = withPluginsEnabled(loadConfig());
-    const agentDir = resolveOpenClawAgentDir();
+    const agentDir = resolveQuantClawAgentDir();
     const providerFilter = parseCsvFilter(process.env.OPENCLAW_LIVE_IMAGE_GENERATION_PROVIDERS);
     const caseFilter = parseCaseFilter(process.env.OPENCLAW_LIVE_IMAGE_GENERATION_CASES);
     const envModelMap = parseProviderModelMap(process.env.OPENCLAW_LIVE_IMAGE_GENERATION_MODELS);

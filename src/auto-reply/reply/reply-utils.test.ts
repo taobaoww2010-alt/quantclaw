@@ -55,7 +55,7 @@ describe("matchesMentionWithExplicit", () => {
       },
       {
         name: "falls back to regex when explicit cannot resolve",
-        text: "openclaw please",
+        text: "quantclaw please",
         mentionRegexes,
         explicit: {
           hasAnyMention: true,
@@ -552,13 +552,13 @@ describe("resolveResponsePrefixTemplate", () => {
       {
         name: "identity.name",
         template: "[{identity.name}]",
-        values: { identityName: "OpenClaw" },
+        values: { identityName: "☯️ QuantClaw" },
         expected: "[OpenClaw]",
       },
       {
         name: "identityName alias",
         template: "[{identityName}]",
-        values: { identityName: "OpenClaw" },
+        values: { identityName: "☯️ QuantClaw" },
         expected: "[OpenClaw]",
       },
       {
@@ -571,7 +571,7 @@ describe("resolveResponsePrefixTemplate", () => {
         name: "all variables",
         template: "[{identity.name}] {provider}/{model} (think:{thinkingLevel})",
         values: {
-          identityName: "OpenClaw",
+          identityName: "☯️ QuantClaw",
           provider: "anthropic",
           model: "claude-opus-4-5",
           thinkingLevel: "high",

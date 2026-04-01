@@ -33,7 +33,7 @@ vi.mock("../../channels/plugins/index.js", () => ({
   normalizeChannelId: (value: string) => (value === "webchat" ? null : value),
 }));
 
-const TEST_AGENT_WORKSPACE = "/tmp/openclaw-test-workspace";
+const TEST_AGENT_WORKSPACE = "/tmp/quantclaw-test-workspace";
 let sendHandlers: typeof import("./send.js").sendHandlers;
 
 function resolveAgentIdFromSessionKeyForTests(params: { sessionKey?: string }): string {

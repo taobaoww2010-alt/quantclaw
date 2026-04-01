@@ -23,7 +23,7 @@ describe("config discord", () => {
               enabled: true,
               allowFrom: ["steipete"],
               groupEnabled: true,
-              groupChannels: ["openclaw-dm"],
+              groupChannels: ["quantclaw-dm"],
             },
             actions: {
               emojiUploads: true,
@@ -48,7 +48,7 @@ describe("config discord", () => {
 
         expect(cfg.channels?.discord?.enabled).toBe(true);
         expect(cfg.channels?.discord?.dm?.groupEnabled).toBe(true);
-        expect(cfg.channels?.discord?.dm?.groupChannels).toEqual(["openclaw-dm"]);
+        expect(cfg.channels?.discord?.dm?.groupChannels).toEqual(["quantclaw-dm"]);
         expect(cfg.channels?.discord?.actions?.emojiUploads).toBe(true);
         expect(cfg.channels?.discord?.actions?.stickerUploads).toBe(false);
         expect(cfg.channels?.discord?.actions?.channels).toBe(true);

@@ -59,7 +59,7 @@ describe("detectMarkerLineWithGateway", () => {
   });
 
   it("returns openclaw for the canonical gateway unit (ExecStart has both openclaw and gateway)", () => {
-    expect(detectMarkerLineWithGateway(GATEWAY_SERVICE_CONTENTS)).toBe("openclaw");
+    expect(detectMarkerLineWithGateway(GATEWAY_SERVICE_CONTENTS)).toBe("quantclaw");
   });
 
   it("returns clawdbot for a clawdbot gateway unit", () => {
@@ -68,7 +68,7 @@ describe("detectMarkerLineWithGateway", () => {
 
   it("handles line continuations — marker and gateway split across physical lines", () => {
     const contents = `[Service]\nExecStart=/usr/bin/node /opt/openclaw/dist/entry.js \\\n  gateway --port 18789\n`;
-    expect(detectMarkerLineWithGateway(contents)).toBe("openclaw");
+    expect(detectMarkerLineWithGateway(contents)).toBe("quantclaw");
   });
 });
 
@@ -79,11 +79,11 @@ describe("findExtraGatewayServices (linux / scanSystemdDir) — real filesystem"
   const isLinux = process.platform === "linux";
 
   it.skipIf(!isLinux)("does not report openclaw-test.service as a gateway service", async () => {
-    const tmpHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-test-"));
+    const tmpHome = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-test-"));
     const systemdDir = path.join(tmpHome, ".config", "systemd", "user");
     try {
       await fs.mkdir(systemdDir, { recursive: true });
-      await fs.writeFile(path.join(systemdDir, "openclaw-test.service"), TEST_SERVICE_CONTENTS);
+      await fs.writeFile(path.join(systemdDir, "quantclaw-test.service"), TEST_SERVICE_CONTENTS);
       const result = await findExtraGatewayServices({ HOME: tmpHome });
       expect(result).toEqual([]);
     } finally {
@@ -94,12 +94,12 @@ describe("findExtraGatewayServices (linux / scanSystemdDir) — real filesystem"
   it.skipIf(!isLinux)(
     "does not report the canonical openclaw-gateway.service as an extra service",
     async () => {
-      const tmpHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-test-"));
+      const tmpHome = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-test-"));
       const systemdDir = path.join(tmpHome, ".config", "systemd", "user");
       try {
         await fs.mkdir(systemdDir, { recursive: true });
         await fs.writeFile(
-          path.join(systemdDir, "openclaw-gateway.service"),
+          path.join(systemdDir, "quantclaw-gateway.service"),
           GATEWAY_SERVICE_CONTENTS,
         );
         const result = await findExtraGatewayServices({ HOME: tmpHome });
@@ -113,7 +113,7 @@ describe("findExtraGatewayServices (linux / scanSystemdDir) — real filesystem"
   it.skipIf(!isLinux)(
     "reports a legacy clawdbot-gateway service as an extra gateway service",
     async () => {
-      const tmpHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-test-"));
+      const tmpHome = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-test-"));
       const systemdDir = path.join(tmpHome, ".config", "systemd", "user");
       const unitPath = path.join(systemdDir, "clawdbot-gateway.service");
       try {

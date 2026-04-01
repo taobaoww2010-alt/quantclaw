@@ -193,7 +193,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
     const server = await startServer(port);
     try {
       const res = await postResponses(port, {
-        model: "openclaw",
+        model: "quantclaw",
         input: "hi",
       });
       expect(res.status).toBe(404);
@@ -208,7 +208,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
     });
     try {
       const res = await postResponses(disabledPort, {
-        model: "openclaw",
+        model: "quantclaw",
         input: "hi",
       });
       expect(res.status).toBe(404);
@@ -236,7 +236,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       const resMissingAuth = await fetch(`http://127.0.0.1:${port}/v1/responses`, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ model: "openclaw", input: "hi" }),
+        body: JSON.stringify({ model: "quantclaw", input: "hi" }),
       });
       expect(resMissingAuth.status).toBe(403);
       await ensureResponseConsumed(resMissingAuth);
@@ -265,7 +265,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       mockAgentOnce([{ text: "hello" }]);
       const resHeader = await postResponses(
         port,
-        { model: "openclaw", input: "hi" },
+        { model: "quantclaw", input: "hi" },
         { "x-openclaw-agent-id": "beta" },
       );
       expect(resHeader.status).toBe(200);
@@ -279,7 +279,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       await ensureResponseConsumed(resHeader);
 
       mockAgentOnce([{ text: "hello" }]);
-      const resModel = await postResponses(port, { model: "openclaw/beta", input: "hi" });
+      const resModel = await postResponses(port, { model: "quantclaw/beta", input: "hi" });
       expect(resModel.status).toBe(200);
       const optsModel = (agentCommand.mock.calls[0] as unknown[] | undefined)?.[0];
       expect((optsModel as { sessionKey?: string } | undefined)?.sessionKey ?? "").toMatch(
@@ -288,7 +288,10 @@ describe("OpenResponses HTTP API (e2e)", () => {
       await ensureResponseConsumed(resModel);
 
       mockAgentOnce([{ text: "hello" }]);
-      const resDefaultAlias = await postResponses(port, { model: "openclaw/default", input: "hi" });
+      const resDefaultAlias = await postResponses(port, {
+        model: "quantclaw/default",
+        input: "hi",
+      });
       expect(resDefaultAlias.status).toBe(200);
       const optsDefaultAlias = (agentCommand.mock.calls[0] as unknown[] | undefined)?.[0];
       expect((optsDefaultAlias as { sessionKey?: string } | undefined)?.sessionKey ?? "").toMatch(
@@ -299,7 +302,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       mockAgentOnce([{ text: "hello" }]);
       const resChannelHeader = await postResponses(
         port,
-        { model: "openclaw", input: "hi" },
+        { model: "quantclaw", input: "hi" },
         { "x-openclaw-message-channel": "custom-client-channel" },
       );
       expect(resChannelHeader.status).toBe(200);
@@ -313,7 +316,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       const resModelOverride = await postResponses(
         port,
         {
-          model: "openclaw",
+          model: "quantclaw",
           input: "hi",
         },
         { "x-openclaw-model": "openai/gpt-5.4" },
@@ -326,7 +329,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       agentCommand.mockClear();
       const resInvalidOverride = await postResponses(
         port,
-        { model: "openclaw", input: "hi" },
+        { model: "quantclaw", input: "hi" },
         { "x-openclaw-model": "openai/" },
       );
       expect(resInvalidOverride.status).toBe(400);
@@ -341,7 +344,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       mockAgentOnce([{ text: "hello" }]);
       const resUser = await postResponses(port, {
         user: "alice",
-        model: "openclaw",
+        model: "quantclaw",
         input: "hi",
       });
       expect(resUser.status).toBe(200);
@@ -353,7 +356,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
       mockAgentOnce([{ text: "hello" }]);
       const resString = await postResponses(port, {
-        model: "openclaw",
+        model: "quantclaw",
         input: "hello world",
       });
       expect(resString.status).toBe(200);
@@ -363,7 +366,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
       mockAgentOnce([{ text: "hello" }]);
       const resArray = await postResponses(port, {
-        model: "openclaw",
+        model: "quantclaw",
         input: [{ type: "message", role: "user", content: "hello there" }],
       });
       expect(resArray.status).toBe(200);
@@ -373,7 +376,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
       mockAgentOnce([{ text: "hello" }]);
       const resSystemDeveloper = await postResponses(port, {
-        model: "openclaw",
+        model: "quantclaw",
         input: [
           { type: "message", role: "system", content: "You are a helpful assistant." },
           { type: "message", role: "developer", content: "Be concise." },
@@ -391,7 +394,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
       mockAgentOnce([{ text: "hello" }]);
       const resInstructions = await postResponses(port, {
-        model: "openclaw",
+        model: "quantclaw",
         input: "hi",
         instructions: "Always respond in French.",
       });
@@ -404,7 +407,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
       mockAgentOnce([{ text: "I am Claude" }]);
       const resHistory = await postResponses(port, {
-        model: "openclaw",
+        model: "quantclaw",
         input: [
           { type: "message", role: "system", content: "You are a helpful assistant." },
           { type: "message", role: "user", content: "Hello, who are you?" },
@@ -424,7 +427,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
       mockAgentOnce([{ text: "ok" }]);
       const resFunctionOutput = await postResponses(port, {
-        model: "openclaw",
+        model: "quantclaw",
         input: [
           { type: "message", role: "user", content: "What's the weather?" },
           { type: "function_call_output", call_id: "call_1", output: "Sunny, 70F." },
@@ -439,7 +442,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
       mockAgentOnce([{ text: "ok" }]);
       const resInputFile = await postResponses(port, {
-        model: "openclaw",
+        model: "quantclaw",
         input: [
           {
             type: "message",
@@ -470,7 +473,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
       mockAgentOnce([{ text: "ok" }]);
       const resInputFileInjection = await postResponses(port, {
-        model: "openclaw",
+        model: "quantclaw",
         input: [
           {
             type: "message",
@@ -507,7 +510,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
       mockAgentOnce([{ text: "ok" }]);
       const resToolNone = await postResponses(port, {
-        model: "openclaw",
+        model: "quantclaw",
         input: "hi",
         tools: WEATHER_TOOL,
         tool_choice: "none",
@@ -521,7 +524,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
       mockAgentOnce([{ text: "ok" }]);
       const resToolChoice = await postResponses(port, {
-        model: "openclaw",
+        model: "quantclaw",
         input: "hi",
         tools: [
           {
@@ -554,7 +557,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       await ensureResponseConsumed(resToolChoice);
 
       const resUnknownTool = await postResponses(port, {
-        model: "openclaw",
+        model: "quantclaw",
         input: "hi",
         tools: WEATHER_TOOL,
         tool_choice: { type: "function", function: { name: "unknown_tool" } },
@@ -564,7 +567,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
       mockAgentOnce([{ text: "ok" }]);
       const resMaxTokens = await postResponses(port, {
-        model: "openclaw",
+        model: "quantclaw",
         input: "hi",
         max_output_tokens: 123,
       });
@@ -583,7 +586,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       });
       const resUsage = await postResponses(port, {
         stream: false,
-        model: "openclaw",
+        model: "quantclaw",
         input: "hi",
       });
       expect(resUsage.status).toBe(200);
@@ -594,7 +597,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       mockAgentOnce([{ text: "hello" }]);
       const resShape = await postResponses(port, {
         stream: false,
-        model: "openclaw",
+        model: "quantclaw",
         input: "hi",
       });
       expect(resShape.status).toBe(200);
@@ -616,7 +619,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       await ensureResponseConsumed(resShape);
 
       const resNoUser = await postResponses(port, {
-        model: "openclaw",
+        model: "quantclaw",
         input: [{ type: "message", role: "system", content: "yo" }],
       });
       expect(resNoUser.status).toBe(400);
@@ -644,7 +647,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
       const resDelta = await postResponses(port, {
         stream: true,
-        model: "openclaw",
+        model: "quantclaw",
         input: "hi",
       });
       expect(resDelta.status).toBe(200);
@@ -680,7 +683,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
       const resFallback = await postResponses(port, {
         stream: true,
-        model: "openclaw",
+        model: "quantclaw",
         input: "hi",
       });
       expect(resFallback.status).toBe(200);
@@ -695,7 +698,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
       const resTypeMatch = await postResponses(port, {
         stream: true,
-        model: "openclaw",
+        model: "quantclaw",
         input: "hi",
       });
       expect(resTypeMatch.status).toBe(200);
@@ -721,7 +724,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
     agentCommand.mockResolvedValueOnce({ payloads: [{ text: "hello" }] } as never);
 
     const writeScopeResponse = await postResponses(port, {
-      model: "openclaw",
+      model: "quantclaw",
       input: "hi",
     });
     expect(writeScopeResponse.status).toBe(200);
@@ -736,7 +739,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
     const adminScopeResponse = await postResponses(
       port,
-      { model: "openclaw", input: "hi" },
+      { model: "quantclaw", input: "hi" },
       { "x-openclaw-scopes": "operator.admin, operator.write" },
     );
     expect(adminScopeResponse.status).toBe(200);
@@ -758,7 +761,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
     const streamingResponse = await postResponses(
       port,
-      { stream: true, model: "openclaw", input: "hi" },
+      { stream: true, model: "quantclaw", input: "hi" },
       { "x-openclaw-scopes": "operator.admin, operator.write" },
     );
     expect(streamingResponse.status).toBe(200);
@@ -785,7 +788,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
           "x-openclaw-scopes": "operator.approvals",
         },
         body: JSON.stringify({
-          model: "openclaw",
+          model: "quantclaw",
           input: "hi",
         }),
       });
@@ -820,7 +823,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
     const res = await postResponses(port, {
       stream: false,
-      model: "openclaw",
+      model: "quantclaw",
       input: "check the weather",
       tools: WEATHER_TOOL,
     });
@@ -860,7 +863,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
     const res = await postResponses(port, {
       stream: true,
-      model: "openclaw",
+      model: "quantclaw",
       input: "check the weather",
       tools: WEATHER_TOOL,
     });
@@ -910,7 +913,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
     const firstResponse = await postResponses(port, {
       stream: false,
-      model: "openclaw",
+      model: "quantclaw",
       input: "check the weather",
       tools: WEATHER_TOOL,
     });
@@ -928,7 +931,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
     const secondResponse = await postResponses(port, {
       stream: false,
-      model: "openclaw",
+      model: "quantclaw",
       previous_response_id: firstJson.id,
       input: [{ type: "function_call_output", call_id: "call_1", output: "Sunny, 70F." }],
     });
@@ -949,7 +952,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
     const firstResponse = await postResponses(port, {
       stream: false,
-      model: "openclaw",
+      model: "quantclaw",
       user: "alice",
       input: "hello",
     });
@@ -966,7 +969,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
     const secondResponse = await postResponses(port, {
       stream: false,
-      model: "openclaw",
+      model: "quantclaw",
       user: "bob",
       previous_response_id: firstJson.id,
       input: "hello again",
@@ -993,7 +996,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
 
     const responsePromise = postResponses(port, {
       stream: false,
-      model: "openclaw",
+      model: "quantclaw",
       input: "delayed hello",
     });
 
@@ -1051,7 +1054,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
     agentCommand.mockClear();
 
     const blockedPrivate = await postResponses(port, {
-      model: "openclaw",
+      model: "quantclaw",
       input: buildUrlInputMessage({
         kind: "input_file",
         url: "http://127.0.0.1:6379/info",
@@ -1060,7 +1063,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
     await expectInvalidRequest(blockedPrivate, /invalid request|private|internal|blocked/i);
 
     const blockedMetadata = await postResponses(port, {
-      model: "openclaw",
+      model: "quantclaw",
       input: buildUrlInputMessage({
         kind: "input_image",
         url: "http://metadata.google.internal/computeMetadata/v1",
@@ -1069,7 +1072,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
     await expectInvalidRequest(blockedMetadata, /invalid request|blocked|metadata|internal/i);
 
     const blockedScheme = await postResponses(port, {
-      model: "openclaw",
+      model: "quantclaw",
       input: buildUrlInputMessage({
         kind: "input_file",
         url: "file:///etc/passwd",
@@ -1089,7 +1092,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
       agentCommand.mockClear();
 
       const allowlistBlocked = await postResponses(allowlistPort, {
-        model: "openclaw",
+        model: "quantclaw",
         input: buildUrlInputMessage({
           kind: "input_file",
           text: "fetch this",
@@ -1109,7 +1112,7 @@ describe("OpenResponses HTTP API (e2e)", () => {
     try {
       agentCommand.mockClear();
       const maxUrlBlocked = await postResponses(capPort, {
-        model: "openclaw",
+        model: "quantclaw",
         input: buildUrlInputMessage({
           kind: "input_file",
           text: "fetch this",

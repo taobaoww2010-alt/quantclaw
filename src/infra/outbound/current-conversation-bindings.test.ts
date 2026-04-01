@@ -36,7 +36,7 @@ describe("generic current-conversation bindings", () => {
 
   beforeEach(async () => {
     previousStateDir = process.env.OPENCLAW_STATE_DIR;
-    testStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-current-bindings-"));
+    testStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-current-bindings-"));
     process.env.OPENCLAW_STATE_DIR = testStateDir;
     setMinimalCurrentConversationRegistry();
     __testing.resetCurrentConversationBindingsForTests({

@@ -473,7 +473,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA = {
                   anyOf: [
                     {
                       type: "string",
-                      const: "openclaw",
+                      const: "quantclaw",
                     },
                     {
                       type: "string",
@@ -11608,7 +11608,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA = {
     },
     required: ["commands"],
     additionalProperties: false,
-    title: "OpenClawConfig",
+    title: "☯️ QuantClawConfig",
   },
   uiHints: {
     wizard: {
@@ -11837,7 +11837,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA = {
     },
     "wizard.lastRunVersion": {
       label: "Wizard Last Run Version",
-      help: "OpenClaw version recorded at the time of the most recent wizard run on this config. Use this when diagnosing behavior differences across version-to-version setup changes.",
+      help: "☯️ QuantClaw version recorded at the time of the most recent wizard run on this config. Use this when diagnosing behavior differences across version-to-version setup changes.",
       tags: ["advanced"],
     },
     "wizard.lastRunCommit": {
@@ -12384,7 +12384,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA = {
     },
     "browser.profiles.*.driver": {
       label: "Browser Profile Driver",
-      help: 'Per-profile browser driver mode. Use "openclaw" (or legacy "clawd") for CDP-based profiles, or use "existing-session" for host-local Chrome DevTools MCP attachment.',
+      help: 'Per-profile browser driver mode. Use "quantclaw" (or legacy "clawd") for CDP-based profiles, or use "existing-session" for host-local Chrome DevTools MCP attachment.',
       tags: ["storage"],
     },
     "browser.profiles.*.attachOnly": {
@@ -15491,7 +15491,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA = {
     },
     "plugins.installs": {
       label: "Plugin Install Records",
-      help: "CLI-managed install metadata (used by `openclaw plugins update` to locate install sources).",
+      help: "CLI-managed install metadata (used by `quantclaw plugins update` to locate install sources).",
       tags: ["advanced"],
     },
     "plugins.installs.*.source": {

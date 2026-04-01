@@ -169,7 +169,7 @@ describe("sessions_yield helpers", () => {
     expect(steer).toHaveBeenCalledWith(
       expect.objectContaining({
         role: "custom",
-        customType: "openclaw.sessions_yield_interrupt",
+        customType: "quantclaw.sessions_yield_interrupt",
         display: false,
         details: { source: "sessions_yield" },
       }),
@@ -186,7 +186,7 @@ describe("sessions_yield helpers", () => {
     );
     expect(sendCustomMessage).toHaveBeenCalledWith(
       expect.objectContaining({
-        customType: "openclaw.sessions_yield",
+        customType: "quantclaw.sessions_yield",
         display: false,
         details: { source: "sessions_yield", message: "Waiting for subagent" },
         content: expect.stringContaining("Waiting for subagent"),
@@ -201,7 +201,7 @@ describe("sessions_yield helpers", () => {
     const activeSession = {
       messages: [
         { role: "user", content: [{ type: "text", text: "hi" }] },
-        { role: "custom", customType: "openclaw.sessions_yield_interrupt" },
+        { role: "custom", customType: "quantclaw.sessions_yield_interrupt" },
         { role: "assistant", stopReason: "aborted" },
       ],
       agent: { replaceMessages },
@@ -212,7 +212,7 @@ describe("sessions_yield helpers", () => {
             type: "custom_message",
             id: "interrupt",
             parentId: "session-root",
-            customType: "openclaw.sessions_yield_interrupt",
+            customType: "quantclaw.sessions_yield_interrupt",
           },
           {
             type: "message",
@@ -271,7 +271,7 @@ describe("composeSystemPromptWithHookContext", () => {
 
   it("keeps hook-composed system prompt stable when bootstrap warnings only change the user prompt", () => {
     const baseSystemPrompt = buildAgentSystemPrompt({
-      workspaceDir: "/tmp/openclaw",
+      workspaceDir: "/tmp/quantclaw",
       contextFiles: [{ path: "AGENTS.md", content: "Follow AGENTS guidance." }],
       toolNames: ["read"],
     });
@@ -362,7 +362,7 @@ describe("shouldInjectHeartbeatPrompt", () => {
       : undefined;
 
     const prompt = buildEmbeddedSystemPrompt({
-      workspaceDir: "/tmp/openclaw",
+      workspaceDir: "/tmp/quantclaw",
       defaultThinkLevel: "off",
       reasoningLevel: "off",
       reasoningTagHint: false,

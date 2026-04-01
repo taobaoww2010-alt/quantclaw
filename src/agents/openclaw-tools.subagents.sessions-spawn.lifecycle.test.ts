@@ -169,7 +169,7 @@ async function emitLifecycleEndAndFlush(params: {
   }
 }
 
-describe("openclaw-tools: subagents (sessions_spawn lifecycle)", () => {
+describe("quantclaw-tools: subagents (sessions_spawn lifecycle)", () => {
   beforeEach(() => {
     resetSessionsSpawnAnnounceFlowOverride();
     resetSessionsSpawnHookRunnerOverride();

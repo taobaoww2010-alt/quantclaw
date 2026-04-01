@@ -180,7 +180,7 @@ describe("push-apns.relay", () => {
         verifyDeviceSignature(
           relayGatewayIdentity.publicKey,
           [
-            "openclaw-relay-send-v1",
+            "quantclaw-relay-send-v1",
             sent?.gatewayDeviceId,
             String(sent?.signedAtMs),
             sent?.bodyJson,

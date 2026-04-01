@@ -226,7 +226,7 @@ function buildRecord(params: {
     version: normalizeManifestLabel(params.manifest.version) ?? params.candidate.packageVersion,
     enabledByDefault: params.manifest.enabledByDefault === true ? true : undefined,
     autoEnableWhenConfiguredProviders: params.manifest.autoEnableWhenConfiguredProviders,
-    format: params.candidate.format ?? "openclaw",
+    format: params.candidate.format ?? "quantclaw",
     bundleFormat: params.candidate.bundleFormat,
     kind: params.manifest.kind,
     channels: params.manifest.channels ?? [],
@@ -407,7 +407,7 @@ export function loadPluginManifestRegistry(
 
   for (const candidate of candidates) {
     const rejectHardlinks = candidate.origin !== "bundled";
-    const isBundleRecord = (candidate.format ?? "openclaw") === "bundle";
+    const isBundleRecord = (candidate.format ?? "quantclaw") === "bundle";
     const manifestRes:
       | ReturnType<typeof loadPluginManifest>
       | ReturnType<typeof loadBundleManifest>

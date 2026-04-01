@@ -102,14 +102,14 @@ describe("command-registry", () => {
 
   it("registers doctor placeholder for doctor primary command", () => {
     const program = createProgram();
-    registerCoreCliCommands(program, testProgramContext, ["node", "openclaw", "doctor"]);
+    registerCoreCliCommands(program, testProgramContext, ["node", "quantclaw", "doctor"]);
 
     expect(namesOf(program)).toEqual(["doctor"]);
   });
 
   it("does not narrow to the primary command when help is requested", () => {
     const program = createProgram();
-    registerCoreCliCommands(program, testProgramContext, ["node", "openclaw", "doctor", "--help"]);
+    registerCoreCliCommands(program, testProgramContext, ["node", "quantclaw", "doctor", "--help"]);
 
     const names = namesOf(program);
     expect(names).toContain("doctor");
@@ -132,10 +132,10 @@ describe("command-registry", () => {
 
   it("registers grouped core entry placeholders without duplicate command errors", async () => {
     const program = createProgram();
-    registerCoreCliCommands(program, testProgramContext, ["node", "openclaw", "vitest"]);
+    registerCoreCliCommands(program, testProgramContext, ["node", "quantclaw", "vitest"]);
     program.exitOverride();
-    await withProcessArgv(["node", "openclaw", "status"], async () => {
-      await program.parseAsync(["node", "openclaw", "status"]);
+    await withProcessArgv(["node", "quantclaw", "status"], async () => {
+      await program.parseAsync(["node", "quantclaw", "status"]);
     });
 
     const names = namesOf(program);
@@ -147,7 +147,7 @@ describe("command-registry", () => {
 
   it("replaces placeholders when loading a grouped entry by secondary command name", async () => {
     const program = createProgram();
-    registerCoreCliCommands(program, testProgramContext, ["node", "openclaw", "doctor"]);
+    registerCoreCliCommands(program, testProgramContext, ["node", "quantclaw", "doctor"]);
     expect(namesOf(program)).toEqual(["doctor"]);
 
     const found = await registerCoreCliByName(program, testProgramContext, "dashboard");

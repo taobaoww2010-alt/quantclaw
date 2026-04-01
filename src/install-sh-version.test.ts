@@ -5,8 +5,8 @@ import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 
 function withFakeCli(versionOutput: string): { root: string; cliPath: string } {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-install-sh-"));
-  const cliPath = path.join(root, "openclaw");
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-install-sh-"));
+  const cliPath = path.join(root, "quantclaw");
   const escapedOutput = versionOutput.replace(/'/g, "'\\''");
   fs.writeFileSync(
     cliPath,
@@ -73,7 +73,7 @@ describe("install.sh version resolution", () => {
   it.runIf(process.platform !== "win32")(
     "extracts the semantic version from decorated CLI output",
     () => {
-      const fixture = withFakeCli("OpenClaw 2026.3.10 (abcdef0)");
+      const fixture = withFakeCli("☯️ QuantClaw 2026.3.10 (abcdef0)");
       tempRoots.push(fixture.root);
 
       expect(resolveVersionFromInstaller(fixture.cliPath)).toBe("2026.3.10");
@@ -83,20 +83,20 @@ describe("install.sh version resolution", () => {
   it.runIf(process.platform !== "win32")(
     "falls back to raw output when no semantic version is present",
     () => {
-      const fixture = withFakeCli("OpenClaw dev's build");
+      const fixture = withFakeCli("☯️ QuantClaw dev's build");
       tempRoots.push(fixture.root);
 
-      expect(resolveVersionFromInstaller(fixture.cliPath)).toBe("OpenClaw dev's build");
+      expect(resolveVersionFromInstaller(fixture.cliPath)).toBe("☯️ QuantClaw dev's build");
     },
   );
 
   it.runIf(process.platform !== "win32")(
     "does not source version helpers from cwd when installer runs via stdin",
     () => {
-      const fixture = withFakeCli("OpenClaw 2026.3.10 (abcdef0)");
+      const fixture = withFakeCli("☯️ QuantClaw 2026.3.10 (abcdef0)");
       tempRoots.push(fixture.root);
 
-      const hostileCwd = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-install-stdin-"));
+      const hostileCwd = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-install-stdin-"));
       tempRoots.push(hostileCwd);
       const hostileHelper = path.join(
         hostileCwd,

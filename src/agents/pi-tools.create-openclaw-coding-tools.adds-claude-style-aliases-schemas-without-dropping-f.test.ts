@@ -8,7 +8,7 @@ import { expectReadWriteEditTools } from "./test-helpers/pi-tools-fs-helpers.js"
 
 describe("createOpenClawCodingTools", () => {
   it("accepts Claude Code parameter aliases for read/write/edit", async () => {
-    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-alias-"));
+    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-alias-"));
     try {
       const tools = createOpenClawCodingTools({ workspaceDir: tmpDir });
       const { readTool, writeTool, editTool } = expectReadWriteEditTools(tools);
@@ -40,7 +40,7 @@ describe("createOpenClawCodingTools", () => {
   });
 
   it("accepts broader file/edit alias variants", async () => {
-    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-alias-broad-"));
+    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-alias-broad-"));
     try {
       const tools = createOpenClawCodingTools({ workspaceDir: tmpDir });
       const { readTool, writeTool, editTool } = expectReadWriteEditTools(tools);
@@ -71,7 +71,7 @@ describe("createOpenClawCodingTools", () => {
   });
 
   it("coerces structured content blocks for write", async () => {
-    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-structured-write-"));
+    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-structured-write-"));
     try {
       const tools = createOpenClawCodingTools({ workspaceDir: tmpDir });
       const writeTool = tools.find((tool) => tool.name === "write");
@@ -95,7 +95,7 @@ describe("createOpenClawCodingTools", () => {
   });
 
   it("coerces structured old/new text blocks for edit", async () => {
-    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-structured-edit-"));
+    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-structured-edit-"));
     try {
       const filePath = path.join(tmpDir, "structured-edit.js");
       await fs.writeFile(filePath, "const value = 'old';\n", "utf8");

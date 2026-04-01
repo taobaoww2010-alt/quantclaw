@@ -53,7 +53,7 @@ function buildPreparedSystemRunPayload(rawInvokeParams: unknown) {
 }
 
 function getTestConfigPath() {
-  return path.join(process.env.HOME ?? "", ".openclaw", "openclaw.json");
+  return path.join(process.env.HOME ?? "", ".openclaw", "quantclaw.json");
 }
 
 async function writeOpenClawConfig(config: Record<string, unknown>, pretty = false) {
@@ -201,7 +201,7 @@ describe("exec approvals", () => {
   beforeEach(async () => {
     previousHome = process.env.HOME;
     previousUserProfile = process.env.USERPROFILE;
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-test-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-test-"));
     process.env.HOME = tempDir;
     // Windows uses USERPROFILE for os.homedir()
     process.env.USERPROFILE = tempDir;
@@ -275,7 +275,7 @@ describe("exec approvals", () => {
   });
 
   it("skips approval when node allowlist is satisfied", async () => {
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-test-bin-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-test-bin-"));
     const binDir = path.join(tempDir, "bin");
     await fs.mkdir(binDir, { recursive: true });
     const exeName = process.platform === "win32" ? "tool.cmd" : "tool";
@@ -474,7 +474,7 @@ describe("exec approvals", () => {
 
   it("executes approved commands and emits a session-only followup in webchat-only mode", async () => {
     const agentCalls: Array<Record<string, unknown>> = [];
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-exec-followup-sidefx-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-exec-followup-sidefx-"));
     const markerPath = path.join(tempDir, "marker.txt");
 
     mockAcceptedApprovalFlow({
@@ -643,7 +643,7 @@ describe("exec approvals", () => {
     if (process.platform === "win32") {
       return;
     }
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-skill-wrapper-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-skill-wrapper-"));
     try {
       const skillDir = path.join(tempDir, ".openclaw", "skills", "gog");
       const skillPath = path.join(skillDir, "SKILL.md");
@@ -912,7 +912,7 @@ describe("exec approvals", () => {
       return { ok: true };
     });
 
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-test-obf-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-test-obf-"));
     const markerPath = path.join(tempDir, "ran.txt");
     const tool = createExecTool({
       host: "gateway",

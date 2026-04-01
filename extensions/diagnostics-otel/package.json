@@ -16,7 +16,7 @@
     "@opentelemetry/sdk-trace-base": "^2.6.1",
     "@opentelemetry/semantic-conventions": "^1.40.0"
   },
-  "openclaw": {
+  "quantclaw": {
     "extensions": [
       "./index.ts"
     ],

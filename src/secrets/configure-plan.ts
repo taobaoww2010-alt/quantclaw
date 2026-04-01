@@ -18,7 +18,7 @@ export type ConfigureCandidate = {
   path: string;
   pathSegments: string[];
   label: string;
-  configFile: "openclaw.json" | "auth-profiles.json";
+  configFile: "quantclaw.json" | "auth-profiles.json";
   expectedResolvedValue: "string" | "string-or-object";
   existingRef?: SecretRef;
   isDerived?: boolean;
@@ -102,7 +102,7 @@ export function buildConfigureCandidatesForScope(params: {
         path: entry.path,
         pathSegments: [...entry.pathSegments],
         label: entry.path,
-        configFile: "openclaw.json" as const,
+        configFile: "quantclaw.json" as const,
         expectedResolvedValue: entry.entry.expectedResolvedValue,
         ...(resolved.ref ? { existingRef: resolved.ref } : {}),
         ...(pathExists || refPathExists ? {} : { isDerived: true }),
@@ -233,7 +233,7 @@ export function buildSecretsConfigurePlan(params: {
     version: 1,
     protocolVersion: 1,
     generatedAt: params.generatedAt ?? new Date().toISOString(),
-    generatedBy: "openclaw secrets configure",
+    generatedBy: "quantclaw secrets configure",
     targets: [...params.selectedTargets.values()].map((entry) => ({
       type: entry.type,
       path: entry.path,

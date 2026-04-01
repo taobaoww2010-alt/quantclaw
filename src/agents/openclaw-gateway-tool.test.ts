@@ -105,7 +105,7 @@ describe("gateway tool", () => {
   it("schedules SIGUSR1 restart", async () => {
     vi.useFakeTimers();
     const kill = vi.spyOn(process, "kill").mockImplementation(() => true);
-    const stateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-test-"));
+    const stateDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-test-"));
 
     try {
       await withEnvAsync(

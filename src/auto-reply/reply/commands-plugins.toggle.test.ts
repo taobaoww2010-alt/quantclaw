@@ -63,7 +63,7 @@ describe("handleCommands /plugins toggle", () => {
     const config = buildCfg();
     readConfigFileSnapshotMock.mockResolvedValue({
       valid: true,
-      path: "/tmp/openclaw.json",
+      path: "/tmp/quantclaw.json",
       resolved: config,
     });
     buildPluginStatusReportMock.mockReturnValue(
@@ -103,7 +103,7 @@ describe("handleCommands /plugins toggle", () => {
     const config = buildCfg();
     readConfigFileSnapshotMock.mockResolvedValue({
       valid: true,
-      path: "/tmp/openclaw.json",
+      path: "/tmp/quantclaw.json",
       resolved: config,
     });
     buildPluginStatusReportMock.mockReturnValue(

@@ -18,13 +18,13 @@ function createPrompter(overrides: Partial<WizardPrompter>): WizardPrompter {
 describe("applyAuthChoice (moonshot)", () => {
   const lifecycle = createAuthTestLifecycle([
     "OPENCLAW_STATE_DIR",
-    "OPENCLAW_AGENT_DIR",
+    "QUANTCLAW_AGENT_DIR",
     "PI_CODING_AGENT_DIR",
     "MOONSHOT_API_KEY",
   ]);
 
   async function setupTempState() {
-    const env = await setupAuthTestEnv("openclaw-auth-");
+    const env = await setupAuthTestEnv("quantclaw-auth-");
     lifecycle.setStateDir(env.stateDir);
     delete process.env.MOONSHOT_API_KEY;
   }

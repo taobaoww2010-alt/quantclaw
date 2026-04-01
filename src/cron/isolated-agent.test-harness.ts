@@ -5,7 +5,7 @@ import type { OpenClawConfig } from "../config/config.js";
 import type { CronJob } from "./types.js";
 
 export async function withTempCronHome<T>(fn: (home: string) => Promise<T>): Promise<T> {
-  return withTempHomeBase(fn, { prefix: "openclaw-cron-" });
+  return withTempHomeBase(fn, { prefix: "quantclaw-cron-" });
 }
 
 export async function writeSessionStore(
@@ -41,7 +41,7 @@ export function makeCfg(
     agents: {
       defaults: {
         model: "anthropic/claude-opus-4-5",
-        workspace: path.join(home, "openclaw"),
+        workspace: path.join(home, "quantclaw"),
       },
     },
     session: { store: storePath, mainKey: "main" },

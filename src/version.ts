@@ -1,7 +1,7 @@
 import { createRequire } from "node:module";
 
-declare const __OPENCLAW_VERSION__: string | undefined;
-const CORE_PACKAGE_NAME = "openclaw";
+declare const __QUANTCLAW_VERSION__: string | undefined;
+const CORE_PACKAGE_NAME = "quantclaw";
 
 const PACKAGE_JSON_CANDIDATES = [
   "../package.json",
@@ -111,8 +111,8 @@ function resolveVersionFromRuntimeSources(params: {
 }): string {
   const preferredCandidates =
     params.preference === "env-first"
-      ? [params.env["OPENCLAW_VERSION"], params.runtimeVersion]
-      : [params.runtimeVersion, params.env["OPENCLAW_VERSION"]];
+      ? [params.env["QUANTCLAW_VERSION"], params.runtimeVersion]
+      : [params.runtimeVersion, params.env["QUANTCLAW_VERSION"]];
   return (
     firstNonEmpty(
       ...preferredCandidates,
@@ -151,6 +151,6 @@ export function resolveCompatibilityHostVersion(
 // - Dev/npm builds: package.json.
 export const VERSION = resolveBinaryVersion({
   moduleUrl: import.meta.url,
-  injectedVersion: typeof __OPENCLAW_VERSION__ === "string" ? __OPENCLAW_VERSION__ : undefined,
+  injectedVersion: typeof __QUANTCLAW_VERSION__ === "string" ? __QUANTCLAW_VERSION__ : undefined,
   bundledVersion: process.env.OPENCLAW_BUNDLED_VERSION,
 });

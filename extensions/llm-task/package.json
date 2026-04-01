@@ -8,7 +8,7 @@
     "@sinclair/typebox": "0.34.49",
     "ajv": "^8.18.0"
   },
-  "openclaw": {
+  "quantclaw": {
     "extensions": [
       "./index.ts"
     ]

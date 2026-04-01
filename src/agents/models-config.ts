@@ -7,7 +7,7 @@ import {
   loadConfig,
 } from "../config/config.js";
 import { createConfigRuntimeEnv } from "../config/env-vars.js";
-import { resolveOpenClawAgentDir } from "./agent-paths.js";
+import { resolveQuantClawAgentDir } from "./agent-paths.js";
 import { planOpenClawModelsJson } from "./models-config.plan.js";
 
 const MODELS_JSON_WRITE_LOCKS = new Map<string, Promise<void>>();
@@ -135,13 +135,13 @@ async function withModelsJsonWriteLock<T>(targetPath: string, run: () => Promise
   }
 }
 
-export async function ensureOpenClawModelsJson(
+export async function ensureQuantClawModelsJson(
   config?: OpenClawConfig,
   agentDirOverride?: string,
 ): Promise<{ agentDir: string; wrote: boolean }> {
   const resolved = resolveModelsConfigInput(config);
   const cfg = resolved.config;
-  const agentDir = agentDirOverride?.trim() ? agentDirOverride.trim() : resolveOpenClawAgentDir();
+  const agentDir = agentDirOverride?.trim() ? agentDirOverride.trim() : resolveQuantClawAgentDir();
   const targetPath = path.join(agentDir, "models.json");
   const fingerprint = await buildModelsJsonFingerprint({
     config: cfg,

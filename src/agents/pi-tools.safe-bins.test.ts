@@ -12,7 +12,7 @@ const bundledPluginsDirSnapshot = captureEnv(["OPENCLAW_BUNDLED_PLUGINS_DIR"]);
 beforeAll(() => {
   process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = path.join(
     os.tmpdir(),
-    "openclaw-test-no-bundled-extensions",
+    "quantclaw-test-no-bundled-extensions",
   );
 });
 
@@ -141,7 +141,7 @@ describe("createOpenClawCodingTools safeBins", () => {
   it("threads tools.exec.safeBins into exec allowlist checks", async () => {
     await withSafeBinsExecTool(
       {
-        tmpPrefix: "openclaw-safe-bins-",
+        tmpPrefix: "quantclaw-safe-bins-",
         safeBins: ["echo"],
         safeBinProfiles: {
           echo: { maxPositional: 1 },
@@ -165,7 +165,7 @@ describe("createOpenClawCodingTools safeBins", () => {
   it("rejects unprofiled custom safe-bin entries", async () => {
     await withSafeBinsExecTool(
       {
-        tmpPrefix: "openclaw-safe-bins-unprofiled-",
+        tmpPrefix: "quantclaw-safe-bins-unprofiled-",
         safeBins: ["echo"],
       },
       async ({ tmpDir, execTool }) => {
@@ -182,7 +182,7 @@ describe("createOpenClawCodingTools safeBins", () => {
   it("does not allow env var expansion to smuggle file args via safeBins", async () => {
     await withSafeBinsExecTool(
       {
-        tmpPrefix: "openclaw-safe-bins-expand-",
+        tmpPrefix: "quantclaw-safe-bins-expand-",
         safeBins: ["head", "wc"],
         files: [{ name: "secret.txt", contents: "TOP_SECRET\n" }],
       },
@@ -201,7 +201,7 @@ describe("createOpenClawCodingTools safeBins", () => {
   it("blocks sort output/compress bypass attempts in safeBins mode", async () => {
     await withSafeBinsExecTool(
       {
-        tmpPrefix: "openclaw-safe-bins-sort-",
+        tmpPrefix: "quantclaw-safe-bins-sort-",
         safeBins: ["sort"],
         files: [{ name: "existing.txt", contents: "x\n" }],
       },
@@ -248,7 +248,7 @@ describe("createOpenClawCodingTools safeBins", () => {
   it("blocks shell redirection metacharacters in safeBins mode", async () => {
     await withSafeBinsExecTool(
       {
-        tmpPrefix: "openclaw-safe-bins-redirect-",
+        tmpPrefix: "quantclaw-safe-bins-redirect-",
         safeBins: ["head"],
         files: [{ name: "source.txt", contents: "line1\nline2\n" }],
       },
@@ -267,7 +267,7 @@ describe("createOpenClawCodingTools safeBins", () => {
   it("blocks grep recursive flags from reading cwd via safeBins", async () => {
     await withSafeBinsExecTool(
       {
-        tmpPrefix: "openclaw-safe-bins-grep-",
+        tmpPrefix: "quantclaw-safe-bins-grep-",
         safeBins: ["grep"],
         files: [{ name: "secret.txt", contents: "SAFE_BINS_RECURSIVE_SHOULD_NOT_LEAK\n" }],
       },

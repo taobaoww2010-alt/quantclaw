@@ -393,7 +393,11 @@ export const OpenClawSchema = z
                 cdpUrl: z.string().optional(),
                 userDataDir: z.string().optional(),
                 driver: z
-                  .union([z.literal("openclaw"), z.literal("clawd"), z.literal("existing-session")])
+                  .union([
+                    z.literal("quantclaw"),
+                    z.literal("clawd"),
+                    z.literal("existing-session"),
+                  ])
                   .optional(),
                 attachOnly: z.boolean().optional(),
                 color: HexColorSchema,

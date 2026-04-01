@@ -14,7 +14,7 @@ import {
 import "./test-helpers/fast-core-tools.js";
 import { createSubagentsTool } from "./tools/subagents-tool.js";
 
-describe("openclaw-tools: subagents steer failure", () => {
+describe("quantclaw-tools: subagents steer failure", () => {
   beforeEach(() => {
     resetSubagentRegistryForTests();
     callGatewayMock.mockClear();

@@ -7,18 +7,18 @@ export function buildPairingReply(params: {
   code: string;
 }): string {
   const { channel, idLine, code } = params;
-  const approveCommand = formatCliCommand(`openclaw pairing approve ${channel} ${code}`);
+  const approveCommand = formatCliCommand(`quantclaw pairing approve ${channel} ${code}`);
   return [
-    "OpenClaw: access not configured.",
+    "☯️ QuantClaw: 访问权限未配置。",
     "",
     idLine,
-    "Pairing code:",
+    "配对码：",
     "```",
     code,
     "```",
     "",
-    "Ask the bot owner to approve with:",
-    formatCliCommand(`openclaw pairing approve ${channel} ${code}`),
+    "请让机器人所有者通过以下命令审批：",
+    formatCliCommand(`quantclaw pairing approve ${channel} ${code}`),
     "```",
     approveCommand,
     "```",

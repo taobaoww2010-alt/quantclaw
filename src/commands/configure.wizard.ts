@@ -87,8 +87,8 @@ async function runGatewayHealthCheck(params: {
     value: params.cfg.gateway?.auth?.password,
     path: "gateway.auth.password",
   });
-  const token = process.env.OPENCLAW_GATEWAY_TOKEN ?? configuredToken;
-  const password = process.env.OPENCLAW_GATEWAY_PASSWORD ?? configuredPassword;
+  const token = process.env.QUANTCLAW_GATEWAY_TOKEN ?? configuredToken;
+  const password = process.env.QUANTCLAW_GATEWAY_PASSWORD ?? configuredPassword;
 
   await waitForGatewayReachable({
     url: wsUrl,
@@ -104,8 +104,8 @@ async function runGatewayHealthCheck(params: {
     note(
       [
         "Docs:",
-        "https://docs.openclaw.ai/gateway/health",
-        "https://docs.openclaw.ai/gateway/troubleshooting",
+        "https://docs.quantclaw.ai/gateway/health",
+        "https://docs.quantclaw.ai/gateway/troubleshooting",
       ].join("\n"),
       "Health check help",
     );
@@ -118,13 +118,13 @@ async function promptConfigureSection(
 ): Promise<ConfigureSectionChoice> {
   return guardCancel(
     await select<ConfigureSectionChoice>({
-      message: "Select sections to configure",
+      message: "选择要配置的板块",
       options: [
         ...CONFIGURE_SECTION_OPTIONS,
         {
           value: "__continue",
-          label: "Continue",
-          hint: hasSelection ? "Done" : "Skip for now",
+          label: "继续",
+          hint: hasSelection ? "完成" : "Skip for now",
         },
       ],
       initialValue: CONFIGURE_SECTION_OPTIONS[0]?.value,
@@ -136,7 +136,7 @@ async function promptConfigureSection(
 async function promptChannelMode(runtime: RuntimeEnv): Promise<ChannelsWizardMode> {
   return guardCancel(
     await select({
-      message: "Channels",
+      message: "频道",
       options: [
         {
           value: "configure",
@@ -185,7 +185,7 @@ async function promptWebToolsConfig(
         [
           "No web search providers are currently available under this plugin policy.",
           "Enable plugins or remove deny rules, then rerun configure.",
-          "Docs: https://docs.openclaw.ai/tools/web",
+          "Docs: https://docs.quantclaw.ai/tools/web",
         ].join("\n"),
         "Web search",
       );
@@ -233,7 +233,7 @@ export async function runConfigureWizard(
   runtime: RuntimeEnv = defaultRuntime,
 ) {
   try {
-    intro(opts.command === "update" ? "OpenClaw update wizard" : "OpenClaw configure");
+    intro(opts.command === "update" ? "QuantClaw update wizard" : "☯️ QuantClaw configure");
     const prompter = createClackPrompter();
 
     const snapshot = await readConfigFileSnapshot();
@@ -243,21 +243,21 @@ export async function runConfigureWizard(
       : {};
 
     if (snapshot.exists) {
-      const title = snapshot.valid ? "Existing config detected" : "Invalid config";
+      const title = snapshot.valid ? "检测到现有配置" : "配置无效";
       note(summarizeExistingConfig(baseConfig), title);
       if (!snapshot.valid && snapshot.issues.length > 0) {
         note(
           [
             ...snapshot.issues.map((iss) => `- ${iss.path}: ${iss.message}`),
             "",
-            "Docs: https://docs.openclaw.ai/gateway/configuration",
+            "Docs: https://docs.quantclaw.ai/gateway/configuration",
           ].join("\n"),
-          "Config issues",
+          "配置问题",
         );
       }
       if (!snapshot.valid) {
         outro(
-          `Config invalid. Run \`${formatCliCommand("openclaw doctor")}\` to repair it, then re-run configure.`,
+          `Config invalid. Run \`${formatCliCommand("quantclaw doctor")}\` to repair it, then re-run configure.`,
         );
         runtime.exit(1);
         return;
@@ -277,8 +277,8 @@ export async function runConfigureWizard(
     });
     const localProbe = await probeGatewayReachable({
       url: localUrl,
-      token: process.env.OPENCLAW_GATEWAY_TOKEN ?? baseLocalProbeToken,
-      password: process.env.OPENCLAW_GATEWAY_PASSWORD ?? baseLocalProbePassword,
+      token: process.env.QUANTCLAW_GATEWAY_TOKEN ?? baseLocalProbeToken,
+      password: process.env.QUANTCLAW_GATEWAY_PASSWORD ?? baseLocalProbePassword,
     });
     const remoteUrl = baseConfig.gateway?.remote?.url?.trim() ?? "";
     const baseRemoteProbeToken = await resolveGatewaySecretInputForWizard({
@@ -295,20 +295,20 @@ export async function runConfigureWizard(
 
     const mode = guardCancel(
       await select({
-        message: "Where will the Gateway run?",
+        message: "网关在哪里运行？",
         options: [
           {
             value: "local",
-            label: "Local (this machine)",
+            label: "本地（本机）",
             hint: localProbe.ok
               ? `Gateway reachable (${localUrl})`
               : `No gateway detected (${localUrl})`,
           },
           {
             value: "remote",
-            label: "Remote (info-only)",
+            label: "远程（仅信息）",
             hint: !remoteUrl
-              ? "No remote URL configured yet"
+              ? "尚未配置远程 URL"
               : remoteProbe?.ok
                 ? `Gateway reachable (${remoteUrl})`
                 : `Configured but unreachable (${remoteUrl})`,
@@ -572,21 +572,21 @@ export async function runConfigureWizard(
     });
     // Try both newly written and preexisting passwords while the gateway restarts.
     const newPassword =
-      process.env.OPENCLAW_GATEWAY_PASSWORD ??
+      process.env.QUANTCLAW_GATEWAY_PASSWORD ??
       (await resolveGatewaySecretInputForWizard({
         cfg: nextConfig,
         value: nextConfig.gateway?.auth?.password,
         path: "gateway.auth.password",
       }));
     const oldPassword =
-      process.env.OPENCLAW_GATEWAY_PASSWORD ??
+      process.env.QUANTCLAW_GATEWAY_PASSWORD ??
       (await resolveGatewaySecretInputForWizard({
         cfg: baseConfig,
         value: baseConfig.gateway?.auth?.password,
         path: "gateway.auth.password",
       }));
     const token =
-      process.env.OPENCLAW_GATEWAY_TOKEN ??
+      process.env.QUANTCLAW_GATEWAY_TOKEN ??
       (await resolveGatewaySecretInputForWizard({
         cfg: nextConfig,
         value: nextConfig.gateway?.auth?.token,
@@ -615,7 +615,7 @@ export async function runConfigureWizard(
         `Web UI: ${links.httpUrl}`,
         `Gateway WS: ${links.wsUrl}`,
         gatewayStatusLine,
-        "Docs: https://docs.openclaw.ai/web/control-ui",
+        "Docs: https://docs.quantclaw.ai/web/control-ui",
       ].join("\n"),
       "Control UI",
     );

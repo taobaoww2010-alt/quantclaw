@@ -684,7 +684,7 @@ describe("createInboundDebouncer", () => {
 
 describe("initSessionState BodyStripped", () => {
   it("prefers BodyForAgent over Body for group chats", async () => {
-    const root = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-sender-meta-"));
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-sender-meta-"));
     const storePath = path.join(root, "sessions.json");
     const cfg = { session: { store: storePath } } as OpenClawConfig;
 
@@ -706,7 +706,7 @@ describe("initSessionState BodyStripped", () => {
   });
 
   it("prefers BodyForAgent over Body for direct chats", async () => {
-    const root = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-sender-meta-direct-"));
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-sender-meta-direct-"));
     const storePath = path.join(root, "sessions.json");
     const cfg = { session: { store: storePath } } as OpenClawConfig;
 
@@ -735,11 +735,11 @@ describe("mention helpers", () => {
       },
     });
     expect(regexes).toHaveLength(1);
-    expect(regexes[0]?.test("openclaw")).toBe(true);
+    expect(regexes[0]?.test("quantclaw")).toBe(true);
   });
 
   it("normalizes zero-width characters", () => {
-    expect(normalizeMentionText("open\u200bclaw")).toBe("openclaw");
+    expect(normalizeMentionText("open\u200bclaw")).toBe("quantclaw");
   });
 
   it("matches patterns case-insensitively", () => {
@@ -771,7 +771,7 @@ describe("mention helpers", () => {
   });
 
   it("strips safe mention patterns and ignores unsafe ones", () => {
-    const stripped = stripMentions("openclaw " + "a".repeat(28) + "!", {} as MsgContext, {
+    const stripped = stripMentions("quantclaw " + "a".repeat(28) + "!", {} as MsgContext, {
       messages: {
         groupChat: { mentionPatterns: ["\\bopenclaw\\b", "(a+)+$"] },
       },

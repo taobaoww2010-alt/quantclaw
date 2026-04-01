@@ -369,7 +369,7 @@ function buildSystemInputProvenance(originSessionId: string) {
     kind: "external_user" as const,
     originSessionId,
     sourceChannel: "acp",
-    sourceTool: "openclaw_acp",
+    sourceTool: "quantclaw_acp",
   };
 }
 

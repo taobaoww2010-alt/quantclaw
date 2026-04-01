@@ -83,7 +83,7 @@ function expectGatewayTermination(pid: number) {
 async function withPreparedGatewayTask(
   run: (context: { env: Record<string, string>; stdout: PassThrough }) => Promise<void>,
 ) {
-  await withWindowsEnv("openclaw-win-stop-", async ({ env }) => {
+  await withWindowsEnv("quantclaw-win-stop-", async ({ env }) => {
     await writeGatewayScript(env, GATEWAY_PORT);
     const stdout = new PassThrough();
     await run({ env, stdout });
@@ -183,7 +183,7 @@ describe("Scheduled Task stop/restart cleanup", () => {
       expect(findVerifiedGatewayListenerPidsOnPortSync).toHaveBeenCalledWith(GATEWAY_PORT);
       expectGatewayTermination(5151);
       expect(inspectPortUsage).toHaveBeenCalledTimes(2);
-      expect(schtasksCalls.at(-1)).toEqual(["/Run", "/TN", "OpenClaw Gateway"]);
+      expect(schtasksCalls.at(-1)).toEqual(["/Run", "/TN", "☯️ QuantClaw Gateway"]);
     });
   });
 });

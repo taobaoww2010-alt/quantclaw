@@ -296,10 +296,10 @@ export function buildNodeServiceEnvironment(params: {
     extraPathDirs,
     params.execPath,
   );
-  const gatewayToken = env.OPENCLAW_GATEWAY_TOKEN?.trim() || undefined;
+  const gatewayToken = env.QUANTCLAW_GATEWAY_TOKEN?.trim() || undefined;
   return {
     ...buildCommonServiceEnvironment(env, sharedEnv),
-    OPENCLAW_GATEWAY_TOKEN: gatewayToken,
+    QUANTCLAW_GATEWAY_TOKEN: gatewayToken,
     OPENCLAW_LAUNCHD_LABEL: resolveNodeLaunchAgentLabel(),
     OPENCLAW_SYSTEMD_UNIT: resolveNodeSystemdServiceName(),
     OPENCLAW_WINDOWS_TASK_NAME: resolveNodeWindowsTaskName(),

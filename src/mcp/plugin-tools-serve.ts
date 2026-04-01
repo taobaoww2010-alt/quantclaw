@@ -48,7 +48,7 @@ export function createPluginToolsMcpServer(
   }
 
   const server = new Server(
-    { name: "openclaw-plugin-tools", version: VERSION },
+    { name: "quantclaw-plugin-tools", version: VERSION },
     { capabilities: { tools: {} } },
   );
 

@@ -12,7 +12,7 @@ describe("device-auth payload vectors", () => {
       build: () =>
         buildDeviceAuthPayload({
           deviceId: "dev-1",
-          clientId: "openclaw-macos",
+          clientId: "quantclaw-macos",
           clientMode: "ui",
           role: "operator",
           scopes: ["operator.admin", "operator.read"],
@@ -28,7 +28,7 @@ describe("device-auth payload vectors", () => {
       build: () =>
         buildDeviceAuthPayloadV3({
           deviceId: "dev-1",
-          clientId: "openclaw-macos",
+          clientId: "quantclaw-macos",
           clientMode: "ui",
           role: "operator",
           scopes: ["operator.admin", "operator.read"],
@@ -46,7 +46,7 @@ describe("device-auth payload vectors", () => {
       build: () =>
         buildDeviceAuthPayloadV3({
           deviceId: "dev-2",
-          clientId: "openclaw-ios",
+          clientId: "quantclaw-ios",
           clientMode: "ui",
           role: "operator",
           scopes: ["operator.read"],

@@ -379,7 +379,7 @@ describe("matrix legacy encrypted-state migration", () => {
       expect(detection.warnings).toContain(
         "Legacy Matrix encrypted state detected at " +
           path.join(stateDir, "matrix", "crypto") +
-          ', but multiple Matrix accounts are configured and channels.matrix.defaultAccount is not set. Set "channels.matrix.defaultAccount" to the intended target account before rerunning "openclaw doctor --fix" or restarting the gateway.',
+          ', but multiple Matrix accounts are configured and channels.matrix.defaultAccount is not set. Set "channels.matrix.defaultAccount" to the intended target account before rerunning "quantclaw doctor --fix" or restarting the gateway.',
       );
     });
   });

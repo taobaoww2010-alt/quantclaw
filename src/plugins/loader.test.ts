@@ -60,7 +60,7 @@ function mkdirSafe(dir: string) {
   chmodSafeDir(dir);
 }
 
-const fixtureRoot = mkdtempSafe(path.join(os.tmpdir(), "openclaw-plugin-"));
+const fixtureRoot = mkdtempSafe(path.join(os.tmpdir(), "quantclaw-plugin-"));
 let tempDirIndex = 0;
 const prevBundledDir = process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
 const EMPTY_PLUGIN_SCHEMA = { type: "object", additionalProperties: false, properties: {} };
@@ -108,7 +108,7 @@ function writePlugin(params: {
   const file = path.join(dir, filename);
   fs.writeFileSync(file, params.body, "utf-8");
   fs.writeFileSync(
-    path.join(dir, "openclaw.plugin.json"),
+    path.join(dir, "quantclaw.plugin.json"),
     JSON.stringify(
       {
         id: params.id,
@@ -500,7 +500,7 @@ function createEscapingEntryFixture(params: { id: string; sourceBody: string }) 
   const linkedEntry = path.join(pluginDir, "entry.cjs");
   fs.writeFileSync(outsideEntry, params.sourceBody, "utf-8");
   fs.writeFileSync(
-    path.join(pluginDir, "openclaw.plugin.json"),
+    path.join(pluginDir, "quantclaw.plugin.json"),
     JSON.stringify(
       {
         id: params.id,
@@ -635,7 +635,7 @@ function createSetupEntryChannelPluginFixture(params: {
     "utf-8",
   );
   fs.writeFileSync(
-    path.join(pluginDir, "openclaw.plugin.json"),
+    path.join(pluginDir, "quantclaw.plugin.json"),
     JSON.stringify(
       {
         id: params.id,
@@ -1812,10 +1812,10 @@ module.exports = { id: "skipped-scoped-only", register() { throw new Error("skip
     const stateDir = makeTempDir();
     const bundledDir = makeTempDir();
     const plugin = writePlugin({
-      id: "openclaw-home-demo",
-      dir: path.join(openclawHome, "plugins", "openclaw-home-demo"),
+      id: "quantclaw-home-demo",
+      dir: path.join(openclawHome, "plugins", "quantclaw-home-demo"),
       filename: "index.cjs",
-      body: `module.exports = { id: "openclaw-home-demo", register() {} };`,
+      body: `module.exports = { id: "quantclaw-home-demo", register() {} };`,
     });
 
     const registry = loadOpenClawPlugins({
@@ -1828,9 +1828,9 @@ module.exports = { id: "skipped-scoped-only", register() { throw new Error("skip
       },
       config: {
         plugins: {
-          allow: ["openclaw-home-demo"],
+          allow: ["quantclaw-home-demo"],
           entries: {
-            "openclaw-home-demo": { enabled: true },
+            "quantclaw-home-demo": { enabled: true },
           },
           load: {
             paths: ["~/plugins/openclaw-home-demo"],
@@ -1841,7 +1841,7 @@ module.exports = { id: "skipped-scoped-only", register() { throw new Error("skip
 
     expect(
       fs.realpathSync(
-        registry.plugins.find((entry) => entry.id === "openclaw-home-demo")?.source ?? "",
+        registry.plugins.find((entry) => entry.id === "quantclaw-home-demo")?.source ?? "",
       ),
     ).toBe(fs.realpathSync(plugin.file));
   });
@@ -2464,7 +2464,7 @@ module.exports = {
 };`,
     });
     fs.writeFileSync(
-      path.join(plugin.dir, "openclaw.plugin.json"),
+      path.join(plugin.dir, "quantclaw.plugin.json"),
       JSON.stringify(
         {
           id: "lazy-channel",
@@ -2659,7 +2659,7 @@ module.exports = {
 };`,
     });
     fs.writeFileSync(
-      path.join(plugin.dir, "openclaw.plugin.json"),
+      path.join(plugin.dir, "quantclaw.plugin.json"),
       JSON.stringify(
         {
           id: "config-cli",
@@ -2718,7 +2718,7 @@ module.exports = {
       "utf-8",
     );
     fs.writeFileSync(
-      path.join(pluginDir, "openclaw.plugin.json"),
+      path.join(pluginDir, "quantclaw.plugin.json"),
       JSON.stringify(
         {
           id: "cli-metadata-channel",
@@ -2732,7 +2732,7 @@ module.exports = {
     );
     fs.writeFileSync(
       path.join(pluginDir, "index.cjs"),
-      `const { defineChannelPluginEntry } = require("openclaw/plugin-sdk/core");
+      `const { defineChannelPluginEntry } = require("quantclaw/plugin-sdk/core");
 require("node:fs").writeFileSync(${JSON.stringify(fullMarker)}, "loaded", "utf-8");
 module.exports = {
   ...defineChannelPluginEntry({
@@ -2823,7 +2823,7 @@ module.exports = {
       "utf-8",
     );
     fs.writeFileSync(
-      path.join(pluginDir, "openclaw.plugin.json"),
+      path.join(pluginDir, "quantclaw.plugin.json"),
       JSON.stringify(
         {
           id: "full-cli-metadata-channel",
@@ -2837,7 +2837,7 @@ module.exports = {
     );
     fs.writeFileSync(
       path.join(pluginDir, "index.cjs"),
-      `const { defineChannelPluginEntry } = require("openclaw/plugin-sdk/core");
+      `const { defineChannelPluginEntry } = require("quantclaw/plugin-sdk/core");
 module.exports = {
   ...defineChannelPluginEntry({
     id: "full-cli-metadata-channel",
@@ -2959,7 +2959,7 @@ module.exports = {
 };`,
     });
     fs.writeFileSync(
-      path.join(plugin.dir, "openclaw.plugin.json"),
+      path.join(plugin.dir, "quantclaw.plugin.json"),
       JSON.stringify(
         {
           id: "memory-external",
@@ -3199,7 +3199,7 @@ module.exports = {
             body: memoryPluginBody("memory-b"),
           });
           fs.writeFileSync(
-            path.join(memoryADir, "openclaw.plugin.json"),
+            path.join(memoryADir, "quantclaw.plugin.json"),
             JSON.stringify(
               {
                 id: "memory-a",
@@ -3212,7 +3212,7 @@ module.exports = {
             "utf-8",
           );
           fs.writeFileSync(
-            path.join(memoryBDir, "openclaw.plugin.json"),
+            path.join(memoryBDir, "quantclaw.plugin.json"),
             JSON.stringify(
               {
                 id: "memory-b",
@@ -3571,7 +3571,7 @@ module.exports = {
       body: simplePluginBody("profile-aware"),
     });
     fs.writeFileSync(
-      path.join(plugin.dir, "openclaw.plugin.json"),
+      path.join(plugin.dir, "quantclaw.plugin.json"),
       JSON.stringify(
         {
           id: "profile-aware",
@@ -3854,7 +3854,7 @@ module.exports = {
       filename: "legacy-root-import.cjs",
       body: `module.exports = {
   id: "legacy-root-import",
-  configSchema: (require("openclaw/plugin-sdk").emptyPluginConfigSchema)(),
+  configSchema: (require("quantclaw/plugin-sdk").emptyPluginConfigSchema)(),
         register() {},
       };`,
     });
@@ -3885,9 +3885,9 @@ module.exports = {
       filename: "legacy-root-diagnostic-listener.cjs",
       body: `module.exports = {
   id: "legacy-root-diagnostic-listener",
-  configSchema: (require("openclaw/plugin-sdk").emptyPluginConfigSchema)(),
+  configSchema: (require("quantclaw/plugin-sdk").emptyPluginConfigSchema)(),
   register() {
-    const { onDiagnosticEvent } = require("openclaw/plugin-sdk");
+    const { onDiagnosticEvent } = require("quantclaw/plugin-sdk");
     if (typeof onDiagnosticEvent !== "function") {
       throw new Error("missing onDiagnosticEvent root export");
     }

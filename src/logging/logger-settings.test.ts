@@ -28,9 +28,9 @@ beforeAll(async () => {
 
 beforeEach(() => {
   originalTestFileLog = process.env.OPENCLAW_TEST_FILE_LOG;
-  originalOpenClawLogLevel = process.env.OPENCLAW_LOG_LEVEL;
+  originalOpenClawLogLevel = process.env.QUANTCLAW_LOG_LEVEL;
   delete process.env.OPENCLAW_TEST_FILE_LOG;
-  delete process.env.OPENCLAW_LOG_LEVEL;
+  delete process.env.QUANTCLAW_LOG_LEVEL;
   readLoggingConfigMock.mockClear();
   shouldSkipMutatingLoggingConfigReadMock.mockReset();
   shouldSkipMutatingLoggingConfigReadMock.mockReturnValue(false);
@@ -46,9 +46,9 @@ afterEach(() => {
     process.env.OPENCLAW_TEST_FILE_LOG = originalTestFileLog;
   }
   if (originalOpenClawLogLevel === undefined) {
-    delete process.env.OPENCLAW_LOG_LEVEL;
+    delete process.env.QUANTCLAW_LOG_LEVEL;
   } else {
-    process.env.OPENCLAW_LOG_LEVEL = originalOpenClawLogLevel;
+    process.env.QUANTCLAW_LOG_LEVEL = originalOpenClawLogLevel;
   }
   logging.resetLogger();
   logging.setLoggerOverride(null);

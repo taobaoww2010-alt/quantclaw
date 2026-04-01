@@ -204,7 +204,7 @@ describe("resolveProviderAuths key normalization", () => {
   } satisfies Record<string, string | undefined>;
 
   beforeAll(async () => {
-    suiteRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-provider-auth-suite-"));
+    suiteRoot = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-provider-auth-suite-"));
   });
 
   afterAll(async () => {
@@ -284,7 +284,7 @@ describe("resolveProviderAuths key normalization", () => {
     const stateDir = path.join(home, ".openclaw");
     await fs.mkdir(stateDir, { recursive: true });
     await fs.writeFile(
-      path.join(stateDir, "openclaw.json"),
+      path.join(stateDir, "quantclaw.json"),
       `${JSON.stringify(config, null, 2)}\n`,
       "utf8",
     );

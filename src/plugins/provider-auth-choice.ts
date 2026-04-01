@@ -1,4 +1,4 @@
-import { resolveOpenClawAgentDir } from "../agents/agent-paths.js";
+import { resolveQuantClawAgentDir } from "../agents/agent-paths.js";
 import {
   resolveDefaultAgentId,
   resolveAgentDir,
@@ -101,7 +101,7 @@ export async function runProviderPluginAuthMethod(params: {
   const agentDir =
     params.agentDir ??
     (agentId === defaultAgentId
-      ? resolveOpenClawAgentDir()
+      ? resolveQuantClawAgentDir()
       : resolveAgentDir(params.config, agentId));
   const workspaceDir =
     params.workspaceDir ??
@@ -246,7 +246,9 @@ export async function applyAuthChoicePluginProvider(
   const defaultAgentId = resolveDefaultAgentId(nextConfig);
   const agentDir =
     params.agentDir ??
-    (agentId === defaultAgentId ? resolveOpenClawAgentDir() : resolveAgentDir(nextConfig, agentId));
+    (agentId === defaultAgentId
+      ? resolveQuantClawAgentDir()
+      : resolveAgentDir(nextConfig, agentId));
   const workspaceDir =
     resolveAgentWorkspaceDir(nextConfig, agentId) ?? resolveDefaultAgentWorkspaceDir();
 

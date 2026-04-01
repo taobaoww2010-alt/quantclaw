@@ -288,7 +288,7 @@ function createWatcherMock() {
 
 function makeSnapshot(partial: Partial<ConfigFileSnapshot> = {}): ConfigFileSnapshot {
   return {
-    path: "/tmp/openclaw.json",
+    path: "/tmp/quantclaw.json",
     exists: true,
     raw: "{}",
     parsed: {},
@@ -330,7 +330,7 @@ function createReloaderHarness(readSnapshot: () => Promise<ConfigFileSnapshot>) 
     onHotReload,
     onRestart,
     log,
-    watchPath: "/tmp/openclaw.json",
+    watchPath: "/tmp/quantclaw.json",
   });
   return {
     watcher,
@@ -485,7 +485,7 @@ describe("startGatewayConfigReloader", () => {
     const harness = createReloaderHarness(readSnapshot);
 
     harness.emitWrite({
-      configPath: "/tmp/openclaw.json",
+      configPath: "/tmp/quantclaw.json",
       sourceConfig: { gateway: { reload: { debounceMs: 0 } } },
       runtimeConfig: {
         gateway: { reload: { debounceMs: 0 } },

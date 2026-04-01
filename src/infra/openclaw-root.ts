@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const CORE_PACKAGE_NAMES = new Set(["openclaw", "quantclaw"]);
+const CORE_PACKAGE_NAMES = new Set(["quantclaw", "quantclaw"]);
 
 function parsePackageName(raw: string): string | null {
   const parsed = JSON.parse(raw) as { name?: unknown };
@@ -83,7 +83,7 @@ function candidateDirsFromArgv1(argv1: string): string[] {
   return candidates;
 }
 
-export async function resolveOpenClawPackageRoot(opts: {
+export async function resolveQuantClawPackageRoot(opts: {
   cwd?: string;
   argv1?: string;
   moduleUrl?: string;
@@ -98,7 +98,7 @@ export async function resolveOpenClawPackageRoot(opts: {
   return null;
 }
 
-export function resolveOpenClawPackageRootSync(opts: {
+export function resolveQuantClawPackageRootSync(opts: {
   cwd?: string;
   argv1?: string;
   moduleUrl?: string;

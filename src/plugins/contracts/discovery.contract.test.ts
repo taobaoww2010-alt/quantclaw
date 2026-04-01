@@ -145,7 +145,7 @@ describe("provider discovery contract", () => {
     const vllmApiModuleId = buildBundledPluginModuleId("vllm", "api.js");
     const sglangApiModuleId = buildBundledPluginModuleId("sglang", "api.js");
     vi.resetModules();
-    vi.doMock("openclaw/plugin-sdk/agent-runtime", async () => {
+    vi.doMock("quantclaw/plugin-sdk/agent-runtime", async () => {
       // Import the direct source module, not the mocked subpath, so bundled
       // provider helpers still see the full agent-runtime surface.
       const actual = await import("../../plugin-sdk/agent-runtime.ts");
@@ -155,8 +155,8 @@ describe("provider discovery contract", () => {
         listProfilesForProvider: listProfilesForProviderMock,
       };
     });
-    vi.doMock("openclaw/plugin-sdk/provider-auth", async () => {
-      const actual = await vi.importActual<object>("openclaw/plugin-sdk/provider-auth");
+    vi.doMock("quantclaw/plugin-sdk/provider-auth", async () => {
+      const actual = await vi.importActual<object>("quantclaw/plugin-sdk/provider-auth");
       return {
         ...actual,
         ensureAuthProfileStore: ensureAuthProfileStoreMock,

@@ -47,7 +47,7 @@ vi.mock("./models-config.js", async (importOriginal) => {
   const mod = await importOriginal<typeof import("./models-config.js")>();
   return {
     ...mod,
-    ensureOpenClawModelsJson: vi.fn(async () => ({ wrote: false })),
+    ensureQuantClawModelsJson: vi.fn(async () => ({ wrote: false })),
   };
 });
 
@@ -148,7 +148,7 @@ function makeConfig(): OpenClawConfig {
 async function withAgentWorkspace<T>(
   fn: (ctx: { agentDir: string; workspaceDir: string }) => Promise<T>,
 ): Promise<T> {
-  const root = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-model-fallback-"));
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-model-fallback-"));
   const agentDir = path.join(root, "agent");
   const workspaceDir = path.join(root, "workspace");
   await fs.mkdir(agentDir, { recursive: true });

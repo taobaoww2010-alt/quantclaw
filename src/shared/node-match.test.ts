@@ -60,7 +60,7 @@ describe("shared/node-match", () => {
           {
             nodeId: "current-mac",
             displayName: "Peter’s Mac Studio",
-            clientId: "openclaw-macos",
+            clientId: "quantclaw-macos",
             connected: false,
           },
         ],
@@ -118,13 +118,13 @@ describe("shared/node-match", () => {
           {
             nodeId: "other-mac",
             displayName: "Peter’s Mac Studio",
-            clientId: "openclaw-macos",
+            clientId: "quantclaw-macos",
             connected: true,
           },
           {
             nodeId: "third-mac",
             displayName: "Peter’s Mac Studio",
-            clientId: "openclaw-macos",
+            clientId: "quantclaw-macos",
             connected: true,
           },
         ],

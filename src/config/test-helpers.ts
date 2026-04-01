@@ -6,14 +6,14 @@ import { resetConfigRuntimeState, type OpenClawConfig } from "./config.js";
 export async function withTempHome<T>(fn: (home: string) => Promise<T>): Promise<T> {
   resetConfigRuntimeState();
   try {
-    return await withTempHomeBase(fn, { prefix: "openclaw-config-" });
+    return await withTempHomeBase(fn, { prefix: "quantclaw-config-" });
   } finally {
     resetConfigRuntimeState();
   }
 }
 
 export async function writeOpenClawConfig(home: string, config: unknown): Promise<string> {
-  const configPath = path.join(home, ".openclaw", "openclaw.json");
+  const configPath = path.join(home, ".openclaw", "quantclaw.json");
   await fs.mkdir(path.dirname(configPath), { recursive: true });
   await fs.writeFile(configPath, JSON.stringify(config, null, 2), "utf-8");
   return configPath;

@@ -2,7 +2,7 @@ import { type Api, completeSimple, type Model } from "@mariozechner/pi-ai";
 import { Type } from "@sinclair/typebox";
 import { describe, expect, it } from "vitest";
 import { loadConfig } from "../config/config.js";
-import { resolveOpenClawAgentDir } from "./agent-paths.js";
+import { resolveQuantClawAgentDir } from "./agent-paths.js";
 import {
   collectAnthropicApiKeys,
   isAnthropicBillingError,
@@ -12,7 +12,7 @@ import { isHighSignalLiveModelRef } from "./live-model-filter.js";
 import { isLiveProfileKeyModeEnabled, isLiveTestEnabled } from "./live-test-helpers.js";
 import { getApiKeyForModel, requireApiKey } from "./model-auth.js";
 import { shouldSuppressBuiltInModel } from "./model-suppression.js";
-import { ensureOpenClawModelsJson } from "./models-config.js";
+import { ensureQuantClawModelsJson } from "./models-config.js";
 import { isRateLimitErrorMessage } from "./pi-embedded-helpers/errors.js";
 import { discoverAuthStorage, discoverModels } from "./pi-model-discovery.js";
 
@@ -378,7 +378,7 @@ describeLive("live models (profile keys)", () => {
       );
       logProgress("[live-models] preparing models.json");
       await withLiveStageTimeout(
-        ensureOpenClawModelsJson(cfg),
+        ensureQuantClawModelsJson(cfg),
         "[live-models] prepare models.json",
       );
       if (!DIRECT_ENABLED) {
@@ -393,7 +393,7 @@ describeLive("live models (profile keys)", () => {
         logProgress(`[live-models] anthropic keys loaded: ${anthropicKeys.length}`);
       }
 
-      const agentDir = resolveOpenClawAgentDir();
+      const agentDir = resolveQuantClawAgentDir();
       const authStorage = discoverAuthStorage(agentDir);
       logProgress("[live-models] loading model registry");
       const models = await withLiveStageTimeout(

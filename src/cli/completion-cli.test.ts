@@ -8,7 +8,7 @@ import { getCompletionScript } from "./completion-cli.js";
 
 function createCompletionProgram(): Command {
   const program = new Command();
-  program.name("openclaw");
+  program.name("quantclaw");
   program.description("CLI root");
   program.option("-v, --verbose", "Verbose output");
 
@@ -44,9 +44,9 @@ describe("completion-cli", () => {
       throw probe.error;
     }
 
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-zsh-completion-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-zsh-completion-"));
     try {
-      const scriptPath = path.join(tempDir, "openclaw.zsh");
+      const scriptPath = path.join(tempDir, "quantclaw.zsh");
       await fs.writeFile(scriptPath, getCompletionScript("zsh", createCompletionProgram()), "utf8");
 
       const result = spawnSync(
@@ -55,13 +55,13 @@ describe("completion-cli", () => {
           "-fc",
           `
             source ${JSON.stringify(scriptPath)}
-            [[ -z "\${_comps[openclaw]-}" ]] || exit 10
+            [[ -z "\${_comps[quantclaw]-}" ]] || exit 10
             [[ "\${precmd_functions[(r)_openclaw_register_completion]}" = "_openclaw_register_completion" ]] || exit 11
             autoload -Uz compinit
             compinit -C
             _openclaw_register_completion
             [[ -z "\${precmd_functions[(r)_openclaw_register_completion]}" ]] || exit 12
-            [[ "\${_comps[openclaw]-}" = "_openclaw_root_completion" ]]
+            [[ "\${_comps[quantclaw]-}" = "_openclaw_root_completion" ]]
           `,
         ],
         {
@@ -86,7 +86,7 @@ describe("completion-cli", () => {
 
     expect(script).toContain("if ($commandPath -eq 'gateway') {");
     expect(script).toContain("if ($commandPath -eq 'gateway status') {");
-    expect(script).not.toContain("if ($commandPath -eq 'openclaw gateway') {");
+    expect(script).not.toContain("if ($commandPath -eq 'quantclaw gateway') {");
     expect(script).toContain("$completions = @('status','restart','--force')");
   });
 

@@ -1,7 +1,7 @@
 import { normalizeProviderId } from "./model-selection.js";
 
 const KEY_SPLIT_RE = /[\s,;]+/g;
-const GOOGLE_LIVE_SINGLE_KEY = "OPENCLAW_LIVE_GEMINI_KEY";
+const GOOGLE_LIVE_SINGLE_KEY = "QUANTCLAW_LIVE_GEMINI_KEY";
 
 const PROVIDER_PREFIX_OVERRIDES: Record<string, string> = {
   google: "GEMINI",
@@ -18,8 +18,8 @@ type ProviderApiKeyConfig = {
 
 const PROVIDER_API_KEY_CONFIG: Record<string, Omit<ProviderApiKeyConfig, "fallbackVars">> = {
   anthropic: {
-    liveSingle: "OPENCLAW_LIVE_ANTHROPIC_KEY",
-    listVar: "OPENCLAW_LIVE_ANTHROPIC_KEYS",
+    liveSingle: "QUANTCLAW_LIVE_ANTHROPIC_KEY",
+    listVar: "QUANTCLAW_LIVE_ANTHROPIC_KEYS",
     primaryVar: "ANTHROPIC_API_KEY",
     prefixedVar: "ANTHROPIC_API_KEY_",
   },
@@ -36,7 +36,7 @@ const PROVIDER_API_KEY_CONFIG: Record<string, Omit<ProviderApiKeyConfig, "fallba
     prefixedVar: "GEMINI_API_KEY_",
   },
   openai: {
-    liveSingle: "OPENCLAW_LIVE_OPENAI_KEY",
+    liveSingle: "QUANTCLAW_LIVE_OPENAI_KEY",
     listVar: "OPENAI_API_KEYS",
     primaryVar: "OPENAI_API_KEY",
     prefixedVar: "OPENAI_API_KEY_",

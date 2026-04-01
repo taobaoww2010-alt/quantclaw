@@ -7,15 +7,15 @@ describe("buildPlatformRuntimeLogHints", () => {
       buildPlatformRuntimeLogHints({
         platform: "darwin",
         env: {
-          OPENCLAW_STATE_DIR: "/tmp/openclaw-state",
+          OPENCLAW_STATE_DIR: "/tmp/quantclaw-state",
           OPENCLAW_LOG_PREFIX: "gateway",
         },
-        systemdServiceName: "openclaw-gateway",
-        windowsTaskName: "OpenClaw Gateway",
+        systemdServiceName: "quantclaw-gateway",
+        windowsTaskName: "☯️ QuantClaw Gateway",
       }),
     ).toEqual([
-      "Launchd stdout (if installed): /tmp/openclaw-state/logs/gateway.log",
-      "Launchd stderr (if installed): /tmp/openclaw-state/logs/gateway.err.log",
+      "Launchd stdout (if installed): /tmp/quantclaw-state/logs/gateway.log",
+      "Launchd stderr (if installed): /tmp/quantclaw-state/logs/gateway.err.log",
     ]);
   });
 
@@ -23,17 +23,17 @@ describe("buildPlatformRuntimeLogHints", () => {
     expect(
       buildPlatformRuntimeLogHints({
         platform: "linux",
-        systemdServiceName: "openclaw-gateway",
-        windowsTaskName: "OpenClaw Gateway",
+        systemdServiceName: "quantclaw-gateway",
+        windowsTaskName: "☯️ QuantClaw Gateway",
       }),
     ).toEqual(["Logs: journalctl --user -u openclaw-gateway.service -n 200 --no-pager"]);
     expect(
       buildPlatformRuntimeLogHints({
         platform: "win32",
-        systemdServiceName: "openclaw-gateway",
-        windowsTaskName: "OpenClaw Gateway",
+        systemdServiceName: "quantclaw-gateway",
+        windowsTaskName: "☯️ QuantClaw Gateway",
       }),
-    ).toEqual(['Logs: schtasks /Query /TN "OpenClaw Gateway" /V /FO LIST']);
+    ).toEqual(['Logs: schtasks /Query /TN "☯️ QuantClaw Gateway" /V /FO LIST']);
   });
 });
 
@@ -42,29 +42,29 @@ describe("buildPlatformServiceStartHints", () => {
     expect(
       buildPlatformServiceStartHints({
         platform: "darwin",
-        installCommand: "openclaw gateway install",
-        startCommand: "openclaw gateway",
+        installCommand: "quantclaw gateway install",
+        startCommand: "quantclaw gateway",
         launchAgentPlistPath: "~/Library/LaunchAgents/com.openclaw.gateway.plist",
-        systemdServiceName: "openclaw-gateway",
-        windowsTaskName: "OpenClaw Gateway",
+        systemdServiceName: "quantclaw-gateway",
+        windowsTaskName: "☯️ QuantClaw Gateway",
       }),
     ).toEqual([
-      "openclaw gateway install",
-      "openclaw gateway",
+      "quantclaw gateway install",
+      "quantclaw gateway",
       "launchctl bootstrap gui/$UID ~/Library/LaunchAgents/com.openclaw.gateway.plist",
     ]);
     expect(
       buildPlatformServiceStartHints({
         platform: "linux",
-        installCommand: "openclaw gateway install",
-        startCommand: "openclaw gateway",
+        installCommand: "quantclaw gateway install",
+        startCommand: "quantclaw gateway",
         launchAgentPlistPath: "~/Library/LaunchAgents/com.openclaw.gateway.plist",
-        systemdServiceName: "openclaw-gateway",
-        windowsTaskName: "OpenClaw Gateway",
+        systemdServiceName: "quantclaw-gateway",
+        windowsTaskName: "☯️ QuantClaw Gateway",
       }),
     ).toEqual([
-      "openclaw gateway install",
-      "openclaw gateway",
+      "quantclaw gateway install",
+      "quantclaw gateway",
       "systemctl --user start openclaw-gateway.service",
     ]);
   });

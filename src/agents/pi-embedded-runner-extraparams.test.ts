@@ -1373,7 +1373,7 @@ describe("applyExtraParamsToAgent", () => {
     expect(calls).toHaveLength(1);
     expect(calls[0]?.headers).toEqual({
       "HTTP-Referer": "https://openclaw.ai",
-      "X-OpenRouter-Title": "OpenClaw",
+      "X-OpenRouter-Title": "☯️ QuantClaw",
       "X-OpenRouter-Categories": "cli-agent",
       "X-Custom": "1",
     });

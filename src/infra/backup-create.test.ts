@@ -4,8 +4,8 @@ import { formatBackupCreateSummary, type BackupCreateResult } from "./backup-cre
 function makeResult(overrides: Partial<BackupCreateResult> = {}): BackupCreateResult {
   return {
     createdAt: "2026-01-01T00:00:00.000Z",
-    archiveRoot: "openclaw-backup-2026-01-01",
-    archivePath: "/tmp/openclaw-backup.tar.gz",
+    archiveRoot: "quantclaw-backup-2026-01-01",
+    archivePath: "/tmp/quantclaw-backup.tar.gz",
     dryRun: false,
     includeWorkspace: true,
     onlyConfig: false,
@@ -17,7 +17,7 @@ function makeResult(overrides: Partial<BackupCreateResult> = {}): BackupCreateRe
 }
 
 describe("formatBackupCreateSummary", () => {
-  const backupArchiveLine = "Backup archive: /tmp/openclaw-backup.tar.gz";
+  const backupArchiveLine = "Backup archive: /tmp/quantclaw-backup.tar.gz";
 
   it.each([
     {
@@ -48,7 +48,7 @@ describe("formatBackupCreateSummary", () => {
         "- state: ~/.openclaw",
         "Skipped 1 path:",
         "- workspace: ~/Projects/openclaw (covered by ~/.openclaw)",
-        "Created /tmp/openclaw-backup.tar.gz",
+        "Created /tmp/quantclaw-backup.tar.gz",
         "Archive verification: passed",
       ],
     },

@@ -98,12 +98,12 @@ describe("prepareModelForSimpleCompletion", () => {
 
     expect(createAnthropicVertexStreamFnForModel).toHaveBeenCalledWith(model);
     expect(ensureCustomApiRegistered).toHaveBeenCalledWith(
-      "openclaw-anthropic-vertex-simple:https%3A%2F%2Fus-central1-aiplatform.googleapis.com",
+      "quantclaw-anthropic-vertex-simple:https%3A%2F%2Fus-central1-aiplatform.googleapis.com",
       "vertex-stream",
     );
     expect(result).toEqual({
       ...model,
-      api: "openclaw-anthropic-vertex-simple:https%3A%2F%2Fus-central1-aiplatform.googleapis.com",
+      api: "quantclaw-anthropic-vertex-simple:https%3A%2F%2Fus-central1-aiplatform.googleapis.com",
     });
   });
 });

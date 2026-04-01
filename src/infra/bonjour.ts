@@ -40,7 +40,7 @@ function isDisabledByEnv() {
 
 function safeServiceName(name: string) {
   const trimmed = name.trim();
-  return trimmed.length > 0 ? trimmed : "OpenClaw";
+  return trimmed.length > 0 ? trimmed : "☯️ QuantClaw";
 }
 
 function prettifyInstanceName(name: string) {
@@ -148,12 +148,12 @@ export async function startGatewayBonjourAdvertiser(
     // mDNS service instance names are single DNS labels; dots in hostnames (like
     // `Mac.localdomain`) can confuse some resolvers/browsers and break discovery.
     // Keep only the first label and normalize away a trailing `.local`.
-    const hostnameRaw = process.env.OPENCLAW_MDNS_HOSTNAME?.trim() || "openclaw";
+    const hostnameRaw = process.env.OPENCLAW_MDNS_HOSTNAME?.trim() || "quantclaw";
     const hostname =
       hostnameRaw
         .replace(/\.local$/i, "")
         .split(".")[0]
-        .trim() || "openclaw";
+        .trim() || "quantclaw";
     const instanceName =
       typeof opts.instanceName === "string" && opts.instanceName.trim()
         ? opts.instanceName.trim()
@@ -200,7 +200,7 @@ export async function startGatewayBonjourAdvertiser(
 
       const gateway = responder.createService({
         name: safeServiceName(instanceName),
-        type: "openclaw-gw",
+        type: "quantclaw-gw",
         protocol: Protocol.TCP,
         port: opts.gatewayPort,
         domain: "local",

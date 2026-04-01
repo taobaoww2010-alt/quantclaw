@@ -14,7 +14,7 @@ installModelsConfigTestHooks();
 let clearConfigCache: typeof import("../config/config.js").clearConfigCache;
 let clearRuntimeConfigSnapshot: typeof import("../config/config.js").clearRuntimeConfigSnapshot;
 let clearRuntimeAuthProfileStoreSnapshots: typeof import("./auth-profiles/store.js").clearRuntimeAuthProfileStoreSnapshots;
-let ensureOpenClawModelsJson: typeof import("./models-config.js").ensureOpenClawModelsJson;
+let ensureQuantClawModelsJson: typeof import("./models-config.js").ensureQuantClawModelsJson;
 let resetModelsJsonReadyCacheForTest: typeof import("./models-config.js").resetModelsJsonReadyCacheForTest;
 let readGeneratedModelsJson: typeof import("./models-config.test-utils.js").readGeneratedModelsJson;
 
@@ -22,7 +22,7 @@ beforeEach(async () => {
   vi.resetModules();
   ({ clearConfigCache, clearRuntimeConfigSnapshot } = await import("../config/config.js"));
   ({ clearRuntimeAuthProfileStoreSnapshots } = await import("./auth-profiles/store.js"));
-  ({ ensureOpenClawModelsJson, resetModelsJsonReadyCacheForTest } =
+  ({ ensureQuantClawModelsJson, resetModelsJsonReadyCacheForTest } =
     await import("./models-config.js"));
   ({ readGeneratedModelsJson } = await import("./models-config.test-utils.js"));
   clearRuntimeAuthProfileStoreSnapshots();
@@ -72,7 +72,7 @@ async function withMinimaxApiKey(run: () => Promise<void>) {
 }
 
 async function generateAndReadMinimaxModel(cfg: OpenClawConfig): Promise<ModelEntry | undefined> {
-  await ensureOpenClawModelsJson(cfg);
+  await ensureQuantClawModelsJson(cfg);
   const parsed = await readGeneratedModelsJson<ModelsJson>();
   return parsed.providers.minimax?.models?.find((model) => model.id === MINIMAX_MODEL_ID);
 }

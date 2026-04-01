@@ -38,7 +38,7 @@ type DotEnvFixture = {
 };
 
 async function withDotEnvFixture(run: (fixture: DotEnvFixture) => Promise<void>) {
-  const base = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-dotenv-test-"));
+  const base = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-dotenv-test-"));
   const cwdDir = path.join(base, "cwd");
   const stateDir = path.join(base, "state");
   process.env.OPENCLAW_STATE_DIR = stateDir;
@@ -145,12 +145,12 @@ describe("loadDotEnv", () => {
             "OPENAI_API_KEY=sk-openai-attacker-key",
             "OPENAI_API_KEYS=sk-openai-a,sk-openai-b",
             "OPENAI_API_KEY_SECONDARY=sk-openai-secondary",
-            "OPENCLAW_LIVE_ANTHROPIC_KEY=sk-ant-live",
-            "OPENCLAW_LIVE_ANTHROPIC_KEYS=sk-ant-live-a,sk-ant-live-b",
-            "OPENCLAW_LIVE_GEMINI_KEY=sk-gemini-live",
-            "OPENCLAW_LIVE_OPENAI_KEY=sk-openai-live",
-            "OPENCLAW_GATEWAY_TOKEN=attacker-token",
-            "OPENCLAW_GATEWAY_PASSWORD=attacker-password",
+            "QUANTCLAW_LIVE_ANTHROPIC_KEY=sk-ant-live",
+            "QUANTCLAW_LIVE_ANTHROPIC_KEYS=sk-ant-live-a,sk-ant-live-b",
+            "QUANTCLAW_LIVE_GEMINI_KEY=sk-gemini-live",
+            "QUANTCLAW_LIVE_OPENAI_KEY=sk-openai-live",
+            "QUANTCLAW_GATEWAY_TOKEN=attacker-token",
+            "QUANTCLAW_GATEWAY_PASSWORD=attacker-password",
             "OPENCLAW_GATEWAY_SECRET=attacker-secret",
           ].join("\n"),
         );
@@ -161,12 +161,12 @@ describe("loadDotEnv", () => {
         delete process.env.OPENAI_API_KEY;
         delete process.env.OPENAI_API_KEYS;
         delete process.env.OPENAI_API_KEY_SECONDARY;
-        delete process.env.OPENCLAW_LIVE_ANTHROPIC_KEY;
-        delete process.env.OPENCLAW_LIVE_ANTHROPIC_KEYS;
-        delete process.env.OPENCLAW_LIVE_GEMINI_KEY;
-        delete process.env.OPENCLAW_LIVE_OPENAI_KEY;
-        delete process.env.OPENCLAW_GATEWAY_TOKEN;
-        delete process.env.OPENCLAW_GATEWAY_PASSWORD;
+        delete process.env.QUANTCLAW_LIVE_ANTHROPIC_KEY;
+        delete process.env.QUANTCLAW_LIVE_ANTHROPIC_KEYS;
+        delete process.env.QUANTCLAW_LIVE_GEMINI_KEY;
+        delete process.env.QUANTCLAW_LIVE_OPENAI_KEY;
+        delete process.env.QUANTCLAW_GATEWAY_TOKEN;
+        delete process.env.QUANTCLAW_GATEWAY_PASSWORD;
         delete process.env.OPENCLAW_GATEWAY_SECRET;
 
         loadWorkspaceDotEnvFile(path.join(cwdDir, ".env"), { quiet: true });
@@ -177,12 +177,12 @@ describe("loadDotEnv", () => {
         expect(process.env.OPENAI_API_KEY).toBeUndefined();
         expect(process.env.OPENAI_API_KEYS).toBeUndefined();
         expect(process.env.OPENAI_API_KEY_SECONDARY).toBeUndefined();
-        expect(process.env.OPENCLAW_LIVE_ANTHROPIC_KEY).toBeUndefined();
-        expect(process.env.OPENCLAW_LIVE_ANTHROPIC_KEYS).toBeUndefined();
-        expect(process.env.OPENCLAW_LIVE_GEMINI_KEY).toBeUndefined();
-        expect(process.env.OPENCLAW_LIVE_OPENAI_KEY).toBeUndefined();
-        expect(process.env.OPENCLAW_GATEWAY_TOKEN).toBeUndefined();
-        expect(process.env.OPENCLAW_GATEWAY_PASSWORD).toBeUndefined();
+        expect(process.env.QUANTCLAW_LIVE_ANTHROPIC_KEY).toBeUndefined();
+        expect(process.env.QUANTCLAW_LIVE_ANTHROPIC_KEYS).toBeUndefined();
+        expect(process.env.QUANTCLAW_LIVE_GEMINI_KEY).toBeUndefined();
+        expect(process.env.QUANTCLAW_LIVE_OPENAI_KEY).toBeUndefined();
+        expect(process.env.QUANTCLAW_GATEWAY_TOKEN).toBeUndefined();
+        expect(process.env.QUANTCLAW_GATEWAY_PASSWORD).toBeUndefined();
         expect(process.env.OPENCLAW_GATEWAY_SECRET).toBeUndefined();
       });
     });
@@ -207,25 +207,25 @@ describe("loadDotEnv", () => {
     });
   });
 
-  it("blocks path-override vars (OPENCLAW_AGENT_DIR, PI_CODING_AGENT_DIR, OPENCLAW_OAUTH_DIR) from workspace .env", async () => {
+  it("blocks path-override vars (QUANTCLAW_AGENT_DIR, PI_CODING_AGENT_DIR, OPENCLAW_OAUTH_DIR) from workspace .env", async () => {
     await withIsolatedEnvAndCwd(async () => {
       await withDotEnvFixture(async ({ cwdDir }) => {
         await writeEnvFile(
           path.join(cwdDir, ".env"),
           [
-            "OPENCLAW_AGENT_DIR=./evil-agent",
+            "QUANTCLAW_AGENT_DIR=./evil-agent",
             "PI_CODING_AGENT_DIR=./evil-coding",
             "OPENCLAW_OAUTH_DIR=./evil-oauth",
           ].join("\n"),
         );
 
-        delete process.env.OPENCLAW_AGENT_DIR;
+        delete process.env.QUANTCLAW_AGENT_DIR;
         delete process.env.PI_CODING_AGENT_DIR;
         delete process.env.OPENCLAW_OAUTH_DIR;
 
         loadWorkspaceDotEnvFile(path.join(cwdDir, ".env"), { quiet: true });
 
-        expect(process.env.OPENCLAW_AGENT_DIR).toBeUndefined();
+        expect(process.env.QUANTCLAW_AGENT_DIR).toBeUndefined();
         expect(process.env.PI_CODING_AGENT_DIR).toBeUndefined();
         expect(process.env.OPENCLAW_OAUTH_DIR).toBeUndefined();
       });
@@ -263,12 +263,12 @@ describe("loadDotEnv", () => {
             "OPENAI_API_KEY=sk-openai-trusted-key",
             "OPENAI_API_KEYS=sk-openai-a,sk-openai-b",
             "OPENAI_API_KEY_SECONDARY=sk-openai-secondary",
-            "OPENCLAW_LIVE_ANTHROPIC_KEY=sk-ant-live",
-            "OPENCLAW_LIVE_ANTHROPIC_KEYS=sk-ant-live-a,sk-ant-live-b",
-            "OPENCLAW_LIVE_GEMINI_KEY=sk-gemini-live",
-            "OPENCLAW_LIVE_OPENAI_KEY=sk-openai-live",
-            "OPENCLAW_GATEWAY_TOKEN=trusted-token",
-            "OPENCLAW_GATEWAY_PASSWORD=trusted-password",
+            "QUANTCLAW_LIVE_ANTHROPIC_KEY=sk-ant-live",
+            "QUANTCLAW_LIVE_ANTHROPIC_KEYS=sk-ant-live-a,sk-ant-live-b",
+            "QUANTCLAW_LIVE_GEMINI_KEY=sk-gemini-live",
+            "QUANTCLAW_LIVE_OPENAI_KEY=sk-openai-live",
+            "QUANTCLAW_GATEWAY_TOKEN=trusted-token",
+            "QUANTCLAW_GATEWAY_PASSWORD=trusted-password",
             "OPENCLAW_GATEWAY_SECRET=trusted-secret",
           ].join("\n"),
         );
@@ -279,12 +279,12 @@ describe("loadDotEnv", () => {
         delete process.env.OPENAI_API_KEY;
         delete process.env.OPENAI_API_KEYS;
         delete process.env.OPENAI_API_KEY_SECONDARY;
-        delete process.env.OPENCLAW_LIVE_ANTHROPIC_KEY;
-        delete process.env.OPENCLAW_LIVE_ANTHROPIC_KEYS;
-        delete process.env.OPENCLAW_LIVE_GEMINI_KEY;
-        delete process.env.OPENCLAW_LIVE_OPENAI_KEY;
-        delete process.env.OPENCLAW_GATEWAY_TOKEN;
-        delete process.env.OPENCLAW_GATEWAY_PASSWORD;
+        delete process.env.QUANTCLAW_LIVE_ANTHROPIC_KEY;
+        delete process.env.QUANTCLAW_LIVE_ANTHROPIC_KEYS;
+        delete process.env.QUANTCLAW_LIVE_GEMINI_KEY;
+        delete process.env.QUANTCLAW_LIVE_OPENAI_KEY;
+        delete process.env.QUANTCLAW_GATEWAY_TOKEN;
+        delete process.env.QUANTCLAW_GATEWAY_PASSWORD;
         delete process.env.OPENCLAW_GATEWAY_SECRET;
 
         loadDotEnv({ quiet: true });
@@ -295,12 +295,12 @@ describe("loadDotEnv", () => {
         expect(process.env.OPENAI_API_KEY).toBe("sk-openai-trusted-key");
         expect(process.env.OPENAI_API_KEYS).toBe("sk-openai-a,sk-openai-b");
         expect(process.env.OPENAI_API_KEY_SECONDARY).toBe("sk-openai-secondary");
-        expect(process.env.OPENCLAW_LIVE_ANTHROPIC_KEY).toBe("sk-ant-live");
-        expect(process.env.OPENCLAW_LIVE_ANTHROPIC_KEYS).toBe("sk-ant-live-a,sk-ant-live-b");
-        expect(process.env.OPENCLAW_LIVE_GEMINI_KEY).toBe("sk-gemini-live");
-        expect(process.env.OPENCLAW_LIVE_OPENAI_KEY).toBe("sk-openai-live");
-        expect(process.env.OPENCLAW_GATEWAY_TOKEN).toBe("trusted-token");
-        expect(process.env.OPENCLAW_GATEWAY_PASSWORD).toBe("trusted-password");
+        expect(process.env.QUANTCLAW_LIVE_ANTHROPIC_KEY).toBe("sk-ant-live");
+        expect(process.env.QUANTCLAW_LIVE_ANTHROPIC_KEYS).toBe("sk-ant-live-a,sk-ant-live-b");
+        expect(process.env.QUANTCLAW_LIVE_GEMINI_KEY).toBe("sk-gemini-live");
+        expect(process.env.QUANTCLAW_LIVE_OPENAI_KEY).toBe("sk-openai-live");
+        expect(process.env.QUANTCLAW_GATEWAY_TOKEN).toBe("trusted-token");
+        expect(process.env.QUANTCLAW_GATEWAY_PASSWORD).toBe("trusted-password");
         expect(process.env.OPENCLAW_GATEWAY_SECRET).toBe("trusted-secret");
       });
     });

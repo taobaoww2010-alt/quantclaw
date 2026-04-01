@@ -85,7 +85,7 @@ describe("doctor state integrity oauth dir checks", () => {
 
   beforeEach(() => {
     envSnapshot = captureEnv();
-    tempHome = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-doctor-state-integrity-"));
+    tempHome = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-doctor-state-integrity-"));
     process.env.HOME = tempHome;
     process.env.OPENCLAW_HOME = tempHome;
     process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".openclaw");

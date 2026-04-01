@@ -37,7 +37,7 @@ describe("runGatewayUpdate", () => {
   let tempDir: string;
 
   beforeAll(async () => {
-    fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-update-"));
+    fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-update-"));
   });
 
   afterAll(async () => {
@@ -49,7 +49,7 @@ describe("runGatewayUpdate", () => {
   beforeEach(async () => {
     tempDir = path.join(fixtureRoot, `case-${caseId++}`);
     await fs.mkdir(tempDir, { recursive: true });
-    await fs.writeFile(path.join(tempDir, "openclaw.mjs"), "export {};\n", "utf-8");
+    await fs.writeFile(path.join(tempDir, "quantclaw.mjs"), "export {};\n", "utf-8");
   });
 
   afterEach(async () => {
@@ -65,7 +65,7 @@ describe("runGatewayUpdate", () => {
     const calls: string[] = [];
     let uiBuildCount = 0;
     const doctorNodePath = await resolveStableNodePath(process.execPath);
-    const doctorKey = `${doctorNodePath} ${path.join(tempDir, "openclaw.mjs")} doctor --non-interactive --fix`;
+    const doctorKey = `${doctorNodePath} ${path.join(tempDir, "quantclaw.mjs")} doctor --non-interactive --fix`;
 
     const runCommand = async (argv: string[]) => {
       const key = argv.join(" ");
@@ -117,7 +117,7 @@ describe("runGatewayUpdate", () => {
 
   async function setupGitCheckout(options?: { packageManager?: string }) {
     await fs.mkdir(path.join(tempDir, ".git"));
-    const pkg: Record<string, string> = { name: "openclaw", version: "1.0.0" };
+    const pkg: Record<string, string> = { name: "quantclaw", version: "1.0.0" };
     if (options?.packageManager) {
       pkg.packageManager = options.packageManager;
     }
@@ -223,7 +223,7 @@ describe("runGatewayUpdate", () => {
     await fs.mkdir(pkgRoot, { recursive: true });
     await fs.writeFile(
       path.join(pkgRoot, "package.json"),
-      JSON.stringify({ name: "openclaw", version }),
+      JSON.stringify({ name: "quantclaw", version }),
       "utf-8",
     );
     await writeBundledRuntimeSidecars(pkgRoot);
@@ -232,7 +232,7 @@ describe("runGatewayUpdate", () => {
   async function writeGlobalPackageVersion(pkgRoot: string, version = "2.0.0") {
     await fs.writeFile(
       path.join(pkgRoot, "package.json"),
-      JSON.stringify({ name: "openclaw", version }),
+      JSON.stringify({ name: "quantclaw", version }),
       "utf-8",
     );
     await writeBundledRuntimeSidecars(pkgRoot);
@@ -248,7 +248,7 @@ describe("runGatewayUpdate", () => {
 
   async function createGlobalPackageFixture(rootDir: string) {
     const nodeModules = path.join(rootDir, "node_modules");
-    const pkgRoot = path.join(nodeModules, "openclaw");
+    const pkgRoot = path.join(nodeModules, "quantclaw");
     await seedGlobalPackageRoot(pkgRoot);
     return { nodeModules, pkgRoot };
   }
@@ -364,7 +364,7 @@ describe("runGatewayUpdate", () => {
       "pnpm install": { stdout: "" },
       "pnpm build": { stdout: "" },
       "pnpm ui:build": { stdout: "" },
-      [`${doctorNodePath} ${path.join(tempDir, "openclaw.mjs")} doctor --non-interactive --fix`]: {
+      [`${doctorNodePath} ${path.join(tempDir, "quantclaw.mjs")} doctor --non-interactive --fix`]: {
         stdout: "",
       },
     });
@@ -384,7 +384,7 @@ describe("runGatewayUpdate", () => {
       installCommand: "npm install --no-package-lock --legacy-peer-deps",
       buildCommand: "npm run build",
       uiBuildCommand: "npm run ui:build",
-      doctorCommand: `${process.execPath} ${path.join(tempDir, "openclaw.mjs")} doctor --non-interactive`,
+      doctorCommand: `${process.execPath} ${path.join(tempDir, "quantclaw.mjs")} doctor --non-interactive`,
       onCommand: (key) => {
         if (key === "pnpm --version") {
           throw new Error("spawn pnpm ENOENT");
@@ -420,7 +420,7 @@ describe("runGatewayUpdate", () => {
       installCommand: "pnpm install",
       buildCommand: "pnpm build",
       uiBuildCommand: "pnpm ui:build",
-      doctorCommand: `${process.execPath} ${path.join(tempDir, "openclaw.mjs")} doctor --non-interactive`,
+      doctorCommand: `${process.execPath} ${path.join(tempDir, "quantclaw.mjs")} doctor --non-interactive`,
       onCommand: (key) => {
         if (key === "pnpm --version") {
           pnpmVersionChecks += 1;
@@ -455,7 +455,7 @@ describe("runGatewayUpdate", () => {
   it("skips update when no git root", async () => {
     await fs.writeFile(
       path.join(tempDir, "package.json"),
-      JSON.stringify({ name: "openclaw", packageManager: "pnpm@8.0.0" }),
+      JSON.stringify({ name: "quantclaw", packageManager: "pnpm@8.0.0" }),
       "utf-8",
     );
     await fs.writeFile(path.join(tempDir, "pnpm-lock.yaml"), "", "utf-8");
@@ -479,7 +479,7 @@ describe("runGatewayUpdate", () => {
     tag?: string;
   }): Promise<{ calls: string[]; result: Awaited<ReturnType<typeof runGatewayUpdate>> }> {
     const nodeModules = path.join(tempDir, "node_modules");
-    const pkgRoot = path.join(nodeModules, "openclaw");
+    const pkgRoot = path.join(nodeModules, "quantclaw");
     await seedGlobalPackageRoot(pkgRoot);
 
     const { calls, runCommand } = createGlobalInstallHarness({
@@ -489,7 +489,7 @@ describe("runGatewayUpdate", () => {
       onInstall: async () => {
         await fs.writeFile(
           path.join(pkgRoot, "package.json"),
-          JSON.stringify({ name: "openclaw", version: "2.0.0" }),
+          JSON.stringify({ name: "quantclaw", version: "2.0.0" }),
           "utf-8",
         );
       },
@@ -601,7 +601,7 @@ describe("runGatewayUpdate", () => {
 
   it("cleans stale npm rename dirs before global update", async () => {
     const nodeModules = path.join(tempDir, "node_modules");
-    const pkgRoot = path.join(nodeModules, "openclaw");
+    const pkgRoot = path.join(nodeModules, "quantclaw");
     const staleDir = path.join(nodeModules, ".openclaw-stale");
     await fs.mkdir(staleDir, { recursive: true });
     await seedGlobalPackageRoot(pkgRoot);
@@ -625,7 +625,7 @@ describe("runGatewayUpdate", () => {
 
   it("retries global npm update with --omit=optional when initial install fails", async () => {
     const nodeModules = path.join(tempDir, "node_modules");
-    const pkgRoot = path.join(nodeModules, "openclaw");
+    const pkgRoot = path.join(nodeModules, "quantclaw");
     await seedGlobalPackageRoot(pkgRoot);
 
     let firstAttempt = true;
@@ -678,7 +678,7 @@ describe("runGatewayUpdate", () => {
       onInstall: async () => {
         await fs.writeFile(
           path.join(pkgRoot, "package.json"),
-          JSON.stringify({ name: "openclaw", version: "2.0.0" }),
+          JSON.stringify({ name: "quantclaw", version: "2.0.0" }),
           "utf-8",
         );
         await fs.rm(path.join(pkgRoot, "dist"), { recursive: true, force: true });
@@ -699,7 +699,7 @@ describe("runGatewayUpdate", () => {
     const localAppData = path.join(tempDir, "local-app-data");
     const portableGitMingw = path.join(
       localAppData,
-      "OpenClaw",
+      "☯️ QuantClaw",
       "deps",
       "portable-git",
       "mingw64",
@@ -707,7 +707,7 @@ describe("runGatewayUpdate", () => {
     );
     const portableGitUsr = path.join(
       localAppData,
-      "OpenClaw",
+      "☯️ QuantClaw",
       "deps",
       "portable-git",
       "usr",
@@ -809,7 +809,7 @@ describe("runGatewayUpdate", () => {
 
   it("fails with a clear reason when openclaw.mjs is missing", async () => {
     await setupGitCheckout({ packageManager: "pnpm@8.0.0" });
-    await fs.rm(path.join(tempDir, "openclaw.mjs"), { force: true });
+    await fs.rm(path.join(tempDir, "quantclaw.mjs"), { force: true });
 
     const stableTag = "v1.0.1-1";
     const { runner } = createRunner({
@@ -823,7 +823,7 @@ describe("runGatewayUpdate", () => {
 
     expect(result.status).toBe("error");
     expect(result.reason).toBe("doctor-entry-missing");
-    expect(result.steps.at(-1)?.name).toBe("openclaw doctor entry");
+    expect(result.steps.at(-1)?.name).toBe("quantclaw doctor entry");
   });
 
   it("repairs UI assets when doctor run removes control-ui files", async () => {

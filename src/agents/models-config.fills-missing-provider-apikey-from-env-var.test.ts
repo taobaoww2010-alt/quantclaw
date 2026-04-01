@@ -4,14 +4,14 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import type { OpenClawConfig } from "../config/config.js";
 import { validateConfigObject } from "../config/validation.js";
-import { resolveOpenClawAgentDir } from "./agent-paths.js";
+import { resolveQuantClawAgentDir } from "./agent-paths.js";
 import { NON_ENV_SECRETREF_MARKER } from "./model-auth-markers.js";
 import {
   CUSTOM_PROXY_MODELS_CONFIG,
   installModelsConfigTestHooks,
   withModelsTempHome as withTempHome,
 } from "./models-config.e2e-harness.js";
-import { ensureOpenClawModelsJson } from "./models-config.js";
+import { ensureQuantClawModelsJson } from "./models-config.js";
 import { readGeneratedModelsJson } from "./models-config.test-utils.js";
 
 installModelsConfigTestHooks();
@@ -33,7 +33,7 @@ async function withEnvVar(name: string, value: string, run: () => Promise<void>)
 }
 
 async function writeAgentModelsJson(content: unknown): Promise<void> {
-  const agentDir = resolveOpenClawAgentDir();
+  const agentDir = resolveQuantClawAgentDir();
   await fs.mkdir(agentDir, { recursive: true });
   await fs.writeFile(
     path.join(agentDir, MODELS_JSON_NAME),
@@ -92,7 +92,7 @@ async function runCustomProviderMergeTest(params: {
   const existingProviderKey = params.existingProviderKey ?? "custom";
   const configProviderKey = params.configProviderKey ?? "custom";
   await writeAgentModelsJson({ providers: { [existingProviderKey]: params.seedProvider } });
-  await ensureOpenClawModelsJson({
+  await ensureQuantClawModelsJson({
     models: {
       mode: "merge",
       providers: {
@@ -135,7 +135,7 @@ async function expectCustomProviderApiKeyRewrite(params: {
       },
     });
 
-    await ensureOpenClawModelsJson({
+    await ensureQuantClawModelsJson({
       models: {
         mode: "merge",
         providers: {
@@ -224,7 +224,7 @@ async function expectOpenAiEnvMarkerApiKey(options?: { seedMergedProvider?: bool
         });
       }
 
-      await ensureOpenClawModelsJson(
+      await ensureQuantClawModelsJson(
         createOpenAiConfigWithResolvedApiKey(options?.seedMergedProvider),
       );
       const result = await readGeneratedModelsJson<{
@@ -243,7 +243,7 @@ async function expectMoonshotTokenLimits(params: {
 }) {
   await withTempHome(async () => {
     await withEnvVar("MOONSHOT_API_KEY", "sk-moonshot-test", async () => {
-      await ensureOpenClawModelsJson(
+      await ensureQuantClawModelsJson(
         createMoonshotConfig({
           contextWindow: params.contextWindow,
           maxTokens: params.maxTokens,
@@ -287,7 +287,7 @@ describe("models-config", () => {
         throw new Error("expected config to validate");
       }
 
-      await ensureOpenClawModelsJson(validated.config);
+      await ensureQuantClawModelsJson(validated.config);
 
       const parsed = await readGeneratedModelsJson<{
         providers: Record<string, { api?: string; models?: Array<{ id: string; api?: string }> }>;
@@ -323,7 +323,7 @@ describe("models-config", () => {
           },
         };
 
-        await ensureOpenClawModelsJson(cfg);
+        await ensureQuantClawModelsJson(cfg);
 
         const parsed = await readGeneratedModelsJson<{
           providers: Record<string, { apiKey?: string; models?: Array<{ id: string }> }>;
@@ -335,7 +335,7 @@ describe("models-config", () => {
 
   it("fills anthropic-vertex apiKey with the ADC sentinel when models exist", async () => {
     await withTempHome(async () => {
-      const adcDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-adc-"));
+      const adcDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-adc-"));
       const credentialsPath = path.join(adcDir, "application_default_credentials.json");
       await fs.writeFile(credentialsPath, JSON.stringify({ project_id: "vertex-project" }), "utf8");
       const previousCredentials = process.env.GOOGLE_APPLICATION_CREDENTIALS;
@@ -343,7 +343,7 @@ describe("models-config", () => {
       try {
         process.env.GOOGLE_APPLICATION_CREDENTIALS = credentialsPath;
 
-        await ensureOpenClawModelsJson({
+        await ensureQuantClawModelsJson({
           models: {
             providers: {
               "anthropic-vertex": {
@@ -403,7 +403,7 @@ describe("models-config", () => {
         },
       });
 
-      await ensureOpenClawModelsJson(CUSTOM_PROXY_MODELS_CONFIG);
+      await ensureQuantClawModelsJson(CUSTOM_PROXY_MODELS_CONFIG);
 
       const parsed = await readGeneratedModelsJson<{
         providers: Record<string, { baseUrl?: string }>;
@@ -474,7 +474,7 @@ describe("models-config", () => {
 
   it("replaces stale merged apiKey when provider is SecretRef-managed via auth-profiles", async () => {
     await withTempHome(async () => {
-      const agentDir = resolveOpenClawAgentDir();
+      const agentDir = resolveQuantClawAgentDir();
       await fs.mkdir(agentDir, { recursive: true });
       await fs.writeFile(
         path.join(agentDir, "auth-profiles.json"),
@@ -505,7 +505,7 @@ describe("models-config", () => {
         },
       });
 
-      await ensureOpenClawModelsJson({
+      await ensureQuantClawModelsJson({
         models: {
           mode: "merge",
           providers: {},
@@ -547,7 +547,7 @@ describe("models-config", () => {
       await withEnvVar("MOONSHOT_API_KEY", "sk-moonshot-test", async () => {
         const cfg = createMoonshotConfig({ contextWindow: 1024, maxTokens: 256 });
 
-        await ensureOpenClawModelsJson(cfg);
+        await ensureQuantClawModelsJson(cfg);
 
         const parsed = await readGeneratedModelsJson<{
           providers: Record<

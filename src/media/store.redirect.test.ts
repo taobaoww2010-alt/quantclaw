@@ -7,7 +7,7 @@ import { createPinnedLookup } from "../infra/net/ssrf.js";
 import { captureEnv } from "../test-utils/env.js";
 import { saveMediaSource, setMediaStoreNetworkDepsForTest } from "./store.js";
 
-const HOME = path.join(os.tmpdir(), "openclaw-home-redirect");
+const HOME = path.join(os.tmpdir(), "quantclaw-home-redirect");
 const mockRequest = vi.fn();
 
 function createMockHttpExchange() {
@@ -161,20 +161,20 @@ describe("media store redirects", () => {
       headers: {
         Accept: "text/plain",
         Authorization: "Bearer secret-token",
-        "User-Agent": "OpenClawTest/1.0",
+        "User-Agent": "☯️ QuantClawTest/1.0",
       },
       assertRequests: () => {
         expect(mockRequest.mock.calls[0]?.[1]).toMatchObject({
           headers: {
             Accept: "text/plain",
             Authorization: "Bearer secret-token",
-            "User-Agent": "OpenClawTest/1.0",
+            "User-Agent": "☯️ QuantClawTest/1.0",
           },
         });
         expect(mockRequest.mock.calls[1]?.[1]).toMatchObject({
           headers: {
             accept: "text/plain",
-            "user-agent": "OpenClawTest/1.0",
+            "user-agent": "☯️ QuantClawTest/1.0",
           },
         });
         expect(mockRequest.mock.calls[1]?.[1]).not.toMatchObject({

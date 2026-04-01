@@ -20,7 +20,7 @@ describe("restart sentinel", () => {
 
   beforeEach(async () => {
     envSnapshot = captureEnv(["OPENCLAW_STATE_DIR"]);
-    tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-sentinel-"));
+    tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-sentinel-"));
     process.env.OPENCLAW_STATE_DIR = tempDir;
   });
 
@@ -191,7 +191,7 @@ describe("restart sentinel message dedup", () => {
 
   it("formats the non-interactive doctor command", () => {
     expect(formatDoctorNonInteractiveHint({ PATH: "/usr/bin:/bin" })).toContain(
-      "openclaw doctor --non-interactive",
+      "quantclaw doctor --non-interactive",
     );
   });
 });

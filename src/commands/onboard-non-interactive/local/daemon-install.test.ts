@@ -47,7 +47,7 @@ describe("installGatewayDaemonNonInteractive", () => {
       warnings: [],
     });
     buildGatewayInstallPlan.mockResolvedValue({
-      programArguments: ["openclaw", "gateway", "run"],
+      programArguments: ["quantclaw", "gateway", "run"],
       workingDirectory: "/tmp",
       environment: {},
     });
@@ -64,7 +64,7 @@ describe("installGatewayDaemonNonInteractive", () => {
             token: {
               source: "env",
               provider: "default",
-              id: "OPENCLAW_GATEWAY_TOKEN",
+              id: "QUANTCLAW_GATEWAY_TOKEN",
             },
           },
         },

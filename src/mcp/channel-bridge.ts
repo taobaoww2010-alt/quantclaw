@@ -91,7 +91,7 @@ export class OpenClawChannelBridge {
     const gatewayUrlOverrideSource =
       connection.urlSource === "cli --url"
         ? "cli"
-        : connection.urlSource === "env OPENCLAW_GATEWAY_URL"
+        : connection.urlSource === "env QUANTCLAW_GATEWAY_URL"
           ? "env"
           : undefined;
     const creds = await resolveGatewayConnectionAuth({
@@ -114,7 +114,7 @@ export class OpenClawChannelBridge {
       token: creds.token,
       password: creds.password,
       clientName: GATEWAY_CLIENT_NAMES.CLI,
-      clientDisplayName: "OpenClaw MCP",
+      clientDisplayName: "☯️ QuantClaw MCP",
       clientVersion: VERSION,
       mode: GATEWAY_CLIENT_MODES.CLI,
       scopes: [READ_SCOPE, WRITE_SCOPE, APPROVALS_SCOPE],

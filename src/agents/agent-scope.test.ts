@@ -415,7 +415,7 @@ describe("resolveAgentConfig", () => {
   });
 
   it("uses OPENCLAW_HOME for default agent workspace", () => {
-    const home = path.join(path.sep, "srv", "openclaw-home");
+    const home = path.join(path.sep, "srv", "quantclaw-home");
     vi.stubEnv("OPENCLAW_HOME", home);
 
     const workspace = resolveAgentWorkspaceDir({} as OpenClawConfig, "main");
@@ -423,7 +423,7 @@ describe("resolveAgentConfig", () => {
   });
 
   it("uses OPENCLAW_HOME for default agentDir", () => {
-    const home = path.join(path.sep, "srv", "openclaw-home");
+    const home = path.join(path.sep, "srv", "quantclaw-home");
     vi.stubEnv("OPENCLAW_HOME", home);
     // Clear state dir so it falls back to OPENCLAW_HOME
     vi.stubEnv("OPENCLAW_STATE_DIR", "");
@@ -435,7 +435,7 @@ describe("resolveAgentConfig", () => {
 
 describe("resolveAgentIdByWorkspacePath", () => {
   it("returns the most specific workspace match for a directory", () => {
-    const workspaceRoot = `/tmp/openclaw-agent-scope-${Date.now()}-root`;
+    const workspaceRoot = `/tmp/quantclaw-agent-scope-${Date.now()}-root`;
     const opsWorkspace = `${workspaceRoot}/projects/ops`;
     const cfg: OpenClawConfig = {
       agents: {
@@ -450,7 +450,7 @@ describe("resolveAgentIdByWorkspacePath", () => {
   });
 
   it("returns undefined when directory has no matching workspace", () => {
-    const workspaceRoot = `/tmp/openclaw-agent-scope-${Date.now()}-root`;
+    const workspaceRoot = `/tmp/quantclaw-agent-scope-${Date.now()}-root`;
     const cfg: OpenClawConfig = {
       agents: {
         list: [
@@ -461,12 +461,12 @@ describe("resolveAgentIdByWorkspacePath", () => {
     };
 
     expect(
-      resolveAgentIdByWorkspacePath(cfg, `/tmp/openclaw-agent-scope-${Date.now()}-unrelated`),
+      resolveAgentIdByWorkspacePath(cfg, `/tmp/quantclaw-agent-scope-${Date.now()}-unrelated`),
     ).toBeUndefined();
   });
 
   it("matches workspace paths through symlink aliases", () => {
-    const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-agent-scope-"));
+    const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-agent-scope-"));
     const realWorkspaceRoot = path.join(tempRoot, "real-root");
     const realOpsWorkspace = path.join(realWorkspaceRoot, "projects", "ops");
     const aliasWorkspaceRoot = path.join(tempRoot, "alias-root");
@@ -501,7 +501,7 @@ describe("resolveAgentIdByWorkspacePath", () => {
 
 describe("resolveAgentIdsByWorkspacePath", () => {
   it("returns matching workspaces ordered by specificity", () => {
-    const workspaceRoot = `/tmp/openclaw-agent-scope-${Date.now()}-root`;
+    const workspaceRoot = `/tmp/quantclaw-agent-scope-${Date.now()}-root`;
     const opsWorkspace = `${workspaceRoot}/projects/ops`;
     const opsDevWorkspace = `${opsWorkspace}/dev`;
     const cfg: OpenClawConfig = {

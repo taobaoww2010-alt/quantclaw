@@ -52,13 +52,13 @@ describe("doctor exec safe bin helpers", () => {
             "jq supports broad jq programs and builtins (for example `env`), so prefer explicit allowlist entries or approval-gated runs instead of safeBins.",
         },
       ],
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "quantclaw doctor --fix",
     });
 
     expect(warnings).toEqual([
       expect.stringContaining("tools.exec.safeBins includes interpreter/runtime 'node'"),
       expect.stringContaining("agents.list.runner.tools.exec.safeBins includes 'jq'"),
-      expect.stringContaining('Run "openclaw doctor --fix"'),
+      expect.stringContaining('Run "quantclaw doctor --fix"'),
     ]);
   });
 
@@ -82,7 +82,7 @@ describe("doctor exec safe bin helpers", () => {
   });
 
   it("flags safeBins that resolve outside trusted directories", () => {
-    const tempDir = mkdtempSync(join(tmpdir(), "openclaw-safe-bin-"));
+    const tempDir = mkdtempSync(join(tmpdir(), "quantclaw-safe-bin-"));
     const binPath = join(tempDir, "custom-safe-bin");
     writeFileSync(binPath, "#!/bin/sh\nexit 0\n");
     chmodSync(binPath, 0o755);

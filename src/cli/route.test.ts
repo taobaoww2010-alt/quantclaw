@@ -67,14 +67,14 @@ describe("tryRouteCli", () => {
   });
 
   it("skips config guard for routed status --json commands", async () => {
-    await expect(tryRouteCli(["node", "openclaw", "status", "--json"])).resolves.toBe(true);
+    await expect(tryRouteCli(["node", "quantclaw", "status", "--json"])).resolves.toBe(true);
 
     expect(ensureConfigReadyMock).not.toHaveBeenCalled();
     expect(ensurePluginRegistryLoadedMock).not.toHaveBeenCalled();
   });
 
   it("does not pass suppressDoctorStdout for routed non-json commands", async () => {
-    await expect(tryRouteCli(["node", "openclaw", "status"])).resolves.toBe(true);
+    await expect(tryRouteCli(["node", "quantclaw", "status"])).resolves.toBe(true);
 
     expect(ensureConfigReadyMock).toHaveBeenCalledWith({
       runtime: expect.any(Object),
@@ -96,7 +96,7 @@ describe("tryRouteCli", () => {
       captured.push(loggingState.forceConsoleToStderr);
     });
 
-    await tryRouteCli(["node", "openclaw", "agents", "--json"]);
+    await tryRouteCli(["node", "quantclaw", "agents", "--json"]);
 
     expect(ensurePluginRegistryLoadedMock).toHaveBeenCalled();
     expect(captured[0]).toBe(true);
@@ -114,7 +114,7 @@ describe("tryRouteCli", () => {
       captured.push(loggingState.forceConsoleToStderr);
     });
 
-    await tryRouteCli(["node", "openclaw", "agents"]);
+    await tryRouteCli(["node", "quantclaw", "agents"]);
 
     expect(ensurePluginRegistryLoadedMock).toHaveBeenCalled();
     expect(captured[0]).toBe(false);
@@ -122,9 +122,9 @@ describe("tryRouteCli", () => {
   });
 
   it("routes status when root options precede the command", async () => {
-    await expect(tryRouteCli(["node", "openclaw", "--log-level", "debug", "status"])).resolves.toBe(
-      true,
-    );
+    await expect(
+      tryRouteCli(["node", "quantclaw", "--log-level", "debug", "status"]),
+    ).resolves.toBe(true);
 
     expect(findRoutedCommandMock).toHaveBeenCalledWith(["status"]);
     expect(ensureConfigReadyMock).toHaveBeenCalledWith({

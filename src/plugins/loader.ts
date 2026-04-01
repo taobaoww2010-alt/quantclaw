@@ -477,7 +477,7 @@ function createPluginRecord(params: {
     name: params.name ?? params.id,
     description: params.description,
     version: params.version,
-    format: params.format ?? "openclaw",
+    format: params.format ?? "quantclaw",
     bundleFormat: params.bundleFormat,
     bundleCapabilities: params.bundleCapabilities,
     source: params.source,

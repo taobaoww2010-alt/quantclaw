@@ -4,7 +4,7 @@
   "private": true,
   "description": "OpenClaw Deepgram media-understanding provider",
   "type": "module",
-  "openclaw": {
+  "quantclaw": {
     "extensions": [
       "./index.ts"
     ]

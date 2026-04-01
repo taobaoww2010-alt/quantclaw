@@ -120,11 +120,11 @@ describe("secrets runtime snapshot integration", () => {
     envSnapshot = captureEnv([
       "OPENCLAW_BUNDLED_PLUGINS_DIR",
       "OPENCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE",
-      "OPENCLAW_VERSION",
+      "QUANTCLAW_VERSION",
     ]);
     delete process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
     process.env.OPENCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE = "1";
-    delete process.env.OPENCLAW_VERSION;
+    delete process.env.QUANTCLAW_VERSION;
   });
 
   afterEach(() => {
@@ -140,7 +140,7 @@ describe("secrets runtime snapshot integration", () => {
       {
         OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
         OPENCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE: "1",
-        OPENCLAW_VERSION: undefined,
+        QUANTCLAW_VERSION: undefined,
       },
       async () => {
         const prepared = await prepareSecretsRuntimeSnapshot({
@@ -156,7 +156,7 @@ describe("secrets runtime snapshot integration", () => {
             },
           }),
           env: { OPENAI_API_KEY: "sk-runtime" },
-          agentDirs: ["/tmp/openclaw-agent-main"],
+          agentDirs: ["/tmp/quantclaw-agent-main"],
           loadAuthStore: () =>
             loadAuthStoreWithProfiles({
               "openai:default": {
@@ -171,7 +171,7 @@ describe("secrets runtime snapshot integration", () => {
 
         expect(loadConfig().models?.providers?.openai?.apiKey).toBe("sk-runtime");
         expect(
-          ensureAuthProfileStore("/tmp/openclaw-agent-main").profiles["openai:default"],
+          ensureAuthProfileStore("/tmp/quantclaw-agent-main").profiles["openai:default"],
         ).toMatchObject({
           type: "api_key",
           key: "sk-runtime",
@@ -184,7 +184,7 @@ describe("secrets runtime snapshot integration", () => {
     if (os.platform() === "win32") {
       return;
     }
-    await withTempHome("openclaw-secrets-runtime-write-", async (home) => {
+    await withTempHome("quantclaw-secrets-runtime-write-", async (home) => {
       const { secretFile, agentDir } = await createOpenAIFileRuntimeFixture(home);
 
       const prepared = await prepareSecretsRuntimeSnapshot({
@@ -210,7 +210,7 @@ describe("secrets runtime snapshot integration", () => {
     if (os.platform() === "win32") {
       return;
     }
-    await withTempHome("openclaw-secrets-runtime-refresh-fail-", async (home) => {
+    await withTempHome("quantclaw-secrets-runtime-refresh-fail-", async (home) => {
       const { secretFile, agentDir } = await createOpenAIFileRuntimeFixture(home);
 
       let loadAuthStoreCalls = 0;
@@ -260,7 +260,7 @@ describe("secrets runtime snapshot integration", () => {
       {
         OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
         OPENCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE: "1",
-        OPENCLAW_VERSION: undefined,
+        QUANTCLAW_VERSION: undefined,
       },
       async () => {
         await expect(
@@ -278,7 +278,7 @@ describe("secrets runtime snapshot integration", () => {
               },
             }),
             env: {},
-            agentDirs: ["/tmp/openclaw-agent-main"],
+            agentDirs: ["/tmp/quantclaw-agent-main"],
             loadAuthStore: () => ({ version: 1, profiles: {} }),
           }),
         ).rejects.toThrow(/MISSING_GATEWAY_AUTH_TOKEN/i);
@@ -289,7 +289,7 @@ describe("secrets runtime snapshot integration", () => {
   it(
     "keeps last-known-good runtime snapshot active when reload introduces unresolved active gateway auth refs",
     async () => {
-      await withTempHome("openclaw-secrets-runtime-gateway-auth-reload-lkg-", async (home) => {
+      await withTempHome("quantclaw-secrets-runtime-gateway-auth-reload-lkg-", async (home) => {
         const initialTokenRef = {
           source: "env",
           provider: "default",
@@ -313,7 +313,7 @@ describe("secrets runtime snapshot integration", () => {
           env: {
             GATEWAY_AUTH_TOKEN: "gateway-runtime-token",
           },
-          agentDirs: ["/tmp/openclaw-agent-main"],
+          agentDirs: ["/tmp/quantclaw-agent-main"],
           loadAuthStore: () => ({ version: 1, profiles: {} }),
         });
 
@@ -338,7 +338,7 @@ describe("secrets runtime snapshot integration", () => {
         expect(activeAfterFailure?.sourceConfig.gateway?.auth?.token).toEqual(initialTokenRef);
 
         const persistedConfig = JSON.parse(
-          await fs.readFile(path.join(home, ".openclaw", "openclaw.json"), "utf8"),
+          await fs.readFile(path.join(home, ".openclaw", "quantclaw.json"), "utf8"),
         ) as OpenClawConfig;
         expect(persistedConfig.gateway?.auth?.token).toEqual(missingTokenRef);
       });
@@ -349,7 +349,7 @@ describe("secrets runtime snapshot integration", () => {
   it(
     "keeps last-known-good web runtime snapshot when reload introduces unresolved active web refs",
     async () => {
-      await withTempHome("openclaw-secrets-runtime-web-reload-lkg-", async (home) => {
+      await withTempHome("quantclaw-secrets-runtime-web-reload-lkg-", async (home) => {
         const prepared = await prepareSecretsRuntimeSnapshot({
           config: asConfig({
             tools: {
@@ -366,7 +366,7 @@ describe("secrets runtime snapshot integration", () => {
           env: {
             WEB_SEARCH_GEMINI_API_KEY: "web-search-gemini-runtime-key",
           },
-          agentDirs: ["/tmp/openclaw-agent-main"],
+          agentDirs: ["/tmp/quantclaw-agent-main"],
           loadAuthStore: () => ({ version: 1, profiles: {} }),
         });
 
@@ -422,7 +422,7 @@ describe("secrets runtime snapshot integration", () => {
         expect(getActiveRuntimeWebToolsMetadata()?.search.selectedProvider).toBe("gemini");
 
         const persistedConfig = JSON.parse(
-          await fs.readFile(path.join(home, ".openclaw", "openclaw.json"), "utf8"),
+          await fs.readFile(path.join(home, ".openclaw", "quantclaw.json"), "utf8"),
         ) as OpenClawConfig;
         const persistedGoogleWebSearchConfig = persistedConfig.plugins?.entries?.google?.config as
           | { webSearch?: { apiKey?: unknown } }
@@ -438,7 +438,7 @@ describe("secrets runtime snapshot integration", () => {
   );
 
   it("recomputes config-derived agent dirs when refreshing active secrets runtime snapshots", async () => {
-    await withTempHome("openclaw-secrets-runtime-agent-dirs-", async (home) => {
+    await withTempHome("quantclaw-secrets-runtime-agent-dirs-", async (home) => {
       const mainAgentDir = path.join(home, ".openclaw", "agents", "main", "agent");
       const opsAgentDir = path.join(home, ".openclaw", "agents", "ops", "agent");
       await fs.mkdir(mainAgentDir, { recursive: true });

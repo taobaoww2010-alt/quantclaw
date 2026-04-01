@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { resolveOpenClawAgentDir } from "../agents/agent-paths.js";
+import { resolveQuantClawAgentDir } from "../agents/agent-paths.js";
 import { AUTH_PROFILE_FILENAME } from "../agents/auth-profiles/constants.js";
 import {
   connectOk,
@@ -26,7 +26,7 @@ function requireWs(): Awaited<ReturnType<typeof startServerWithClient>>["ws"] {
 }
 
 beforeAll(async () => {
-  sharedTempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-sessions-config-"));
+  sharedTempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-sessions-config-"));
   startedServer = await startServerWithClient(undefined, { controlUiEnabled: true });
   await connectOk(requireWs());
 });
@@ -126,7 +126,7 @@ describe("gateway config methods", () => {
     const missingEnvVar = `OPENCLAW_MISSING_AUTH_PROFILE_REF_${Date.now()}`;
     delete process.env[missingEnvVar];
 
-    const authStorePath = path.join(resolveOpenClawAgentDir(), AUTH_PROFILE_FILENAME);
+    const authStorePath = path.join(resolveQuantClawAgentDir(), AUTH_PROFILE_FILENAME);
     await fs.mkdir(path.dirname(authStorePath), { recursive: true });
     await fs.writeFile(
       authStorePath,

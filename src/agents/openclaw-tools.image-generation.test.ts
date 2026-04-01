@@ -37,7 +37,7 @@ function stubImageGenerationProviders() {
   ]);
 }
 
-describe("openclaw tools image generation registration", () => {
+describe("quantclaw tools image generation registration", () => {
   beforeEach(() => {
     vi.stubEnv("OPENAI_API_KEY", "");
     vi.stubEnv("OPENAI_API_KEYS", "");
@@ -61,7 +61,7 @@ describe("openclaw tools image generation registration", () => {
           },
         },
       }),
-      agentDir: "/tmp/openclaw-agent-main",
+      agentDir: "/tmp/quantclaw-agent-main",
     });
 
     expect(tools.map((tool) => tool.name)).toContain("image_generate");
@@ -73,7 +73,7 @@ describe("openclaw tools image generation registration", () => {
 
     const tools = createOpenClawTools({
       config: asConfig({}),
-      agentDir: "/tmp/openclaw-agent-main",
+      agentDir: "/tmp/quantclaw-agent-main",
     });
 
     expect(tools.map((tool) => tool.name)).toContain("image_generate");
@@ -84,7 +84,7 @@ describe("openclaw tools image generation registration", () => {
 
     const tools = createOpenClawTools({
       config: asConfig({}),
-      agentDir: "/tmp/openclaw-agent-main",
+      agentDir: "/tmp/quantclaw-agent-main",
     });
 
     expect(tools.map((tool) => tool.name)).not.toContain("image_generate");

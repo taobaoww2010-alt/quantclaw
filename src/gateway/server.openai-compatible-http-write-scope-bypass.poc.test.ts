@@ -38,7 +38,7 @@ describe("gateway OpenAI-compatible HTTP shared-secret auth", () => {
           "x-openclaw-scopes": "operator.approvals",
         },
         body: JSON.stringify({
-          model: "openclaw",
+          model: "quantclaw",
           messages: [{ role: "user", content: "hi" }],
         }),
       });
@@ -64,7 +64,7 @@ describe("gateway OpenAI-compatible HTTP shared-secret auth", () => {
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          model: "openclaw",
+          model: "quantclaw",
           messages: [{ role: "user", content: "hi" }],
         }),
       });
@@ -95,7 +95,7 @@ describe("gateway OpenAI-compatible HTTP shared-secret auth", () => {
           "x-openclaw-scopes": "operator.write",
         },
         body: JSON.stringify({
-          model: "openclaw",
+          model: "quantclaw",
           messages: [{ role: "user", content: "hi" }],
         }),
       });
@@ -138,7 +138,7 @@ describe("gateway OpenAI-compatible HTTP shared-secret auth", () => {
         },
         body: JSON.stringify({
           stream: false,
-          model: "openclaw",
+          model: "quantclaw",
           input: "hi",
         }),
       });
@@ -178,7 +178,7 @@ describe("gateway OpenAI-compatible HTTP shared-secret auth", () => {
         },
         body: JSON.stringify({
           stream: false,
-          model: "openclaw",
+          model: "quantclaw",
           input: "hi",
         }),
       });

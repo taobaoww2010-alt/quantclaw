@@ -11,7 +11,7 @@ const ROOT_DIR = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO_ROOT = resolve(ROOT_DIR, "..");
 const EXTENSIONS_DIR = resolve(REPO_ROOT, BUNDLED_PLUGIN_ROOT_DIR);
 const CORE_PLUGIN_ENTRY_IMPORT_RE =
-  /import\s*\{[^}]*\bdefinePluginEntry\b[^}]*\}\s*from\s*"openclaw\/plugin-sdk\/core"/;
+  /import\s*\{[^}]*\bdefinePluginEntry\b[^}]*\}\s*from\s*"quantclaw\/plugin-sdk\/core"/;
 const RUNTIME_ENTRY_HELPER_RE = /(^|\/)plugin-entry\.runtime\.[cm]?[jt]s$/;
 
 describe("plugin entry guardrails", () => {

@@ -99,7 +99,7 @@ describe("resolveSafeInstallDir", () => {
 
 describe("assertCanonicalPathWithinBase", () => {
   it("accepts in-base directories", async () => {
-    const baseDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-install-safe-"));
+    const baseDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-install-safe-"));
     try {
       const candidate = path.join(baseDir, "tools");
       await fs.mkdir(candidate, { recursive: true });
@@ -116,7 +116,7 @@ describe("assertCanonicalPathWithinBase", () => {
   });
 
   it("accepts missing candidate paths when their parent stays in base", async () => {
-    const baseDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-install-safe-"));
+    const baseDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-install-safe-"));
     try {
       const candidate = path.join(baseDir, "tools", "plugin");
       await fs.mkdir(path.dirname(candidate), { recursive: true });
@@ -133,7 +133,7 @@ describe("assertCanonicalPathWithinBase", () => {
   });
 
   it("rejects non-directory base paths", async () => {
-    const baseDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-install-safe-"));
+    const baseDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-install-safe-"));
     const baseFile = path.join(baseDir, "not-a-dir");
     await fs.writeFile(baseFile, "nope", "utf-8");
     try {
@@ -150,7 +150,7 @@ describe("assertCanonicalPathWithinBase", () => {
   });
 
   it("rejects non-directory candidate paths inside the base", async () => {
-    const baseDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-install-safe-"));
+    const baseDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-install-safe-"));
     const candidate = path.join(baseDir, "file.txt");
     await fs.writeFile(candidate, "nope", "utf-8");
     try {
@@ -169,8 +169,10 @@ describe("assertCanonicalPathWithinBase", () => {
   it.runIf(process.platform !== "win32")(
     "rejects symlinked candidate directories that escape the base",
     async () => {
-      const baseDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-install-safe-"));
-      const outsideDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-install-safe-outside-"));
+      const baseDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-install-safe-"));
+      const outsideDir = await fs.mkdtemp(
+        path.join(os.tmpdir(), "quantclaw-install-safe-outside-"),
+      );
       try {
         const linkDir = path.join(baseDir, "alias");
         await fs.symlink(outsideDir, linkDir);
@@ -189,7 +191,7 @@ describe("assertCanonicalPathWithinBase", () => {
   );
 
   it.runIf(process.platform !== "win32")("rejects symlinked base directories", async () => {
-    const parentDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-install-safe-"));
+    const parentDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-install-safe-"));
     const realBaseDir = path.join(parentDir, "real-base");
     const symlinkBaseDir = path.join(parentDir, "base-link");
     await fs.mkdir(realBaseDir, { recursive: true });

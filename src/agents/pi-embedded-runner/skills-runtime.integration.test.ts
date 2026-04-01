@@ -17,8 +17,8 @@ async function createTempDir(prefix: string) {
 }
 
 async function setupBundledDiffsPlugin() {
-  const bundledPluginsDir = await createTempDir("openclaw-bundled-");
-  const workspaceDir = await createTempDir("openclaw-workspace-");
+  const bundledPluginsDir = await createTempDir("quantclaw-bundled-");
+  const workspaceDir = await createTempDir("quantclaw-workspace-");
   const pluginRoot = path.join(bundledPluginsDir, "diffs");
 
   await writePluginWithSkill({

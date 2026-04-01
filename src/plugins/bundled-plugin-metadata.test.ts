@@ -94,7 +94,7 @@ describe("bundled plugin metadata", () => {
   });
 
   it("prefers built generated paths when present and falls back to source paths", () => {
-    const tempRoot = createGeneratedPluginTempRoot("openclaw-bundled-plugin-metadata-");
+    const tempRoot = createGeneratedPluginTempRoot("quantclaw-bundled-plugin-metadata-");
 
     fs.mkdirSync(path.join(tempRoot, "plugin"), { recursive: true });
     fs.writeFileSync(path.join(tempRoot, "plugin", "index.ts"), "export {};\n", "utf8");
@@ -105,7 +105,7 @@ describe("bundled plugin metadata", () => {
   });
 
   it("merges runtime channel schema metadata with manifest-owned channel config fields", () => {
-    const tempRoot = createGeneratedPluginTempRoot("openclaw-bundled-plugin-channel-configs-");
+    const tempRoot = createGeneratedPluginTempRoot("quantclaw-bundled-plugin-channel-configs-");
 
     writeJson(path.join(tempRoot, "extensions", "alpha", "package.json"), {
       name: "@openclaw/alpha",
@@ -120,7 +120,7 @@ describe("bundled plugin metadata", () => {
         },
       },
     });
-    writeJson(path.join(tempRoot, "extensions", "alpha", "openclaw.plugin.json"), {
+    writeJson(path.join(tempRoot, "extensions", "alpha", "quantclaw.plugin.json"), {
       id: "alpha",
       channels: ["alpha"],
       configSchema: { type: "object" },
@@ -182,7 +182,7 @@ describe("bundled plugin metadata", () => {
   });
 
   it("captures top-level public surface artifacts without duplicating the primary entrypoints", () => {
-    const tempRoot = createGeneratedPluginTempRoot("openclaw-bundled-plugin-public-artifacts-");
+    const tempRoot = createGeneratedPluginTempRoot("quantclaw-bundled-plugin-public-artifacts-");
 
     writeJson(path.join(tempRoot, "extensions", "alpha", "package.json"), {
       name: "@openclaw/alpha",
@@ -192,7 +192,7 @@ describe("bundled plugin metadata", () => {
         setupEntry: "./setup-entry.ts",
       },
     });
-    writeJson(path.join(tempRoot, "extensions", "alpha", "openclaw.plugin.json"), {
+    writeJson(path.join(tempRoot, "extensions", "alpha", "quantclaw.plugin.json"), {
       id: "alpha",
       configSchema: { type: "object" },
     });
@@ -226,7 +226,7 @@ describe("bundled plugin metadata", () => {
   });
 
   it("loads channel config metadata from built public surfaces in dist-only roots", () => {
-    const tempRoot = createGeneratedPluginTempRoot("openclaw-bundled-plugin-dist-config-");
+    const tempRoot = createGeneratedPluginTempRoot("quantclaw-bundled-plugin-dist-config-");
     const distRoot = path.join(tempRoot, "dist");
 
     writeJson(path.join(distRoot, "extensions", "alpha", "package.json"), {
@@ -241,7 +241,7 @@ describe("bundled plugin metadata", () => {
         },
       },
     });
-    writeJson(path.join(distRoot, "extensions", "alpha", "openclaw.plugin.json"), {
+    writeJson(path.join(distRoot, "extensions", "alpha", "quantclaw.plugin.json"), {
       id: "alpha",
       configSchema: {
         type: "object",

@@ -108,11 +108,11 @@ describe("plugins cli update", () => {
     const config = {
       plugins: {
         installs: {
-          "openclaw-codex-app-server": {
+          "quantclaw-codex-app-server": {
             source: "npm",
-            spec: "openclaw-codex-app-server",
-            installPath: "/tmp/openclaw-codex-app-server",
-            resolvedName: "openclaw-codex-app-server",
+            spec: "quantclaw-codex-app-server",
+            installPath: "/tmp/quantclaw-codex-app-server",
+            resolvedName: "quantclaw-codex-app-server",
           },
         },
       },
@@ -124,14 +124,14 @@ describe("plugins cli update", () => {
       outcomes: [],
     });
 
-    await runPluginsCommand(["plugins", "update", "openclaw-codex-app-server@beta"]);
+    await runPluginsCommand(["plugins", "update", "quantclaw-codex-app-server@beta"]);
 
     expect(updateNpmInstalledPlugins).toHaveBeenCalledWith(
       expect.objectContaining({
         config,
-        pluginIds: ["openclaw-codex-app-server"],
+        pluginIds: ["quantclaw-codex-app-server"],
         specOverrides: {
-          "openclaw-codex-app-server": "openclaw-codex-app-server@beta",
+          "quantclaw-codex-app-server": "quantclaw-codex-app-server@beta",
         },
       }),
     );
@@ -174,11 +174,11 @@ describe("plugins cli update", () => {
     const config = {
       plugins: {
         installs: {
-          "openclaw-codex-app-server": {
+          "quantclaw-codex-app-server": {
             source: "npm",
-            spec: "openclaw-codex-app-server",
-            installPath: "/tmp/openclaw-codex-app-server",
-            resolvedName: "openclaw-codex-app-server",
+            spec: "quantclaw-codex-app-server",
+            installPath: "/tmp/quantclaw-codex-app-server",
+            resolvedName: "quantclaw-codex-app-server",
           },
         },
       },
@@ -190,14 +190,14 @@ describe("plugins cli update", () => {
       outcomes: [],
     });
 
-    await runPluginsCommand(["plugins", "update", "openclaw-codex-app-server@0.2.0-beta.4"]);
+    await runPluginsCommand(["plugins", "update", "quantclaw-codex-app-server@0.2.0-beta.4"]);
 
     expect(updateNpmInstalledPlugins).toHaveBeenCalledWith(
       expect.objectContaining({
         config,
-        pluginIds: ["openclaw-codex-app-server"],
+        pluginIds: ["quantclaw-codex-app-server"],
         specOverrides: {
-          "openclaw-codex-app-server": "openclaw-codex-app-server@0.2.0-beta.4",
+          "quantclaw-codex-app-server": "quantclaw-codex-app-server@0.2.0-beta.4",
         },
       }),
     );
@@ -207,11 +207,11 @@ describe("plugins cli update", () => {
     const config = {
       plugins: {
         installs: {
-          "openclaw-codex-app-server": {
+          "quantclaw-codex-app-server": {
             source: "npm",
-            spec: "openclaw-codex-app-server@beta",
-            installPath: "/tmp/openclaw-codex-app-server",
-            resolvedName: "openclaw-codex-app-server",
+            spec: "quantclaw-codex-app-server@beta",
+            installPath: "/tmp/quantclaw-codex-app-server",
+            resolvedName: "quantclaw-codex-app-server",
           },
         },
       },
@@ -223,12 +223,12 @@ describe("plugins cli update", () => {
       outcomes: [],
     });
 
-    await runPluginsCommand(["plugins", "update", "openclaw-codex-app-server"]);
+    await runPluginsCommand(["plugins", "update", "quantclaw-codex-app-server"]);
 
     expect(updateNpmInstalledPlugins).toHaveBeenCalledWith(
       expect.objectContaining({
         config,
-        pluginIds: ["openclaw-codex-app-server"],
+        pluginIds: ["quantclaw-codex-app-server"],
       }),
     );
     expect(updateNpmInstalledPlugins).not.toHaveBeenCalledWith(

@@ -1778,7 +1778,7 @@ export type OpenClawPluginApi = {
 
 export type PluginOrigin = "bundled" | "global" | "workspace" | "config";
 
-export type PluginFormat = "openclaw" | "bundle";
+export type PluginFormat = "quantclaw" | "bundle";
 
 export type PluginBundleFormat = "codex" | "claude" | "cursor";
 
@@ -2432,7 +2432,7 @@ export type PluginHookBeforeInstallContext = {
   targetType: PluginInstallTargetType;
   /** Original install entrypoint/provenance. */
   requestKind: PluginInstallRequestKind;
-  /** Normalized origin of the install target (e.g. "openclaw-bundled", "plugin-package"). */
+  /** Normalized origin of the install target (e.g. "quantclaw-bundled", "plugin-package"). */
   origin?: string;
 };
 
@@ -2445,7 +2445,7 @@ export type PluginHookBeforeInstallEvent = {
   sourcePath: string;
   /** Whether the install target content is a file or directory. */
   sourcePathKind: PluginInstallSourcePathKind;
-  /** Normalized origin of the install target (e.g. "openclaw-bundled", "plugin-package"). */
+  /** Normalized origin of the install target (e.g. "quantclaw-bundled", "plugin-package"). */
   origin?: string;
   /** Install request provenance and caller mode. */
   request: PluginHookBeforeInstallRequest;

@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 async function withOpenRouterStateDir(run: (stateDir: string) => Promise<void>) {
-  const stateDir = mkdtempSync(join(tmpdir(), "openclaw-openrouter-capabilities-"));
+  const stateDir = mkdtempSync(join(tmpdir(), "quantclaw-openrouter-capabilities-"));
   process.env.OPENCLAW_STATE_DIR = stateDir;
   try {
     await run(stateDir);

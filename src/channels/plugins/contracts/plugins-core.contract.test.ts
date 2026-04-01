@@ -178,7 +178,7 @@ describe("channel plugin catalog", () => {
       "utf8",
     );
     fs.writeFileSync(
-      path.join(pluginDir, "openclaw.plugin.json"),
+      path.join(pluginDir, "quantclaw.plugin.json"),
       JSON.stringify({
         id: params.pluginId,
         configSchema: {},
@@ -231,7 +231,7 @@ describe("channel plugin catalog", () => {
     {
       name: "includes external catalog entries",
       setup: () => {
-        const dir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-catalog-"));
+        const dir = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-catalog-"));
         const catalogPath = path.join(dir, "catalog.json");
         writeCatalogFile(
           catalogPath,
@@ -253,7 +253,7 @@ describe("channel plugin catalog", () => {
     {
       name: "preserves plugin ids when they differ from channel ids",
       setup: () => {
-        const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-channel-catalog-state-"));
+        const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-channel-catalog-state-"));
         writeDiscoveredChannelPlugin({
           stateDir,
           packageName: "@vendor/demo-channel-plugin",
@@ -275,7 +275,7 @@ describe("channel plugin catalog", () => {
     {
       name: "keeps discovered plugins ahead of external catalog overrides",
       setup: () => {
-        const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-catalog-state-"));
+        const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-catalog-state-"));
         const catalogPath = path.join(stateDir, "catalog.json");
         writeDiscoveredChannelPlugin({
           stateDir,
@@ -325,7 +325,7 @@ describe("channel plugin catalog", () => {
     {
       name: "uses the provided env for external catalog path resolution",
       setup: () => {
-        const home = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-catalog-home-"));
+        const home = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-catalog-home-"));
         const catalogPath = path.join(home, "catalog.json");
         writeCatalogFile(
           catalogPath,
@@ -351,7 +351,7 @@ describe("channel plugin catalog", () => {
     {
       name: "uses the provided env for default catalog paths",
       setup: () => {
-        const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-catalog-state-"));
+        const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-catalog-state-"));
         const catalogPath = path.join(stateDir, "plugins", "catalog.json");
         fs.mkdirSync(path.dirname(catalogPath), { recursive: true });
         writeCatalogFile(

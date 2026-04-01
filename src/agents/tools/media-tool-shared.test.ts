@@ -13,7 +13,7 @@ describe("resolveMediaToolLocalRoots", () => {
   });
 
   it("does not widen default local roots from media sources", () => {
-    const stateDir = path.join("/tmp", "openclaw-media-tool-roots-state");
+    const stateDir = path.join("/tmp", "quantclaw-media-tool-roots-state");
     const picturesDir =
       process.platform === "win32" ? "C:\\Users\\peter\\Pictures" : "/Users/peter/Pictures";
     const moviesDir =

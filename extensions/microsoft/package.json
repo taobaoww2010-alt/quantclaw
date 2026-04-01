@@ -7,7 +7,7 @@
   "dependencies": {
     "node-edge-tts": "^1.2.10"
   },
-  "openclaw": {
+  "quantclaw": {
     "extensions": [
       "./index.ts"
     ]

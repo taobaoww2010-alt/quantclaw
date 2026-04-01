@@ -3,7 +3,7 @@ import path from "node:path";
 import {
   hasOutboundReplyContent,
   resolveSendableOutboundReplyParts,
-} from "openclaw/plugin-sdk/reply-payload";
+} from "@openclaw/plugin-sdk/reply-payload";
 import {
   resolveAgentConfig,
   resolveAgentWorkspaceDir,

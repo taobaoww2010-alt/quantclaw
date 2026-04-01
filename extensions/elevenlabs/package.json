@@ -4,7 +4,7 @@
   "private": true,
   "description": "OpenClaw ElevenLabs speech plugin",
   "type": "module",
-  "openclaw": {
+  "quantclaw": {
     "extensions": [
       "./index.ts"
     ]

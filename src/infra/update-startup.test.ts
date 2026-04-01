@@ -6,7 +6,7 @@ import { captureEnv } from "../test-utils/env.js";
 import type { UpdateCheckResult } from "./update-check.js";
 
 vi.mock("./openclaw-root.js", () => ({
-  resolveOpenClawPackageRoot: vi.fn(),
+  resolveQuantClawPackageRoot: vi.fn(),
 }));
 
 vi.mock("./update-check.js", async () => {
@@ -45,7 +45,7 @@ describe("update-startup", () => {
   let tempDir: string;
   let envSnapshot: ReturnType<typeof captureEnv>;
 
-  let resolveOpenClawPackageRoot: (typeof import("./openclaw-root.js"))["resolveOpenClawPackageRoot"];
+  let resolveQuantClawPackageRoot: (typeof import("./openclaw-root.js"))["resolveQuantClawPackageRoot"];
   let checkUpdateStatus: (typeof import("./update-check.js"))["checkUpdateStatus"];
   let resolveNpmChannelTag: (typeof import("./update-check.js"))["resolveNpmChannelTag"];
   let runCommandWithTimeout: (typeof import("../process/exec.js"))["runCommandWithTimeout"];
@@ -56,7 +56,7 @@ describe("update-startup", () => {
   let loaded = false;
 
   beforeAll(async () => {
-    suiteRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-update-check-suite-"));
+    suiteRoot = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-update-check-suite-"));
   });
 
   beforeEach(async () => {
@@ -74,7 +74,7 @@ describe("update-startup", () => {
 
     // Perf: load mocked modules once (after timers/env are set up).
     if (!loaded) {
-      ({ resolveOpenClawPackageRoot } = await import("./openclaw-root.js"));
+      ({ resolveQuantClawPackageRoot } = await import("./openclaw-root.js"));
       ({ checkUpdateStatus, resolveNpmChannelTag } = await import("./update-check.js"));
       ({ runCommandWithTimeout } = await import("../process/exec.js"));
       ({
@@ -85,7 +85,7 @@ describe("update-startup", () => {
       } = await import("./update-startup.js"));
       loaded = true;
     }
-    vi.mocked(resolveOpenClawPackageRoot).mockClear();
+    vi.mocked(resolveQuantClawPackageRoot).mockClear();
     vi.mocked(checkUpdateStatus).mockClear();
     vi.mocked(resolveNpmChannelTag).mockClear();
     vi.mocked(runCommandWithTimeout).mockClear();
@@ -112,7 +112,7 @@ describe("update-startup", () => {
   }
 
   function mockPackageInstallStatus() {
-    vi.mocked(resolveOpenClawPackageRoot).mockResolvedValue("/opt/openclaw");
+    vi.mocked(resolveQuantClawPackageRoot).mockResolvedValue("/opt/openclaw");
     vi.mocked(checkUpdateStatus).mockResolvedValue({
       root: "/opt/openclaw",
       installKind: "package",

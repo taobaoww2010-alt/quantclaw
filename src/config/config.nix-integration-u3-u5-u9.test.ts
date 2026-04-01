@@ -86,7 +86,7 @@ describe("Nix integration (U3, U5, U9)", () => {
             OPENCLAW_STATE_DIR: undefined,
           }),
         ),
-      ).toBe(path.join(path.resolve(customHome), ".openclaw", "openclaw.json"));
+      ).toBe(path.join(path.resolve(customHome), ".openclaw", "quantclaw.json"));
     });
 
     it("CONFIG_PATH defaults to ~/.openclaw/openclaw.json when env not set", () => {
@@ -120,9 +120,9 @@ describe("Nix integration (U3, U5, U9)", () => {
       expect(
         resolveConfigPathCandidate(
           envWith({ OPENCLAW_STATE_DIR: "/custom/state", OPENCLAW_TEST_FAST: "1" }),
-          () => path.join(path.sep, "tmp", "openclaw-config-home"),
+          () => path.join(path.sep, "tmp", "quantclaw-config-home"),
         ),
-      ).toBe(path.join(path.resolve("/custom/state"), "openclaw.json"));
+      ).toBe(path.join(path.resolve("/custom/state"), "quantclaw.json"));
     });
   });
 
@@ -139,7 +139,7 @@ describe("Nix integration (U3, U5, U9)", () => {
           "utf-8",
         );
         await fs.writeFile(
-          path.join(pluginDir, "openclaw.plugin.json"),
+          path.join(pluginDir, "quantclaw.plugin.json"),
           JSON.stringify(
             {
               id: "demo-plugin",
@@ -151,7 +151,7 @@ describe("Nix integration (U3, U5, U9)", () => {
           "utf-8",
         );
         await fs.writeFile(
-          path.join(configDir, "openclaw.json"),
+          path.join(configDir, "quantclaw.json"),
           JSON.stringify(
             {
               plugins: {

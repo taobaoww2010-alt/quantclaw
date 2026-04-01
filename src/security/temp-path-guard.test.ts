@@ -200,7 +200,7 @@ describe("temp path guard", () => {
       "const p = path.join(os.tmpdir(), 'safe', `${token}`);",
     ];
     const staticFixtures = [
-      "const p = path.join(os.tmpdir(), 'openclaw-fixed');",
+      "const p = path.join(os.tmpdir(), 'quantclaw-fixed');",
       "const p = path.join(os.tmpdir(), `openclaw-fixed`);",
       "const p = path.join(os.tmpdir(), prefix + '-x');",
       "const p = path.join(os.tmpdir(), segment);",

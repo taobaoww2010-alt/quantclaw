@@ -26,7 +26,7 @@ import type {
 // dispatchGatewayMethod can use it as a fallback.
 
 const FALLBACK_GATEWAY_CONTEXT_STATE_KEY: unique symbol = Symbol.for(
-  "openclaw.fallbackGatewayContextState",
+  "quantclaw.fallbackGatewayContextState",
 );
 
 type FallbackGatewayContextState = {
@@ -71,7 +71,7 @@ type PluginSubagentPolicyState = {
 };
 
 const PLUGIN_SUBAGENT_POLICY_STATE_KEY: unique symbol = Symbol.for(
-  "openclaw.pluginSubagentOverridePolicyState",
+  "quantclaw.pluginSubagentOverridePolicyState",
 );
 
 const getPluginSubagentPolicyState = () =>
@@ -158,7 +158,7 @@ function authorizeFallbackModelOverride(params: {
       allowed: false,
       reason:
         `plugin "${pluginId}" is not trusted for fallback provider/model override requests. ` +
-        "See https://docs.openclaw.ai/tools/plugin#runtime-helpers and search for: " +
+        "See https://docs.quantclaw.ai/tools/plugin#runtime-helpers and search for: " +
         "plugins.entries.<id>.subagent.allowModelOverride",
     };
   }

@@ -6,7 +6,7 @@ const loadSessionStoreMock = vi.fn();
 const updateSessionStoreMock = vi.fn();
 const callGatewayMock = vi.fn();
 const loadCombinedSessionStoreForGatewayMock = vi.fn();
-const buildStatusMessageMock = vi.hoisted(() => vi.fn(() => "OpenClaw\n🧠 Model: GPT-5.4"));
+const buildStatusMessageMock = vi.hoisted(() => vi.fn(() => "☯️ QuantClaw\n🧠 Model: GPT-5.4"));
 const resolveQueueSettingsMock = vi.hoisted(() => vi.fn(() => ({ mode: "interrupt" })));
 const listTasksForSessionKeyMock = vi.hoisted(() =>
   vi.fn((_: string) => [] as Array<Record<string, unknown>>),
@@ -317,7 +317,7 @@ describe("session_status tool", () => {
     const result = await tool.execute("call1", {});
     const details = result.details as { ok?: boolean; statusText?: string };
     expect(details.ok).toBe(true);
-    expect(details.statusText).toContain("OpenClaw");
+    expect(details.statusText).toContain("☯️ QuantClaw");
     expect(details.statusText).toContain("🧠 Model:");
     expect(details.statusText).not.toContain("OAuth/token status");
   });

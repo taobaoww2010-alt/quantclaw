@@ -775,7 +775,7 @@ describe("tryDispatchAcpReply", () => {
         params.sessionKey === canonicalSessionKey
           ? {
               cfg: params.cfg ?? createAcpTestConfig(),
-              storePath: "/tmp/openclaw-session-store.json",
+              storePath: "/tmp/quantclaw-session-store.json",
               sessionKey: canonicalSessionKey,
               storeSessionKey: canonicalSessionKey,
               acp: createAcpSessionMeta({

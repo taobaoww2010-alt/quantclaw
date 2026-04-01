@@ -17,7 +17,7 @@ export type GatewayTlsConfig = {
 
 export type WideAreaDiscoveryConfig = {
   enabled?: boolean;
-  /** Optional unicast DNS-SD domain (e.g. "openclaw.internal"). */
+  /** Optional unicast DNS-SD domain (e.g. "quantclaw.internal"). */
   domain?: string;
 };
 

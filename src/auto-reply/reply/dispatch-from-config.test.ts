@@ -2376,7 +2376,7 @@ describe("dispatchReplyFromConfig", () => {
       ((hookName?: string) =>
         hookName === "inbound_claim" || hookName === "message_received") as () => boolean,
     );
-    hookMocks.registry.plugins = [{ id: "openclaw-codex-app-server", status: "loaded" }];
+    hookMocks.registry.plugins = [{ id: "quantclaw-codex-app-server", status: "loaded" }];
     hookMocks.runner.runInboundClaimForPluginOutcome.mockResolvedValue({
       status: "handled",
       result: { handled: true },
@@ -2394,7 +2394,7 @@ describe("dispatchReplyFromConfig", () => {
       boundAt: 1710000000000,
       metadata: {
         pluginBindingOwner: "plugin",
-        pluginId: "openclaw-codex-app-server",
+        pluginId: "quantclaw-codex-app-server",
         pluginRoot: "/Users/huntharo/github/openclaw-app-server",
       },
     } satisfies SessionBindingRecord);
@@ -2424,7 +2424,7 @@ describe("dispatchReplyFromConfig", () => {
     expect(result).toEqual({ queuedFinal: false, counts: { tool: 0, block: 0, final: 0 } });
     expect(sessionBindingMocks.touch).toHaveBeenCalledWith("binding-1");
     expect(hookMocks.runner.runInboundClaimForPluginOutcome).toHaveBeenCalledWith(
-      "openclaw-codex-app-server",
+      "quantclaw-codex-app-server",
       expect.objectContaining({
         channel: "discord",
         accountId: "default",
@@ -2447,7 +2447,7 @@ describe("dispatchReplyFromConfig", () => {
       ((hookName?: string) =>
         hookName === "inbound_claim" || hookName === "message_received") as () => boolean,
     );
-    hookMocks.registry.plugins = [{ id: "openclaw-codex-app-server", status: "loaded" }];
+    hookMocks.registry.plugins = [{ id: "quantclaw-codex-app-server", status: "loaded" }];
     hookMocks.runner.runInboundClaimForPluginOutcome.mockResolvedValue({
       status: "handled",
       result: { handled: true },
@@ -2465,7 +2465,7 @@ describe("dispatchReplyFromConfig", () => {
       boundAt: 1710000000000,
       metadata: {
         pluginBindingOwner: "plugin",
-        pluginId: "openclaw-codex-app-server",
+        pluginId: "quantclaw-codex-app-server",
         pluginRoot: "/Users/huntharo/github/openclaw-app-server",
       },
     } satisfies SessionBindingRecord);
@@ -2496,7 +2496,7 @@ describe("dispatchReplyFromConfig", () => {
     expect(result).toEqual({ queuedFinal: false, counts: { tool: 0, block: 0, final: 0 } });
     expect(sessionBindingMocks.touch).toHaveBeenCalledWith("binding-dm-1");
     expect(hookMocks.runner.runInboundClaimForPluginOutcome).toHaveBeenCalledWith(
-      "openclaw-codex-app-server",
+      "quantclaw-codex-app-server",
       expect.objectContaining({
         channel: "discord",
         accountId: "default",
@@ -2535,14 +2535,16 @@ describe("dispatchReplyFromConfig", () => {
       boundAt: 1710000000000,
       metadata: {
         pluginBindingOwner: "plugin",
-        pluginId: "openclaw-codex-app-server",
+        pluginId: "quantclaw-codex-app-server",
         pluginName: "Codex App Server",
         pluginRoot: "/Users/huntharo/github/openclaw-app-server",
         detachHint: "/codex_detach",
       },
     } satisfies SessionBindingRecord);
 
-    const replyResolver = vi.fn(async () => ({ text: "openclaw fallback" }) satisfies ReplyPayload);
+    const replyResolver = vi.fn(
+      async () => ({ text: "quantclaw fallback" }) satisfies ReplyPayload,
+    );
 
     const firstDispatcher = createDispatcher();
     await dispatchReplyFromConfig({
@@ -2605,7 +2607,7 @@ describe("dispatchReplyFromConfig", () => {
       ((hookName?: string) =>
         hookName === "inbound_claim" || hookName === "message_received") as () => boolean,
     );
-    hookMocks.registry.plugins = [{ id: "openclaw-codex-app-server", status: "loaded" }];
+    hookMocks.registry.plugins = [{ id: "quantclaw-codex-app-server", status: "loaded" }];
     hookMocks.runner.runInboundClaimForPluginOutcome.mockResolvedValue({
       status: "no_handler",
     });
@@ -2622,13 +2624,15 @@ describe("dispatchReplyFromConfig", () => {
       boundAt: 1710000000000,
       metadata: {
         pluginBindingOwner: "plugin",
-        pluginId: "openclaw-codex-app-server",
+        pluginId: "quantclaw-codex-app-server",
         pluginName: "Codex App Server",
         pluginRoot: "/Users/huntharo/github/openclaw-app-server",
       },
     } satisfies SessionBindingRecord);
     const dispatcher = createDispatcher();
-    const replyResolver = vi.fn(async () => ({ text: "openclaw fallback" }) satisfies ReplyPayload);
+    const replyResolver = vi.fn(
+      async () => ({ text: "quantclaw fallback" }) satisfies ReplyPayload,
+    );
 
     await dispatchReplyFromConfig({
       ctx: buildTestCtx({
@@ -2663,7 +2667,7 @@ describe("dispatchReplyFromConfig", () => {
       ((hookName?: string) =>
         hookName === "inbound_claim" || hookName === "message_received") as () => boolean,
     );
-    hookMocks.registry.plugins = [{ id: "openclaw-codex-app-server", status: "loaded" }];
+    hookMocks.registry.plugins = [{ id: "quantclaw-codex-app-server", status: "loaded" }];
     hookMocks.runner.runInboundClaimForPluginOutcome.mockResolvedValue({
       status: "declined",
     });
@@ -2680,7 +2684,7 @@ describe("dispatchReplyFromConfig", () => {
       boundAt: 1710000000000,
       metadata: {
         pluginBindingOwner: "plugin",
-        pluginId: "openclaw-codex-app-server",
+        pluginId: "quantclaw-codex-app-server",
         pluginName: "Codex App Server",
         pluginRoot: "/Users/huntharo/github/openclaw-app-server",
         detachHint: "/codex_detach",
@@ -2722,7 +2726,7 @@ describe("dispatchReplyFromConfig", () => {
       ((hookName?: string) =>
         hookName === "inbound_claim" || hookName === "message_received") as () => boolean,
     );
-    hookMocks.registry.plugins = [{ id: "openclaw-codex-app-server", status: "loaded" }];
+    hookMocks.registry.plugins = [{ id: "quantclaw-codex-app-server", status: "loaded" }];
     hookMocks.runner.runInboundClaimForPluginOutcome.mockResolvedValue({
       status: "error",
       error: "boom",
@@ -2740,7 +2744,7 @@ describe("dispatchReplyFromConfig", () => {
       boundAt: 1710000000000,
       metadata: {
         pluginBindingOwner: "plugin",
-        pluginId: "openclaw-codex-app-server",
+        pluginId: "quantclaw-codex-app-server",
         pluginName: "Codex App Server",
         pluginRoot: "/Users/huntharo/github/openclaw-app-server",
       },

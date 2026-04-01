@@ -7,7 +7,7 @@
   "dependencies": {
     "@aws-sdk/client-bedrock": "3.1018.0"
   },
-  "openclaw": {
+  "quantclaw": {
     "bundle": {
       "stageRuntimeDependencies": true
     },

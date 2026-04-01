@@ -18,7 +18,7 @@ describe("createOpenClawCodingTools", () => {
     const readTool = defaultTools.find((tool) => tool.name === "read");
     expect(readTool).toBeDefined();
 
-    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-read-"));
+    const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-read-"));
     try {
       const imagePath = path.join(tmpDir, "sample.png");
       await fs.writeFile(imagePath, tinyPngBuffer);
@@ -61,10 +61,10 @@ describe("createOpenClawCodingTools", () => {
     }
   });
   it("filters tools by sandbox policy", () => {
-    const sandboxDir = path.join(os.tmpdir(), "openclaw-sandbox");
+    const sandboxDir = path.join(os.tmpdir(), "quantclaw-sandbox");
     const sandbox = createPiToolsSandboxContext({
       workspaceDir: sandboxDir,
-      agentWorkspaceDir: path.join(os.tmpdir(), "openclaw-workspace"),
+      agentWorkspaceDir: path.join(os.tmpdir(), "quantclaw-workspace"),
       workspaceAccess: "none" as const,
       fsBridge: createHostSandboxFsBridge(sandboxDir),
       tools: {
@@ -78,10 +78,10 @@ describe("createOpenClawCodingTools", () => {
     expect(tools.some((tool) => tool.name === "browser")).toBe(false);
   });
   it("hard-disables write/edit when sandbox workspaceAccess is ro", () => {
-    const sandboxDir = path.join(os.tmpdir(), "openclaw-sandbox");
+    const sandboxDir = path.join(os.tmpdir(), "quantclaw-sandbox");
     const sandbox = createPiToolsSandboxContext({
       workspaceDir: sandboxDir,
-      agentWorkspaceDir: path.join(os.tmpdir(), "openclaw-workspace"),
+      agentWorkspaceDir: path.join(os.tmpdir(), "quantclaw-workspace"),
       workspaceAccess: "ro" as const,
       fsBridge: createHostSandboxFsBridge(sandboxDir),
       tools: {

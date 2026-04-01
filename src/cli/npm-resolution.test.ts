@@ -9,7 +9,7 @@ import {
   resolvePinnedNpmSpec,
 } from "./npm-resolution.js";
 
-const CLI_STATE_ROOT = "/tmp/openclaw";
+const CLI_STATE_ROOT = "/tmp/quantclaw";
 const ALPHA_INSTALL_PATH = installedPluginRoot(CLI_STATE_ROOT, "alpha");
 
 describe("npm-resolution helpers", () => {

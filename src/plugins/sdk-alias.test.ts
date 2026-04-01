@@ -30,7 +30,7 @@ async function getCreateJiti() {
 }
 
 const fixtureTempDirs: string[] = [];
-const fixtureRoot = makeTrackedTempDir("openclaw-sdk-alias-root", fixtureTempDirs);
+const fixtureRoot = makeTrackedTempDir("quantclaw-sdk-alias-root", fixtureTempDirs);
 let tempDirIndex = 0;
 
 function makeTempDir() {
@@ -66,12 +66,12 @@ function createPluginSdkAliasFixture(params?: {
     params?.trustedRootIndicatorMode ??
     (params?.trustedRootIndicators === false ? "none" : "bin+marker");
   const packageJson: Record<string, unknown> = {
-    name: "openclaw",
+    name: "quantclaw",
     type: "module",
   };
   if (trustedRootIndicatorMode === "bin+marker") {
     packageJson.bin = {
-      openclaw: "openclaw.mjs",
+      openclaw: "quantclaw.mjs",
     };
   }
   if (params?.packageExports || trustedRootIndicatorMode === "cli-entry-only") {
@@ -87,7 +87,7 @@ function createPluginSdkAliasFixture(params?: {
   }
   fs.writeFileSync(path.join(root, "package.json"), JSON.stringify(packageJson, null, 2), "utf-8");
   if (trustedRootIndicatorMode === "bin+marker") {
-    fs.writeFileSync(path.join(root, "openclaw.mjs"), "export {};\n", "utf-8");
+    fs.writeFileSync(path.join(root, "quantclaw.mjs"), "export {};\n", "utf-8");
   }
   fs.writeFileSync(srcFile, params?.srcBody ?? "export {};\n", "utf-8");
   fs.writeFileSync(distFile, params?.distBody ?? "export {};\n", "utf-8");
@@ -102,10 +102,10 @@ function createExtensionApiAliasFixture(params?: { srcBody?: string; distBody?: 
   mkdirSafeDir(path.dirname(distFile));
   fs.writeFileSync(
     path.join(root, "package.json"),
-    JSON.stringify({ name: "openclaw", type: "module" }, null, 2),
+    JSON.stringify({ name: "quantclaw", type: "module" }, null, 2),
     "utf-8",
   );
-  fs.writeFileSync(path.join(root, "openclaw.mjs"), "export {};\n", "utf-8");
+  fs.writeFileSync(path.join(root, "quantclaw.mjs"), "export {};\n", "utf-8");
   fs.writeFileSync(srcFile, params?.srcBody ?? "export {};\n", "utf-8");
   fs.writeFileSync(distFile, params?.distBody ?? "export {};\n", "utf-8");
   return { root, srcFile, distFile };
@@ -119,7 +119,7 @@ function createPluginRuntimeAliasFixture(params?: { srcBody?: string; distBody?:
   mkdirSafeDir(path.dirname(distFile));
   fs.writeFileSync(
     path.join(root, "package.json"),
-    JSON.stringify({ name: "openclaw", type: "module" }, null, 2),
+    JSON.stringify({ name: "quantclaw", type: "module" }, null, 2),
     "utf-8",
   );
   fs.writeFileSync(
@@ -213,11 +213,11 @@ function expectPluginSdkAliasTargets(
     channelRuntimePath?: string;
   },
 ) {
-  expect(fs.realpathSync(aliases["openclaw/plugin-sdk"] ?? "")).toBe(
+  expect(fs.realpathSync(aliases["quantclaw/plugin-sdk"] ?? "")).toBe(
     fs.realpathSync(params.rootAliasPath),
   );
   if (params.channelRuntimePath) {
-    expect(fs.realpathSync(aliases["openclaw/plugin-sdk/channel-runtime"] ?? "")).toBe(
+    expect(fs.realpathSync(aliases["quantclaw/plugin-sdk/channel-runtime"] ?? "")).toBe(
       fs.realpathSync(params.channelRuntimePath),
     );
   }
@@ -377,7 +377,7 @@ describe("plugin sdk alias helpers", () => {
           },
         }),
       modulePath: () => "/tmp/tsx-cache/openclaw-loader.js",
-      argv1: (root: string) => path.join(root, "openclaw.mjs"),
+      argv1: (root: string) => path.join(root, "quantclaw.mjs"),
       srcFile: "index.ts",
       distFile: "index.js",
       env: { NODE_ENV: undefined },
@@ -411,7 +411,7 @@ describe("plugin sdk alias helpers", () => {
     {
       name: "resolves extension-api alias from package root when loader runs from transpiler cache path",
       modulePath: () => "/tmp/tsx-cache/openclaw-loader.js",
-      argv1: (root: string) => path.join(root, "openclaw.mjs"),
+      argv1: (root: string) => path.join(root, "quantclaw.mjs"),
       env: { NODE_ENV: undefined },
       expected: "src" as const,
     },
@@ -555,7 +555,7 @@ describe("plugin sdk alias helpers", () => {
 
     const aliases = withCwd(externalPluginRoot, () =>
       withEnv({ NODE_ENV: undefined }, () =>
-        buildPluginLoaderAliasMap(externalPluginEntry, path.join(fixture.root, "openclaw.mjs")),
+        buildPluginLoaderAliasMap(externalPluginEntry, path.join(fixture.root, "quantclaw.mjs")),
       ),
     );
 
@@ -575,7 +575,7 @@ describe("plugin sdk alias helpers", () => {
     // Use openclaw.mjs which is created by createPluginSdkAliasFixture (bin+marker mode).
     // Use fixture.root as cwd so process.cwd() fallback also resolves to fixture, not the
     // real openclaw repo root in the test runner environment.
-    const loaderModuleUrl = pathToFileURL(path.join(fixture.root, "openclaw.mjs")).href;
+    const loaderModuleUrl = pathToFileURL(path.join(fixture.root, "quantclaw.mjs")).href;
 
     // Use externalPluginRoot as cwd so process.cwd() fallback cannot accidentally
     // resolve to the fixture root — only the moduleUrl hint can bridge the gap.
@@ -671,7 +671,7 @@ describe("plugin sdk alias helpers", () => {
     fs.writeFileSync(jitiBaseFile, "export {};\n", "utf-8");
     fs.writeFileSync(
       path.join(copiedSourceDir, "channel.runtime.ts"),
-      `import { resolveOutboundSendDep } from "openclaw/plugin-sdk/infra-runtime";
+      `import { resolveOutboundSendDep } from "@openclaw/plugin-sdk/infra-runtime";
 
 export const syntheticRuntimeMarker = {
   resolveOutboundSendDep,
@@ -700,7 +700,7 @@ export const syntheticRuntimeMarker = {
 
     const withAlias = createJiti(jitiBaseUrl, {
       ...buildPluginLoaderJitiOptions({
-        "openclaw/plugin-sdk/infra-runtime": copiedChannelRuntimeShim,
+        "quantclaw/plugin-sdk/infra-runtime": copiedChannelRuntimeShim,
       }),
       tryNative: false,
     });
@@ -720,7 +720,7 @@ export const syntheticRuntimeMarker = {
     {
       name: "resolves plugin runtime module from package root when loader runs from transpiler cache path",
       modulePath: () => "/tmp/tsx-cache/openclaw-loader.js",
-      argv1: (root: string) => path.join(root, "openclaw.mjs"),
+      argv1: (root: string) => path.join(root, "quantclaw.mjs"),
       env: { NODE_ENV: undefined },
       expected: "src" as const,
     },

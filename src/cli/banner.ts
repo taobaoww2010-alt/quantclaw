@@ -14,22 +14,6 @@ type BannerOptions = TaglineOptions & {
 
 let bannerEmitted = false;
 
-const graphemeSegmenter =
-  typeof Intl !== "undefined" && "Segmenter" in Intl
-    ? new Intl.Segmenter(undefined, { granularity: "grapheme" })
-    : null;
-
-function splitGraphemes(value: string): string[] {
-  if (!graphemeSegmenter) {
-    return Array.from(value);
-  }
-  try {
-    return Array.from(graphemeSegmenter.segment(value), (seg) => seg.segment);
-  } catch {
-    return Array.from(value);
-  }
-}
-
 const hasJsonFlag = (argv: string[]) =>
   argv.some((arg) => arg === "--json" || arg.startsWith("--json="));
 
@@ -57,8 +41,8 @@ export function formatCliBannerLine(version: string, options: BannerOptions = {}
   const commitLabel = commit ?? "unknown";
   const tagline = pickTagline({ ...options, mode: resolveTaglineMode(options) });
   const rich = options.richTty ?? isRich();
-  const title = "🦞 OpenClaw";
-  const prefix = "🦞 ";
+  const title = "☯️ QuantClaw";
+  const prefix = "☯️ ";
   const columns = options.columns ?? process.stdout.columns ?? 120;
   const plainBaseLine = `${title} ${version} (${commitLabel})`;
   const plainFullLine = tagline ? `${plainBaseLine} — ${tagline}` : plainBaseLine;
@@ -92,45 +76,46 @@ export function formatCliBannerLine(version: string, options: BannerOptions = {}
   return `${line1}\n${line2}`;
 }
 
-const LOBSTER_ASCII = [
-  "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄",
-  "██░▄▄▄░██░▄▄░██░▄▄▄██░▀██░██░▄▄▀██░████░▄▄▀██░███░██",
-  "██░███░██░▀▀░██░▄▄▄██░█░█░██░█████░████░▀▀░██░█░█░██",
-  "██░▀▀▀░██░█████░▀▀▀██░██▄░██░▀▀▄██░▀▀░█░██░██▄▀▄▀▄██",
-  "▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀",
-  "                  🦞 OPENCLAW 🦞                    ",
+const YINYANG_BANNER = [
+  "    ╭─────────────────────────────╮    ",
+  "    │                             │    ",
+  "    │        ☯️  QUANTCLAW  ☯️      │    ",
+  "    │      A股量化交易 · AI助手     │    ",
+  "    │                             │    ",
+  "    ╰─────────────────────────────╯    ",
   " ",
 ];
 
 export function formatCliBannerArt(options: BannerOptions = {}): string {
   const rich = options.richTty ?? isRich();
   if (!rich) {
-    return LOBSTER_ASCII.join("\n");
+    return YINYANG_BANNER.join("\n");
   }
 
-  const colorChar = (ch: string) => {
-    if (ch === "█") {
-      return theme.accentBright(ch);
-    }
-    if (ch === "░") {
-      return theme.accentDim(ch);
-    }
-    if (ch === "▀") {
-      return theme.accent(ch);
-    }
-    return theme.muted(ch);
-  };
-
-  const colored = LOBSTER_ASCII.map((line) => {
-    if (line.includes("OPENCLAW")) {
+  const colored = YINYANG_BANNER.map((line) => {
+    if (line.includes("QUANTCLAW")) {
       return (
-        theme.muted("              ") +
-        theme.accent("🦞") +
-        theme.info(" OPENCLAW ") +
-        theme.accent("🦞")
+        theme.muted("    ╭─────────────────────────────╮    ") +
+        "\n" +
+        theme.muted("    │                             │    ") +
+        "\n" +
+        "    │        " +
+        theme.accent("☯️") +
+        "  " +
+        theme.info("QUANTCLAW") +
+        "  " +
+        theme.accent("☯️") +
+        "      │    " +
+        "\n" +
+        theme.muted("    │     A股量化交易 · AI助手     │    ") +
+        "\n" +
+        theme.muted("    │                             │    ") +
+        "\n" +
+        theme.muted("    ╰─────────────────────────────╯    ") +
+        "\n"
       );
     }
-    return splitGraphemes(line).map(colorChar).join("");
+    return theme.muted(line);
   });
 
   return colored.join("\n");

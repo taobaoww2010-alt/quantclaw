@@ -55,7 +55,7 @@ function buildFixturePaths(rootDir: string) {
   return {
     rootDir,
     stateDir,
-    configPath: path.join(stateDir, "openclaw.json"),
+    configPath: path.join(stateDir, "quantclaw.json"),
     authStorePath: path.join(stateDir, "agents", "main", "agent", "auth-profiles.json"),
     authJsonPath: path.join(stateDir, "agents", "main", "agent", "auth.json"),
     envPath: path.join(stateDir, ".env"),
@@ -64,7 +64,7 @@ function buildFixturePaths(rootDir: string) {
 
 async function createApplyFixture(): Promise<ApplyFixture> {
   const paths = buildFixturePaths(
-    await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-secrets-apply-")),
+    await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-secrets-apply-")),
   );
   await fs.mkdir(path.dirname(paths.configPath), { recursive: true });
   await fs.mkdir(path.dirname(paths.authStorePath), { recursive: true });

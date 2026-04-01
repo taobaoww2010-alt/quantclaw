@@ -19,7 +19,7 @@ describe("runCliAgent bundle MCP e2e", () => {
     { timeout: E2E_TIMEOUT_MS },
     async () => {
       const envSnapshot = captureEnv(["HOME"]);
-      const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-cli-bundle-mcp-"));
+      const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-cli-bundle-mcp-"));
       process.env.HOME = tempHome;
 
       const workspaceDir = path.join(tempHome, "workspace");

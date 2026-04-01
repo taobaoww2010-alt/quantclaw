@@ -77,7 +77,7 @@ describe("buildStatusMessage", () => {
     });
     const normalized = normalizeTestText(text);
 
-    expect(normalized).toContain("OpenClaw");
+    expect(normalized).toContain("☯️ QuantClaw");
     expect(normalized).toContain("Model: anthropic/pi:opus");
     expect(normalized).toContain("api-key");
     expect(normalized).toContain("Tokens: 1.2k in / 800 out");
@@ -994,7 +994,7 @@ describe("buildStatusMessage", () => {
 
         expect(normalizeTestText(text)).toContain("Context: 1.0k/32k");
       },
-      { prefix: "openclaw-status-" },
+      { prefix: "quantclaw-status-" },
     );
   });
 
@@ -1015,7 +1015,7 @@ describe("buildStatusMessage", () => {
 
         expect(normalizeTestText(text)).toContain("Context: 1.0k/32k");
       },
-      { prefix: "openclaw-status-" },
+      { prefix: "quantclaw-status-" },
     );
   });
 
@@ -1057,7 +1057,7 @@ describe("buildStatusMessage", () => {
 
         expect(normalizeTestText(text)).toContain("Context: 1.2k/32k");
       },
-      { prefix: "openclaw-status-" },
+      { prefix: "quantclaw-status-" },
     );
   });
 
@@ -1110,7 +1110,7 @@ describe("buildStatusMessage", () => {
         expect(normalized).toContain("Context: 1.2k/999k");
         expect(normalized).not.toContain("Context: 1.2k/2.0m");
       },
-      { prefix: "openclaw-status-" },
+      { prefix: "quantclaw-status-" },
     );
   });
 
@@ -1265,7 +1265,7 @@ describe("buildStatusMessage", () => {
         expect(normalized).toContain("Context: 1.2k/1.0m");
         expect(normalized).not.toContain("Context: 1.2k/128k");
       },
-      { prefix: "openclaw-status-" },
+      { prefix: "quantclaw-status-" },
     );
   });
 

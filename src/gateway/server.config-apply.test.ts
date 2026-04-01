@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { WebSocket } from "ws";
-import { resolveOpenClawAgentDir } from "../agents/agent-paths.js";
+import { resolveQuantClawAgentDir } from "../agents/agent-paths.js";
 import { AUTH_PROFILE_FILENAME } from "../agents/auth-profiles/constants.js";
 import {
   connectOk,
@@ -105,7 +105,7 @@ describe("gateway config.apply", () => {
       const missingEnvVar = `OPENCLAW_MISSING_AUTH_PROFILE_REF_APPLY_${Date.now()}`;
       delete process.env[missingEnvVar];
 
-      const authStorePath = path.join(resolveOpenClawAgentDir(), AUTH_PROFILE_FILENAME);
+      const authStorePath = path.join(resolveQuantClawAgentDir(), AUTH_PROFILE_FILENAME);
       await fs.mkdir(path.dirname(authStorePath), { recursive: true });
       await fs.writeFile(
         authStorePath,

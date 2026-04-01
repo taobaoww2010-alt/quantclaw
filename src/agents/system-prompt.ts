@@ -162,9 +162,9 @@ function buildDocsSection(params: { docsPath?: string; isMinimal: boolean; readT
   }
   return [
     "## Documentation",
-    `OpenClaw docs: ${docsPath}`,
-    "Mirror: https://docs.openclaw.ai",
-    "Source: https://github.com/openclaw/openclaw",
+    `QuantClaw docs: ${docsPath}`,
+    "Mirror: https://docs.quantclaw.ai",
+    "Source: https://github.com/taobaoww2010-alt/quantclaw",
     "Community: https://discord.com/invite/clawd",
     "Find new skills: https://clawhub.ai",
     "For OpenClaw behavior, commands, config, or architecture: consult local docs first.",
@@ -457,7 +457,7 @@ export function buildAgentSystemPrompt(params: {
     "",
     ...safetySection,
     "## OpenClaw CLI Quick Reference",
-    "OpenClaw is controlled via subcommands. Do not invent commands.",
+    "☯️ QuantClaw is controlled via subcommands. Do not invent commands.",
     "To manage the Gateway daemon service (start/stop/restart):",
     "- openclaw gateway status",
     "- openclaw gateway start",
@@ -650,7 +650,7 @@ export function buildAgentSystemPrompt(params: {
       `Heartbeat prompt: ${heartbeatPrompt}`,
       "If you receive a heartbeat poll (a user message matching the heartbeat prompt above), and there is nothing that needs attention, reply exactly:",
       "HEARTBEAT_OK",
-      'OpenClaw treats a leading/trailing "HEARTBEAT_OK" as a heartbeat ack (and may discard it).',
+      '☯️ QuantClaw treats a leading/trailing "HEARTBEAT_OK" as a heartbeat ack (and may discard it).',
       'If something needs attention, do NOT include "HEARTBEAT_OK"; reply with the alert text instead.',
       "",
     );

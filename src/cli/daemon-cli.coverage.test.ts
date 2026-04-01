@@ -29,7 +29,7 @@ const buildGatewayInstallPlan = vi.fn(
     workingDirectory: process.cwd(),
     environment: {
       OPENCLAW_GATEWAY_PORT: String(params.port),
-      ...(params.token ? { OPENCLAW_GATEWAY_TOKEN: params.token } : {}),
+      ...(params.token ? { QUANTCLAW_GATEWAY_TOKEN: params.token } : {}),
     },
   }),
 );
@@ -151,8 +151,8 @@ describe("daemon-cli coverage", () => {
       "OPENCLAW_GATEWAY_PORT",
       "OPENCLAW_PROFILE",
     ]);
-    process.env.OPENCLAW_STATE_DIR = "/tmp/openclaw-cli-state";
-    process.env.OPENCLAW_CONFIG_PATH = "/tmp/openclaw-cli-state/openclaw.json";
+    process.env.OPENCLAW_STATE_DIR = "/tmp/quantclaw-cli-state";
+    process.env.OPENCLAW_CONFIG_PATH = "/tmp/quantclaw-cli-state/openclaw.json";
     delete process.env.OPENCLAW_GATEWAY_PORT;
     delete process.env.OPENCLAW_PROFILE;
     serviceReadCommand.mockResolvedValue(null);
@@ -187,8 +187,8 @@ describe("daemon-cli coverage", () => {
       programArguments: ["/bin/node", "cli", "gateway", "--port", "19001"],
       environment: {
         OPENCLAW_PROFILE: "dev",
-        OPENCLAW_STATE_DIR: "/tmp/openclaw-daemon-state",
-        OPENCLAW_CONFIG_PATH: "/tmp/openclaw-daemon-state/openclaw.json",
+        OPENCLAW_STATE_DIR: "/tmp/quantclaw-daemon-state",
+        OPENCLAW_CONFIG_PATH: "/tmp/quantclaw-daemon-state/openclaw.json",
         OPENCLAW_GATEWAY_PORT: "19001",
       },
       sourcePath: "/tmp/ai.openclaw.gateway.plist",

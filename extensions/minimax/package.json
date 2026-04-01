@@ -4,7 +4,7 @@
   "private": true,
   "description": "OpenClaw MiniMax provider and OAuth plugin",
   "type": "module",
-  "openclaw": {
+  "quantclaw": {
     "extensions": [
       "./index.ts"
     ]

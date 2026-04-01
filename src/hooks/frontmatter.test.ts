@@ -41,7 +41,7 @@ name: session-memory
 description: "Save session context"
 metadata:
   {
-    "openclaw": {
+    "quantclaw": {
       "emoji": "💾",
       "events": ["command:new"]
     }
@@ -68,7 +68,7 @@ name: command-logger
 description: "Log all command events"
 metadata:
   {
-    "openclaw":
+    "quantclaw":
       {
         "emoji": "📝",
         "events": ["command"],
@@ -92,12 +92,12 @@ metadata:
   it("handles single-line metadata (inline JSON)", () => {
     const content = `---
 name: simple-hook
-metadata: {"openclaw": {"events": ["test"]}}
+metadata: {"quantclaw": {"events": ["test"]}}
 ---
 `;
     const result = parseFrontmatter(content);
     expect(result.name).toBe("simple-hook");
-    expect(result.metadata).toBe('{"openclaw": {"events": ["test"]}}');
+    expect(result.metadata).toBe('{"quantclaw": {"events": ["test"]}}');
   });
 
   it("handles mixed single-line and multi-line values", () => {
@@ -107,7 +107,7 @@ description: "A hook with mixed values"
 homepage: https://example.com
 metadata:
   {
-    "openclaw": {
+    "quantclaw": {
       "events": ["command:new"]
     }
   }
@@ -233,10 +233,10 @@ describe("resolveOpenClawMetadata", () => {
     const content = `---
 name: session-memory
 description: "Save session context to memory when /new or /reset command is issued"
-homepage: https://docs.openclaw.ai/automation/hooks#session-memory
+homepage: https://docs.quantclaw.ai/automation/hooks#session-memory
 metadata:
   {
-    "openclaw":
+    "quantclaw":
       {
         "emoji": "💾",
         "events": ["command:new", "command:reset"],

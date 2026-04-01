@@ -72,7 +72,7 @@ describe("detectLinuxSdBackedStateDir", () => {
       "30 24 179:5 / /mnt/slow rw,relatime - ext4 /dev/mmcblk1p1 rw",
     ].join("\n");
 
-    const result = detectLinuxSdBackedStateDir("/tmp/openclaw-state", {
+    const result = detectLinuxSdBackedStateDir("/tmp/quantclaw-state", {
       platform: "linux",
       mountInfo,
       resolveRealPath: () => "/mnt/slow/openclaw/.openclaw",

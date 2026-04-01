@@ -32,10 +32,10 @@ type PackageManifest = PluginPackageManifest & {
 };
 
 const MISSING_EXTENSIONS_ERROR =
-  'package.json missing openclaw.extensions; update the plugin package to include openclaw.extensions (for example ["./dist/index.js"]). See https://docs.openclaw.ai/help/troubleshooting#plugin-install-fails-with-missing-openclaw-extensions';
+  'package.json missing openclaw.extensions; update the plugin package to include openclaw.extensions (for example ["./dist/index.js"]). See https://docs.quantclaw.ai/help/troubleshooting#plugin-install-fails-with-missing-openclaw-extensions';
 const PLUGIN_ARCHIVE_ROOT_MARKERS = [
   "package.json",
-  "openclaw.plugin.json",
+  "quantclaw.plugin.json",
   ".codex-plugin/plugin.json",
   ".claude-plugin/plugin.json",
   ".cursor-plugin/plugin.json",
@@ -417,7 +417,7 @@ async function installBundleFromSourceDir(
   } catch (err) {
     return {
       ok: false,
-      error: `Bundle "${pluginId}" installation blocked: code safety scan failed (${String(err)}). Run "openclaw security audit --deep" for details.`,
+      error: `Bundle "${pluginId}" installation blocked: code safety scan failed (${String(err)}). Run "quantclaw security audit --deep" for details.`,
       code: PLUGIN_INSTALL_ERROR_CODE.SECURITY_SCAN_FAILED,
     };
   }
@@ -517,7 +517,7 @@ async function installPluginFromPackageDir(
   const pkgName = typeof manifest.name === "string" ? manifest.name.trim() : "";
   const npmPluginId = pkgName || "plugin";
 
-  // Prefer the canonical `id` from openclaw.plugin.json over the npm package name.
+  // Prefer the canonical `id` from quantclaw.plugin.json over the npm package name.
   // This avoids a latent key-mismatch bug: if the manifest id (e.g. "memory-cognee")
   // differs from the npm package name (e.g. "cognee-openclaw"), the plugin registry
   // uses the manifest id as the authoritative key, so the config entry must match it.
@@ -569,7 +569,7 @@ async function installPluginFromPackageDir(
     if (minHostVersionCheck.kind === "unknown_host_version") {
       return {
         ok: false,
-        error: `plugin "${pluginId}" requires OpenClaw >=${minHostVersionCheck.requirement.minimumLabel}, but this host version could not be determined. Re-run from a released build or set OPENCLAW_VERSION and retry.`,
+        error: `plugin "${pluginId}" requires OpenClaw >=${minHostVersionCheck.requirement.minimumLabel}, but this host version could not be determined. Re-run from a released build or set QUANTCLAW_VERSION and retry.`,
         code: PLUGIN_INSTALL_ERROR_CODE.UNKNOWN_HOST_VERSION,
       };
     }
@@ -598,7 +598,7 @@ async function installPluginFromPackageDir(
   } catch (err) {
     return {
       ok: false,
-      error: `Plugin "${pluginId}" installation blocked: code safety scan failed (${String(err)}). Run "openclaw security audit --deep" for details.`,
+      error: `Plugin "${pluginId}" installation blocked: code safety scan failed (${String(err)}). Run "quantclaw security audit --deep" for details.`,
       code: PLUGIN_INSTALL_ERROR_CODE.SECURITY_SCAN_FAILED,
     };
   }
@@ -655,7 +655,7 @@ export async function installPluginFromArchive(
 
   return await runtime.withExtractedArchiveRoot({
     archivePath,
-    tempDirPrefix: "openclaw-plugin-",
+    tempDirPrefix: "quantclaw-plugin-",
     timeoutMs,
     logger,
     rootMarkers: PLUGIN_ARCHIVE_ROOT_MARKERS,
@@ -763,7 +763,7 @@ export async function installPluginFromFile(params: {
   } catch (err) {
     return {
       ok: false,
-      error: `Plugin file "${pluginId}" installation blocked: code safety scan failed (${String(err)}). Run "openclaw security audit --deep" for details.`,
+      error: `Plugin file "${pluginId}" installation blocked: code safety scan failed (${String(err)}). Run "quantclaw security audit --deep" for details.`,
       code: PLUGIN_INSTALL_ERROR_CODE.SECURITY_SCAN_FAILED,
     };
   }
@@ -815,7 +815,7 @@ export async function installPluginFromNpmSpec(params: {
     requestedSpecifier: spec,
   };
   const flowResult = await runtime.installFromNpmSpecArchiveWithInstaller({
-    tempDirPrefix: "openclaw-npm-pack-",
+    tempDirPrefix: "quantclaw-npm-pack-",
     spec,
     timeoutMs,
     expectedIntegrity: params.expectedIntegrity,

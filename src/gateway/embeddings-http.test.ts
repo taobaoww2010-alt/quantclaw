@@ -93,7 +93,7 @@ async function postEmbeddings(body: unknown, headers?: Record<string, string>) {
 describe("OpenAI-compatible embeddings HTTP API (e2e)", () => {
   it("embeds string and array inputs", async () => {
     const single = await postEmbeddings({
-      model: "openclaw/default",
+      model: "quantclaw/default",
       input: "hello",
     });
     expect(single.status).toBe(200);
@@ -106,7 +106,7 @@ describe("OpenAI-compatible embeddings HTTP API (e2e)", () => {
     expect(singleJson.data?.[0]?.embedding).toEqual([0.1, 0.2]);
 
     const batch = await postEmbeddings({
-      model: "openclaw/default",
+      model: "quantclaw/default",
       input: ["a", "b"],
     });
     expect(batch.status).toBe(200);
@@ -120,14 +120,14 @@ describe("OpenAI-compatible embeddings HTTP API (e2e)", () => {
 
     const qualified = await postEmbeddings(
       {
-        model: "openclaw/default",
+        model: "quantclaw/default",
         input: "hello again",
       },
       { "x-openclaw-model": "openai/text-embedding-3-small" },
     );
     expect(qualified.status).toBe(200);
     const qualifiedJson = (await qualified.json()) as { model?: string };
-    expect(qualifiedJson.model).toBe("openclaw/default");
+    expect(qualifiedJson.model).toBe("quantclaw/default");
     const lastCall = createEmbeddingProviderMock.mock.calls.at(-1)?.[0] as
       | { provider?: string; model?: string }
       | undefined;
@@ -140,7 +140,7 @@ describe("OpenAI-compatible embeddings HTTP API (e2e)", () => {
   it("supports base64 encoding and agent-scoped auth/config resolution", async () => {
     const res = await postEmbeddings(
       {
-        model: "openclaw/beta",
+        model: "quantclaw/beta",
         input: "hello",
         encoding_format: "base64",
       },
@@ -159,7 +159,7 @@ describe("OpenAI-compatible embeddings HTTP API (e2e)", () => {
 
   it("rejects invalid input shapes", async () => {
     const res = await postEmbeddings({
-      model: "openclaw/default",
+      model: "quantclaw/default",
       input: [{ nope: true }],
     });
     expect(res.status).toBe(400);
@@ -170,7 +170,7 @@ describe("OpenAI-compatible embeddings HTTP API (e2e)", () => {
   it("ignores narrower declared scopes for shared-secret bearer auth", async () => {
     const res = await postEmbeddings(
       {
-        model: "openclaw/default",
+        model: "quantclaw/default",
         input: "hello",
       },
       { "x-openclaw-scopes": "operator.read" },
@@ -185,7 +185,7 @@ describe("OpenAI-compatible embeddings HTTP API (e2e)", () => {
   it("allows requests with an empty declared scopes header", async () => {
     const res = await postEmbeddings(
       {
-        model: "openclaw/default",
+        model: "quantclaw/default",
         input: "hello",
       },
       { "x-openclaw-scopes": "" },
@@ -205,7 +205,7 @@ describe("OpenAI-compatible embeddings HTTP API (e2e)", () => {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        model: "openclaw/default",
+        model: "quantclaw/default",
         input: "hello",
       }),
     });
@@ -232,7 +232,7 @@ describe("OpenAI-compatible embeddings HTTP API (e2e)", () => {
   it("rejects disallowed x-openclaw-model provider overrides", async () => {
     const res = await postEmbeddings(
       {
-        model: "openclaw/default",
+        model: "quantclaw/default",
         input: "hello",
       },
       { "x-openclaw-model": "ollama/nomic-embed-text" },
@@ -247,7 +247,7 @@ describe("OpenAI-compatible embeddings HTTP API (e2e)", () => {
 
   it("rejects oversized batches", async () => {
     const res = await postEmbeddings({
-      model: "openclaw/default",
+      model: "quantclaw/default",
       input: Array.from({ length: 129 }, () => "x"),
     });
     expect(res.status).toBe(400);
@@ -261,7 +261,7 @@ describe("OpenAI-compatible embeddings HTTP API (e2e)", () => {
   it("sanitizes provider failures", async () => {
     createEmbeddingProviderMock.mockRejectedValueOnce(new Error("secret upstream failure"));
     const res = await postEmbeddings({
-      model: "openclaw/default",
+      model: "quantclaw/default",
       input: "hello",
     });
     expect(res.status).toBe(500);

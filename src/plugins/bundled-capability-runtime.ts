@@ -32,25 +32,25 @@ function applyVitestCapabilityAliasOverrides(params: {
     return params.aliasMap;
   }
 
-  const { ["openclaw/plugin-sdk"]: _ignoredRootAlias, ...scopedAliasMap } = params.aliasMap;
+  const { ["quantclaw/plugin-sdk"]: _ignoredRootAlias, ...scopedAliasMap } = params.aliasMap;
   return {
     ...scopedAliasMap,
     // Capability contract loads only need a narrow SDK slice. Keep those
     // helpers on a tiny source graph so Vitest does not pull the dist chunk
     // bundle that also drags Matrix/WhatsApp code into these tests.
-    "openclaw/plugin-sdk/llm-task": fileURLToPath(
+    "quantclaw/plugin-sdk/llm-task": fileURLToPath(
       new URL("./capability-runtime-vitest-shims/llm-task.ts", import.meta.url),
     ),
-    "openclaw/plugin-sdk/config-runtime": fileURLToPath(
+    "quantclaw/plugin-sdk/config-runtime": fileURLToPath(
       new URL("./capability-runtime-vitest-shims/config-runtime.ts", import.meta.url),
     ),
-    "openclaw/plugin-sdk/media-runtime": fileURLToPath(
+    "quantclaw/plugin-sdk/media-runtime": fileURLToPath(
       new URL("./capability-runtime-vitest-shims/media-runtime.ts", import.meta.url),
     ),
-    "openclaw/plugin-sdk/provider-onboard": fileURLToPath(
+    "quantclaw/plugin-sdk/provider-onboard": fileURLToPath(
       new URL("../plugin-sdk/provider-onboard.ts", import.meta.url),
     ),
-    "openclaw/plugin-sdk/speech-core": fileURLToPath(
+    "quantclaw/plugin-sdk/speech-core": fileURLToPath(
       new URL("./capability-runtime-vitest-shims/speech-core.ts", import.meta.url),
     ),
   };

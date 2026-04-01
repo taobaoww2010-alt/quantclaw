@@ -13,7 +13,7 @@ export const replaceConfigFileMock = vi.fn(
   async (params: { nextConfig: OpenClawConfig }): Promise<ReplaceConfigFileResult> => {
     await writeConfigFileMock(params.nextConfig);
     return {
-      path: "/tmp/openclaw.json",
+      path: "/tmp/quantclaw.json",
       previousHash: null,
       snapshot: {} as never,
       nextConfig: params.nextConfig,

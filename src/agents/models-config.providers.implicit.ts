@@ -52,7 +52,7 @@ type ImplicitProviderContext = ImplicitProviderParams & {
 
 function resolveLiveProviderCatalogTimeoutMs(env: NodeJS.ProcessEnv): number | null {
   const live =
-    env.OPENCLAW_LIVE_TEST === "1" || env.OPENCLAW_LIVE_GATEWAY === "1" || env.LIVE === "1";
+    env.QUANTCLAW_LIVE_TEST === "1" || env.OPENCLAW_LIVE_GATEWAY === "1" || env.LIVE === "1";
   if (!live) {
     return null;
   }
@@ -66,7 +66,7 @@ function resolveLiveProviderCatalogTimeoutMs(env: NodeJS.ProcessEnv): number | n
 
 function resolveLiveProviderDiscoveryFilter(env: NodeJS.ProcessEnv): string[] | undefined {
   const live =
-    env.OPENCLAW_LIVE_TEST === "1" || env.OPENCLAW_LIVE_GATEWAY === "1" || env.LIVE === "1";
+    env.QUANTCLAW_LIVE_TEST === "1" || env.OPENCLAW_LIVE_GATEWAY === "1" || env.LIVE === "1";
   if (!live) {
     return undefined;
   }

@@ -563,7 +563,7 @@ export function collectSyncedFolderFindings(params: {
       severity: "warn",
       title: "State/config path looks like a synced folder",
       detail: `stateDir=${params.stateDir}, configPath=${params.configPath}. Synced folders (iCloud/Dropbox/OneDrive/Google Drive) can leak tokens and transcripts onto other devices.`,
-      remediation: `Keep OPENCLAW_STATE_DIR on a local-only volume and re-run "${formatCliCommand("openclaw security audit --fix")}".`,
+      remediation: `Keep OPENCLAW_STATE_DIR on a local-only volume and re-run "${formatCliCommand("quantclaw security audit --fix")}".`,
     });
   }
   return findings;
@@ -581,7 +581,7 @@ export function collectSecretsInConfigFindings(cfg: OpenClawConfig): SecurityAud
       detail:
         "gateway.auth.password is set in the config file; prefer environment variables for secrets when possible.",
       remediation:
-        "Prefer OPENCLAW_GATEWAY_PASSWORD (env) and remove gateway.auth.password from disk.",
+        "Prefer QUANTCLAW_GATEWAY_PASSWORD (env) and remove gateway.auth.password from disk.",
     });
   }
 
@@ -624,8 +624,8 @@ export function collectHooksHardeningFindings(
     env,
   });
   const openclawGatewayToken =
-    typeof env.OPENCLAW_GATEWAY_TOKEN === "string" && env.OPENCLAW_GATEWAY_TOKEN.trim()
-      ? env.OPENCLAW_GATEWAY_TOKEN.trim()
+    typeof env.QUANTCLAW_GATEWAY_TOKEN === "string" && env.QUANTCLAW_GATEWAY_TOKEN.trim()
+      ? env.QUANTCLAW_GATEWAY_TOKEN.trim()
       : null;
   const gatewayToken =
     gatewayAuth.mode === "token" &&
@@ -1350,7 +1350,7 @@ export function collectLikelyMultiUserSetupFindings(cfg: OpenClawConfig): Securi
       "Heuristic signals indicate this gateway may be reachable by multiple users:\n" +
       signals.map((signal) => `- ${signal}`).join("\n") +
       `\n${impactLine}\n${riskyContextsDetail}\n` +
-      "OpenClaw's default security model is personal-assistant (one trusted operator boundary), not hostile multi-tenant isolation on one shared gateway.",
+      "☯️ QuantClaw's default security model is personal-assistant (one trusted operator boundary), not hostile multi-tenant isolation on one shared gateway.",
     remediation:
       'If users may be mutually untrusted, split trust boundaries (separate gateways + credentials, ideally separate OS users/hosts). If you intentionally run shared-user access, set agents.defaults.sandbox.mode="all", keep tools.fs.workspaceOnly=true, deny runtime/fs/web tools unless required, and keep personal/private identities + credentials off that runtime.',
   });

@@ -577,7 +577,7 @@ export async function downloadClawHubPackageArchive(params: {
   }
   const bytes = new Uint8Array(await response.arrayBuffer());
   const target = await createTempDownloadTarget({
-    prefix: "openclaw-clawhub-package",
+    prefix: "quantclaw-clawhub-package",
     fileName: `${params.name}.zip`,
     tmpDir: os.tmpdir(),
   });
@@ -619,7 +619,7 @@ export async function downloadClawHubSkillArchive(params: {
   }
   const bytes = new Uint8Array(await response.arrayBuffer());
   const target = await createTempDownloadTarget({
-    prefix: "openclaw-clawhub-skill",
+    prefix: "quantclaw-clawhub-skill",
     fileName: `${params.slug}.zip`,
     tmpDir: os.tmpdir(),
   });

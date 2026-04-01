@@ -4,7 +4,7 @@
   "private": true,
   "description": "OpenClaw browser tool plugin",
   "type": "module",
-  "openclaw": {
+  "quantclaw": {
     "extensions": [
       "./index.ts"
     ]

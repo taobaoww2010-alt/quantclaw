@@ -355,14 +355,14 @@ describe("ensureChannelSetupPluginInstalled", () => {
     reloadChannelSetupPluginRegistry({
       cfg,
       runtime,
-      workspaceDir: "/tmp/openclaw-workspace",
+      workspaceDir: "/tmp/quantclaw-workspace",
     });
 
     expect(clearPluginDiscoveryCache).toHaveBeenCalledTimes(1);
     expect(loadOpenClawPlugins).toHaveBeenCalledWith(
       expect.objectContaining({
         config: cfg,
-        workspaceDir: "/tmp/openclaw-workspace",
+        workspaceDir: "/tmp/quantclaw-workspace",
         cache: false,
         includeSetupOnlyChannelPlugins: true,
       }),
@@ -391,7 +391,7 @@ describe("ensureChannelSetupPluginInstalled", () => {
     reloadChannelSetupPluginRegistry({
       cfg,
       runtime,
-      workspaceDir: "/tmp/openclaw-workspace",
+      workspaceDir: "/tmp/quantclaw-workspace",
     });
 
     expect(applyPluginAutoEnable).toHaveBeenCalledWith({
@@ -413,13 +413,13 @@ describe("ensureChannelSetupPluginInstalled", () => {
       cfg,
       runtime,
       channel: "telegram",
-      workspaceDir: "/tmp/openclaw-workspace",
+      workspaceDir: "/tmp/quantclaw-workspace",
     });
 
     expect(loadOpenClawPlugins).toHaveBeenCalledWith(
       expect.objectContaining({
         config: cfg,
-        workspaceDir: "/tmp/openclaw-workspace",
+        workspaceDir: "/tmp/quantclaw-workspace",
         cache: false,
         onlyPluginIds: ["telegram"],
         includeSetupOnlyChannelPlugins: true,
@@ -446,7 +446,7 @@ describe("ensureChannelSetupPluginInstalled", () => {
       cfg,
       runtime,
       channel: "telegram",
-      workspaceDir: "/tmp/openclaw-workspace",
+      workspaceDir: "/tmp/quantclaw-workspace",
     });
 
     expect(loadOpenClawPlugins).toHaveBeenCalledWith(
@@ -477,7 +477,7 @@ describe("ensureChannelSetupPluginInstalled", () => {
         cfg,
         runtime,
         channel: "telegram",
-        workspaceDir: "/tmp/openclaw-workspace",
+        workspaceDir: "/tmp/quantclaw-workspace",
       });
     } finally {
       releasePinnedPluginChannelRegistry(pinnedChannelRegistry);
@@ -498,13 +498,13 @@ describe("ensureChannelSetupPluginInstalled", () => {
       cfg,
       runtime,
       channel: "telegram",
-      workspaceDir: "/tmp/openclaw-workspace",
+      workspaceDir: "/tmp/quantclaw-workspace",
     });
 
     expect(loadOpenClawPlugins).toHaveBeenCalledWith(
       expect.objectContaining({
         config: cfg,
-        workspaceDir: "/tmp/openclaw-workspace",
+        workspaceDir: "/tmp/quantclaw-workspace",
         cache: false,
         onlyPluginIds: ["telegram"],
         includeSetupOnlyChannelPlugins: true,
@@ -522,13 +522,13 @@ describe("ensureChannelSetupPluginInstalled", () => {
       runtime,
       channel: "msteams",
       pluginId: "@openclaw/msteams-plugin",
-      workspaceDir: "/tmp/openclaw-workspace",
+      workspaceDir: "/tmp/quantclaw-workspace",
     });
 
     expect(loadOpenClawPlugins).toHaveBeenCalledWith(
       expect.objectContaining({
         config: cfg,
-        workspaceDir: "/tmp/openclaw-workspace",
+        workspaceDir: "/tmp/quantclaw-workspace",
         cache: false,
         onlyPluginIds: ["@openclaw/msteams-plugin"],
         includeSetupOnlyChannelPlugins: true,

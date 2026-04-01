@@ -98,9 +98,9 @@ function hasFinding(
 }
 
 async function createAuditFixture(): Promise<AuditFixture> {
-  const rootDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-secrets-audit-"));
+  const rootDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-secrets-audit-"));
   const stateDir = path.join(rootDir, ".openclaw");
-  const configPath = path.join(stateDir, "openclaw.json");
+  const configPath = path.join(stateDir, "quantclaw.json");
   const authStorePath = path.join(stateDir, "agents", "main", "agent", "auth-profiles.json");
   const authJsonPath = path.join(stateDir, "agents", "main", "agent", "auth.json");
   const modelsPath = path.join(stateDir, "agents", "main", "agent", "models.json");
@@ -539,7 +539,7 @@ describe("secrets audit", () => {
     const report = await runSecretsAudit({
       env: {
         ...fixture.env,
-        OPENCLAW_AGENT_DIR: externalAgentDir,
+        QUANTCLAW_AGENT_DIR: externalAgentDir,
       },
     });
     expect(

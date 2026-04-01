@@ -12,7 +12,7 @@ import {
 const tempDirs: string[] = [];
 
 function makeTempDir() {
-  return makeTrackedTempDir("openclaw-plugins", tempDirs);
+  return makeTrackedTempDir("quantclaw-plugins", tempDirs);
 }
 
 const mkdirSafe = mkdirSafeDir;
@@ -81,7 +81,7 @@ function writePluginPackageManifest(params: {
 
 function writePluginManifest(params: { pluginDir: string; id: string }) {
   fs.writeFileSync(
-    path.join(params.pluginDir, "openclaw.plugin.json"),
+    path.join(params.pluginDir, "quantclaw.plugin.json"),
     JSON.stringify({
       id: params.id,
       configSchema: { type: "object" },
@@ -349,7 +349,7 @@ describe("discoverOpenClawPlugins", () => {
     const nestedDiffsDir = path.join(
       pluginDir,
       "node_modules",
-      "openclaw",
+      "quantclaw",
       "dist",
       "extensions",
       "diffs",
@@ -370,8 +370,8 @@ describe("discoverOpenClawPlugins", () => {
     );
 
     writePluginPackageManifest({
-      packageDir: path.join(pluginDir, "node_modules", "openclaw"),
-      packageName: "openclaw",
+      packageDir: path.join(pluginDir, "node_modules", "quantclaw"),
+      packageName: "quantclaw",
       extensions: [`./${bundledDistPluginFile("diffs", "index.js")}`],
     });
     writePluginManifest({ pluginDir: nestedDiffsDir, id: "diffs" });
@@ -540,7 +540,7 @@ describe("discoverOpenClawPlugins", () => {
     const result = await discoverWithStateDir(stateDir, setup(stateDir));
     const legacy = findCandidateById(result.candidates, "legacy-with-bad-bundle");
 
-    expect(legacy?.format).toBe("openclaw");
+    expect(legacy?.format).toBe("quantclaw");
     expect(hasDiagnosticSourceSuffix(result.diagnostics, bundleMarker)).toBe(true);
   });
 

@@ -256,7 +256,7 @@ describe("config schema regressions", () => {
       discovery: {
         wideArea: {
           enabled: true,
-          domain: "openclaw.internal",
+          domain: "quantclaw.internal",
         },
       },
     });

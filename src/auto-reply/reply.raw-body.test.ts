@@ -11,7 +11,7 @@ import {
 let getReplyFromConfig: typeof import("./reply.js").getReplyFromConfig;
 const agentMocks = createReplyRuntimeMocks();
 
-const { withTempHome } = createTempHomeHarness({ prefix: "openclaw-rawbody-" });
+const { withTempHome } = createTempHomeHarness({ prefix: "quantclaw-rawbody-" });
 
 installReplyRuntimeMocks(agentMocks);
 

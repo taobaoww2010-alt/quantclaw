@@ -12,7 +12,7 @@ import {
 const tempDirs: string[] = [];
 
 function makeTempStateDir() {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-channel-config-presence-"));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-channel-config-presence-"));
   tempDirs.push(dir);
   return dir;
 }

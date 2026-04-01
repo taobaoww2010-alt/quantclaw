@@ -100,7 +100,7 @@ async function flushAsyncWork(times = 4) {
 }
 
 async function withTaskRegistryTempDir<T>(run: (root: string) => Promise<T>): Promise<T> {
-  return await withTempDir({ prefix: "openclaw-task-registry-" }, async (root) => {
+  return await withTempDir({ prefix: "quantclaw-task-registry-" }, async (root) => {
     process.env.OPENCLAW_STATE_DIR = root;
     resetTaskRegistryForTests();
     resetFlowRegistryForTests();
@@ -1500,7 +1500,7 @@ describe("task-registry", () => {
   });
 
   it("cancels ACP-backed tasks through the ACP session manager", async () => {
-    await withTempDir({ prefix: "openclaw-task-registry-" }, async (root) => {
+    await withTempDir({ prefix: "quantclaw-task-registry-" }, async (root) => {
       const registry = await loadFreshTaskRegistryModulesForControlTest();
       process.env.OPENCLAW_STATE_DIR = root;
       registry.resetTaskRegistryForTests();
@@ -1558,7 +1558,7 @@ describe("task-registry", () => {
   });
 
   it("cancels subagent-backed tasks through subagent control", async () => {
-    await withTempDir({ prefix: "openclaw-task-registry-" }, async (root) => {
+    await withTempDir({ prefix: "quantclaw-task-registry-" }, async (root) => {
       const registry = await loadFreshTaskRegistryModulesForControlTest();
       process.env.OPENCLAW_STATE_DIR = root;
       registry.resetTaskRegistryForTests();

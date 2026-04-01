@@ -185,12 +185,12 @@ const createStubPluginRegistry = (): PluginRegistry => ({
 });
 
 const GATEWAY_TEST_PLUGIN_REGISTRY_STATE_KEY = Symbol.for(
-  "openclaw.gatewayTestHelpers.pluginRegistryState",
+  "quantclaw.gatewayTestHelpers.pluginRegistryState",
 );
-const GATEWAY_TEST_CONFIG_ROOT_KEY = Symbol.for("openclaw.gatewayTestHelpers.configRoot");
+const GATEWAY_TEST_CONFIG_ROOT_KEY = Symbol.for("quantclaw.gatewayTestHelpers.configRoot");
 
 const hoisted = vi.hoisted(() => {
-  const key = Symbol.for("openclaw.gatewayTestHelpers.hoisted");
+  const key = Symbol.for("quantclaw.gatewayTestHelpers.hoisted");
   const store = globalThis as Record<PropertyKey, unknown>;
   if (Object.prototype.hasOwnProperty.call(store, key)) {
     return store[key] as {
@@ -313,7 +313,7 @@ const testConfigRoot = resolveGlobalSingleton(GATEWAY_TEST_CONFIG_ROOT_KEY, () =
 
 export const setTestConfigRoot = (root: string) => {
   testConfigRoot.value = root;
-  process.env.OPENCLAW_CONFIG_PATH = path.join(root, "openclaw.json");
+  process.env.OPENCLAW_CONFIG_PATH = path.join(root, "quantclaw.json");
 };
 
 export const testTailnetIPv4 = hoisted.testTailnetIPv4;
@@ -419,7 +419,7 @@ vi.mock("../config/sessions.js", async () => {
 
 vi.mock("../config/config.js", async () => {
   const actual = await vi.importActual<typeof import("../config/config.js")>("../config/config.js");
-  const resolveConfigPath = () => path.join(testConfigRoot.value, "openclaw.json");
+  const resolveConfigPath = () => path.join(testConfigRoot.value, "quantclaw.json");
   const hashConfigRaw = (raw: string | null) =>
     crypto
       .createHash("sha256")
@@ -504,7 +504,7 @@ vi.mock("../config/config.js", async () => {
         : {};
     const defaults = {
       model: { primary: "anthropic/claude-opus-4-6" },
-      workspace: path.join(os.tmpdir(), "openclaw-gateway-test"),
+      workspace: path.join(os.tmpdir(), "quantclaw-gateway-test"),
       ...fileDefaults,
       ...testState.agentConfig,
     };

@@ -6,7 +6,7 @@ import { createCronStoreHarness } from "./service.test-harness.js";
 import { loadCronStore, resolveCronStorePath, saveCronStore } from "./store.js";
 import type { CronStoreFile } from "./types.js";
 
-const { makeStorePath } = createCronStoreHarness({ prefix: "openclaw-cron-store-" });
+const { makeStorePath } = createCronStoreHarness({ prefix: "quantclaw-cron-store-" });
 
 function makeStore(jobId: string, enabled: boolean): CronStoreFile {
   const now = Date.now();

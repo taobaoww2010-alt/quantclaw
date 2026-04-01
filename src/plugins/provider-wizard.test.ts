@@ -62,7 +62,7 @@ function createSglangConfig() {
 
 function createHomeEnv(suffix = "", overrides?: Partial<NodeJS.ProcessEnv>) {
   return {
-    OPENCLAW_HOME: `/tmp/openclaw-home${suffix}`,
+    OPENCLAW_HOME: `/tmp/quantclaw-home${suffix}`,
     ...overrides,
   } as NodeJS.ProcessEnv;
 }
@@ -374,7 +374,7 @@ describe("provider wizard boundaries", () => {
       env,
       mutate: () => {
         config.plugins.allow = ["vllm"];
-        env.OPENCLAW_HOME = "/tmp/openclaw-home-b";
+        env.OPENCLAW_HOME = "/tmp/quantclaw-home-b";
       },
     });
   });

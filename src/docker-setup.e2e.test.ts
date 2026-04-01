@@ -49,7 +49,7 @@ exit 0
 }
 
 async function createDockerSetupSandbox(): Promise<DockerSetupSandbox> {
-  const rootDir = await mkdtemp(join(tmpdir(), "openclaw-docker-setup-"));
+  const rootDir = await mkdtemp(join(tmpdir(), "quantclaw-docker-setup-"));
   const scriptPath = join(rootDir, "scripts", "docker", "setup.sh");
   const dockerfilePath = join(rootDir, "Dockerfile");
   const composePath = join(rootDir, "docker-compose.yml");
@@ -80,9 +80,9 @@ function createEnv(
     LC_ALL: process.env.LC_ALL,
     TMPDIR: process.env.TMPDIR,
     DOCKER_STUB_LOG: sandbox.logPath,
-    OPENCLAW_GATEWAY_TOKEN: "test-token",
+    QUANTCLAW_GATEWAY_TOKEN: "test-token",
     OPENCLAW_CONFIG_DIR: join(sandbox.rootDir, "config"),
-    OPENCLAW_WORKSPACE_DIR: join(sandbox.rootDir, "openclaw"),
+    OPENCLAW_WORKSPACE_DIR: join(sandbox.rootDir, "quantclaw"),
   };
 
   for (const [key, value] of Object.entries(overrides)) {
@@ -127,7 +127,7 @@ async function readDockerLogLines(sandbox: DockerSetupSandbox) {
 }
 
 function isGatewayStartLine(line: string) {
-  return line.includes("compose") && line.includes(" up -d") && line.includes("openclaw-gateway");
+  return line.includes("compose") && line.includes(" up -d") && line.includes("quantclaw-gateway");
 }
 
 function findGatewayStartLineIndex(lines: string[]) {
@@ -145,7 +145,7 @@ async function runDockerSetupWithUnsetGatewayToken(
   await prepare?.(configDir);
 
   const result = runDockerSetup(sandbox, {
-    OPENCLAW_GATEWAY_TOKEN: undefined,
+    QUANTCLAW_GATEWAY_TOKEN: undefined,
     OPENCLAW_CONFIG_DIR: configDir,
     OPENCLAW_WORKSPACE_DIR: workspaceDir,
   });
@@ -210,7 +210,7 @@ describe("scripts/docker/setup.sh", () => {
     const result = runDockerSetup(activeSandbox, {
       OPENCLAW_DOCKER_APT_PACKAGES: "ffmpeg build-essential",
       OPENCLAW_EXTRA_MOUNTS: undefined,
-      OPENCLAW_HOME_VOLUME: "openclaw-home",
+      OPENCLAW_HOME_VOLUME: "quantclaw-home",
     });
     expect(result.status).toBe(0);
     const envFile = await readFile(join(activeSandbox.rootDir, ".env"), "utf8");
@@ -221,9 +221,9 @@ describe("scripts/docker/setup.sh", () => {
       join(activeSandbox.rootDir, "docker-compose.extra.yml"),
       "utf8",
     );
-    expect(extraCompose).toContain("openclaw-home:/home/node");
+    expect(extraCompose).toContain("quantclaw-home:/home/node");
     expect(extraCompose).toContain("volumes:");
-    expect(extraCompose).toContain("openclaw-home:");
+    expect(extraCompose).toContain("quantclaw-home:");
     const log = await readDockerLog(activeSandbox);
     expect(log).toContain("--build-arg OPENCLAW_DOCKER_APT_PACKAGES=ffmpeg build-essential");
     expect(log).toContain(
@@ -327,28 +327,28 @@ describe("scripts/docker/setup.sh", () => {
     expect(log).toContain("run --rm --no-deps --user root --entrypoint sh openclaw-gateway -c");
   });
 
-  it("reuses existing config token when OPENCLAW_GATEWAY_TOKEN is unset", async () => {
+  it("reuses existing config token when QUANTCLAW_GATEWAY_TOKEN is unset", async () => {
     const activeSandbox = requireSandbox(sandbox);
     const { result, envFile } = await runDockerSetupWithUnsetGatewayToken(
       activeSandbox,
       "token-reuse",
       async (configDir) => {
         await writeFile(
-          join(configDir, "openclaw.json"),
+          join(configDir, "quantclaw.json"),
           JSON.stringify({ gateway: { auth: { mode: "token", token: "config-token-123" } } }),
         );
       },
     );
 
     expect(result.status).toBe(0);
-    expect(envFile).toContain("OPENCLAW_GATEWAY_TOKEN=config-token-123"); // pragma: allowlist secret
+    expect(envFile).toContain("QUANTCLAW_GATEWAY_TOKEN=config-token-123"); // pragma: allowlist secret
   });
 
-  it("reuses existing .env token when OPENCLAW_GATEWAY_TOKEN and config token are unset", async () => {
+  it("reuses existing .env token when QUANTCLAW_GATEWAY_TOKEN and config token are unset", async () => {
     const activeSandbox = requireSandbox(sandbox);
     await writeFile(
       join(activeSandbox.rootDir, ".env"),
-      "OPENCLAW_GATEWAY_TOKEN=dotenv-token-123\nOPENCLAW_GATEWAY_PORT=18789\n", // pragma: allowlist secret
+      "QUANTCLAW_GATEWAY_TOKEN=dotenv-token-123\nOPENCLAW_GATEWAY_PORT=18789\n", // pragma: allowlist secret
     );
     const { result, envFile } = await runDockerSetupWithUnsetGatewayToken(
       activeSandbox,
@@ -356,7 +356,7 @@ describe("scripts/docker/setup.sh", () => {
     );
 
     expect(result.status).toBe(0);
-    expect(envFile).toContain("OPENCLAW_GATEWAY_TOKEN=dotenv-token-123"); // pragma: allowlist secret
+    expect(envFile).toContain("QUANTCLAW_GATEWAY_TOKEN=dotenv-token-123"); // pragma: allowlist secret
     expect(result.stderr).toBe("");
   });
 
@@ -365,9 +365,9 @@ describe("scripts/docker/setup.sh", () => {
     await writeFile(
       join(activeSandbox.rootDir, ".env"),
       [
-        "OPENCLAW_GATEWAY_TOKEN=",
-        "OPENCLAW_GATEWAY_TOKEN=first-token",
-        "OPENCLAW_GATEWAY_TOKEN=last=token=value\r", // pragma: allowlist secret
+        "QUANTCLAW_GATEWAY_TOKEN=",
+        "QUANTCLAW_GATEWAY_TOKEN=first-token",
+        "QUANTCLAW_GATEWAY_TOKEN=last=token=value\r", // pragma: allowlist secret
       ].join("\n"),
     );
     const { result, envFile } = await runDockerSetupWithUnsetGatewayToken(
@@ -376,8 +376,8 @@ describe("scripts/docker/setup.sh", () => {
     );
 
     expect(result.status).toBe(0);
-    expect(envFile).toContain("OPENCLAW_GATEWAY_TOKEN=last=token=value"); // pragma: allowlist secret
-    expect(envFile).not.toContain("OPENCLAW_GATEWAY_TOKEN=first-token");
+    expect(envFile).toContain("QUANTCLAW_GATEWAY_TOKEN=last=token=value"); // pragma: allowlist secret
+    expect(envFile).not.toContain("QUANTCLAW_GATEWAY_TOKEN=first-token");
     expect(envFile).not.toContain("\r");
   });
 
@@ -543,7 +543,7 @@ describe("scripts/docker/setup.sh", () => {
 
   it("keeps docker-compose gateway token env defaults aligned across services", async () => {
     const compose = await readFile(join(repoRoot, "docker-compose.yml"), "utf8");
-    expect(compose.match(/OPENCLAW_GATEWAY_TOKEN: \$\{OPENCLAW_GATEWAY_TOKEN:-\}/g)).toHaveLength(
+    expect(compose.match(/QUANTCLAW_GATEWAY_TOKEN: \$\{QUANTCLAW_GATEWAY_TOKEN:-\}/g)).toHaveLength(
       2,
     );
   });

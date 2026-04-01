@@ -103,12 +103,12 @@ export function dockerExecResult(stdout: string) {
 export function createSandbox(overrides?: Partial<SandboxContext>): SandboxContext {
   return createSandboxTestContext({
     overrides: {
-      containerName: "openclaw-sbx-test",
+      containerName: "quantclaw-sbx-test",
       ...overrides,
     },
     dockerOverrides: {
-      image: "openclaw-sandbox:bookworm-slim",
-      containerPrefix: "openclaw-sbx-",
+      image: "quantclaw-sandbox:bookworm-slim",
+      containerPrefix: "quantclaw-sbx-",
     },
   });
 }
@@ -188,7 +188,7 @@ export async function createHostEscapeFixture(stateDir: string) {
 export async function expectMkdirpAllowsExistingDirectory(params?: {
   forceBoundaryIoFallback?: boolean;
 }) {
-  await withTempDir("openclaw-fs-bridge-mkdirp-", async (stateDir) => {
+  await withTempDir("quantclaw-fs-bridge-mkdirp-", async (stateDir) => {
     const workspaceDir = path.join(stateDir, "workspace");
     const nestedDir = path.join(workspaceDir, "memory", "kemik");
     await fs.mkdir(nestedDir, { recursive: true });

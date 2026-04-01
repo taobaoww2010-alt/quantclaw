@@ -460,19 +460,19 @@ function loadSkillEntries(
   const bundledSkills = bundledSkillsDir
     ? loadSkills({
         dir: bundledSkillsDir,
-        source: "openclaw-bundled",
+        source: "quantclaw-bundled",
       })
     : [];
   const extraSkills = mergedExtraDirs.flatMap((dir) => {
     const resolved = resolveUserPath(dir);
     return loadSkills({
       dir: resolved,
-      source: "openclaw-extra",
+      source: "quantclaw-extra",
     });
   });
   const managedSkills = loadSkills({
     dir: managedSkillsDir,
-    source: "openclaw-managed",
+    source: "quantclaw-managed",
   });
   const personalAgentsSkillsDir = path.resolve(os.homedir(), ".agents", "skills");
   const personalAgentsSkills = loadSkills({
@@ -486,7 +486,7 @@ function loadSkillEntries(
   });
   const workspaceSkills = loadSkills({
     dir: workspaceSkillsDir,
-    source: "openclaw-workspace",
+    source: "quantclaw-workspace",
   });
 
   const merged = new Map<string, Skill>();
@@ -678,9 +678,9 @@ function resolveWorkspaceSkillPromptState(
     config: opts?.config,
   });
   const truncationNote = truncated
-    ? `⚠️ Skills truncated: included ${skillsForPrompt.length} of ${resolvedSkills.length}${compact ? " (compact format, descriptions omitted)" : ""}. Run \`openclaw skills check\` to audit.`
+    ? `⚠️ Skills truncated: included ${skillsForPrompt.length} of ${resolvedSkills.length}${compact ? " (compact format, descriptions omitted)" : ""}. Run \`quantclaw skills check\` to audit.`
     : compact
-      ? `⚠️ Skills catalog using compact format (descriptions omitted). Run \`openclaw skills check\` to audit.`
+      ? `⚠️ Skills catalog using compact format (descriptions omitted). Run \`quantclaw skills check\` to audit.`
       : "";
   const prompt = [
     remoteNote,

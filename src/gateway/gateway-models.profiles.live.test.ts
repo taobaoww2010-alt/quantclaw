@@ -5,7 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import type { Api, Model } from "@mariozechner/pi-ai";
 import { describe, expect, it } from "vitest";
-import { resolveOpenClawAgentDir } from "../agents/agent-paths.js";
+import { resolveQuantClawAgentDir } from "../agents/agent-paths.js";
 import { resolveAgentWorkspaceDir } from "../agents/agent-scope.js";
 import {
   type AuthProfileStore,
@@ -22,7 +22,7 @@ import { isHighSignalLiveModelRef } from "../agents/live-model-filter.js";
 import { isLiveProfileKeyModeEnabled, isLiveTestEnabled } from "../agents/live-test-helpers.js";
 import { getApiKeyForModel } from "../agents/model-auth.js";
 import { shouldSuppressBuiltInModel } from "../agents/model-suppression.js";
-import { ensureOpenClawModelsJson } from "../agents/models-config.js";
+import { ensureQuantClawModelsJson } from "../agents/models-config.js";
 import { isRateLimitErrorMessage } from "../agents/pi-embedded-helpers/errors.js";
 import { discoverAuthStorage, discoverModels } from "../agents/pi-model-discovery.js";
 import { clearRuntimeConfigSnapshot, loadConfig } from "../config/config.js";
@@ -74,7 +74,7 @@ const GATEWAY_LIVE_EXEC_READ_NONCE_MISS_SKIP_MODEL_KEYS = new Set([
 ]);
 const GATEWAY_LIVE_MAX_MODELS = resolveGatewayLiveMaxModels();
 const GATEWAY_LIVE_SUITE_TIMEOUT_MS = resolveGatewayLiveSuiteTimeoutMs(GATEWAY_LIVE_MAX_MODELS);
-const QUIET_LIVE_LOGS = process.env.OPENCLAW_LIVE_TEST_QUIET !== "0";
+const QUIET_LIVE_LOGS = process.env.QUANTCLAW_LIVE_TEST_QUIET !== "0";
 
 const describeLive = isLiveTestEnabled(["OPENCLAW_LIVE_GATEWAY"]) ? describe : describe.skip;
 
@@ -958,14 +958,14 @@ async function runGatewayModelSuite(params: GatewayModelSuiteParams) {
   const runtimeEnv = enterProductionEnvForLiveRun();
   const previous = {
     configPath: process.env.OPENCLAW_CONFIG_PATH,
-    token: process.env.OPENCLAW_GATEWAY_TOKEN,
+    token: process.env.QUANTCLAW_GATEWAY_TOKEN,
     skipChannels: process.env.OPENCLAW_SKIP_CHANNELS,
     skipGmail: process.env.OPENCLAW_SKIP_GMAIL_WATCHER,
     skipCron: process.env.OPENCLAW_SKIP_CRON,
     skipCanvas: process.env.OPENCLAW_SKIP_CANVAS_HOST,
     disableBonjour: process.env.OPENCLAW_DISABLE_BONJOUR,
-    logLevel: process.env.OPENCLAW_LOG_LEVEL,
-    agentDir: process.env.OPENCLAW_AGENT_DIR,
+    logLevel: process.env.QUANTCLAW_LOG_LEVEL,
+    agentDir: process.env.QUANTCLAW_AGENT_DIR,
     piAgentDir: process.env.PI_CODING_AGENT_DIR,
     stateDir: process.env.OPENCLAW_STATE_DIR,
   };
@@ -978,14 +978,14 @@ async function runGatewayModelSuite(params: GatewayModelSuiteParams) {
   process.env.OPENCLAW_SKIP_CANVAS_HOST = "1";
   if (QUIET_LIVE_LOGS) {
     process.env.OPENCLAW_DISABLE_BONJOUR = "1";
-    process.env.OPENCLAW_LOG_LEVEL = "silent";
+    process.env.QUANTCLAW_LOG_LEVEL = "silent";
   }
 
   const token = `test-${randomUUID()}`;
-  process.env.OPENCLAW_GATEWAY_TOKEN = token;
+  process.env.QUANTCLAW_GATEWAY_TOKEN = token;
   const agentId = "dev";
 
-  const hostAgentDir = resolveOpenClawAgentDir();
+  const hostAgentDir = resolveQuantClawAgentDir();
   const hostStore = ensureAuthProfileStore(hostAgentDir, {
     allowKeychainPrompt: false,
   });
@@ -998,7 +998,7 @@ async function runGatewayModelSuite(params: GatewayModelSuiteParams) {
     lastGood: hostStore.lastGood ? { ...hostStore.lastGood } : undefined,
     usageStats: hostStore.usageStats ? { ...hostStore.usageStats } : undefined,
   };
-  tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-live-state-"));
+  tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-live-state-"));
   process.env.OPENCLAW_STATE_DIR = tempStateDir;
   tempAgentDir = path.join(tempStateDir, "agents", DEFAULT_AGENT_ID, "agent");
   saveAuthProfileStore(sanitizedStore, tempAgentDir);
@@ -1006,7 +1006,7 @@ async function runGatewayModelSuite(params: GatewayModelSuiteParams) {
   if (tempSessionAgentDir !== tempAgentDir) {
     saveAuthProfileStore(sanitizedStore, tempSessionAgentDir);
   }
-  process.env.OPENCLAW_AGENT_DIR = tempAgentDir;
+  process.env.QUANTCLAW_AGENT_DIR = tempAgentDir;
   process.env.PI_CODING_AGENT_DIR = tempAgentDir;
 
   const workspaceDir = resolveAgentWorkspaceDir(params.cfg, agentId);
@@ -1016,7 +1016,7 @@ async function runGatewayModelSuite(params: GatewayModelSuiteParams) {
   const toolProbePath = path.join(workspaceDir, `.openclaw-live-tool-probe.${nonceA}.txt`);
   await fs.writeFile(toolProbePath, `nonceA=${nonceA}\nnonceB=${nonceB}\n`);
 
-  const agentDir = resolveOpenClawAgentDir();
+  const agentDir = resolveQuantClawAgentDir();
   const sanitizedCfg: OpenClawConfig = {
     ...params.cfg,
     auth: sanitizeAuthConfig({ cfg: params.cfg, agentDir }),
@@ -1026,8 +1026,8 @@ async function runGatewayModelSuite(params: GatewayModelSuiteParams) {
     candidates: params.candidates,
     providerOverrides: params.providerOverrides,
   });
-  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-live-"));
-  const tempConfigPath = path.join(tempDir, "openclaw.json");
+  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-live-"));
+  const tempConfigPath = path.join(tempDir, "quantclaw.json");
   await fs.writeFile(tempConfigPath, `${JSON.stringify(nextCfg, null, 2)}\n`);
   process.env.OPENCLAW_CONFIG_PATH = tempConfigPath;
 
@@ -1200,10 +1200,10 @@ async function runGatewayModelSuite(params: GatewayModelSuiteParams) {
               idempotencyKey: `idem-${runIdTool}-tool-${toolReadAttempt + 1}`,
               modelKey,
               message: strictReply
-                ? "OpenClaw live tool probe (local, safe): " +
+                ? "☯️ QuantClaw live tool probe (local, safe): " +
                   `use the tool named \`read\` (or \`Read\`) with JSON arguments {"path":"${toolProbePath}"}. ` +
                   `Then reply with exactly: ${nonceA} ${nonceB}. No extra text.`
-                : "OpenClaw live tool probe (local, safe): " +
+                : "☯️ QuantClaw live tool probe (local, safe): " +
                   `use the tool named \`read\` (or \`Read\`) with JSON arguments {"path":"${toolProbePath}"}. ` +
                   "Then reply with the two nonce values you read (include both).",
               thinkingLevel: params.thinkingLevel,
@@ -1264,12 +1264,12 @@ async function runGatewayModelSuite(params: GatewayModelSuiteParams) {
                 idempotencyKey: `idem-${runIdTool}-exec-read-${execReadAttempt + 1}`,
                 modelKey,
                 message: strictReply
-                  ? "OpenClaw live tool probe (local, safe): " +
+                  ? "☯️ QuantClaw live tool probe (local, safe): " +
                     "use the tool named `exec` (or `Exec`) to run this command: " +
                     `mkdir -p "${tempDir}" && printf '%s' '${nonceC}' > "${toolWritePath}". ` +
                     `Then use the tool named \`read\` (or \`Read\`) with JSON arguments {"path":"${toolWritePath}"}. ` +
                     `Then reply with exactly: ${nonceC}. No extra text.`
-                  : "OpenClaw live tool probe (local, safe): " +
+                  : "☯️ QuantClaw live tool probe (local, safe): " +
                     "use the tool named `exec` (or `Exec`) to run this command: " +
                     `mkdir -p "${tempDir}" && printf '%s' '${nonceC}' > "${toolWritePath}". ` +
                     `Then use the tool named \`read\` (or \`Read\`) with JSON arguments {"path":"${toolWritePath}"}. ` +
@@ -1593,14 +1593,14 @@ async function runGatewayModelSuite(params: GatewayModelSuiteParams) {
     }
 
     process.env.OPENCLAW_CONFIG_PATH = previous.configPath;
-    process.env.OPENCLAW_GATEWAY_TOKEN = previous.token;
+    process.env.QUANTCLAW_GATEWAY_TOKEN = previous.token;
     process.env.OPENCLAW_SKIP_CHANNELS = previous.skipChannels;
     process.env.OPENCLAW_SKIP_GMAIL_WATCHER = previous.skipGmail;
     process.env.OPENCLAW_SKIP_CRON = previous.skipCron;
     process.env.OPENCLAW_SKIP_CANVAS_HOST = previous.skipCanvas;
     process.env.OPENCLAW_DISABLE_BONJOUR = previous.disableBonjour;
-    process.env.OPENCLAW_LOG_LEVEL = previous.logLevel;
-    process.env.OPENCLAW_AGENT_DIR = previous.agentDir;
+    process.env.QUANTCLAW_LOG_LEVEL = previous.logLevel;
+    process.env.QUANTCLAW_AGENT_DIR = previous.agentDir;
     process.env.PI_CODING_AGENT_DIR = previous.piAgentDir;
     process.env.OPENCLAW_STATE_DIR = previous.stateDir;
   }
@@ -1612,9 +1612,9 @@ describeLive("gateway live (dev agent, profile keys)", () => {
     async () => {
       clearRuntimeConfigSnapshot();
       const cfg = loadConfig();
-      await ensureOpenClawModelsJson(cfg);
+      await ensureQuantClawModelsJson(cfg);
 
-      const agentDir = resolveOpenClawAgentDir();
+      const agentDir = resolveQuantClawAgentDir();
       const authStorage = discoverAuthStorage(agentDir);
       const modelRegistry = discoverModels(authStorage, agentDir);
       const all = modelRegistry.getAll();
@@ -1724,7 +1724,7 @@ describeLive("gateway live (dev agent, profile keys)", () => {
     const runtimeEnv = enterProductionEnvForLiveRun();
     const previous = {
       configPath: process.env.OPENCLAW_CONFIG_PATH,
-      token: process.env.OPENCLAW_GATEWAY_TOKEN,
+      token: process.env.QUANTCLAW_GATEWAY_TOKEN,
       skipChannels: process.env.OPENCLAW_SKIP_CHANNELS,
       skipGmail: process.env.OPENCLAW_SKIP_GMAIL_WATCHER,
       skipCron: process.env.OPENCLAW_SKIP_CRON,
@@ -1737,12 +1737,12 @@ describeLive("gateway live (dev agent, profile keys)", () => {
     process.env.OPENCLAW_SKIP_CANVAS_HOST = "1";
 
     const token = `test-${randomUUID()}`;
-    process.env.OPENCLAW_GATEWAY_TOKEN = token;
+    process.env.QUANTCLAW_GATEWAY_TOKEN = token;
 
     const cfg = loadConfig();
-    await ensureOpenClawModelsJson(cfg);
+    await ensureQuantClawModelsJson(cfg);
 
-    const agentDir = resolveOpenClawAgentDir();
+    const agentDir = resolveQuantClawAgentDir();
     const authStorage = discoverAuthStorage(agentDir);
     const modelRegistry = discoverModels(authStorage, agentDir);
     const anthropic = modelRegistry.find("anthropic", "claude-opus-4-5") as Model<Api> | null;
@@ -1877,7 +1877,7 @@ describeLive("gateway live (dev agent, profile keys)", () => {
       await fs.rm(toolProbePath, { force: true });
 
       process.env.OPENCLAW_CONFIG_PATH = previous.configPath;
-      process.env.OPENCLAW_GATEWAY_TOKEN = previous.token;
+      process.env.QUANTCLAW_GATEWAY_TOKEN = previous.token;
       process.env.OPENCLAW_SKIP_CHANNELS = previous.skipChannels;
       process.env.OPENCLAW_SKIP_GMAIL_WATCHER = previous.skipGmail;
       process.env.OPENCLAW_SKIP_CRON = previous.skipCron;

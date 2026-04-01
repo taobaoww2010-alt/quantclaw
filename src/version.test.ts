@@ -15,7 +15,7 @@ import {
 } from "./version.js";
 
 async function withTempDir<T>(run: (dir: string) => Promise<T>): Promise<T> {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-version-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-version-"));
   try {
     return await run(dir);
   } finally {
@@ -47,7 +47,7 @@ function expectVersionMetadataToBeMissing(moduleUrl: string) {
 describe("version resolution", () => {
   it("resolves package version from nested dist/plugin-sdk module URL", async () => {
     await withTempDir(async (root) => {
-      await writeJsonFixture(root, "package.json", { name: "openclaw", version: "1.2.3" });
+      await writeJsonFixture(root, "package.json", { name: "quantclaw", version: "1.2.3" });
       const moduleUrl = await ensureModuleFixture(root);
       expect(readVersionFromPackageJsonForModuleUrl(moduleUrl)).toBe("1.2.3");
       expect(resolveVersionFromModuleUrl(moduleUrl)).toBe("1.2.3");
@@ -56,7 +56,7 @@ describe("version resolution", () => {
 
   it("ignores unrelated nearby package.json files", async () => {
     await withTempDir(async (root) => {
-      await writeJsonFixture(root, "package.json", { name: "openclaw", version: "2.3.4" });
+      await writeJsonFixture(root, "package.json", { name: "quantclaw", version: "2.3.4" });
       await writeJsonFixture(root, "dist/package.json", {
         name: "other-package",
         version: "9.9.9",
@@ -100,7 +100,7 @@ describe("version resolution", () => {
 
   it("resolves binary version with explicit precedence", async () => {
     await withTempDir(async (root) => {
-      await writeJsonFixture(root, "package.json", { name: "openclaw", version: "2.3.4" });
+      await writeJsonFixture(root, "package.json", { name: "quantclaw", version: "2.3.4" });
       const moduleUrl = await ensureModuleFixture(root);
       expect(
         resolveBinaryVersion({
@@ -134,27 +134,27 @@ describe("version resolution", () => {
     });
   });
 
-  it("prefers OPENCLAW_VERSION over service and package versions", () => {
+  it("prefers QUANTCLAW_VERSION over service and package versions", () => {
     expect(
       resolveRuntimeServiceVersion({
-        OPENCLAW_VERSION: "9.9.9",
+        QUANTCLAW_VERSION: "9.9.9",
         OPENCLAW_SERVICE_VERSION: "2.2.2",
         npm_package_version: "1.1.1",
       }),
     ).toBe("9.9.9");
   });
 
-  it("prefers runtime VERSION over stale OPENCLAW_VERSION for compatibility checks", () => {
-    const previous = process.env.OPENCLAW_VERSION;
+  it("prefers runtime VERSION over stale QUANTCLAW_VERSION for compatibility checks", () => {
+    const previous = process.env.QUANTCLAW_VERSION;
     const previousService = process.env.OPENCLAW_SERVICE_VERSION;
     const previousPackage = process.env.npm_package_version;
     try {
-      process.env.OPENCLAW_VERSION = "2026.3.25";
+      process.env.QUANTCLAW_VERSION = "2026.3.25";
       process.env.OPENCLAW_SERVICE_VERSION = "2026.3.25-service";
       process.env.npm_package_version = "2026.3.25-package";
       expect(resolveCompatibilityHostVersion()).toBe(VERSION);
     } finally {
-      process.env.OPENCLAW_VERSION = previous;
+      process.env.QUANTCLAW_VERSION = previous;
       process.env.OPENCLAW_SERVICE_VERSION = previousService;
       process.env.npm_package_version = previousPackage;
     }
@@ -163,7 +163,7 @@ describe("version resolution", () => {
   it("keeps explicit env-object overrides for compatibility checks in tests", () => {
     expect(
       resolveCompatibilityHostVersion({
-        OPENCLAW_VERSION: "2026.3.99",
+        QUANTCLAW_VERSION: "2026.3.99",
         OPENCLAW_SERVICE_VERSION: "2026.3.98",
         npm_package_version: "2026.3.97",
       }),
@@ -183,7 +183,7 @@ describe("version resolution", () => {
   it("prefers runtime VERSION over service/package markers and ignores blank env values", () => {
     expect(
       resolveRuntimeServiceVersion({
-        OPENCLAW_VERSION: "   ",
+        QUANTCLAW_VERSION: "   ",
         OPENCLAW_SERVICE_VERSION: "  2.0.0  ",
         npm_package_version: "1.0.0",
       }),
@@ -191,7 +191,7 @@ describe("version resolution", () => {
 
     expect(
       resolveRuntimeServiceVersion({
-        OPENCLAW_VERSION: " ",
+        QUANTCLAW_VERSION: " ",
         OPENCLAW_SERVICE_VERSION: "\t",
         npm_package_version: " 1.0.0-package ",
       }),
@@ -200,7 +200,7 @@ describe("version resolution", () => {
     expect(
       resolveRuntimeServiceVersion(
         {
-          OPENCLAW_VERSION: "",
+          QUANTCLAW_VERSION: "",
           OPENCLAW_SERVICE_VERSION: " ",
           npm_package_version: "",
         },

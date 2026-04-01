@@ -35,7 +35,7 @@ describe("media store outside-workspace mapping", () => {
   beforeAll(async () => {
     ({ saveMediaSource } = await import("./store.js"));
     ({ SafeOpenError } = await import("../infra/fs-safe.js"));
-    tempHome = await createTempHomeEnv("openclaw-media-store-test-home-");
+    tempHome = await createTempHomeEnv("quantclaw-media-store-test-home-");
     home = tempHome.home;
   });
 

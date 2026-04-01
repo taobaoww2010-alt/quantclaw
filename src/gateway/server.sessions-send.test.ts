@@ -76,11 +76,11 @@ async function emitLifecycleAssistantReply(params: {
 }
 
 beforeAll(async () => {
-  envSnapshot = captureEnv(["OPENCLAW_GATEWAY_PORT", "OPENCLAW_GATEWAY_TOKEN"]);
+  envSnapshot = captureEnv(["OPENCLAW_GATEWAY_PORT", "QUANTCLAW_GATEWAY_TOKEN"]);
   gatewayPort = await getFreePort();
   testState.gatewayAuth = { mode: "token", token: gatewayToken };
   process.env.OPENCLAW_GATEWAY_PORT = String(gatewayPort);
-  process.env.OPENCLAW_GATEWAY_TOKEN = gatewayToken;
+  process.env.QUANTCLAW_GATEWAY_TOKEN = gatewayToken;
   const { approveDevicePairing, requestDevicePairing } = await import("../infra/device-pairing.js");
   const { loadOrCreateDeviceIdentity, publicKeyRawBase64UrlFromPem } =
     await import("../infra/device-identity.js");
@@ -88,7 +88,7 @@ beforeAll(async () => {
   const pending = await requestDevicePairing({
     deviceId: identity.deviceId,
     publicKey: publicKeyRawBase64UrlFromPem(identity.publicKeyPem),
-    clientId: "openclaw-cli",
+    clientId: "quantclaw-cli",
     clientMode: "cli",
     role: "operator",
     scopes: ["operator.admin", "operator.read", "operator.write", "operator.approvals"],

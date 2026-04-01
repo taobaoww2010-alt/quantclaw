@@ -756,7 +756,7 @@ describe("channels command", () => {
           accountId: "default",
           enabled: true,
           configured: true,
-          probe: { ok: true, bot: { username: "openclaw_bot" } },
+          probe: { ok: true, bot: { username: "quantclaw_bot" } },
         },
       ],
     });

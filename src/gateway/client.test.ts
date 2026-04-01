@@ -154,7 +154,7 @@ function expectSecurityConnectError(
     }),
   );
   const error = onConnectError.mock.calls[0]?.[0] as Error;
-  expect(error.message).toContain("openclaw doctor --fix");
+  expect(error.message).toContain("quantclaw doctor --fix");
   if (params?.expectTailscaleHint) {
     expect(error.message).toContain("Tailscale Serve/Funnel");
   }

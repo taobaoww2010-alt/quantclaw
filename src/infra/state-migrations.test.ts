@@ -7,7 +7,7 @@ import { createTrackedTempDirs } from "../test-utils/tracked-temp-dirs.js";
 import { detectLegacyStateMigrations, runLegacyStateMigrations } from "./state-migrations.js";
 
 const tempDirs = createTrackedTempDirs();
-const createTempDir = () => tempDirs.make("openclaw-state-migrations-test-");
+const createTempDir = () => tempDirs.make("quantclaw-state-migrations-test-");
 
 function createConfig(): OpenClawConfig {
   return {

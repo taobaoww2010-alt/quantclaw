@@ -1,5 +1,5 @@
 import type { AgentEvent, AgentMessage } from "@mariozechner/pi-agent-core";
-import { resolveSendableOutboundReplyParts } from "openclaw/plugin-sdk/reply-payload";
+import { resolveSendableOutboundReplyParts } from "@openclaw/plugin-sdk/reply-payload";
 import { parseReplyDirectives } from "../auto-reply/reply/reply-directives.js";
 import { isSilentReplyText, SILENT_REPLY_TOKEN } from "../auto-reply/tokens.js";
 import { emitAgentEvent } from "../infra/agent-events.js";
@@ -44,7 +44,7 @@ function isTranscriptOnlyOpenClawAssistantMessage(message: AgentMessage | undefi
   }
   const provider = typeof message.provider === "string" ? message.provider.trim() : "";
   const model = typeof message.model === "string" ? message.model.trim() : "";
-  return provider === "openclaw" && (model === "delivery-mirror" || model === "gateway-injected");
+  return provider === "quantclaw" && (model === "delivery-mirror" || model === "gateway-injected");
 }
 
 function emitReasoningEnd(ctx: EmbeddedPiSubscribeContext) {

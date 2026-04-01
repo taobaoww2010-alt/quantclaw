@@ -1,6 +1,6 @@
 import { getAcpSessionManager } from "../acp/control-plane/manager.js";
 import { ACP_SESSION_IDENTITY_RENDERER_VERSION } from "../acp/runtime/session-identifiers.js";
-import { resolveOpenClawAgentDir } from "../agents/agent-paths.js";
+import { resolveQuantClawAgentDir } from "../agents/agent-paths.js";
 import { DEFAULT_MODEL, DEFAULT_PROVIDER } from "../agents/defaults.js";
 import { loadModelCatalog } from "../agents/model-catalog.js";
 import {
@@ -8,7 +8,7 @@ import {
   resolveConfiguredModelRef,
   resolveHooksGmailModel,
 } from "../agents/model-selection.js";
-import { ensureOpenClawModelsJson } from "../agents/models-config.js";
+import { ensureQuantClawModelsJson } from "../agents/models-config.js";
 import { resolveModel } from "../agents/pi-embedded-runner/model.js";
 import { resolveAgentSessionDirs } from "../agents/session-dirs.js";
 import { cleanStaleLockFiles } from "../agents/session-write-lock.js";
@@ -47,9 +47,9 @@ async function prewarmConfiguredPrimaryModel(params: {
     defaultProvider: DEFAULT_PROVIDER,
     defaultModel: DEFAULT_MODEL,
   });
-  const agentDir = resolveOpenClawAgentDir();
+  const agentDir = resolveQuantClawAgentDir();
   try {
-    await ensureOpenClawModelsJson(params.cfg, agentDir);
+    await ensureQuantClawModelsJson(params.cfg, agentDir);
     const resolved = resolveModel(provider, model, agentDir, params.cfg, {
       skipProviderRuntimeHooks: true,
     });

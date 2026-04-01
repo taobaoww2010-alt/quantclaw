@@ -4,7 +4,7 @@
   "private": true,
   "description": "OpenClaw Cloudflare AI Gateway provider plugin",
   "type": "module",
-  "openclaw": {
+  "quantclaw": {
     "extensions": [
       "./index.ts"
     ]

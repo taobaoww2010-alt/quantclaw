@@ -40,7 +40,7 @@ describe("secrets runtime oauth auth-profile SecretRef policy", () => {
         env: { ANTHROPIC_TOKEN: "token-value" } as NodeJS.ProcessEnv,
         loadAuthStore: () => store,
         loadablePluginOrigins: new Map(),
-        agentDirs: ["/tmp/openclaw-secrets-runtime-main"],
+        agentDirs: ["/tmp/quantclaw-secrets-runtime-main"],
       }),
     ).rejects.toThrow(/OAuth \+ SecretRef is not supported/i);
   });
@@ -62,7 +62,7 @@ describe("secrets runtime oauth auth-profile SecretRef policy", () => {
       env: { ANTHROPIC_TOKEN: "token-value" } as NodeJS.ProcessEnv,
       loadAuthStore: () => store,
       loadablePluginOrigins: new Map(),
-      agentDirs: ["/tmp/openclaw-secrets-runtime-main"],
+      agentDirs: ["/tmp/quantclaw-secrets-runtime-main"],
     });
 
     const resolved = snapshot.authStores[0]?.store.profiles["anthropic:default"];

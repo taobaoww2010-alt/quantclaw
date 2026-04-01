@@ -404,7 +404,7 @@ function addCandidate(params: {
     setupSource: params.setupSource,
     rootDir: resolvedRoot,
     origin: params.origin,
-    format: params.format ?? "openclaw",
+    format: params.format ?? "quantclaw",
     bundleFormat: params.bundleFormat,
     workspaceDir: params.workspaceDir,
     packageName: manifest?.name?.trim() || undefined,

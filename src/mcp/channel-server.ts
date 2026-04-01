@@ -27,7 +27,7 @@ export async function createOpenClawChannelMcpServer(opts: OpenClawMcpServeOptio
   const claudeChannelMode = opts.claudeChannelMode ?? "auto";
   const capabilities = getChannelMcpCapabilities(claudeChannelMode);
   const server = new McpServer(
-    { name: "openclaw", version: VERSION },
+    { name: "quantclaw", version: VERSION },
     capabilities ? { capabilities } : undefined,
   );
   const bridge = new OpenClawChannelBridge(cfg, {

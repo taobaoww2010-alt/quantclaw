@@ -5,7 +5,7 @@ describe("entry root help fast path", () => {
   it("renders root help without importing the full program", async () => {
     const outputRootHelpMock = vi.fn();
 
-    const handled = tryHandleRootHelpFastPath(["node", "openclaw", "--help"], {
+    const handled = tryHandleRootHelpFastPath(["node", "quantclaw", "--help"], {
       outputRootHelp: outputRootHelpMock,
       env: {},
     });
@@ -18,7 +18,7 @@ describe("entry root help fast path", () => {
   it("ignores non-root help invocations", () => {
     const outputRootHelpMock = vi.fn();
 
-    const handled = tryHandleRootHelpFastPath(["node", "openclaw", "status", "--help"], {
+    const handled = tryHandleRootHelpFastPath(["node", "quantclaw", "status", "--help"], {
       outputRootHelp: outputRootHelpMock,
       env: {},
     });
@@ -31,7 +31,7 @@ describe("entry root help fast path", () => {
     const outputRootHelpMock = vi.fn();
 
     const handled = tryHandleRootHelpFastPath(
-      ["node", "openclaw", "--container", "demo", "--help"],
+      ["node", "quantclaw", "--container", "demo", "--help"],
       {
         outputRootHelp: outputRootHelpMock,
         env: {},

@@ -46,7 +46,7 @@ describe("Agent-specific tool filtering", () => {
       patch: string;
     }) => Promise<void>,
   ) {
-    const workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-pi-tools-"));
+    const workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-pi-tools-"));
     const escapedPath = path.join(
       path.dirname(workspaceDir),
       `escaped-${process.pid}-${Date.now()}-${Math.random().toString(16).slice(2)}.txt`,

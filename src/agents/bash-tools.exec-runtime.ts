@@ -524,7 +524,7 @@ export async function runExecProcess(opts: {
   const supervisor = getProcessSupervisor();
   const shellRuntimeEnv: Record<string, string> = {
     ...opts.env,
-    OPENCLAW_SHELL: "exec",
+    QUANTCLAW_SHELL: "exec",
   };
 
   const session: ProcessSession = {

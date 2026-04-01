@@ -82,7 +82,7 @@ export function collectBundledPluginBuildEntries(params = {}) {
     }
 
     const pluginDir = path.join(extensionsRoot, dirent.name);
-    const manifestPath = path.join(pluginDir, "openclaw.plugin.json");
+    const manifestPath = path.join(pluginDir, "quantclaw.plugin.json");
     if (!fs.existsSync(manifestPath)) {
       continue;
     }
@@ -126,7 +126,7 @@ export function listBundledPluginPackArtifacts(params = {}) {
   const artifacts = new Set();
 
   for (const { id, hasPackageJson, sourceEntries } of entries) {
-    artifacts.add(bundledDistPluginFile(id, "openclaw.plugin.json"));
+    artifacts.add(bundledDistPluginFile(id, "quantclaw.plugin.json"));
     if (hasPackageJson) {
       artifacts.add(bundledDistPluginFile(id, "package.json"));
     }

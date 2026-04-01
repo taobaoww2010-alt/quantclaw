@@ -24,33 +24,33 @@ export type HookResolutionCollision = {
 };
 
 const HOOK_SOURCE_POLICIES: Record<HookSource, HookSourcePolicy> = {
-  "openclaw-bundled": {
+  "quantclaw-bundled": {
     precedence: 10,
     trustedLocalCode: true,
     defaultEnableMode: "default-on",
-    canOverride: ["openclaw-bundled"],
-    canBeOverriddenBy: ["openclaw-managed", "openclaw-plugin"],
+    canOverride: ["quantclaw-bundled"],
+    canBeOverriddenBy: ["quantclaw-managed", "quantclaw-plugin"],
   },
-  "openclaw-plugin": {
+  "quantclaw-plugin": {
     precedence: 20,
     trustedLocalCode: true,
     defaultEnableMode: "default-on",
-    canOverride: ["openclaw-bundled", "openclaw-plugin"],
-    canBeOverriddenBy: ["openclaw-managed"],
+    canOverride: ["quantclaw-bundled", "quantclaw-plugin"],
+    canBeOverriddenBy: ["quantclaw-managed"],
   },
-  "openclaw-managed": {
+  "quantclaw-managed": {
     precedence: 30,
     trustedLocalCode: true,
     defaultEnableMode: "default-on",
-    canOverride: ["openclaw-bundled", "openclaw-managed", "openclaw-plugin"],
-    canBeOverriddenBy: ["openclaw-managed"],
+    canOverride: ["quantclaw-bundled", "quantclaw-managed", "quantclaw-plugin"],
+    canBeOverriddenBy: ["quantclaw-managed"],
   },
-  "openclaw-workspace": {
+  "quantclaw-workspace": {
     precedence: 40,
     trustedLocalCode: true,
     defaultEnableMode: "explicit-opt-in",
-    canOverride: ["openclaw-workspace"],
-    canBeOverriddenBy: ["openclaw-workspace"],
+    canOverride: ["quantclaw-workspace"],
+    canBeOverriddenBy: ["quantclaw-workspace"],
   },
 };
 
@@ -82,7 +82,7 @@ export function resolveHookEnableState(params: {
   const hookKey = resolveHookKey(entry.hook.name, entry);
   const hookConfig = params.hookConfig ?? resolveHookConfig(config, hookKey);
 
-  if (entry.hook.source === "openclaw-plugin") {
+  if (entry.hook.source === "quantclaw-plugin") {
     return { enabled: true };
   }
   if (hookConfig?.enabled === false) {

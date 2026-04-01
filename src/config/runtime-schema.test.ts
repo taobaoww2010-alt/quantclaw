@@ -23,7 +23,7 @@ vi.mock("../plugins/manifest-registry.js", () => ({
 
 function makeSnapshot(params: { valid: boolean; config?: OpenClawConfig }): ConfigFileSnapshot {
   return {
-    path: "/tmp/openclaw.json",
+    path: "/tmp/quantclaw.json",
     exists: true,
     raw: "{}",
     parsed: params.config ?? {},

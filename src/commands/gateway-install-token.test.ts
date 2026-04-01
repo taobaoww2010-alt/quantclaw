@@ -25,7 +25,7 @@ const resolveGatewayAuthMock = vi.hoisted(() =>
 );
 const shouldRequireGatewayTokenForInstallMock = vi.hoisted(() => vi.fn(() => true));
 const resolveSecretRefValuesMock = vi.hoisted(() => vi.fn());
-const secretRefKeyMock = vi.hoisted(() => vi.fn(() => "env:default:OPENCLAW_GATEWAY_TOKEN"));
+const secretRefKeyMock = vi.hoisted(() => vi.fn(() => "env:default:QUANTCLAW_GATEWAY_TOKEN"));
 const randomTokenMock = vi.hoisted(() => vi.fn(() => "generated-token"));
 
 vi.mock("../config/config.js", () => ({
@@ -97,17 +97,17 @@ describe("resolveGatewayInstallToken", () => {
   });
 
   it("validates SecretRef token but does not persist resolved plaintext", async () => {
-    const tokenRef = { source: "env", provider: "default", id: "OPENCLAW_GATEWAY_TOKEN" };
+    const tokenRef = { source: "env", provider: "default", id: "QUANTCLAW_GATEWAY_TOKEN" };
     resolveSecretInputRefMock.mockReturnValue({ ref: tokenRef });
     resolveSecretRefValuesMock.mockResolvedValue(
-      new Map([["env:default:OPENCLAW_GATEWAY_TOKEN", "resolved-token"]]),
+      new Map([["env:default:QUANTCLAW_GATEWAY_TOKEN", "resolved-token"]]),
     );
 
     const result = await resolveGatewayInstallToken({
       config: {
         gateway: { auth: { mode: "token", token: tokenRef } },
       } as OpenClawConfig,
-      env: { OPENCLAW_GATEWAY_TOKEN: "resolved-token" } as NodeJS.ProcessEnv,
+      env: { QUANTCLAW_GATEWAY_TOKEN: "resolved-token" } as NodeJS.ProcessEnv,
     });
 
     expect(result.token).toBeUndefined();
@@ -150,8 +150,8 @@ describe("resolveGatewayInstallToken", () => {
 
     expect(result.token).toBeUndefined();
     expect(result.unavailableReason).toContain("gateway.auth.mode is unset");
-    expect(result.unavailableReason).toContain("openclaw config set gateway.auth.mode token");
-    expect(result.unavailableReason).toContain("openclaw config set gateway.auth.mode password");
+    expect(result.unavailableReason).toContain("quantclaw config set gateway.auth.mode token");
+    expect(result.unavailableReason).toContain("quantclaw config set gateway.auth.mode password");
     expect(replaceConfigFileMock).not.toHaveBeenCalled();
     expect(resolveSecretRefValuesMock).not.toHaveBeenCalled();
   });
@@ -204,14 +204,14 @@ describe("resolveGatewayInstallToken", () => {
       config: {
         gateway: {
           auth: {
-            token: "${OPENCLAW_GATEWAY_TOKEN}",
+            token: "${QUANTCLAW_GATEWAY_TOKEN}",
           },
         },
       },
       issues: [],
     });
     resolveSecretInputRefMock.mockReturnValueOnce({ ref: undefined }).mockReturnValueOnce({
-      ref: { source: "env", provider: "default", id: "OPENCLAW_GATEWAY_TOKEN" },
+      ref: { source: "env", provider: "default", id: "QUANTCLAW_GATEWAY_TOKEN" },
     });
 
     const result = await resolveGatewayInstallToken({
@@ -259,7 +259,7 @@ describe("resolveGatewayInstallToken", () => {
 
   it("passes the install env through to gateway auth resolution", async () => {
     const env = {
-      OPENCLAW_GATEWAY_PASSWORD: "dotenv-password", // pragma: allowlist secret
+      QUANTCLAW_GATEWAY_PASSWORD: "dotenv-password", // pragma: allowlist secret
     } as NodeJS.ProcessEnv;
     shouldRequireGatewayTokenForInstallMock.mockReturnValue(false);
     resolveGatewayAuthMock.mockReturnValue({
@@ -290,7 +290,7 @@ describe("resolveGatewayInstallToken", () => {
   });
 
   it("skips token SecretRef resolution when token auth is not required", async () => {
-    const tokenRef = { source: "env", provider: "default", id: "OPENCLAW_GATEWAY_TOKEN" };
+    const tokenRef = { source: "env", provider: "default", id: "QUANTCLAW_GATEWAY_TOKEN" };
     resolveSecretInputRefMock.mockReturnValue({ ref: tokenRef });
     shouldRequireGatewayTokenForInstallMock.mockReturnValue(false);
 

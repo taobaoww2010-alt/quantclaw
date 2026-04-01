@@ -30,7 +30,7 @@ type ConfigWritePayload = {
 };
 
 async function createIdentityWorkspace(subdir = "work") {
-  const root = await makeTempWorkspace("openclaw-identity-");
+  const root = await makeTempWorkspace("quantclaw-identity-");
   const workspace = path.join(root, subdir);
   await fs.mkdir(workspace, { recursive: true });
   return { root, workspace };
@@ -91,7 +91,7 @@ describe("agents set-identity command", () => {
 
     expect(configMocks.writeConfigFile).toHaveBeenCalledTimes(1);
     expect(getWrittenMainIdentity()).toEqual({
-      name: "OpenClaw",
+      name: "☯️ QuantClaw",
       theme: "helpful sloth",
       emoji: ":)",
       avatar: "avatars/openclaw.png",

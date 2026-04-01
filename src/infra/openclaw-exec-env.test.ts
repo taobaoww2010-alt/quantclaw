@@ -3,7 +3,7 @@ import {
   ensureOpenClawExecMarkerOnProcess,
   markOpenClawExecEnv,
   OPENCLAW_CLI_ENV_VALUE,
-  OPENCLAW_CLI_ENV_VAR,
+  QUANTCLAW_CLI_ENV_VAR,
 } from "./openclaw-exec-env.js";
 
 describe("markOpenClawExecEnv", () => {
@@ -28,25 +28,25 @@ describe("ensureOpenClawExecMarkerOnProcess", () => {
     },
     {
       name: "overwrites an existing marker on the provided process env",
-      env: { PATH: "/usr/bin", [OPENCLAW_CLI_ENV_VAR]: "0" } as NodeJS.ProcessEnv,
+      env: { PATH: "/usr/bin", [QUANTCLAW_CLI_ENV_VAR]: "0" } as NodeJS.ProcessEnv,
     },
   ])("$name", ({ env }) => {
     expect(ensureOpenClawExecMarkerOnProcess(env)).toBe(env);
-    expect(env[OPENCLAW_CLI_ENV_VAR]).toBe(OPENCLAW_CLI_ENV_VALUE);
+    expect(env[QUANTCLAW_CLI_ENV_VAR]).toBe(OPENCLAW_CLI_ENV_VALUE);
   });
 
   it("defaults to mutating process.env when no env object is provided", () => {
-    const previous = process.env[OPENCLAW_CLI_ENV_VAR];
-    delete process.env[OPENCLAW_CLI_ENV_VAR];
+    const previous = process.env[QUANTCLAW_CLI_ENV_VAR];
+    delete process.env[QUANTCLAW_CLI_ENV_VAR];
 
     try {
       expect(ensureOpenClawExecMarkerOnProcess()).toBe(process.env);
-      expect(process.env[OPENCLAW_CLI_ENV_VAR]).toBe(OPENCLAW_CLI_ENV_VALUE);
+      expect(process.env[QUANTCLAW_CLI_ENV_VAR]).toBe(OPENCLAW_CLI_ENV_VALUE);
     } finally {
       if (previous === undefined) {
-        delete process.env[OPENCLAW_CLI_ENV_VAR];
+        delete process.env[QUANTCLAW_CLI_ENV_VAR];
       } else {
-        process.env[OPENCLAW_CLI_ENV_VAR] = previous;
+        process.env[QUANTCLAW_CLI_ENV_VAR] = previous;
       }
     }
   });

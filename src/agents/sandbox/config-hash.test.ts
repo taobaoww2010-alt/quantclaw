@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { computeSandboxBrowserConfigHash, computeSandboxConfigHash } from "./config-hash.js";
-import { SANDBOX_MOUNT_FORMAT_VERSION } from "./workspace-mounts.js";
 import type { SandboxDockerConfig } from "./types.js";
+import { SANDBOX_MOUNT_FORMAT_VERSION } from "./workspace-mounts.js";
 
 function createDockerConfig(overrides?: Partial<SandboxDockerConfig>): SandboxDockerConfig {
   return {
-    image: "openclaw-sandbox:test",
-    containerPrefix: "openclaw-sbx-",
+    image: "quantclaw-sandbox:test",
+    containerPrefix: "quantclaw-sbx-",
     workdir: "/workspace",
     readOnlyRoot: true,
     tmpfs: ["/tmp", "/var/tmp", "/run"],

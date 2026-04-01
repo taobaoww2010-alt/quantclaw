@@ -173,7 +173,7 @@ describe("gateway-cli coverage", () => {
       {
         instanceName: "Studio (OpenClaw)",
         displayName: "Studio",
-        domain: "openclaw.internal.",
+        domain: "quantclaw.internal.",
         host: "studio.openclaw.internal",
         port: 18789,
         lanHost: "studio.local",
@@ -298,7 +298,7 @@ describe("gateway-cli coverage", () => {
     runtimeErrors.length = 0;
     serviceIsLoaded.mockResolvedValue(true);
     startGatewayServer.mockRejectedValueOnce(
-      new GatewayLockError("failed to acquire gateway lock at /tmp/openclaw/gateway.lock"),
+      new GatewayLockError("failed to acquire gateway lock at /tmp/quantclaw/gateway.lock"),
     );
 
     await expectGatewayExit(["gateway", "--token", "test-token", "--allow-unconfigured"]);

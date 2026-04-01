@@ -15,8 +15,8 @@ import { installProcessWarningFilter } from "./infra/warning-filter.js";
 import { attachChildProcessBridge } from "./process/child-process-bridge.js";
 
 const ENTRY_WRAPPER_PAIRS = [
-  { wrapperBasename: "openclaw.mjs", entryBasename: "entry.js" },
-  { wrapperBasename: "openclaw.js", entryBasename: "entry.js" },
+  { wrapperBasename: "quantclaw.mjs", entryBasename: "entry.js" },
+  { wrapperBasename: "quantclaw.js", entryBasename: "entry.js" },
 ] as const;
 
 function shouldForceReadOnlyAuthStore(argv: string[]): boolean {
@@ -45,7 +45,7 @@ if (
   const { installGaxiosFetchCompat } = await import("./infra/gaxios-fetch-compat.js");
 
   await installGaxiosFetchCompat();
-  process.title = "openclaw";
+  process.title = "quantclaw";
   ensureOpenClawExecMarkerOnProcess();
   installProcessWarningFilter();
   normalizeEnv();
@@ -58,7 +58,7 @@ if (
   }
 
   if (shouldForceReadOnlyAuthStore(process.argv)) {
-    process.env.OPENCLAW_AUTH_STORE_READONLY = "1";
+    process.env.QUANTCLAW_AUTH_STORE_READONLY = "1";
   }
 
   if (process.argv.includes("--no-color")) {
@@ -89,7 +89,7 @@ if (
 
     child.once("error", (error) => {
       console.error(
-        "[openclaw] Failed to respawn CLI:",
+        "[quantclaw] Failed to respawn CLI:",
         error instanceof Error ? (error.stack ?? error.message) : error,
       );
       process.exit(1);
@@ -109,12 +109,12 @@ if (
     Promise.all([import("./version.js"), import("./infra/git-commit.js")])
       .then(([{ VERSION }, { resolveCommitHash }]) => {
         const commit = resolveCommitHash({ moduleUrl: import.meta.url });
-        console.log(commit ? `OpenClaw ${VERSION} (${commit})` : `OpenClaw ${VERSION}`);
+        console.log(commit ? `☯️ QuantClaw ${VERSION} (${commit})` : `☯️ QuantClaw ${VERSION}`);
         process.exit(0);
       })
       .catch((error) => {
         console.error(
-          "[openclaw] Failed to resolve version:",
+          "[quantclaw] Failed to resolve version:",
           error instanceof Error ? (error.stack ?? error.message) : error,
         );
         process.exitCode = 1;
@@ -127,20 +127,20 @@ if (
   if (!ensureCliRespawnReady()) {
     const parsedContainer = parseCliContainerArgs(process.argv);
     if (!parsedContainer.ok) {
-      console.error(`[openclaw] ${parsedContainer.error}`);
+      console.error(`[quantclaw] ${parsedContainer.error}`);
       process.exit(2);
     }
 
     const parsed = parseCliProfileArgs(parsedContainer.argv);
     if (!parsed.ok) {
       // Keep it simple; Commander will handle rich help/errors after we strip flags.
-      console.error(`[openclaw] ${parsed.error}`);
+      console.error(`[quantclaw] ${parsed.error}`);
       process.exit(2);
     }
 
     const containerTargetName = resolveCliContainerTarget(process.argv);
     if (containerTargetName && parsed.profile) {
-      console.error("[openclaw] --container cannot be combined with --profile/--dev");
+      console.error("[quantclaw] --container cannot be combined with --profile/--dev");
       process.exit(2);
     }
 
@@ -174,7 +174,7 @@ export function tryHandleRootHelpFastPath(
     deps.onError ??
     ((error: unknown) => {
       console.error(
-        "[openclaw] Failed to display help:",
+        "[quantclaw] Failed to display help:",
         error instanceof Error ? (error.stack ?? error.message) : error,
       );
       process.exitCode = 1;
@@ -201,7 +201,7 @@ function runMainOrRootHelp(argv: string[]): void {
     .then(({ runCli }) => runCli(argv))
     .catch((error) => {
       console.error(
-        "[openclaw] Failed to start CLI:",
+        "[quantclaw] Failed to start CLI:",
         error instanceof Error ? (error.stack ?? error.message) : error,
       );
       process.exitCode = 1;

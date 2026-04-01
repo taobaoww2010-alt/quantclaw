@@ -7,7 +7,7 @@ import { handleCommands } from "./commands-core.js";
 import { createCommandWorkspaceHarness } from "./commands-filesystem.test-support.js";
 import { buildCommandTestParams } from "./commands.test-harness.js";
 
-const workspaceHarness = createCommandWorkspaceHarness("openclaw-command-plugins-");
+const workspaceHarness = createCommandWorkspaceHarness("quantclaw-command-plugins-");
 
 async function createClaudeBundlePlugin(params: { workspaceDir: string; pluginId: string }) {
   const pluginDir = path.join(params.workspaceDir, ".openclaw", "extensions", params.pluginId);
@@ -39,7 +39,7 @@ describe("handleCommands /plugins", () => {
   });
 
   it("lists discovered plugins and inspects plugin details", async () => {
-    await withTempHome("openclaw-command-plugins-home-", async () => {
+    await withTempHome("quantclaw-command-plugins-home-", async () => {
       const workspaceDir = await workspaceHarness.createWorkspace();
       await createClaudeBundlePlugin({ workspaceDir, pluginId: "superpowers" });
 
@@ -85,7 +85,7 @@ describe("handleCommands /plugins", () => {
   });
 
   it("rejects internal writes without operator.admin", async () => {
-    await withTempHome("openclaw-command-plugins-home-", async () => {
+    await withTempHome("quantclaw-command-plugins-home-", async () => {
       const workspaceDir = await workspaceHarness.createWorkspace();
       await createClaudeBundlePlugin({ workspaceDir, pluginId: "superpowers" });
 

@@ -52,8 +52,8 @@ async function expectExecCwdResolvesTo(
 
 describe("workspace path resolution", () => {
   it("resolves relative read/write/edit paths against workspaceDir even after cwd changes", async () => {
-    await withTempDir("openclaw-ws-", async (workspaceDir) => {
-      await withTempDir("openclaw-cwd-", async (otherDir) => {
+    await withTempDir("quantclaw-ws-", async (workspaceDir) => {
+      await withTempDir("quantclaw-cwd-", async (otherDir) => {
         const cwdSpy = vi.spyOn(process, "cwd").mockReturnValue(otherDir);
         try {
           const tools = createOpenClawCodingTools({ workspaceDir });
@@ -78,7 +78,7 @@ describe("workspace path resolution", () => {
           await editTool.execute("ws-edit", {
             path: editFile,
             oldText: "world",
-            newText: "openclaw",
+            newText: "quantclaw",
           });
           expect(await fs.readFile(path.join(workspaceDir, editFile), "utf8")).toBe(
             "hello openclaw",
@@ -91,8 +91,8 @@ describe("workspace path resolution", () => {
   });
 
   it("allows deletion edits with empty newText", async () => {
-    await withTempDir("openclaw-ws-", async (workspaceDir) => {
-      await withTempDir("openclaw-cwd-", async (otherDir) => {
+    await withTempDir("quantclaw-ws-", async (workspaceDir) => {
+      await withTempDir("quantclaw-cwd-", async (otherDir) => {
         const testFile = "delete.txt";
         await fs.writeFile(path.join(workspaceDir, testFile), "hello world", "utf8");
 
@@ -116,15 +116,15 @@ describe("workspace path resolution", () => {
   });
 
   it("defaults exec cwd to workspaceDir when workdir is omitted", async () => {
-    await withTempDir("openclaw-ws-", async (workspaceDir) => {
+    await withTempDir("quantclaw-ws-", async (workspaceDir) => {
       const execTool = createExecTool(workspaceDir);
       await expectExecCwdResolvesTo(execTool, "ws-exec", { command: "echo ok" }, workspaceDir);
     });
   });
 
   it("lets exec workdir override the workspace default", async () => {
-    await withTempDir("openclaw-ws-", async (workspaceDir) => {
-      await withTempDir("openclaw-override-", async (overrideDir) => {
+    await withTempDir("quantclaw-ws-", async (workspaceDir) => {
+      await withTempDir("quantclaw-override-", async (overrideDir) => {
         const execTool = createExecTool(workspaceDir);
         await expectExecCwdResolvesTo(
           execTool,
@@ -137,7 +137,7 @@ describe("workspace path resolution", () => {
   });
 
   it("rejects @-prefixed absolute paths outside workspace when workspaceOnly is enabled", async () => {
-    await withTempDir("openclaw-ws-", async (workspaceDir) => {
+    await withTempDir("quantclaw-ws-", async (workspaceDir) => {
       const cfg: OpenClawConfig = { tools: { fs: { workspaceOnly: true } } };
       const tools = createOpenClawCodingTools({ workspaceDir, config: cfg });
       const { readTool } = expectReadWriteEditTools(tools);
@@ -153,7 +153,7 @@ describe("workspace path resolution", () => {
     if (process.platform === "win32") {
       return;
     }
-    await withTempDir("openclaw-ws-", async (workspaceDir) => {
+    await withTempDir("quantclaw-ws-", async (workspaceDir) => {
       const cfg: OpenClawConfig = { tools: { fs: { workspaceOnly: true } } };
       const tools = createOpenClawCodingTools({ workspaceDir, config: cfg });
       const { readTool, writeTool } = expectReadWriteEditTools(tools);
@@ -192,8 +192,8 @@ describe("workspace path resolution", () => {
 
 describe("sandboxed workspace paths", () => {
   it("uses sandbox workspace for relative read/write/edit", async () => {
-    await withTempDir("openclaw-sandbox-", async (sandboxDir) => {
-      await withTempDir("openclaw-workspace-", async (workspaceDir) => {
+    await withTempDir("quantclaw-sandbox-", async (sandboxDir) => {
+      await withTempDir("quantclaw-workspace-", async (workspaceDir) => {
         const sandbox = createPiToolsSandboxContext({
           workspaceDir: sandboxDir,
           agentWorkspaceDir: workspaceDir,

@@ -78,7 +78,7 @@ describe("logger helpers", () => {
     const todayPath = path.join(DEFAULT_LOG_DIR, `openclaw-${today}.log`);
 
     // create an old file to be pruned
-    const oldPath = path.join(DEFAULT_LOG_DIR, "openclaw-2000-01-01.log");
+    const oldPath = path.join(DEFAULT_LOG_DIR, "quantclaw-2000-01-01.log");
     fs.mkdirSync(DEFAULT_LOG_DIR, { recursive: true });
     fs.writeFileSync(oldPath, "old");
     fs.utimesSync(oldPath, new Date(0), new Date(0));

@@ -51,7 +51,7 @@ function createCommandWithTimeoutResult() {
 
 function createLegacyConfigSnapshot() {
   return {
-    path: "/tmp/openclaw.json",
+    path: "/tmp/quantclaw.json",
     exists: false,
     raw: null,
     parsed: {},
@@ -67,7 +67,7 @@ export const confirm = vi.fn().mockResolvedValue(true) as unknown as MockFn;
 export const select = vi.fn().mockResolvedValue("node") as unknown as MockFn;
 export const note = vi.fn() as unknown as MockFn;
 export const writeConfigFile = vi.fn().mockResolvedValue(undefined) as unknown as MockFn;
-export const resolveOpenClawPackageRoot = vi.fn().mockResolvedValue(null) as unknown as MockFn;
+export const resolveQuantClawPackageRoot = vi.fn().mockResolvedValue(null) as unknown as MockFn;
 export const runGatewayUpdate = vi
   .fn()
   .mockResolvedValue(createGatewayUpdateResult()) as unknown as MockFn;
@@ -181,7 +181,7 @@ export const runLegacyStateMigrations = vi.fn().mockResolvedValue({
 }) as unknown as MockFn;
 
 const DEFAULT_CONFIG_SNAPSHOT = {
-  path: "/tmp/openclaw.json",
+  path: "/tmp/quantclaw.json",
   exists: true,
   raw: "{}",
   parsed: {},
@@ -211,7 +211,7 @@ vi.mock("../config/config.js", async (importOriginal) => {
   const actual = await importOriginal<typeof import("../config/config.js")>();
   return {
     ...actual,
-    CONFIG_PATH: "/tmp/openclaw.json",
+    CONFIG_PATH: "/tmp/quantclaw.json",
     createConfigIO,
     readConfigFileSnapshot,
     writeConfigFile,
@@ -263,7 +263,7 @@ vi.mock("../process/exec.js", () => ({
 }));
 
 vi.mock("../infra/openclaw-root.js", () => ({
-  resolveOpenClawPackageRoot,
+  resolveQuantClawPackageRoot,
 }));
 
 vi.mock("../infra/update-runner.js", () => ({
@@ -411,7 +411,7 @@ beforeEach(() => {
 
   readConfigFileSnapshot.mockReset();
   writeConfigFile.mockReset().mockResolvedValue(undefined);
-  resolveOpenClawPackageRoot.mockReset().mockResolvedValue(null);
+  resolveQuantClawPackageRoot.mockReset().mockResolvedValue(null);
   runGatewayUpdate.mockReset().mockResolvedValue(createGatewayUpdateResult());
   legacyReadConfigFileSnapshot.mockReset().mockResolvedValue(createLegacyConfigSnapshot());
   createConfigIO.mockReset().mockImplementation(() => ({
@@ -452,7 +452,7 @@ beforeEach(() => {
   originalStateDir = process.env.OPENCLAW_STATE_DIR;
   originalUpdateInProgress = process.env.OPENCLAW_UPDATE_IN_PROGRESS;
   process.env.OPENCLAW_UPDATE_IN_PROGRESS = "1";
-  tempStateDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-doctor-state-"));
+  tempStateDir = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-doctor-state-"));
   process.env.OPENCLAW_STATE_DIR = tempStateDir;
   fs.mkdirSync(path.join(tempStateDir, "agents", "main", "sessions"), {
     recursive: true,

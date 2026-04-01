@@ -39,7 +39,7 @@ async function writePluginFixture(params: {
     manifest.channels = params.channels;
   }
   await fs.writeFile(
-    path.join(params.dir, "openclaw.plugin.json"),
+    path.join(params.dir, "quantclaw.plugin.json"),
     JSON.stringify(manifest, null, 2),
     "utf-8",
   );
@@ -111,7 +111,7 @@ describe("config plugin validation", () => {
       OPENCLAW_PLUGIN_MANIFEST_CACHE_MS: "10000",
       OPENCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE: "1",
       OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
-      OPENCLAW_VERSION: undefined,
+      QUANTCLAW_VERSION: undefined,
       VITEST: "true",
     }) satisfies NodeJS.ProcessEnv;
 
@@ -131,7 +131,7 @@ describe("config plugin validation", () => {
     });
 
   beforeAll(async () => {
-    fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-config-plugin-validation-"));
+    fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-config-plugin-validation-"));
     await chmodSafeDir(fixtureRoot);
     suiteHome = path.join(fixtureRoot, "home");
     await mkdirSafe(suiteHome);
@@ -196,7 +196,7 @@ describe("config plugin validation", () => {
       process.cwd(),
       "extensions",
       "voice-call",
-      "openclaw.plugin.json",
+      "quantclaw.plugin.json",
     );
     const voiceCallManifest = JSON.parse(await fs.readFile(voiceCallManifestPath, "utf-8")) as {
       configSchema?: Record<string, unknown>;

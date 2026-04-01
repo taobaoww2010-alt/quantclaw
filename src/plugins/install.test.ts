@@ -94,7 +94,7 @@ function ensureSuiteTempRoot() {
   }
   const bundleTempRoot = path.join(process.cwd(), ".tmp");
   fs.mkdirSync(bundleTempRoot, { recursive: true });
-  suiteTempRoot = fs.mkdtempSync(path.join(bundleTempRoot, "openclaw-plugin-install-"));
+  suiteTempRoot = fs.mkdtempSync(path.join(bundleTempRoot, "quantclaw-plugin-install-"));
   return suiteTempRoot;
 }
 
@@ -279,7 +279,7 @@ function setupManifestInstallFixture(params: { manifestId: string; packageName?:
     fs.writeFileSync(packageJsonPath, JSON.stringify(manifest), "utf-8");
   }
   fs.writeFileSync(
-    path.join(pluginDir, "openclaw.plugin.json"),
+    path.join(pluginDir, "quantclaw.plugin.json"),
     JSON.stringify({
       id: params.manifestId,
       configSchema: { type: "object", properties: {} },
@@ -418,7 +418,7 @@ function setupDualFormatInstallFixture(params: { bundleFormat: "codex" | "claude
     "utf-8",
   );
   fs.writeFileSync(
-    path.join(pluginDir, "openclaw.plugin.json"),
+    path.join(pluginDir, "quantclaw.plugin.json"),
     JSON.stringify({
       id: "native-dual",
       configSchema: { type: "object", properties: {} },
@@ -579,7 +579,7 @@ beforeAll(async () => {
     "utf-8",
   );
   fs.writeFileSync(
-    path.join(manifestInstallTemplateDir, "openclaw.plugin.json"),
+    path.join(manifestInstallTemplateDir, "quantclaw.plugin.json"),
     JSON.stringify({
       id: "manifest-template",
       configSchema: { type: "object", properties: {} },
@@ -705,7 +705,7 @@ describe("installPluginFromArchive", () => {
     if (result.ok) {
       return;
     }
-    expect(result.error).toContain("openclaw.extensions");
+    expect(result.error).toContain("quantclaw.extensions");
     expect(result.code).toBe(PLUGIN_INSTALL_ERROR_CODE.MISSING_OPENCLAW_EXTENSIONS);
   });
 
@@ -720,7 +720,7 @@ describe("installPluginFromArchive", () => {
       "utf-8",
     );
     fs.writeFileSync(
-      path.join(pluginDir, "openclaw.plugin.json"),
+      path.join(pluginDir, "quantclaw.plugin.json"),
       JSON.stringify({
         id: "legacy-entry-fallback",
         configSchema: { type: "object", properties: {} },
@@ -1066,7 +1066,7 @@ describe("installPluginFromDir", () => {
     },
   );
 
-  it("uses openclaw.plugin.json id as install key when it differs from package name", async () => {
+  it("uses quantclaw.plugin.json id as install key when it differs from package name", async () => {
     const { pluginDir, extensionsDir } = setupManifestInstallFixture({
       manifestId: "memory-cognee",
     });

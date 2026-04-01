@@ -22,7 +22,7 @@ import {
   writeConfigFile,
 } from "./plugins-cli-test-helpers.js";
 
-const CLI_STATE_ROOT = "/tmp/openclaw-state";
+const CLI_STATE_ROOT = "/tmp/quantclaw-state";
 
 function cliInstallPath(pluginId: string): string {
   return installedPluginRoot(CLI_STATE_ROOT, pluginId);
@@ -116,7 +116,7 @@ describe("plugins cli install", () => {
       throw invalidConfigErr;
     });
     readConfigFileSnapshot.mockResolvedValue({
-      path: "/tmp/openclaw-config.json5",
+      path: "/tmp/quantclaw-config.json5",
       exists: true,
       raw: '{ "models": { "default": 123 } }',
       parsed: { models: { default: 123 } },
@@ -356,14 +356,14 @@ describe("plugins cli install", () => {
   it("does not fall back to npm when ClawHub rejects a real package", async () => {
     installPluginFromClawHub.mockResolvedValue({
       ok: false,
-      error: 'Use "openclaw skills install demo" instead.',
+      error: 'Use "quantclaw skills install demo" instead.',
       code: "skill_package",
     });
 
     await expect(runPluginsCommand(["plugins", "install", "demo"])).rejects.toThrow("__exit__:1");
 
     expect(installPluginFromNpmSpec).not.toHaveBeenCalled();
-    expect(runtimeErrors.at(-1)).toContain('Use "openclaw skills install demo" instead.');
+    expect(runtimeErrors.at(-1)).toContain('Use "quantclaw skills install demo" instead.');
   });
 
   it("falls back to installing hook packs from npm specs", async () => {
@@ -389,7 +389,7 @@ describe("plugins cli install", () => {
     });
     installPluginFromNpmSpec.mockResolvedValue({
       ok: false,
-      error: "package.json missing openclaw.plugin.json",
+      error: "package.json missing quantclaw.plugin.json",
     });
     installHooksFromNpmSpec.mockResolvedValue({
       ok: true,

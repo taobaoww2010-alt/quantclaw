@@ -51,7 +51,7 @@ describe("doctor repair sequencing", () => {
         pendingChanges: false,
         fixHints: [],
       },
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "quantclaw doctor --fix",
     });
 
     expect(result.state.pendingChanges).toBe(true);

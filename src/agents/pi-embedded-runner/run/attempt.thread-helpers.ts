@@ -1,7 +1,7 @@
 import type { OpenClawConfig } from "../../../config/config.js";
 import { joinPresentTextSegments } from "../../../shared/text/join-segments.js";
 
-export const ATTEMPT_CACHE_TTL_CUSTOM_TYPE = "openclaw.cache-ttl";
+export const ATTEMPT_CACHE_TTL_CUSTOM_TYPE = "quantclaw.cache-ttl";
 
 export function composeSystemPromptWithHookContext(params: {
   baseSystemPrompt?: string;

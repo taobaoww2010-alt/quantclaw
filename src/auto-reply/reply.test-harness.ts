@@ -9,7 +9,7 @@ type HomeEnvSnapshot = {
   HOMEDRIVE: string | undefined;
   HOMEPATH: string | undefined;
   OPENCLAW_STATE_DIR: string | undefined;
-  OPENCLAW_AGENT_DIR: string | undefined;
+  QUANTCLAW_AGENT_DIR: string | undefined;
   PI_CODING_AGENT_DIR: string | undefined;
 };
 
@@ -20,7 +20,7 @@ function snapshotHomeEnv(): HomeEnvSnapshot {
     HOMEDRIVE: process.env.HOMEDRIVE,
     HOMEPATH: process.env.HOMEPATH,
     OPENCLAW_STATE_DIR: process.env.OPENCLAW_STATE_DIR,
-    OPENCLAW_AGENT_DIR: process.env.OPENCLAW_AGENT_DIR,
+    QUANTCLAW_AGENT_DIR: process.env.QUANTCLAW_AGENT_DIR,
     PI_CODING_AGENT_DIR: process.env.PI_CODING_AGENT_DIR,
   };
 }
@@ -57,7 +57,7 @@ export function createTempHomeHarness(options: { prefix: string; beforeEachCase?
     process.env.HOME = home;
     process.env.USERPROFILE = home;
     process.env.OPENCLAW_STATE_DIR = path.join(home, ".openclaw");
-    process.env.OPENCLAW_AGENT_DIR = path.join(home, ".openclaw", "agent");
+    process.env.QUANTCLAW_AGENT_DIR = path.join(home, ".openclaw", "agent");
     process.env.PI_CODING_AGENT_DIR = path.join(home, ".openclaw", "agent");
 
     if (process.platform === "win32") {
@@ -84,7 +84,7 @@ export function makeReplyConfig(home: string) {
     agents: {
       defaults: {
         model: "anthropic/claude-opus-4-5",
-        workspace: path.join(home, "openclaw"),
+        workspace: path.join(home, "quantclaw"),
       },
     },
     channels: {

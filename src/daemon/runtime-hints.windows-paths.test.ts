@@ -20,12 +20,12 @@ describe("buildPlatformRuntimeLogHints", () => {
     expect(
       buildPlatformRuntimeLogHints({
         platform: "darwin",
-        systemdServiceName: "openclaw-gateway",
-        windowsTaskName: "OpenClaw Gateway",
+        systemdServiceName: "quantclaw-gateway",
+        windowsTaskName: "☯️ QuantClaw Gateway",
       }),
     ).toEqual([
-      "Launchd stdout (if installed): /tmp/openclaw-state/logs/gateway.log",
-      "Launchd stderr (if installed): /tmp/openclaw-state/logs/gateway.err.log",
+      "Launchd stdout (if installed): /tmp/quantclaw-state/logs/gateway.log",
+      "Launchd stderr (if installed): /tmp/quantclaw-state/logs/gateway.err.log",
     ]);
   });
 });

@@ -794,7 +794,7 @@ describe("classifyFailoverReason", () => {
     expect(classifyFailoverReason("no api key found")).toBe("auth");
     expect(
       classifyFailoverReason(
-        'No API key found for provider "openai". Auth store: /tmp/openclaw-agent-abc/auth-profiles.json (agentDir: /tmp/openclaw-agent-abc).',
+        'No API key found for provider "openai". Auth store: /tmp/quantclaw-agent-abc/auth-profiles.json (agentDir: /tmp/quantclaw-agent-abc).',
       ),
     ).toBe("auth");
     expect(classifyFailoverReason("You have insufficient permissions for this operation.")).toBe(

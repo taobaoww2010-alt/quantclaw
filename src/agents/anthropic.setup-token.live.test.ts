@@ -9,7 +9,7 @@ import {
   validateAnthropicSetupToken,
 } from "../commands/auth-token.js";
 import { loadConfig } from "../config/config.js";
-import { resolveOpenClawAgentDir } from "./agent-paths.js";
+import { resolveQuantClawAgentDir } from "./agent-paths.js";
 import {
   type AuthProfileCredential,
   ensureAuthProfileStore,
@@ -18,7 +18,7 @@ import {
 import { isLiveTestEnabled } from "./live-test-helpers.js";
 import { getApiKeyForModel, requireApiKey } from "./model-auth.js";
 import { normalizeProviderId, parseModelRef } from "./model-selection.js";
-import { ensureOpenClawModelsJson } from "./models-config.js";
+import { ensureQuantClawModelsJson } from "./models-config.js";
 import { discoverAuthStorage, discoverModels } from "./pi-model-discovery.js";
 
 const LIVE = isLiveTestEnabled();
@@ -75,7 +75,7 @@ async function resolveTokenSource(): Promise<TokenSource> {
     if (error) {
       throw new Error(`Invalid setup-token: ${error}`);
     }
-    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-setup-token-"));
+    const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-setup-token-"));
     const profileId = `anthropic:setup-token-live-${randomUUID()}`;
     const store = ensureAuthProfileStore(tempDir, {
       allowKeychainPrompt: false,
@@ -95,7 +95,7 @@ async function resolveTokenSource(): Promise<TokenSource> {
     };
   }
 
-  const agentDir = resolveOpenClawAgentDir();
+  const agentDir = resolveQuantClawAgentDir();
   const store = ensureAuthProfileStore(agentDir, {
     allowKeychainPrompt: false,
   });
@@ -185,7 +185,7 @@ describeLive("live anthropic setup-token", () => {
       const tokenSource = await resolveTokenSource();
       try {
         const cfg = loadConfig();
-        await ensureOpenClawModelsJson(cfg, tokenSource.agentDir);
+        await ensureQuantClawModelsJson(cfg, tokenSource.agentDir);
 
         const authStorage = discoverAuthStorage(tokenSource.agentDir);
         const modelRegistry = discoverModels(authStorage, tokenSource.agentDir);

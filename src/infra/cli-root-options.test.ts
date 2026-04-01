@@ -32,7 +32,7 @@ describe("consumeRootOptionToken", () => {
     { args: ["--log-level=debug"], index: 0, expected: 1 },
     { args: ["--container=openclaw-demo"], index: 0, expected: 1 },
     { args: ["--profile", "work"], index: 0, expected: 2 },
-    { args: ["--container", "openclaw-demo"], index: 0, expected: 2 },
+    { args: ["--container", "quantclaw-demo"], index: 0, expected: 2 },
     { args: ["--profile", "-1"], index: 0, expected: 2 },
     { args: ["--log-level", "-1.5"], index: 0, expected: 2 },
     { args: ["--profile", "--no-color"], index: 0, expected: 1 },

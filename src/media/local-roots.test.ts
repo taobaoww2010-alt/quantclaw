@@ -85,7 +85,7 @@ describe("local media roots", () => {
   it.each([
     {
       name: "keeps temp, media cache, and workspace roots by default",
-      stateDir: path.join("/tmp", "openclaw-media-roots-state"),
+      stateDir: path.join("/tmp", "quantclaw-media-roots-state"),
       getRoots: () => getDefaultMediaLocalRoots(),
       expectedContained: ["media", "workspace", "sandboxes"],
       expectedExcluded: ["agents"],
@@ -93,7 +93,7 @@ describe("local media roots", () => {
     },
     {
       name: "adds the active agent workspace without re-opening broad agent state roots",
-      stateDir: path.join("/tmp", "openclaw-agent-media-roots-state"),
+      stateDir: path.join("/tmp", "quantclaw-agent-media-roots-state"),
       getRoots: () => getAgentScopedMediaLocalRoots({}, "ops"),
       expectedContained: ["workspace-ops", "sandboxes"],
       expectedExcluded: ["agents"],
@@ -111,25 +111,25 @@ describe("local media roots", () => {
   it.each([
     {
       name: "does not widen agent media roots for concrete local sources when workspaceOnly is disabled",
-      stateDir: path.join("/tmp", "openclaw-flexible-media-roots-state"),
+      stateDir: path.join("/tmp", "quantclaw-flexible-media-roots-state"),
       cfg: {},
       shouldContainPictures: false,
     },
     {
       name: "does not widen agent media roots when workspaceOnly is enabled",
-      stateDir: path.join("/tmp", "openclaw-flexible-media-roots-state"),
+      stateDir: path.join("/tmp", "quantclaw-flexible-media-roots-state"),
       cfg: { tools: { fs: { workspaceOnly: true } } },
       shouldContainPictures: false,
     },
     {
       name: "does not widen media roots for messaging-profile agents without filesystem tools",
-      stateDir: path.join("/tmp", "openclaw-messaging-media-roots-state"),
+      stateDir: path.join("/tmp", "quantclaw-messaging-media-roots-state"),
       cfg: { tools: { profile: "messaging" } },
       shouldContainPictures: false,
     },
     {
       name: "does not widen media roots even when messaging-profile agents explicitly enable filesystem tools",
-      stateDir: path.join("/tmp", "openclaw-messaging-fs-media-roots-state"),
+      stateDir: path.join("/tmp", "quantclaw-messaging-fs-media-roots-state"),
       cfg: {
         tools: {
           profile: "messaging",
@@ -150,7 +150,7 @@ describe("local media roots", () => {
   });
 
   it("keeps agent-scoped defaults even when mediaSources include file URLs and top-level paths", () => {
-    const stateDir = path.join("/tmp", "openclaw-file-url-media-roots-state");
+    const stateDir = path.join("/tmp", "quantclaw-file-url-media-roots-state");
     const picturesDir =
       process.platform === "win32" ? "C:\\Users\\peter\\Pictures" : "/Users/peter/Pictures";
     const moviesDir =

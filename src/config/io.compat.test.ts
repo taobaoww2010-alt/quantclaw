@@ -7,7 +7,7 @@ import { createConfigIO } from "./io.js";
 import { parseOpenClawVersion } from "./version.js";
 
 async function withTempHome(run: (home: string) => Promise<void>): Promise<void> {
-  const home = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-config-"));
+  const home = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-config-"));
   try {
     await run(home);
   } finally {
@@ -19,7 +19,7 @@ async function writeConfig(
   home: string,
   dirname: ".openclaw",
   port: number,
-  filename: string = "openclaw.json",
+  filename: string = "quantclaw.json",
 ) {
   const dir = path.join(home, dirname);
   await fs.mkdir(dir, { recursive: true });
@@ -39,7 +39,7 @@ async function expectNoNewerVersionWarning(touchedVersion: string) {
   await withTempHome(async (home) => {
     const configDir = path.join(home, ".openclaw");
     await fs.mkdir(configDir, { recursive: true });
-    const configPath = path.join(configDir, "openclaw.json");
+    const configPath = path.join(configDir, "quantclaw.json");
     await fs.writeFile(
       configPath,
       JSON.stringify({ meta: { lastTouchedVersion: touchedVersion } }, null, 2),
@@ -78,7 +78,7 @@ describe("config io paths", () => {
   it("defaults to ~/.openclaw/openclaw.json when config is missing", async () => {
     await withTempHome(async (home) => {
       const io = createIoForHome(home);
-      expect(io.configPath).toBe(path.join(home, ".openclaw", "openclaw.json"));
+      expect(io.configPath).toBe(path.join(home, ".openclaw", "quantclaw.json"));
     });
   });
 
@@ -88,7 +88,7 @@ describe("config io paths", () => {
         env: { OPENCLAW_HOME: path.join(home, "svc-home") } as NodeJS.ProcessEnv,
         homedir: () => path.join(home, "ignored-home"),
       });
-      expect(io.configPath).toBe(path.join(home, "svc-home", ".openclaw", "openclaw.json"));
+      expect(io.configPath).toBe(path.join(home, "svc-home", ".openclaw", "quantclaw.json"));
     });
   });
 
@@ -105,7 +105,7 @@ describe("config io paths", () => {
     await withTempHome(async (home) => {
       const configDir = path.join(home, ".openclaw");
       await fs.mkdir(configDir, { recursive: true });
-      const configPath = path.join(configDir, "openclaw.json");
+      const configPath = path.join(configDir, "quantclaw.json");
       await fs.writeFile(
         configPath,
         JSON.stringify(
@@ -165,7 +165,7 @@ describe("config io paths", () => {
     await withTempHome(async (home) => {
       const configDir = path.join(home, ".openclaw");
       await fs.mkdir(configDir, { recursive: true });
-      const configPath = path.join(configDir, "openclaw.json");
+      const configPath = path.join(configDir, "quantclaw.json");
       await fs.writeFile(
         configPath,
         JSON.stringify({ gateway: { port: "not-a-number" } }, null, 2),

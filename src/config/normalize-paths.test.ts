@@ -43,7 +43,7 @@ describe("normalizeConfigPaths", () => {
       });
 
       expect(cfg.plugins?.load?.paths?.[0]).toBe(path.join(home, "plugins", "a"));
-      expect(cfg.logging?.file).toBe(path.join(home, ".openclaw", "logs", "openclaw.log"));
+      expect(cfg.logging?.file).toBe(path.join(home, ".openclaw", "logs", "quantclaw.log"));
       expect(cfg.hooks?.path).toBe(path.join(home, ".openclaw", "hooks.json5"));
       expect(cfg.hooks?.transformsDir).toBe(path.join(home, "hooks-xform"));
       expect(cfg.tools?.exec?.pathPrepend?.[0]).toBe(path.join(home, "bin"));

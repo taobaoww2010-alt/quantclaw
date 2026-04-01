@@ -32,7 +32,7 @@ describe("sandbox fs bridge docker e2e", () => {
         return;
       }
 
-      const stateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-fsbridge-e2e-"));
+      const stateDir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-fsbridge-e2e-"));
       const workspaceDir = path.join(stateDir, "workspace");
       await fs.mkdir(workspaceDir, { recursive: true });
 
@@ -49,7 +49,7 @@ describe("sandbox fs bridge docker e2e", () => {
           },
           dockerOverrides: {
             image: DEFAULT_SANDBOX_IMAGE,
-            containerPrefix: "openclaw-fsbridge-",
+            containerPrefix: "quantclaw-fsbridge-",
             user: "",
           },
         });

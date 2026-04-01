@@ -20,8 +20,8 @@ import { sendGatewayAuthFailure } from "./http-common.js";
 import { ADMIN_SCOPE, CLI_DEFAULT_OPERATOR_SCOPES } from "./method-scopes.js";
 import { loadGatewayModelCatalog } from "./server-model-catalog.js";
 
-export const OPENCLAW_MODEL_ID = "openclaw";
-export const OPENCLAW_DEFAULT_MODEL_ID = "openclaw/default";
+export const OPENCLAW_MODEL_ID = "quantclaw";
+export const OPENCLAW_DEFAULT_MODEL_ID = "quantclaw/default";
 
 export function getHeader(req: IncomingMessage, name: string): string | undefined {
   const raw = req.headers[name.toLowerCase()];

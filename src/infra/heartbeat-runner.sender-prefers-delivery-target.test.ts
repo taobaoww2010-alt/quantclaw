@@ -52,7 +52,7 @@ describe("runHeartbeatOnce", () => {
 
         expect(sendSlack).toHaveBeenCalled();
       },
-      { prefix: "openclaw-hb-" },
+      { prefix: "quantclaw-hb-" },
     );
   });
 });

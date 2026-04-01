@@ -149,6 +149,14 @@ function buildUnifiedDistEntries(): Record<string, string> {
         source,
       ]),
     ),
+    // Map @openclaw/plugin-sdk/* to local src/plugin-sdk/* for the build
+    "@openclaw/plugin-sdk": "src/plugin-sdk/index.ts",
+    ...Object.fromEntries(
+      Object.entries(buildPluginSdkEntrySources()).map(([entry, source]) => [
+        `@openclaw/plugin-sdk/${entry}`,
+        source,
+      ]),
+    ),
     ...bundledPluginBuildEntries,
     ...bundledHookEntries,
   };

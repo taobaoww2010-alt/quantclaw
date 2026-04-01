@@ -37,7 +37,7 @@ import { createExecApprovalForwarder } from "../infra/exec-approval-forwarder.js
 import { onHeartbeatEvent } from "../infra/heartbeat-events.js";
 import { startHeartbeatRunner, type HeartbeatRunner } from "../infra/heartbeat-runner.js";
 import { getMachineDisplayName } from "../infra/machine-name.js";
-import { ensureOpenClawCliOnPath } from "../infra/path-env.js";
+import { ensureQuantClawCliOnPath } from "../infra/path-env.js";
 import {
   detectPluginInstallPathIssue,
   formatPluginInstallPathIssue,
@@ -153,7 +153,7 @@ import { maybeSeedControlUiAllowedOriginsAtStartup } from "./startup-control-ui-
 
 export { __resetModelCatalogCacheForTest } from "./server-model-catalog.js";
 
-ensureOpenClawCliOnPath();
+ensureQuantClawCliOnPath();
 
 const MAX_MEDIA_TTL_HOURS = 24 * 7;
 
@@ -261,7 +261,7 @@ function assertValidGatewayStartupConfigSnapshot(
       ? formatConfigIssueLines(snapshot.issues, "", { normalizeRoot: true }).join("\n")
       : "Unknown validation issue.";
   const doctorHint = options.includeDoctorHint
-    ? `\nRun "${formatCliCommand("openclaw doctor")}" to repair, then retry.`
+    ? `\nRun "${formatCliCommand("quantclaw doctor")}" to repair, then retry.`
     : "";
   throw new Error(`Invalid config at ${snapshot.path}.\n${issues}${doctorHint}`);
 }
@@ -559,7 +559,7 @@ export async function startGatewayServer(
     const lines = formatPluginInstallPathIssue({
       issue: matrixInstallPathIssue,
       pluginLabel: "Matrix",
-      defaultInstallCommand: "openclaw plugins install @openclaw/matrix",
+      defaultInstallCommand: "quantclaw plugins install @openclaw/matrix",
       repoInstallCommand: resolveBundledPluginInstallCommandHint({
         pluginId: "matrix",
         workspaceDir: process.cwd(),

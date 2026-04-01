@@ -200,7 +200,7 @@ describeLive("gateway live (ACP bind)", () => {
       const previous = {
         configPath: process.env.OPENCLAW_CONFIG_PATH,
         stateDir: process.env.OPENCLAW_STATE_DIR,
-        token: process.env.OPENCLAW_GATEWAY_TOKEN,
+        token: process.env.QUANTCLAW_GATEWAY_TOKEN,
         port: process.env.OPENCLAW_GATEWAY_PORT,
         skipChannels: process.env.OPENCLAW_SKIP_CHANNELS,
         skipGmail: process.env.OPENCLAW_SKIP_GMAIL_WATCHER,
@@ -209,9 +209,9 @@ describeLive("gateway live (ACP bind)", () => {
       };
       const liveAgent = normalizeAcpAgent(process.env.OPENCLAW_LIVE_ACP_BIND_AGENT);
       const acpxCommand = process.env.OPENCLAW_LIVE_ACP_BIND_ACPX_COMMAND?.trim() || undefined;
-      const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-live-acp-bind-"));
+      const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-live-acp-bind-"));
       const tempStateDir = path.join(tempRoot, "state");
-      const tempConfigPath = path.join(tempRoot, "openclaw.json");
+      const tempConfigPath = path.join(tempRoot, "quantclaw.json");
       const port = await getFreeGatewayPort();
       const token = `test-${randomUUID()}`;
       const originalSessionKey = "main";
@@ -226,7 +226,7 @@ describeLive("gateway live (ACP bind)", () => {
       process.env.OPENCLAW_SKIP_GMAIL_WATCHER = "1";
       process.env.OPENCLAW_SKIP_CRON = "1";
       process.env.OPENCLAW_SKIP_CANVAS_HOST = "1";
-      process.env.OPENCLAW_GATEWAY_TOKEN = token;
+      process.env.QUANTCLAW_GATEWAY_TOKEN = token;
       process.env.OPENCLAW_GATEWAY_PORT = String(port);
 
       const cfg = loadConfig();
@@ -354,9 +354,9 @@ describeLive("gateway live (ACP bind)", () => {
           process.env.OPENCLAW_STATE_DIR = previous.stateDir;
         }
         if (previous.token === undefined) {
-          delete process.env.OPENCLAW_GATEWAY_TOKEN;
+          delete process.env.QUANTCLAW_GATEWAY_TOKEN;
         } else {
-          process.env.OPENCLAW_GATEWAY_TOKEN = previous.token;
+          process.env.QUANTCLAW_GATEWAY_TOKEN = previous.token;
         }
         if (previous.port === undefined) {
           delete process.env.OPENCLAW_GATEWAY_PORT;

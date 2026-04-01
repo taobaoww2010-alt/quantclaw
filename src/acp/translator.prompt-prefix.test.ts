@@ -35,7 +35,7 @@ describe("acp prompt cwd prefix", () => {
     sessionStore.createSession({
       sessionId: TEST_SESSION_ID,
       sessionKey: TEST_SESSION_KEY,
-      cwd: options.cwd ?? path.join(os.homedir(), "openclaw-test"),
+      cwd: options.cwd ?? path.join(os.homedir(), "quantclaw-test"),
     });
 
     const requestSpy = createStopAfterSendSpy();
@@ -77,7 +77,7 @@ describe("acp prompt cwd prefix", () => {
   }
 
   it("redacts home directory in prompt prefix", async () => {
-    const requestSpy = await runPromptWithCwd(path.join(os.homedir(), "openclaw-test"));
+    const requestSpy = await runPromptWithCwd(path.join(os.homedir(), "quantclaw-test"));
     expect(requestSpy).toHaveBeenCalledWith(
       "chat.send",
       expect.objectContaining({
@@ -107,7 +107,7 @@ describe("acp prompt cwd prefix", () => {
           kind: "external_user",
           originSessionId: TEST_SESSION_ID,
           sourceChannel: "acp",
-          sourceTool: "openclaw_acp",
+          sourceTool: "quantclaw_acp",
         },
         systemProvenanceReceipt: undefined,
       }),
@@ -124,7 +124,7 @@ describe("acp prompt cwd prefix", () => {
           kind: "external_user",
           originSessionId: TEST_SESSION_ID,
           sourceChannel: "acp",
-          sourceTool: "openclaw_acp",
+          sourceTool: "quantclaw_acp",
         },
         systemProvenanceReceipt: expect.stringContaining("[Source Receipt]"),
       }),
@@ -167,7 +167,7 @@ describe("acp prompt cwd prefix", () => {
     sessionStore.createSession({
       sessionId: TEST_SESSION_ID,
       sessionKey: TEST_SESSION_KEY,
-      cwd: path.join(os.homedir(), "openclaw-test"),
+      cwd: path.join(os.homedir(), "quantclaw-test"),
     });
     const agent = new AcpGatewayAgent(
       createAcpConnection(),
@@ -188,7 +188,7 @@ describe("acp prompt cwd prefix", () => {
           kind: "external_user",
           originSessionId: TEST_SESSION_ID,
           sourceChannel: "acp",
-          sourceTool: "openclaw_acp",
+          sourceTool: "quantclaw_acp",
         },
         systemProvenanceReceipt: expect.stringContaining("[Source Receipt]"),
       }),

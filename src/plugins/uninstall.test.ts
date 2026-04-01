@@ -770,7 +770,7 @@ describe("resolveUninstallDirectoryTarget", () => {
   });
 
   it("falls back to default path when configured installPath is untrusted", () => {
-    const extensionsDir = path.join(os.tmpdir(), "openclaw-uninstall-safe");
+    const extensionsDir = path.join(os.tmpdir(), "quantclaw-uninstall-safe");
     const target = resolveUninstallDirectoryTarget({
       pluginId: "my-plugin",
       hasInstall: true,

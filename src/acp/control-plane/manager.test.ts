@@ -52,7 +52,7 @@ const baseCfg = {
 const ORIGINAL_STATE_DIR = process.env.OPENCLAW_STATE_DIR;
 
 async function withAcpManagerTaskStateDir(run: (root: string) => Promise<void>): Promise<void> {
-  await withTempDir({ prefix: "openclaw-acp-manager-task-" }, async (root) => {
+  await withTempDir({ prefix: "quantclaw-acp-manager-task-" }, async (root) => {
     process.env.OPENCLAW_STATE_DIR = root;
     resetTaskRegistryForTests({ persist: false });
     resetFlowRegistryForTests({ persist: false });

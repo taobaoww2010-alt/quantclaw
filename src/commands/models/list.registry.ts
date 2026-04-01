@@ -1,6 +1,6 @@
 import type { Api, Model } from "@mariozechner/pi-ai";
 import type { ModelRegistry } from "@mariozechner/pi-coding-agent";
-import { resolveOpenClawAgentDir } from "../../agents/agent-paths.js";
+import { resolveQuantClawAgentDir } from "../../agents/agent-paths.js";
 import type { AuthProfileStore } from "../../agents/auth-profiles.js";
 import { listProfilesForProvider } from "../../agents/auth-profiles.js";
 import {
@@ -100,7 +100,7 @@ export async function loadModelRegistry(
   _cfg: OpenClawConfig,
   _opts?: { sourceConfig?: OpenClawConfig },
 ) {
-  const agentDir = resolveOpenClawAgentDir();
+  const agentDir = resolveQuantClawAgentDir();
   const authStorage = discoverAuthStorage(agentDir);
   const registry = discoverModels(authStorage, agentDir);
   const models = registry

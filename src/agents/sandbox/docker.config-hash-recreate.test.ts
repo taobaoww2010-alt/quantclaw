@@ -3,8 +3,8 @@ import { Readable } from "node:stream";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { computeSandboxConfigHash } from "./config-hash.js";
 import { collectDockerFlagValues } from "./test-args.js";
-import { SANDBOX_MOUNT_FORMAT_VERSION } from "./workspace-mounts.js";
 import type { SandboxConfig } from "./types.js";
+import { SANDBOX_MOUNT_FORMAT_VERSION } from "./workspace-mounts.js";
 
 type SpawnCall = {
   command: string;
@@ -58,7 +58,7 @@ function spawnDockerProcess(command: string, args: string[]) {
   } else if (
     args[0] === "inspect" &&
     args[1] === "-f" &&
-    args[2]?.includes('index .Config.Labels "openclaw.configHash"')
+    args[2]?.includes('index .Config.Labels "quantclaw.configHash"')
   ) {
     stdout = `${spawnState.labelHash}\n`;
   } else if (
@@ -125,7 +125,7 @@ function createSandboxConfig(
     workspaceAccess,
     workspaceRoot: "~/.openclaw/sandboxes",
     docker: {
-      image: "openclaw-sandbox:test",
+      image: "quantclaw-sandbox:test",
       containerPrefix: "oc-test-",
       workdir: "/workspace",
       readOnlyRoot: true,
@@ -140,15 +140,15 @@ function createSandboxConfig(
     },
     ssh: {
       command: "ssh",
-      workspaceRoot: "/tmp/openclaw-sandboxes",
+      workspaceRoot: "/tmp/quantclaw-sandboxes",
       strictHostKeyChecking: true,
       updateHostKeys: true,
     },
     browser: {
       enabled: false,
-      image: "openclaw-browser:test",
+      image: "quantclaw-browser:test",
       containerPrefix: "oc-browser-",
-      network: "openclaw-sandbox-browser",
+      network: "quantclaw-sandbox-browser",
       cdpPort: 9222,
       vncPort: 5900,
       noVncPort: 6080,
@@ -336,6 +336,8 @@ describe("ensureSandboxContainer config-hash recreation", () => {
       (call) => call.command === "docker" && call.args[0] === "create",
     );
     expect(createCall).toBeDefined();
-    expect(createCall?.args).toContain(`openclaw.mountFormatVersion=${SANDBOX_MOUNT_FORMAT_VERSION}`);
+    expect(createCall?.args).toContain(
+      `openclaw.mountFormatVersion=${SANDBOX_MOUNT_FORMAT_VERSION}`,
+    );
   });
 });

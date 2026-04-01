@@ -77,8 +77,8 @@ function expectLaunchdSupervisedWithoutKickstart(params?: {
 }
 
 describe("restartGatewayProcessWithFreshPid", () => {
-  it("returns disabled when OPENCLAW_NO_RESPAWN is set", () => {
-    process.env.OPENCLAW_NO_RESPAWN = "1";
+  it("returns disabled when QUANTCLAW_NO_RESPAWN is set", () => {
+    process.env.QUANTCLAW_NO_RESPAWN = "1";
     const result = restartGatewayProcessWithFreshPid();
     expect(result.mode).toBe("disabled");
     expect(spawnMock).not.toHaveBeenCalled();
@@ -154,7 +154,7 @@ describe("restartGatewayProcessWithFreshPid", () => {
   });
 
   it("spawns detached child with current exec argv", () => {
-    delete process.env.OPENCLAW_NO_RESPAWN;
+    delete process.env.QUANTCLAW_NO_RESPAWN;
     clearSupervisorHints();
     setPlatform("linux");
     process.execArgv = ["--import", "tsx"];
@@ -182,7 +182,7 @@ describe("restartGatewayProcessWithFreshPid", () => {
   it("returns supervised when OPENCLAW_SYSTEMD_UNIT is set", () => {
     clearSupervisorHints();
     setPlatform("linux");
-    process.env.OPENCLAW_SYSTEMD_UNIT = "openclaw-gateway.service";
+    process.env.OPENCLAW_SYSTEMD_UNIT = "quantclaw-gateway.service";
     const result = restartGatewayProcessWithFreshPid();
     expect(result.mode).toBe("supervised");
     expect(spawnMock).not.toHaveBeenCalled();
@@ -191,7 +191,7 @@ describe("restartGatewayProcessWithFreshPid", () => {
   it("returns supervised when OpenClaw gateway task markers are set on Windows", () => {
     clearSupervisorHints();
     setPlatform("win32");
-    process.env.OPENCLAW_SERVICE_MARKER = "openclaw";
+    process.env.OPENCLAW_SERVICE_MARKER = "quantclaw";
     process.env.OPENCLAW_SERVICE_KIND = "gateway";
     triggerOpenClawRestartMock.mockReturnValue({ ok: true, method: "schtasks" });
     const result = restartGatewayProcessWithFreshPid();
@@ -203,7 +203,7 @@ describe("restartGatewayProcessWithFreshPid", () => {
   it("keeps generic service markers out of non-Windows supervisor detection", () => {
     clearSupervisorHints();
     setPlatform("linux");
-    process.env.OPENCLAW_SERVICE_MARKER = "openclaw";
+    process.env.OPENCLAW_SERVICE_MARKER = "quantclaw";
     process.env.OPENCLAW_SERVICE_KIND = "gateway";
     spawnMock.mockReturnValue({ pid: 4242, unref: vi.fn() });
 
@@ -229,7 +229,7 @@ describe("restartGatewayProcessWithFreshPid", () => {
     setPlatform("win32");
     process.env.OPENCLAW_TASK_SCRIPT = "C:\\openclaw\\node.cmd";
     process.env.OPENCLAW_TASK_SCRIPT_NAME = "node.cmd";
-    process.env.OPENCLAW_SERVICE_MARKER = "openclaw";
+    process.env.OPENCLAW_SERVICE_MARKER = "quantclaw";
     process.env.OPENCLAW_SERVICE_KIND = "node";
 
     const result = restartGatewayProcessWithFreshPid();
@@ -240,7 +240,7 @@ describe("restartGatewayProcessWithFreshPid", () => {
   });
 
   it("returns failed when spawn throws", () => {
-    delete process.env.OPENCLAW_NO_RESPAWN;
+    delete process.env.QUANTCLAW_NO_RESPAWN;
     clearSupervisorHints();
     setPlatform("linux");
 

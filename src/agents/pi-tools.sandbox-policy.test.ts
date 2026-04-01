@@ -11,7 +11,7 @@ function listToolNames(params: {
   sessionKey?: string;
   sandboxAgentId?: string;
 }): string[] {
-  const workspaceDir = "/tmp/openclaw-sandbox-policy";
+  const workspaceDir = "/tmp/quantclaw-sandbox-policy";
   const sessionKey = params.sessionKey ?? "agent:tavern:main";
   const sandboxAgentId = params.sandboxAgentId ?? params.agentId ?? "tavern";
   const sandbox = createPiToolsSandboxContext({

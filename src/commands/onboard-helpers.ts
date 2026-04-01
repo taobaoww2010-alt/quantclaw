@@ -105,12 +105,12 @@ export function validateGatewayPasswordInput(value: unknown): string | undefined
 
 export function printWizardHeader(runtime: RuntimeEnv) {
   const header = [
-    "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄",
-    "██░▄▄▄░██░▄▄░██░▄▄▄██░▀██░██░▄▄▀██░████░▄▄▀██░███░██",
-    "██░███░██░▀▀░██░▄▄▄██░█░█░██░█████░████░▀▀░██░█░█░██",
-    "██░▀▀▀░██░█████░▀▀▀██░██▄░██░▀▀▄██░▀▀░█░██░██▄▀▄▀▄██",
-    "▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀",
-    "                  🦞 OPENCLAW 🦞                    ",
+    "    ╭──────────────────────────────────╮    ",
+    "    │                                  │    ",
+    "    │        ☯️  QUANTCLAW  ☯️         │    ",
+    "    │   A股量化交易 · AI智能助手        │    ",
+    "    │                                  │    ",
+    "    ╰──────────────────────────────────╯    ",
     " ",
   ].join("\n");
   runtime.log(header);
@@ -153,8 +153,8 @@ export function formatControlUiSshHint(params: {
     localUrl,
     authedUrl,
     "Docs:",
-    "https://docs.openclaw.ai/gateway/remote",
-    "https://docs.openclaw.ai/web/control-ui",
+    "https://docs.quantclaw.ai/gateway/remote",
+    "https://docs.quantclaw.ai/web/control-ui",
   ]
     .filter(Boolean)
     .join("\n");

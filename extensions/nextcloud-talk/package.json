@@ -14,7 +14,7 @@
       "optional": true
     }
   },
-  "openclaw": {
+  "quantclaw": {
     "extensions": [
       "./index.ts"
     ],

@@ -650,7 +650,7 @@ export async function runCliEntry(params: {
     assertMinAudioSize({ size: stat.size, attachmentIndex: params.attachmentIndex });
   }
   const outputDir = await fs.mkdtemp(
-    path.join(resolvePreferredOpenClawTmpDir(), "openclaw-media-cli-"),
+    path.join(resolvePreferredOpenClawTmpDir(), "quantclaw-media-cli-"),
   );
   const mediaPath = await resolveCliMediaPath({
     capability,

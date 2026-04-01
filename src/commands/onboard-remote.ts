@@ -67,7 +67,7 @@ export async function promptRemoteGatewayConfig(
     await prompter.note(
       [
         "Bonjour discovery requires dns-sd (macOS) or avahi-browse (Linux).",
-        "Docs: https://docs.openclaw.ai/gateway/discovery",
+        "Docs: https://docs.quantclaw.ai/gateway/discovery",
       ].join("\n"),
       "Discovery",
     );
@@ -142,7 +142,7 @@ export async function promptRemoteGatewayConfig(
           [
             "Start a tunnel before using the CLI:",
             `ssh -N -L 18789:127.0.0.1:18789 <user>@${host}${target.sshPort ? ` -p ${target.sshPort}` : ""}`,
-            "Docs: https://docs.openclaw.ai/gateway/remote",
+            "Docs: https://docs.quantclaw.ai/gateway/remote",
           ].join("\n"),
           "SSH tunnel",
         );
@@ -185,10 +185,10 @@ export async function promptRemoteGatewayConfig(
         provider: "gateway-remote-token",
         config: cfg,
         prompter,
-        preferredEnvVar: "OPENCLAW_GATEWAY_TOKEN",
+        preferredEnvVar: "QUANTCLAW_GATEWAY_TOKEN",
         copy: {
           sourceMessage: "Where is this gateway token stored?",
-          envVarPlaceholder: "OPENCLAW_GATEWAY_TOKEN",
+          envVarPlaceholder: "QUANTCLAW_GATEWAY_TOKEN",
         },
       });
       token = resolved.ref;
@@ -217,10 +217,10 @@ export async function promptRemoteGatewayConfig(
         provider: "gateway-remote-password",
         config: cfg,
         prompter,
-        preferredEnvVar: "OPENCLAW_GATEWAY_PASSWORD",
+        preferredEnvVar: "QUANTCLAW_GATEWAY_PASSWORD",
         copy: {
           sourceMessage: "Where is this gateway password stored?",
-          envVarPlaceholder: "OPENCLAW_GATEWAY_PASSWORD",
+          envVarPlaceholder: "QUANTCLAW_GATEWAY_PASSWORD",
         },
       });
       password = resolved.ref;

@@ -51,7 +51,7 @@ function buildSnapshot(params: {
   config: OpenClawConfig;
 }): ConfigFileSnapshot {
   return {
-    path: "/tmp/openclaw.json",
+    path: "/tmp/quantclaw.json",
     exists: true,
     raw: JSON.stringify(params.resolved),
     parsed: params.resolved,
@@ -419,7 +419,7 @@ describe("config cli", () => {
 
     it("prints file-not-found and exits 1 when config file is missing", async () => {
       setSnapshotOnce({
-        path: "/tmp/openclaw.json",
+        path: "/tmp/quantclaw.json",
         exists: false,
         raw: null,
         parsed: {},
@@ -581,13 +581,13 @@ describe("config cli", () => {
       expect(helpText).toContain("--batch-json");
       expect(helpText).toContain("--dry-run");
       expect(helpText).toContain("--allow-exec");
-      expect(helpText).toContain("openclaw config set gateway.port 19001 --strict-json");
+      expect(helpText).toContain("quantclaw config set gateway.port 19001 --strict-json");
       expect(helpText).toContain(
-        "openclaw config set channels.discord.token --ref-provider default --ref-source",
+        "quantclaw config set channels.discord.token --ref-provider default --ref-source",
       );
       expect(helpText).toContain("--ref-id DISCORD_BOT_TOKEN");
       expect(helpText).toContain(
-        "openclaw config set --batch-file ./config-set.batch.json --dry-run",
+        "quantclaw config set --batch-file ./config-set.batch.json --dry-run",
       );
     });
   });
@@ -1584,7 +1584,7 @@ describe("config cli", () => {
 
       await runConfigCommand(["config", "file"]);
 
-      expect(mockLog).toHaveBeenCalledWith("/tmp/openclaw.json");
+      expect(mockLog).toHaveBeenCalledWith("/tmp/quantclaw.json");
       expect(mockWriteConfigFile).not.toHaveBeenCalled();
     });
 

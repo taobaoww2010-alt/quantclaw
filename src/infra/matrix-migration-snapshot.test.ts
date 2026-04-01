@@ -14,7 +14,7 @@ import {
 describe("matrix migration snapshots", () => {
   it("creates a backup marker after writing a pre-migration snapshot", async () => {
     await withTempHome(async (home) => {
-      fs.writeFileSync(path.join(home, ".openclaw", "openclaw.json"), "{}\n", "utf8");
+      fs.writeFileSync(path.join(home, ".openclaw", "quantclaw.json"), "{}\n", "utf8");
       fs.writeFileSync(path.join(home, ".openclaw", "state.txt"), "state\n", "utf8");
 
       const result = await maybeCreateMatrixMigrationSnapshot({ trigger: "unit-test" });
@@ -39,7 +39,7 @@ describe("matrix migration snapshots", () => {
 
   it("reuses an existing snapshot marker when the archive still exists", async () => {
     await withTempHome(async (home) => {
-      const archivePath = path.join(home, "Backups", "openclaw-migrations", "snapshot.tar.gz");
+      const archivePath = path.join(home, "Backups", "quantclaw-migrations", "snapshot.tar.gz");
       const markerPath = resolveMatrixMigrationSnapshotMarkerPath(process.env);
       fs.mkdirSync(path.dirname(archivePath), { recursive: true });
       fs.mkdirSync(path.dirname(markerPath), { recursive: true });
@@ -67,13 +67,13 @@ describe("matrix migration snapshots", () => {
     await withTempHome(async (home) => {
       const markerPath = resolveMatrixMigrationSnapshotMarkerPath(process.env);
       fs.mkdirSync(path.dirname(markerPath), { recursive: true });
-      fs.mkdirSync(path.join(home, "Backups", "openclaw-migrations"), { recursive: true });
+      fs.mkdirSync(path.join(home, "Backups", "quantclaw-migrations"), { recursive: true });
       fs.writeFileSync(
         markerPath,
         JSON.stringify({
           version: 1,
           createdAt: "2026-03-10T18:00:00.000Z",
-          archivePath: path.join(home, "Backups", "openclaw-migrations", "missing.tar.gz"),
+          archivePath: path.join(home, "Backups", "quantclaw-migrations", "missing.tar.gz"),
           trigger: "older-run",
           includeWorkspace: false,
         }),
@@ -84,7 +84,7 @@ describe("matrix migration snapshots", () => {
 
       expect(result.created).toBe(true);
       expect(result.archivePath).not.toBe(
-        path.join(home, "Backups", "openclaw-migrations", "missing.tar.gz"),
+        path.join(home, "Backups", "quantclaw-migrations", "missing.tar.gz"),
       );
       expect(
         result.archivePath.startsWith(resolveMatrixMigrationSnapshotOutputDir(process.env)),
@@ -120,7 +120,7 @@ describe("matrix migration snapshots", () => {
         "utf8",
       );
       fs.writeFileSync(
-        path.join(stateDir, "openclaw.json"),
+        path.join(stateDir, "quantclaw.json"),
         JSON.stringify({
           channels: {
             matrix: {

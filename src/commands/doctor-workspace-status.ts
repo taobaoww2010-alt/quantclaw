@@ -39,8 +39,8 @@ function noteFlowRecoveryHints() {
     [
       ...suspicious.slice(0, 5),
       suspicious.length > 5 ? `...and ${suspicious.length - 5} more.` : null,
-      `Inspect: ${formatCliCommand("openclaw flows show <flow-id>")}`,
-      `Cancel: ${formatCliCommand("openclaw flows cancel <flow-id>")}`,
+      `Inspect: ${formatCliCommand("quantclaw flows show <flow-id>")}`,
+      `Cancel: ${formatCliCommand("quantclaw flows cancel <flow-id>")}`,
     ]
       .filter((line): line is string => Boolean(line))
       .join("\n"),

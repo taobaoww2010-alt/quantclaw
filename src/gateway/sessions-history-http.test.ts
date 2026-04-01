@@ -25,7 +25,7 @@ afterEach(async () => {
 });
 
 async function createSessionStoreFile(): Promise<string> {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-session-history-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-session-history-"));
   cleanupDirs.push(dir);
   const storePath = path.join(dir, "sessions.json");
   testState.sessionStorePath = storePath;

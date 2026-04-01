@@ -118,8 +118,8 @@ function formatPluginsList(report: PluginStatusReport): string {
     `🔌 Plugins (${loaded}/${report.plugins.length} loaded)`,
     ...report.plugins.map((plugin) => {
       const format = plugin.bundleFormat
-        ? `${plugin.format ?? "openclaw"}/${plugin.bundleFormat}`
-        : (plugin.format ?? "openclaw");
+        ? `${plugin.format ?? "quantclaw"}/${plugin.bundleFormat}`
+        : (plugin.format ?? "quantclaw");
       return `- ${formatPluginLabel(plugin)} [${plugin.status}] ${format}`;
     }),
   ];

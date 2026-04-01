@@ -36,7 +36,7 @@ async function writeWorkspacePlugin(params: {
   const pluginDir = path.join(params.workspaceDir, ".openclaw", "extensions", params.id);
   await fs.mkdir(pluginDir, { recursive: true });
   await fs.writeFile(
-    path.join(pluginDir, "openclaw.plugin.json"),
+    path.join(pluginDir, "quantclaw.plugin.json"),
     `${JSON.stringify(
       {
         id: params.id,
@@ -97,7 +97,7 @@ describe("gateway e2e", () => {
         "HOME",
         "OPENCLAW_STATE_DIR",
         "OPENCLAW_CONFIG_PATH",
-        "OPENCLAW_GATEWAY_TOKEN",
+        "QUANTCLAW_GATEWAY_TOKEN",
         "OPENCLAW_SKIP_CHANNELS",
         "OPENCLAW_SKIP_GMAIL_WATCHER",
         "OPENCLAW_SKIP_CRON",
@@ -107,7 +107,7 @@ describe("gateway e2e", () => {
 
       const { baseUrl: openaiBaseUrl, restore } = installOpenAiResponsesMock();
 
-      const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-gw-mock-home-"));
+      const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-gw-mock-home-"));
       process.env.HOME = tempHome;
       process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".openclaw");
       delete process.env.OPENCLAW_CONFIG_PATH;
@@ -118,14 +118,14 @@ describe("gateway e2e", () => {
       process.env.OPENCLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
 
       const token = nextGatewayId("test-token");
-      process.env.OPENCLAW_GATEWAY_TOKEN = token;
+      process.env.QUANTCLAW_GATEWAY_TOKEN = token;
 
-      const workspaceDir = path.join(tempHome, "openclaw");
+      const workspaceDir = path.join(tempHome, "quantclaw");
       await fs.mkdir(workspaceDir, { recursive: true });
 
       const configDir = path.join(tempHome, ".openclaw");
       await fs.mkdir(configDir, { recursive: true });
-      const configPath = path.join(configDir, "openclaw.json");
+      const configPath = path.join(configDir, "quantclaw.json");
       const mockProvider = buildMockOpenAiResponsesProvider(openaiBaseUrl);
 
       const cfg = {
@@ -197,7 +197,7 @@ describe("gateway e2e", () => {
         "HOME",
         "OPENCLAW_STATE_DIR",
         "OPENCLAW_CONFIG_PATH",
-        "OPENCLAW_GATEWAY_TOKEN",
+        "QUANTCLAW_GATEWAY_TOKEN",
         "OPENCLAW_SKIP_CHANNELS",
         "OPENCLAW_SKIP_GMAIL_WATCHER",
         "OPENCLAW_SKIP_CRON",
@@ -205,7 +205,7 @@ describe("gateway e2e", () => {
         "OPENCLAW_SKIP_BROWSER_CONTROL_SERVER",
       ]);
 
-      const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-gw-http-tools-home-"));
+      const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-gw-http-tools-home-"));
       process.env.HOME = tempHome;
       process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".openclaw");
       delete process.env.OPENCLAW_CONFIG_PATH;
@@ -216,9 +216,9 @@ describe("gateway e2e", () => {
       process.env.OPENCLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
 
       const token = nextGatewayId("http-tools-token");
-      process.env.OPENCLAW_GATEWAY_TOKEN = token;
+      process.env.QUANTCLAW_GATEWAY_TOKEN = token;
 
-      const workspaceDir = path.join(tempHome, "openclaw");
+      const workspaceDir = path.join(tempHome, "quantclaw");
       await fs.mkdir(workspaceDir, { recursive: true });
       const registerCountPath = path.join(tempHome, "workspace-plugin-register-count.txt");
       await writeWorkspacePlugin({
@@ -241,7 +241,7 @@ module.exports = {
 
       const configDir = path.join(tempHome, ".openclaw");
       await fs.mkdir(configDir, { recursive: true });
-      const configPath = path.join(configDir, "openclaw.json");
+      const configPath = path.join(configDir, "quantclaw.json");
       const cfg = {
         agents: {
           defaults: { workspace: workspaceDir },
@@ -303,7 +303,7 @@ module.exports = {
         "HOME",
         "OPENCLAW_STATE_DIR",
         "OPENCLAW_CONFIG_PATH",
-        "OPENCLAW_GATEWAY_TOKEN",
+        "QUANTCLAW_GATEWAY_TOKEN",
         "OPENCLAW_SKIP_CHANNELS",
         "OPENCLAW_SKIP_GMAIL_WATCHER",
         "OPENCLAW_SKIP_CRON",
@@ -316,9 +316,9 @@ module.exports = {
       process.env.OPENCLAW_SKIP_CRON = "1";
       process.env.OPENCLAW_SKIP_CANVAS_HOST = "1";
       process.env.OPENCLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
-      delete process.env.OPENCLAW_GATEWAY_TOKEN;
+      delete process.env.QUANTCLAW_GATEWAY_TOKEN;
 
-      const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-wizard-home-"));
+      const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-wizard-home-"));
       process.env.HOME = tempHome;
       delete process.env.OPENCLAW_STATE_DIR;
       delete process.env.OPENCLAW_CONFIG_PATH;

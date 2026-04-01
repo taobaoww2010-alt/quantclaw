@@ -15,7 +15,7 @@ describe("config io observe", () => {
   }
 
   beforeAll(async () => {
-    fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-config-observe-"));
+    fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "quantclaw-config-observe-"));
   });
 
   afterAll(async () => {
@@ -31,7 +31,7 @@ describe("config io observe", () => {
         error,
       },
     });
-    const configPath = path.join(home, ".openclaw", "openclaw.json");
+    const configPath = path.join(home, ".openclaw", "quantclaw.json");
     const auditPath = path.join(home, ".openclaw", "logs", "config-audit.jsonl");
     return { io, configPath, auditPath, warn, error };
   }

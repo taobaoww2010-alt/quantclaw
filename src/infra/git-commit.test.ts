@@ -190,11 +190,11 @@ describe("git commit resolution", () => {
       { cwd: hostRepo },
     );
 
-    const packageRoot = path.join(hostRepo, "node_modules", "openclaw");
+    const packageRoot = path.join(hostRepo, "node_modules", "quantclaw");
     await fs.mkdir(path.join(packageRoot, "dist"), { recursive: true });
     await fs.writeFile(
       path.join(packageRoot, "package.json"),
-      JSON.stringify({ name: "openclaw", version: "2026.3.10" }),
+      JSON.stringify({ name: "quantclaw", version: "2026.3.10" }),
       "utf-8",
     );
     const moduleUrl = pathToFileURL(path.join(packageRoot, "dist", "entry.js")).href;

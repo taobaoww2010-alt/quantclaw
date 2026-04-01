@@ -1,13 +1,13 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { resolveOpenClawAgentDir } from "./agent-paths.js";
+import { resolveQuantClawAgentDir } from "./agent-paths.js";
 import {
   CUSTOM_PROXY_MODELS_CONFIG,
   installModelsConfigTestHooks,
   withModelsTempHome as withTempHome,
 } from "./models-config.e2e-harness.js";
-import { ensureOpenClawModelsJson, resetModelsJsonReadyCacheForTest } from "./models-config.js";
+import { ensureQuantClawModelsJson, resetModelsJsonReadyCacheForTest } from "./models-config.js";
 
 installModelsConfigTestHooks();
 
@@ -21,8 +21,8 @@ describe("models-config file mode", () => {
       return;
     }
     await withTempHome(async () => {
-      await ensureOpenClawModelsJson(CUSTOM_PROXY_MODELS_CONFIG);
-      const modelsPath = path.join(resolveOpenClawAgentDir(), "models.json");
+      await ensureQuantClawModelsJson(CUSTOM_PROXY_MODELS_CONFIG);
+      const modelsPath = path.join(resolveQuantClawAgentDir(), "models.json");
       const stat = await fs.stat(modelsPath);
       expect(stat.mode & 0o777).toBe(0o600);
     });
@@ -33,11 +33,11 @@ describe("models-config file mode", () => {
       return;
     }
     await withTempHome(async () => {
-      await ensureOpenClawModelsJson(CUSTOM_PROXY_MODELS_CONFIG);
-      const modelsPath = path.join(resolveOpenClawAgentDir(), "models.json");
+      await ensureQuantClawModelsJson(CUSTOM_PROXY_MODELS_CONFIG);
+      const modelsPath = path.join(resolveQuantClawAgentDir(), "models.json");
       await fs.chmod(modelsPath, 0o644);
 
-      const result = await ensureOpenClawModelsJson(CUSTOM_PROXY_MODELS_CONFIG);
+      const result = await ensureQuantClawModelsJson(CUSTOM_PROXY_MODELS_CONFIG);
       expect(result.wrote).toBe(false);
 
       const stat = await fs.stat(modelsPath);
