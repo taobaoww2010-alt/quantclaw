@@ -19,7 +19,7 @@ import {
   type WebSearchProviderSetupContext,
   type WebSearchProviderPlugin,
   writeCache,
-} from "quantclaw/plugin-sdk/provider-web-search";
+} from "@openclaw/plugin-sdk/provider-web-search";
 import {
   buildXaiWebSearchPayload,
   extractXaiWebSearchContent,

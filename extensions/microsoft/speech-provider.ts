@@ -5,13 +5,13 @@ import {
   TRUSTED_CLIENT_TOKEN,
   generateSecMsGecToken,
 } from "node-edge-tts/dist/drm.js";
-import { isVoiceCompatibleAudio } from "quantclaw/plugin-sdk/media-runtime";
+import { isVoiceCompatibleAudio } from "@openclaw/plugin-sdk/media-runtime";
 import type {
   SpeechProviderConfig,
   SpeechProviderPlugin,
   SpeechVoiceOption,
-} from "quantclaw/plugin-sdk/speech";
-import { resolvePreferredQuantClawTmpDir } from "quantclaw/plugin-sdk/temp-path";
+} from "@openclaw/plugin-sdk/speech";
+import { resolvePreferredQuantClawTmpDir } from "@openclaw/plugin-sdk/temp-path";
 import { edgeTTS, inferEdgeExtension } from "./tts.js";
 
 const DEFAULT_EDGE_VOICE = "en-US-MichelleNeural";

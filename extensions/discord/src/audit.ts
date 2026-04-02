@@ -1,9 +1,9 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import type {
   DiscordGuildChannelConfig,
   DiscordGuildEntry,
-} from "quantclaw/plugin-sdk/config-runtime";
-import { isRecord } from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
+import { isRecord } from "@openclaw/plugin-sdk/text-runtime";
 import { inspectDiscordAccount } from "./account-inspect.js";
 import { fetchChannelPermissionsDiscord } from "./send.js";
 

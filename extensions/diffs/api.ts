@@ -1,1 +1,1 @@
-export * from "quantclaw/plugin-sdk/diffs";
+export * from "@openclaw/plugin-sdk/diffs";

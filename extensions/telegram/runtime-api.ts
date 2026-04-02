@@ -7,13 +7,13 @@ export type {
   TelegramAccountConfig,
   TelegramActionConfig,
   TelegramNetworkConfig,
-} from "quantclaw/plugin-sdk/telegram-core";
+} from "@openclaw/plugin-sdk/telegram-core";
 export type { TelegramApiOverride } from "./src/send.js";
 export type {
   QuantClawPluginService,
   QuantClawPluginServiceContext,
   PluginLogger,
-} from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/core";
 export type {
   AcpRuntime,
   AcpRuntimeCapabilities,
@@ -25,8 +25,8 @@ export type {
   AcpRuntimeTurnInput,
   AcpRuntimeErrorCode,
   AcpSessionUpdateTag,
-} from "quantclaw/plugin-sdk/acp-runtime";
-export { AcpRuntimeError } from "quantclaw/plugin-sdk/acp-runtime";
+} from "@openclaw/plugin-sdk/acp-runtime";
+export { AcpRuntimeError } from "@openclaw/plugin-sdk/acp-runtime";
 
 export {
   buildTokenChannelStatusSummary,
@@ -38,7 +38,7 @@ export {
   projectCredentialSnapshotFields,
   resolveConfiguredFromCredentialStatuses,
   resolveTelegramPollVisibility,
-} from "quantclaw/plugin-sdk/telegram-core";
+} from "@openclaw/plugin-sdk/telegram-core";
 export {
   buildChannelConfigSchema,
   getChatChannelMeta,
@@ -50,7 +50,7 @@ export {
   readStringParam,
   resolvePollMaxSelections,
   TelegramConfigSchema,
-} from "quantclaw/plugin-sdk/telegram-core";
+} from "@openclaw/plugin-sdk/telegram-core";
 export type { TelegramProbe } from "./src/probe.js";
 export { auditTelegramGroupMembership, collectTelegramUnmentionedGroupIds } from "./src/audit.js";
 export { resolveTelegramRuntimeGroupPolicy } from "./src/group-access.js";

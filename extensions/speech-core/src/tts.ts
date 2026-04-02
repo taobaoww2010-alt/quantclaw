@@ -9,7 +9,7 @@ import {
   unlinkSync,
 } from "node:fs";
 import path from "node:path";
-import { normalizeChannelId, type ChannelId } from "quantclaw/plugin-sdk/channel-runtime";
+import { normalizeChannelId, type ChannelId } from "@openclaw/plugin-sdk/channel-runtime";
 import type {
   QuantClawConfig,
   TtsAutoMode,
@@ -17,13 +17,13 @@ import type {
   TtsMode,
   TtsModelOverrideConfig,
   TtsProvider,
-} from "quantclaw/plugin-sdk/config-runtime";
-import { redactSensitiveText } from "quantclaw/plugin-sdk/logging-core";
-import { resolveSendableOutboundReplyParts } from "quantclaw/plugin-sdk/reply-payload";
-import type { ReplyPayload } from "quantclaw/plugin-sdk/reply-runtime";
-import { isVerbose, logVerbose } from "quantclaw/plugin-sdk/runtime-env";
-import { resolvePreferredQuantClawTmpDir } from "quantclaw/plugin-sdk/sandbox";
-import { CONFIG_DIR, resolveUserPath, stripMarkdown } from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
+import { redactSensitiveText } from "@openclaw/plugin-sdk/logging-core";
+import { resolveSendableOutboundReplyParts } from "@openclaw/plugin-sdk/reply-payload";
+import type { ReplyPayload } from "@openclaw/plugin-sdk/reply-runtime";
+import { isVerbose, logVerbose } from "@openclaw/plugin-sdk/runtime-env";
+import { resolvePreferredQuantClawTmpDir } from "@openclaw/plugin-sdk/sandbox";
+import { CONFIG_DIR, resolveUserPath, stripMarkdown } from "@openclaw/plugin-sdk/text-runtime";
 import {
   canonicalizeSpeechProviderId,
   getSpeechProvider,

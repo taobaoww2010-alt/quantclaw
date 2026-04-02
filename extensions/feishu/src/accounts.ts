@@ -4,8 +4,8 @@ import {
   normalizeAccountId,
   normalizeOptionalAccountId,
   resolveMergedAccountConfig,
-} from "quantclaw/plugin-sdk/account-resolution";
-import { coerceSecretRef } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/account-resolution";
+import { coerceSecretRef } from "@openclaw/plugin-sdk/config-runtime";
 import type { ClawdbotConfig } from "../runtime-api.js";
 import type {
   FeishuConfig,

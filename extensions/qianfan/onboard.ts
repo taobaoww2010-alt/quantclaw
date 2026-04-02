@@ -2,7 +2,7 @@ import {
   createDefaultModelsPresetAppliers,
   type ModelApi,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/provider-onboard";
+} from "@openclaw/plugin-sdk/provider-onboard";
 import {
   buildQianfanProvider,
   QIANFAN_BASE_URL,

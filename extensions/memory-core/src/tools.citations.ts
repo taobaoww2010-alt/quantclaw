@@ -2,8 +2,8 @@ import {
   parseAgentSessionKey,
   type MemoryCitationsMode,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/memory-core-host-runtime-core";
-import type { MemorySearchResult } from "quantclaw/plugin-sdk/memory-core-host-runtime-files";
+} from "@openclaw/plugin-sdk/memory-core-host-runtime-core";
+import type { MemorySearchResult } from "@openclaw/plugin-sdk/memory-core-host-runtime-files";
 
 export function resolveMemoryCitationsMode(cfg: QuantClawConfig): MemoryCitationsMode {
   const mode = cfg.memory?.citations;

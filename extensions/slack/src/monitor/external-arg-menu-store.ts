@@ -1,4 +1,4 @@
-import { generateSecureToken } from "quantclaw/plugin-sdk/core";
+import { generateSecureToken } from "@openclaw/plugin-sdk/core";
 
 const SLACK_EXTERNAL_ARG_MENU_TOKEN_BYTES = 18;
 const SLACK_EXTERNAL_ARG_MENU_TOKEN_LENGTH = Math.ceil(

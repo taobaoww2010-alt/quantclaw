@@ -1,4 +1,4 @@
-import { resolveSendableOutboundReplyParts } from "@quantclaw/plugin-sdk/reply-payload";
+import { resolveSendableOutboundReplyParts } from "@openclaw/plugin-sdk/reply-payload";
 import chalk from "chalk";
 import { isVerbose } from "../globals.js";
 import { shouldLogSubsystemToConsole } from "../logging/console.js";

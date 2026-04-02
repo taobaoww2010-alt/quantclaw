@@ -4,8 +4,8 @@ import {
   readNumberParam,
   readStringArrayParam,
   readStringParam,
-} from "quantclaw/plugin-sdk/agent-runtime";
-import type { ChannelMessageActionContext } from "quantclaw/plugin-sdk/channel-contract";
+} from "@openclaw/plugin-sdk/agent-runtime";
+import type { ChannelMessageActionContext } from "@openclaw/plugin-sdk/channel-contract";
 import { handleDiscordAction } from "../../action-runtime-api.js";
 import {
   isDiscordModerationAction,

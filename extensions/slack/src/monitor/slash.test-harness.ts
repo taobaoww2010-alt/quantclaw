@@ -11,8 +11,8 @@ const mocks = vi.hoisted(() => ({
   resolveStorePathMock: vi.fn(),
 }));
 
-vi.mock("quantclaw/plugin-sdk/reply-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/reply-runtime")>();
+vi.mock("@openclaw/plugin-sdk/reply-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/reply-runtime")>();
   return {
     ...actual,
     dispatchReplyWithDispatcher: (...args: unknown[]) => mocks.dispatchMock(...args),
@@ -20,16 +20,16 @@ vi.mock("quantclaw/plugin-sdk/reply-runtime", async (importOriginal) => {
   };
 });
 
-vi.mock("quantclaw/plugin-sdk/routing", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/routing")>();
+vi.mock("@openclaw/plugin-sdk/routing", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/routing")>();
   return {
     ...actual,
     resolveAgentRoute: (...args: unknown[]) => mocks.resolveAgentRouteMock(...args),
   };
 });
 
-vi.mock("quantclaw/plugin-sdk/conversation-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/conversation-runtime")>();
+vi.mock("@openclaw/plugin-sdk/conversation-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/conversation-runtime")>();
   return {
     ...actual,
     resolveConversationLabel: (...args: unknown[]) => mocks.resolveConversationLabelMock(...args),
@@ -38,8 +38,8 @@ vi.mock("quantclaw/plugin-sdk/conversation-runtime", async (importOriginal) => {
   };
 });
 
-vi.mock("quantclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/config-runtime")>();
+vi.mock("@openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/config-runtime")>();
   return {
     ...actual,
     resolveStorePath: (...args: unknown[]) => mocks.resolveStorePathMock(...args),

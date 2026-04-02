@@ -4,4 +4,4 @@ export {
   resolvePinnedHostnameWithPolicy,
   type LookupFn,
   type SsrFPolicy,
-} from "quantclaw/plugin-sdk/browser-support";
+} from "@openclaw/plugin-sdk/browser-support";

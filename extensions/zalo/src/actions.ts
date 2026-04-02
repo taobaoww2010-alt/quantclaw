@@ -1,4 +1,4 @@
-import { createLazyRuntimeNamedExport } from "quantclaw/plugin-sdk/lazy-runtime";
+import { createLazyRuntimeNamedExport } from "@openclaw/plugin-sdk/lazy-runtime";
 import { listEnabledZaloAccounts } from "./accounts.js";
 import type {
   ChannelMessageActionAdapter,

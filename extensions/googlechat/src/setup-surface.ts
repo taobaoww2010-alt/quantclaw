@@ -11,7 +11,7 @@ import {
   type ChannelSetupDmPolicy,
   type ChannelSetupWizard,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
 import {
   listGoogleChatAccountIds,
   resolveDefaultGoogleChatAccountId,

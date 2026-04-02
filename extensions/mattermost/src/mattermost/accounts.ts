@@ -1,6 +1,6 @@
-import { createAccountListHelpers } from "quantclaw/plugin-sdk/account-helpers";
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "quantclaw/plugin-sdk/account-id";
-import { resolveMergedAccountConfig } from "quantclaw/plugin-sdk/account-resolution";
+import { createAccountListHelpers } from "@openclaw/plugin-sdk/account-helpers";
+import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "@openclaw/plugin-sdk/account-id";
+import { resolveMergedAccountConfig } from "@openclaw/plugin-sdk/account-resolution";
 import { normalizeResolvedSecretInputString, normalizeSecretInputString } from "../secret-input.js";
 import type {
   MattermostAccountConfig,

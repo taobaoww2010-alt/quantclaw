@@ -1,24 +1,24 @@
-import { resolveDefaultModelForAgent } from "quantclaw/plugin-sdk/agent-runtime";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { resetInboundDedupe } from "quantclaw/plugin-sdk/reply-runtime";
-import type { MsgContext } from "quantclaw/plugin-sdk/reply-runtime";
-import type { GetReplyOptions, ReplyPayload } from "quantclaw/plugin-sdk/reply-runtime";
-import { createReplyDispatcher } from "quantclaw/plugin-sdk/reply-runtime";
-import type { MockFn } from "quantclaw/plugin-sdk/testing";
+import { resolveDefaultModelForAgent } from "@openclaw/plugin-sdk/agent-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { resetInboundDedupe } from "@openclaw/plugin-sdk/reply-runtime";
+import type { MsgContext } from "@openclaw/plugin-sdk/reply-runtime";
+import type { GetReplyOptions, ReplyPayload } from "@openclaw/plugin-sdk/reply-runtime";
+import { createReplyDispatcher } from "@openclaw/plugin-sdk/reply-runtime";
+import type { MockFn } from "@openclaw/plugin-sdk/testing";
 import { beforeEach, vi } from "vitest";
 import type { TelegramBotDeps } from "./bot-deps.js";
 
 type AnyMock = ReturnType<typeof vi.fn>;
 type AnyAsyncMock = ReturnType<typeof vi.fn>;
-type LoadConfigFn = typeof import("quantclaw/plugin-sdk/config-runtime").loadConfig;
-type LoadSessionStoreFn = typeof import("quantclaw/plugin-sdk/config-runtime").loadSessionStore;
-type ResolveStorePathFn = typeof import("quantclaw/plugin-sdk/config-runtime").resolveStorePath;
+type LoadConfigFn = typeof import("@openclaw/plugin-sdk/config-runtime").loadConfig;
+type LoadSessionStoreFn = typeof import("@openclaw/plugin-sdk/config-runtime").loadSessionStore;
+type ResolveStorePathFn = typeof import("@openclaw/plugin-sdk/config-runtime").resolveStorePath;
 type SessionStore = ReturnType<LoadSessionStoreFn>;
 type TelegramBotRuntimeForTest = NonNullable<
   Parameters<typeof import("./bot.js").setTelegramBotRuntimeForTest>[0]
 >;
 type DispatchReplyWithBufferedBlockDispatcherFn =
-  typeof import("quantclaw/plugin-sdk/reply-runtime").dispatchReplyWithBufferedBlockDispatcher;
+  typeof import("@openclaw/plugin-sdk/reply-runtime").dispatchReplyWithBufferedBlockDispatcher;
 type DispatchReplyWithBufferedBlockDispatcherResult = Awaited<
   ReturnType<DispatchReplyWithBufferedBlockDispatcherFn>
 >;
@@ -42,10 +42,10 @@ export function getLoadWebMediaMock(): AnyMock {
   return loadWebMedia;
 }
 
-vi.mock("quantclaw/plugin-sdk/web-media", () => ({
+vi.mock("@openclaw/plugin-sdk/web-media", () => ({
   loadWebMedia,
 }));
-vi.mock("quantclaw/plugin-sdk/web-media.js", () => ({
+vi.mock("@openclaw/plugin-sdk/web-media.js", () => ({
   loadWebMedia,
 }));
 
@@ -79,8 +79,8 @@ export function setSessionStoreEntriesForTest(entries: SessionStore) {
   sessionStoreEntries.value = JSON.parse(JSON.stringify(entries)) as SessionStore;
 }
 
-vi.doMock("quantclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/config-runtime")>();
+vi.doMock("@openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/config-runtime")>();
   return {
     ...actual,
     loadConfig,
@@ -110,16 +110,16 @@ export function getUpsertChannelPairingRequestMock(): AnyAsyncMock {
   return upsertChannelPairingRequest;
 }
 
-vi.doMock("quantclaw/plugin-sdk/conversation-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/conversation-runtime")>();
+vi.doMock("@openclaw/plugin-sdk/conversation-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/conversation-runtime")>();
   return {
     ...actual,
     readChannelAllowFromStore,
     upsertChannelPairingRequest,
   };
 });
-vi.doMock("quantclaw/plugin-sdk/conversation-runtime.js", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/conversation-runtime")>();
+vi.doMock("@openclaw/plugin-sdk/conversation-runtime.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/conversation-runtime")>();
   return {
     ...actual,
     readChannelAllowFromStore,
@@ -249,24 +249,24 @@ function createModelsProviderDataFromConfig(cfg: QuantClawConfig): {
   return { byProvider, providers, resolvedDefault, modelNames: new Map<string, string>() };
 }
 
-vi.doMock("quantclaw/plugin-sdk/command-auth", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/command-auth")>();
+vi.doMock("@openclaw/plugin-sdk/command-auth", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/command-auth")>();
   return {
     ...actual,
     listSkillCommandsForAgents: skillCommandListHoisted.listSkillCommandsForAgents,
     buildModelsProviderData,
   };
 });
-vi.doMock("quantclaw/plugin-sdk/command-auth.js", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/command-auth")>();
+vi.doMock("@openclaw/plugin-sdk/command-auth.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/command-auth")>();
   return {
     ...actual,
     listSkillCommandsForAgents: skillCommandListHoisted.listSkillCommandsForAgents,
     buildModelsProviderData,
   };
 });
-vi.doMock("quantclaw/plugin-sdk/reply-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/reply-runtime")>();
+vi.doMock("@openclaw/plugin-sdk/reply-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/reply-runtime")>();
   return {
     ...actual,
     getReplyFromConfig: replySpyHoisted.replySpy,
@@ -275,8 +275,8 @@ vi.doMock("quantclaw/plugin-sdk/reply-runtime", async (importOriginal) => {
       dispatchReplyHoisted.dispatchReplyWithBufferedBlockDispatcher,
   };
 });
-vi.doMock("quantclaw/plugin-sdk/reply-runtime.js", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/reply-runtime")>();
+vi.doMock("@openclaw/plugin-sdk/reply-runtime.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/reply-runtime")>();
   return {
     ...actual,
     getReplyFromConfig: replySpyHoisted.replySpy,
@@ -296,8 +296,8 @@ const execApprovalHoisted = vi.hoisted(() => ({
 }));
 export const resolveExecApprovalSpy = execApprovalHoisted.resolveExecApprovalSpy;
 
-vi.doMock("quantclaw/plugin-sdk/channel-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/channel-runtime")>();
+vi.doMock("@openclaw/plugin-sdk/channel-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/channel-runtime")>();
   return {
     ...actual,
     enqueueSystemEvent: systemEventsHoisted.enqueueSystemEventSpy,

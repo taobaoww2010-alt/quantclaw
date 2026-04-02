@@ -1,11 +1,11 @@
-import { formatCliCommand } from "quantclaw/plugin-sdk/cli-runtime";
-import { parseDurationMs } from "quantclaw/plugin-sdk/cli-runtime";
+import { formatCliCommand } from "@openclaw/plugin-sdk/cli-runtime";
+import { parseDurationMs } from "@openclaw/plugin-sdk/cli-runtime";
 import {
   definePluginEntry,
   type ProviderAuthContext,
   type ProviderResolveDynamicModelContext,
   type ProviderRuntimeModel,
-} from "quantclaw/plugin-sdk/plugin-entry";
+} from "@openclaw/plugin-sdk/plugin-entry";
 import {
   CLAUDE_CLI_PROFILE_ID,
   applyAuthProfileConfig,
@@ -23,10 +23,10 @@ import {
   upsertAuthProfile,
   validateAnthropicSetupToken,
   validateApiKeyInput,
-} from "quantclaw/plugin-sdk/provider-auth";
-import { createProviderApiKeyAuthMethod } from "quantclaw/plugin-sdk/provider-auth-api-key";
-import { cloneFirstTemplateModel } from "quantclaw/plugin-sdk/provider-model-shared";
-import { fetchClaudeUsage } from "quantclaw/plugin-sdk/provider-usage";
+} from "@openclaw/plugin-sdk/provider-auth";
+import { createProviderApiKeyAuthMethod } from "@openclaw/plugin-sdk/provider-auth-api-key";
+import { cloneFirstTemplateModel } from "@openclaw/plugin-sdk/provider-model-shared";
+import { fetchClaudeUsage } from "@openclaw/plugin-sdk/provider-usage";
 import { buildAnthropicCliBackend } from "./cli-backend.js";
 import { buildAnthropicCliMigrationResult, hasClaudeCliAuth } from "./cli-migration.js";
 import { anthropicMediaUnderstandingProvider } from "./media-understanding-provider.js";

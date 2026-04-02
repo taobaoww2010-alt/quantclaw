@@ -1,10 +1,10 @@
-import { normalizeResolvedSecretInputString } from "quantclaw/plugin-sdk/secret-input";
+import { normalizeResolvedSecretInputString } from "@openclaw/plugin-sdk/secret-input";
 import type {
   SpeechDirectiveTokenParseContext,
   SpeechProviderConfig,
   SpeechProviderOverrides,
   SpeechProviderPlugin,
-} from "quantclaw/plugin-sdk/speech";
+} from "@openclaw/plugin-sdk/speech";
 import {
   DEFAULT_OPENAI_BASE_URL,
   isValidOpenAIModel,

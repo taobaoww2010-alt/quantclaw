@@ -1,6 +1,6 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import type { SlackChannelConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import type { SlackChannelConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { normalizeAccountId } from "@openclaw/plugin-sdk/routing";
 
 type SlackChannels = Record<string, SlackChannelConfig>;
 

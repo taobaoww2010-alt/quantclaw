@@ -1,9 +1,9 @@
-import { describeWebhookAccountSnapshot } from "quantclaw/plugin-sdk/account-helpers";
-import { formatNormalizedAllowFromEntries } from "quantclaw/plugin-sdk/allow-from";
+import { describeWebhookAccountSnapshot } from "@openclaw/plugin-sdk/account-helpers";
+import { formatNormalizedAllowFromEntries } from "@openclaw/plugin-sdk/allow-from";
 import {
   adaptScopedAccountAccessor,
   createScopedChannelConfigAdapter,
-} from "quantclaw/plugin-sdk/channel-config-helpers";
+} from "@openclaw/plugin-sdk/channel-config-helpers";
 import {
   listBlueBubblesAccountIds,
   type ResolvedBlueBubblesAccount,

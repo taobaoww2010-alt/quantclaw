@@ -1,10 +1,10 @@
-import type { ChannelPlugin } from "quantclaw/plugin-sdk/core";
+import type { ChannelPlugin } from "@openclaw/plugin-sdk/core";
 import {
   applyAccountNameToChannelSection,
   deleteAccountFromConfigSection,
   setAccountEnabledInConfigSection,
-} from "quantclaw/plugin-sdk/core";
-import { hasConfiguredSecretInput } from "quantclaw/plugin-sdk/secret-input";
+} from "@openclaw/plugin-sdk/core";
+import { hasConfiguredSecretInput } from "@openclaw/plugin-sdk/secret-input";
 import { qqbotChannelConfigSchema } from "./config-schema.js";
 import {
   DEFAULT_ACCOUNT_ID,

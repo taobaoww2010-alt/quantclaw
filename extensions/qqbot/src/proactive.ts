@@ -49,7 +49,7 @@ export interface ListKnownUsersOptions {
   sortByLastInteraction?: boolean;
   limit?: number;
 }
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   getAccessToken,
   sendProactiveC2CMessage,

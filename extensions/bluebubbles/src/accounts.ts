@@ -2,8 +2,8 @@ import {
   createAccountListHelpers,
   normalizeAccountId,
   resolveMergedAccountConfig,
-} from "quantclaw/plugin-sdk/account-resolution";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/account-resolution";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/core";
 import { hasConfiguredSecretInput, normalizeSecretInputString } from "./secret-input.js";
 import { normalizeBlueBubblesServerUrl, type BlueBubblesAccountConfig } from "./types.js";
 

@@ -1,15 +1,15 @@
-import type { DmPolicy } from "quantclaw/plugin-sdk/config-runtime";
-import { DEFAULT_ACCOUNT_ID } from "quantclaw/plugin-sdk/routing";
+import type { DmPolicy } from "@openclaw/plugin-sdk/config-runtime";
+import { DEFAULT_ACCOUNT_ID } from "@openclaw/plugin-sdk/routing";
 import {
   createAllowFromSection,
   createPromptParsedAllowFromForAccount,
   createStandardChannelSetupStatus,
   setSetupChannelEnabled,
-} from "quantclaw/plugin-sdk/setup";
-import type { ChannelSetupDmPolicy } from "quantclaw/plugin-sdk/setup";
-import type { ChannelSetupWizard } from "quantclaw/plugin-sdk/setup";
-import { formatDocsLink } from "quantclaw/plugin-sdk/setup";
-import type { WizardPrompter } from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
+import type { ChannelSetupDmPolicy } from "@openclaw/plugin-sdk/setup";
+import type { ChannelSetupWizard } from "@openclaw/plugin-sdk/setup";
+import { formatDocsLink } from "@openclaw/plugin-sdk/setup";
+import type { WizardPrompter } from "@openclaw/plugin-sdk/setup";
 import { listIrcAccountIds, resolveDefaultIrcAccountId, resolveIrcAccount } from "./accounts.js";
 import {
   isChannelTarget,

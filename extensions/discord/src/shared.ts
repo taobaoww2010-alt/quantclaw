@@ -1,7 +1,7 @@
-import { describeAccountSnapshot } from "quantclaw/plugin-sdk/account-helpers";
-import { formatAllowFromLowercase } from "quantclaw/plugin-sdk/allow-from";
-import { adaptScopedAccountAccessor } from "quantclaw/plugin-sdk/channel-config-helpers";
-import { createChannelPluginBase } from "quantclaw/plugin-sdk/core";
+import { describeAccountSnapshot } from "@openclaw/plugin-sdk/account-helpers";
+import { formatAllowFromLowercase } from "@openclaw/plugin-sdk/allow-from";
+import { adaptScopedAccountAccessor } from "@openclaw/plugin-sdk/channel-config-helpers";
+import { createChannelPluginBase } from "@openclaw/plugin-sdk/core";
 import { inspectDiscordAccount } from "./account-inspect.js";
 import {
   listDiscordAccountIds,

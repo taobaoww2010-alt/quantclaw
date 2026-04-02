@@ -8,19 +8,19 @@ import {
   ThreadUpdateListener,
   type User,
 } from "@buape/carbon";
-import { enqueueSystemEvent } from "quantclaw/plugin-sdk/channel-runtime";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { resolveAgentRoute } from "quantclaw/plugin-sdk/routing";
+import { enqueueSystemEvent } from "@openclaw/plugin-sdk/channel-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { resolveAgentRoute } from "@openclaw/plugin-sdk/routing";
 import {
   createSubsystemLogger,
   danger,
   formatDurationSeconds,
   logVerbose,
-} from "quantclaw/plugin-sdk/runtime-env";
+} from "@openclaw/plugin-sdk/runtime-env";
 import {
   readStoreAllowFromForDmPolicy,
   resolveDmGroupAccessWithLists,
-} from "quantclaw/plugin-sdk/security-runtime";
+} from "@openclaw/plugin-sdk/security-runtime";
 import {
   isDiscordGroupAllowedByPolicy,
   normalizeDiscordAllowList,
@@ -39,9 +39,9 @@ import { isThreadArchived } from "./thread-bindings.discord-api.js";
 import { closeDiscordThreadSessions } from "./thread-session-close.js";
 import { normalizeDiscordListenerTimeoutMs, runDiscordTaskWithTimeout } from "./timeouts.js";
 
-type LoadedConfig = ReturnType<typeof import("quantclaw/plugin-sdk/config-runtime").loadConfig>;
-type RuntimeEnv = import("quantclaw/plugin-sdk/runtime-env").RuntimeEnv;
-type Logger = ReturnType<typeof import("quantclaw/plugin-sdk/runtime-env").createSubsystemLogger>;
+type LoadedConfig = ReturnType<typeof import("@openclaw/plugin-sdk/config-runtime").loadConfig>;
+type RuntimeEnv = import("@openclaw/plugin-sdk/runtime-env").RuntimeEnv;
+type Logger = ReturnType<typeof import("@openclaw/plugin-sdk/runtime-env").createSubsystemLogger>;
 
 export type DiscordMessageEvent = Parameters<MessageCreateListener["handle"]>[0];
 

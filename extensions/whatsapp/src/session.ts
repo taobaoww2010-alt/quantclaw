@@ -7,11 +7,11 @@ import {
   makeWASocket,
   useMultiFileAuthState,
 } from "@whiskeysockets/baileys";
-import { formatCliCommand } from "quantclaw/plugin-sdk/cli-runtime";
-import { VERSION } from "quantclaw/plugin-sdk/cli-runtime";
-import { danger, success } from "quantclaw/plugin-sdk/runtime-env";
-import { getChildLogger, toPinoLikeLogger } from "quantclaw/plugin-sdk/runtime-env";
-import { ensureDir, resolveUserPath } from "quantclaw/plugin-sdk/text-runtime";
+import { formatCliCommand } from "@openclaw/plugin-sdk/cli-runtime";
+import { VERSION } from "@openclaw/plugin-sdk/cli-runtime";
+import { danger, success } from "@openclaw/plugin-sdk/runtime-env";
+import { getChildLogger, toPinoLikeLogger } from "@openclaw/plugin-sdk/runtime-env";
+import { ensureDir, resolveUserPath } from "@openclaw/plugin-sdk/text-runtime";
 import qrcode from "qrcode-terminal";
 import {
   maybeRestoreCredsFromBackup,

@@ -1,9 +1,9 @@
 import { DisconnectReason } from "@whiskeysockets/baileys";
-import { formatCliCommand } from "quantclaw/plugin-sdk/cli-runtime";
-import { loadConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { danger, info, success } from "quantclaw/plugin-sdk/runtime-env";
-import { defaultRuntime, type RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
-import { logInfo } from "quantclaw/plugin-sdk/text-runtime";
+import { formatCliCommand } from "@openclaw/plugin-sdk/cli-runtime";
+import { loadConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { danger, info, success } from "@openclaw/plugin-sdk/runtime-env";
+import { defaultRuntime, type RuntimeEnv } from "@openclaw/plugin-sdk/runtime-env";
+import { logInfo } from "@openclaw/plugin-sdk/text-runtime";
 import { resolveWhatsAppAccount } from "./accounts.js";
 import {
   createWaSocket,

@@ -1,25 +1,25 @@
-import { describeAccountSnapshot } from "quantclaw/plugin-sdk/account-helpers";
-import { formatAllowFromLowercase } from "quantclaw/plugin-sdk/allow-from";
-import { createMessageToolCardSchema } from "quantclaw/plugin-sdk/channel-actions";
-import { createTopLevelChannelConfigAdapter } from "quantclaw/plugin-sdk/channel-config-helpers";
+import { describeAccountSnapshot } from "@openclaw/plugin-sdk/account-helpers";
+import { formatAllowFromLowercase } from "@openclaw/plugin-sdk/allow-from";
+import { createMessageToolCardSchema } from "@openclaw/plugin-sdk/channel-actions";
+import { createTopLevelChannelConfigAdapter } from "@openclaw/plugin-sdk/channel-config-helpers";
 import type {
   ChannelMessageActionAdapter,
   ChannelMessageToolDiscovery,
-} from "quantclaw/plugin-sdk/channel-contract";
-import { createPairingPrefixStripper } from "quantclaw/plugin-sdk/channel-pairing";
+} from "@openclaw/plugin-sdk/channel-contract";
+import { createPairingPrefixStripper } from "@openclaw/plugin-sdk/channel-pairing";
 import {
   createAllowlistProviderGroupPolicyWarningCollector,
   projectConfigWarningCollector,
-} from "quantclaw/plugin-sdk/channel-policy";
-import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/channel-policy";
+import { createChatChannelPlugin } from "@openclaw/plugin-sdk/core";
 import {
   createChannelDirectoryAdapter,
   createRuntimeDirectoryLiveAdapter,
   listDirectoryEntriesFromSources,
-} from "quantclaw/plugin-sdk/directory-runtime";
-import { createLazyRuntimeNamedExport } from "quantclaw/plugin-sdk/lazy-runtime";
-import { createRuntimeOutboundDelegates } from "quantclaw/plugin-sdk/outbound-runtime";
-import { createComputedAccountStatusAdapter } from "quantclaw/plugin-sdk/status-helpers";
+} from "@openclaw/plugin-sdk/directory-runtime";
+import { createLazyRuntimeNamedExport } from "@openclaw/plugin-sdk/lazy-runtime";
+import { createRuntimeOutboundDelegates } from "@openclaw/plugin-sdk/outbound-runtime";
+import { createComputedAccountStatusAdapter } from "@openclaw/plugin-sdk/status-helpers";
 import type { ChannelMessageActionName, ChannelPlugin, QuantClawConfig } from "../runtime-api.js";
 import {
   buildProbeChannelStatusSummary,

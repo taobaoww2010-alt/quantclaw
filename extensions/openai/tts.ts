@@ -3,7 +3,7 @@ import {
   readResponseTextLimited,
   trimToUndefined,
   truncateErrorDetail,
-} from "quantclaw/plugin-sdk/speech";
+} from "@openclaw/plugin-sdk/speech";
 
 export const DEFAULT_OPENAI_BASE_URL = "https://api.openai.com/v1";
 

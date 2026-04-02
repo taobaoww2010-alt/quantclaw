@@ -1,17 +1,17 @@
 import { type Block, type KnownBlock, type WebClient } from "@slack/web-api";
-import { loadConfig, type QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { resolveMarkdownTableMode } from "quantclaw/plugin-sdk/config-runtime";
-import { withTrustedEnvProxyGuardedFetchMode } from "quantclaw/plugin-sdk/fetch-runtime";
-import { resolveTextChunksWithFallback } from "quantclaw/plugin-sdk/reply-payload";
+import { loadConfig, type QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { resolveMarkdownTableMode } from "@openclaw/plugin-sdk/config-runtime";
+import { withTrustedEnvProxyGuardedFetchMode } from "@openclaw/plugin-sdk/fetch-runtime";
+import { resolveTextChunksWithFallback } from "@openclaw/plugin-sdk/reply-payload";
 import {
   chunkMarkdownTextWithMode,
   resolveChunkMode,
   resolveTextChunkLimit,
-} from "quantclaw/plugin-sdk/reply-runtime";
-import { isSilentReplyText } from "quantclaw/plugin-sdk/reply-runtime";
-import { logVerbose } from "quantclaw/plugin-sdk/runtime-env";
-import { fetchWithSsrFGuard } from "quantclaw/plugin-sdk/ssrf-runtime";
-import { loadWebMedia } from "quantclaw/plugin-sdk/web-media";
+} from "@openclaw/plugin-sdk/reply-runtime";
+import { isSilentReplyText } from "@openclaw/plugin-sdk/reply-runtime";
+import { logVerbose } from "@openclaw/plugin-sdk/runtime-env";
+import { fetchWithSsrFGuard } from "@openclaw/plugin-sdk/ssrf-runtime";
+import { loadWebMedia } from "@openclaw/plugin-sdk/web-media";
 import type { SlackTokenSource } from "./accounts.js";
 import { resolveSlackAccount } from "./accounts.js";
 import { buildSlackBlocksFallbackText } from "./blocks-fallback.js";

@@ -4,24 +4,24 @@ import {
   formatLocationText,
   resolveInboundSessionEnvelopeContext,
   toLocationContext,
-} from "quantclaw/plugin-sdk/channel-inbound";
-import { recordChannelActivity } from "quantclaw/plugin-sdk/channel-runtime";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/channel-inbound";
+import { recordChannelActivity } from "@openclaw/plugin-sdk/channel-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   ensureConfiguredBindingRouteReady,
   getSessionBindingService,
   recordInboundSession,
   resolvePinnedMainDmOwnerFromAllowlist,
   resolveConfiguredBindingRoute,
-} from "quantclaw/plugin-sdk/conversation-runtime";
-import type { HistoryEntry } from "quantclaw/plugin-sdk/reply-history";
-import { finalizeInboundContext } from "quantclaw/plugin-sdk/reply-runtime";
+} from "@openclaw/plugin-sdk/conversation-runtime";
+import type { HistoryEntry } from "@openclaw/plugin-sdk/reply-history";
+import { finalizeInboundContext } from "@openclaw/plugin-sdk/reply-runtime";
 import {
   deriveLastRoutePolicy,
   resolveAgentIdFromSessionKey,
   resolveAgentRoute,
-} from "quantclaw/plugin-sdk/routing";
-import { logVerbose, shouldLogVerbose } from "quantclaw/plugin-sdk/runtime-env";
+} from "@openclaw/plugin-sdk/routing";
+import { logVerbose, shouldLogVerbose } from "@openclaw/plugin-sdk/runtime-env";
 import { normalizeAllowFrom } from "./bot-access.js";
 import { resolveLineGroupConfigEntry, resolveLineGroupHistoryKey } from "./group-keys.js";
 import type { LineGroupConfig, ResolvedLineAccount } from "./types.js";

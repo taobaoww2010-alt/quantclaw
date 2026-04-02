@@ -1,6 +1,6 @@
-import { shouldAckReactionForWhatsApp } from "quantclaw/plugin-sdk/channel-feedback";
-import type { loadConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { logVerbose } from "quantclaw/plugin-sdk/runtime-env";
+import { shouldAckReactionForWhatsApp } from "@openclaw/plugin-sdk/channel-feedback";
+import type { loadConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { logVerbose } from "@openclaw/plugin-sdk/runtime-env";
 import { getSenderIdentity } from "../../identity.js";
 import { sendReactionWhatsApp } from "../../send.js";
 import { formatError } from "../../session.js";

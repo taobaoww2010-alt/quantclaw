@@ -1,12 +1,12 @@
 import * as dns from "node:dns";
-import type { TelegramNetworkConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { TelegramNetworkConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   createPinnedLookup,
   hasEnvHttpProxyConfigured,
   resolveFetch,
   type PinnedDispatcherPolicy,
-} from "quantclaw/plugin-sdk/fetch-runtime";
-import { createSubsystemLogger } from "quantclaw/plugin-sdk/runtime-env";
+} from "@openclaw/plugin-sdk/fetch-runtime";
+import { createSubsystemLogger } from "@openclaw/plugin-sdk/runtime-env";
 import { Agent, EnvHttpProxyAgent, ProxyAgent, fetch as undiciFetch } from "undici";
 import {
   resolveTelegramAutoSelectFamilyDecision,

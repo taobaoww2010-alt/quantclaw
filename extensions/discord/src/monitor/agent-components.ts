@@ -18,37 +18,37 @@ import {
 } from "@buape/carbon";
 import type { APIStringSelectComponent } from "discord-api-types/v10";
 import { ButtonStyle, ChannelType } from "discord-api-types/v10";
-import { resolveHumanDelayConfig } from "quantclaw/plugin-sdk/agent-runtime";
+import { resolveHumanDelayConfig } from "@openclaw/plugin-sdk/agent-runtime";
 import {
   formatInboundEnvelope,
   resolveEnvelopeFormatOptions,
-} from "quantclaw/plugin-sdk/channel-inbound";
-import { createChannelReplyPipeline } from "quantclaw/plugin-sdk/channel-reply-pipeline";
-import { enqueueSystemEvent } from "quantclaw/plugin-sdk/channel-runtime";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { isDangerousNameMatchingEnabled } from "quantclaw/plugin-sdk/config-runtime";
-import { resolveMarkdownTableMode } from "quantclaw/plugin-sdk/config-runtime";
-import { resolveOpenProviderRuntimeGroupPolicy } from "quantclaw/plugin-sdk/config-runtime";
-import { readSessionUpdatedAt, resolveStorePath } from "quantclaw/plugin-sdk/config-runtime";
-import type { DiscordAccountConfig } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/channel-inbound";
+import { createChannelReplyPipeline } from "@openclaw/plugin-sdk/channel-reply-pipeline";
+import { enqueueSystemEvent } from "@openclaw/plugin-sdk/channel-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { isDangerousNameMatchingEnabled } from "@openclaw/plugin-sdk/config-runtime";
+import { resolveMarkdownTableMode } from "@openclaw/plugin-sdk/config-runtime";
+import { resolveOpenProviderRuntimeGroupPolicy } from "@openclaw/plugin-sdk/config-runtime";
+import { readSessionUpdatedAt, resolveStorePath } from "@openclaw/plugin-sdk/config-runtime";
+import type { DiscordAccountConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   buildPluginBindingResolvedText,
   parsePluginBindingApprovalCustomId,
   resolvePluginConversationBindingApproval,
-} from "quantclaw/plugin-sdk/conversation-runtime";
-import { recordInboundSession } from "quantclaw/plugin-sdk/conversation-runtime";
-import { getAgentScopedMediaLocalRoots } from "quantclaw/plugin-sdk/media-runtime";
+} from "@openclaw/plugin-sdk/conversation-runtime";
+import { recordInboundSession } from "@openclaw/plugin-sdk/conversation-runtime";
+import { getAgentScopedMediaLocalRoots } from "@openclaw/plugin-sdk/media-runtime";
 import {
   dispatchPluginInteractiveHandler,
   type PluginInteractiveDiscordHandlerContext,
-} from "quantclaw/plugin-sdk/plugin-runtime";
-import { resolveChunkMode, resolveTextChunkLimit } from "quantclaw/plugin-sdk/reply-runtime";
-import { finalizeInboundContext } from "quantclaw/plugin-sdk/reply-runtime";
-import { dispatchReplyWithBufferedBlockDispatcher } from "quantclaw/plugin-sdk/reply-runtime";
-import { createReplyReferencePlanner } from "quantclaw/plugin-sdk/reply-runtime";
-import { logVerbose } from "quantclaw/plugin-sdk/runtime-env";
-import { createNonExitingRuntime, type RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
-import { logDebug, logError } from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/plugin-runtime";
+import { resolveChunkMode, resolveTextChunkLimit } from "@openclaw/plugin-sdk/reply-runtime";
+import { finalizeInboundContext } from "@openclaw/plugin-sdk/reply-runtime";
+import { dispatchReplyWithBufferedBlockDispatcher } from "@openclaw/plugin-sdk/reply-runtime";
+import { createReplyReferencePlanner } from "@openclaw/plugin-sdk/reply-runtime";
+import { logVerbose } from "@openclaw/plugin-sdk/runtime-env";
+import { createNonExitingRuntime, type RuntimeEnv } from "@openclaw/plugin-sdk/runtime-env";
+import { logDebug, logError } from "@openclaw/plugin-sdk/text-runtime";
 import { resolveDiscordMaxLinesPerMessage } from "../accounts.js";
 import { resolveDiscordComponentEntry, resolveDiscordModalEntry } from "../components-registry.js";
 import {

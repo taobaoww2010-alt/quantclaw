@@ -1,7 +1,7 @@
 import {
   createDefaultModelsPresetAppliers,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/provider-onboard";
+} from "@openclaw/plugin-sdk/provider-onboard";
 import { XAI_BASE_URL, XAI_DEFAULT_MODEL_ID } from "./model-definitions.js";
 import { buildXaiCatalogModels } from "./model-definitions.js";
 

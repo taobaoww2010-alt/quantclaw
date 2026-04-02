@@ -14,8 +14,8 @@ export {
   readReactionParams,
   readStringArrayParam,
   readStringParam,
-} from "quantclaw/plugin-sdk/matrix";
-export * from "quantclaw/plugin-sdk/matrix";
+} from "@openclaw/plugin-sdk/matrix";
+export * from "@openclaw/plugin-sdk/matrix";
 export {
   assertHttpUrlTargetsPrivateNetwork,
   closeDispatcher,
@@ -24,13 +24,13 @@ export {
   ssrfPolicyFromAllowPrivateNetwork,
   type LookupFn,
   type SsrFPolicy,
-} from "quantclaw/plugin-sdk/ssrf-runtime";
+} from "@openclaw/plugin-sdk/ssrf-runtime";
 export {
   dispatchReplyFromConfigWithSettledDispatcher,
   ensureConfiguredAcpBindingReady,
   maybeCreateMatrixMigrationSnapshot,
   resolveConfiguredAcpBindingRecord,
-} from "quantclaw/plugin-sdk/matrix-runtime-heavy";
+} from "@openclaw/plugin-sdk/matrix-runtime-heavy";
 // resolveMatrixAccountStringValues already comes from plugin-sdk/matrix.
 // Re-exporting auth-precedence here makes Jiti try to define the same export twice.
 

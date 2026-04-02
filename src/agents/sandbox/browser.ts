@@ -2,8 +2,8 @@ import crypto from "node:crypto";
 import { deriveDefaultBrowserCdpPortRange } from "../../config/port-defaults.js";
 import {
   DEFAULT_BROWSER_EVALUATE_ENABLED,
-  DEFAULT_OPENCLAW_BROWSER_COLOR,
-  DEFAULT_OPENCLAW_BROWSER_PROFILE_NAME,
+  DEFAULT_QUANTCLAW_BROWSER_COLOR,
+  DEFAULT_QUANTCLAW_BROWSER_PROFILE_NAME,
   resolveProfile,
   startBrowserBridgeServer,
   stopBrowserBridgeServer,
@@ -82,17 +82,17 @@ function buildSandboxBrowserResolvedConfig(params: {
     cdpPortRangeEnd: cdpPortRange.end,
     remoteCdpTimeoutMs: 1500,
     remoteCdpHandshakeTimeoutMs: 3000,
-    color: DEFAULT_OPENCLAW_BROWSER_COLOR,
+    color: DEFAULT_QUANTCLAW_BROWSER_COLOR,
     executablePath: undefined,
     headless: params.headless,
     noSandbox: false,
     attachOnly: true,
-    defaultProfile: DEFAULT_OPENCLAW_BROWSER_PROFILE_NAME,
+    defaultProfile: DEFAULT_QUANTCLAW_BROWSER_PROFILE_NAME,
     extraArgs: [],
     profiles: {
-      [DEFAULT_OPENCLAW_BROWSER_PROFILE_NAME]: {
+      [DEFAULT_QUANTCLAW_BROWSER_PROFILE_NAME]: {
         cdpPort: params.cdpPort,
-        color: DEFAULT_OPENCLAW_BROWSER_COLOR,
+        color: DEFAULT_QUANTCLAW_BROWSER_COLOR,
       },
     },
   };
@@ -290,7 +290,7 @@ export async function ensureSandboxBrowser(params: {
 
   const existing = BROWSER_BRIDGES.get(params.scopeKey);
   const existingProfile = existing
-    ? resolveProfile(existing.bridge.state.resolved, DEFAULT_OPENCLAW_BROWSER_PROFILE_NAME)
+    ? resolveProfile(existing.bridge.state.resolved, DEFAULT_QUANTCLAW_BROWSER_PROFILE_NAME)
     : null;
 
   let desiredAuthToken = params.bridgeAuth?.token?.trim() || undefined;

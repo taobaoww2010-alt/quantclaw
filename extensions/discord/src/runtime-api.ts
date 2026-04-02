@@ -4,7 +4,7 @@ export {
   PAIRING_APPROVED_MESSAGE,
   projectCredentialSnapshotFields,
   resolveConfiguredFromCredentialStatuses,
-} from "quantclaw/plugin-sdk/channel-status";
+} from "@openclaw/plugin-sdk/channel-status";
 export {
   buildChannelConfigSchema,
   getChatChannelMeta,
@@ -19,35 +19,35 @@ export {
   type DiscordActionConfig,
   type DiscordConfig,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/discord-core";
-export { DiscordConfigSchema } from "quantclaw/plugin-sdk/discord-core";
-export { readBooleanParam } from "quantclaw/plugin-sdk/boolean-param";
+} from "@openclaw/plugin-sdk/discord-core";
+export { DiscordConfigSchema } from "@openclaw/plugin-sdk/discord-core";
+export { readBooleanParam } from "@openclaw/plugin-sdk/boolean-param";
 export {
   assertMediaNotDataUrl,
   parseAvailableTags,
   readReactionParams,
   withNormalizedTimestamp,
-} from "quantclaw/plugin-sdk/discord-core";
+} from "@openclaw/plugin-sdk/discord-core";
 export {
   createHybridChannelConfigAdapter,
   createScopedChannelConfigAdapter,
   createScopedAccountConfigAccessors,
   createScopedChannelConfigBase,
   createTopLevelChannelConfigAdapter,
-} from "quantclaw/plugin-sdk/channel-config-helpers";
+} from "@openclaw/plugin-sdk/channel-config-helpers";
 export {
   createAccountActionGate,
   createAccountListHelpers,
-} from "quantclaw/plugin-sdk/account-helpers";
-export { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "quantclaw/plugin-sdk/account-id";
-export { resolveAccountEntry } from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/account-helpers";
+export { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "@openclaw/plugin-sdk/account-id";
+export { resolveAccountEntry } from "@openclaw/plugin-sdk/routing";
 export type {
   ChannelMessageActionAdapter,
   ChannelMessageActionName,
-} from "quantclaw/plugin-sdk/channel-contract";
+} from "@openclaw/plugin-sdk/channel-contract";
 export {
   hasConfiguredSecretInput,
   normalizeResolvedSecretInputString,
   normalizeSecretInputString,
-} from "quantclaw/plugin-sdk/secret-input";
+} from "@openclaw/plugin-sdk/secret-input";
 export { resolveDiscordOutboundSessionRoute } from "./outbound-session-route.js";

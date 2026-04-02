@@ -1,7 +1,7 @@
-import { createPairingPrefixStripper } from "quantclaw/plugin-sdk/channel-pairing";
-import { createRestrictSendersChannelSecurity } from "quantclaw/plugin-sdk/channel-policy";
-import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
-import { createEmptyChannelDirectoryAdapter } from "quantclaw/plugin-sdk/directory-runtime";
+import { createPairingPrefixStripper } from "@openclaw/plugin-sdk/channel-pairing";
+import { createRestrictSendersChannelSecurity } from "@openclaw/plugin-sdk/channel-policy";
+import { createChatChannelPlugin } from "@openclaw/plugin-sdk/core";
+import { createEmptyChannelDirectoryAdapter } from "@openclaw/plugin-sdk/directory-runtime";
 import { type ChannelPlugin, type ResolvedLineAccount } from "../api.js";
 import { lineChannelPluginCommon } from "./channel-shared.js";
 import { lineGatewayAdapter } from "./gateway.js";

@@ -1,4 +1,4 @@
-import type { QuantClawPluginApi } from "quantclaw/plugin-sdk/core";
+import type { QuantClawPluginApi } from "@openclaw/plugin-sdk/core";
 import { resolveDiscordAccount } from "./accounts.js";
 import {
   autoBindSpawnedDiscordSubagent,

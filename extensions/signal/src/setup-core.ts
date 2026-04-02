@@ -14,9 +14,9 @@ import {
   type ChannelSetupAdapter,
   type ChannelSetupWizard,
   type ChannelSetupWizardTextInput,
-} from "quantclaw/plugin-sdk/setup-runtime";
-import { formatCliCommand, formatDocsLink } from "quantclaw/plugin-sdk/setup-tools";
-import { normalizeE164 } from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/setup-runtime";
+import { formatCliCommand, formatDocsLink } from "@openclaw/plugin-sdk/setup-tools";
+import { normalizeE164 } from "@openclaw/plugin-sdk/text-runtime";
 import {
   listSignalAccountIds,
   resolveDefaultSignalAccountId,

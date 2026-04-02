@@ -1,8 +1,8 @@
-import { getExecApprovalReplyMetadata } from "quantclaw/plugin-sdk/approval-runtime";
-import { resolveApprovalApprovers } from "quantclaw/plugin-sdk/approval-runtime";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import type { DiscordExecApprovalConfig } from "quantclaw/plugin-sdk/config-runtime";
-import type { ReplyPayload } from "quantclaw/plugin-sdk/reply-runtime";
+import { getExecApprovalReplyMetadata } from "@openclaw/plugin-sdk/approval-runtime";
+import { resolveApprovalApprovers } from "@openclaw/plugin-sdk/approval-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import type { DiscordExecApprovalConfig } from "@openclaw/plugin-sdk/config-runtime";
+import type { ReplyPayload } from "@openclaw/plugin-sdk/reply-runtime";
 import { resolveDiscordAccount } from "./accounts.js";
 import { parseDiscordTarget } from "./targets.js";
 

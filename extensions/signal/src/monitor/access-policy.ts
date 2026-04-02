@@ -1,9 +1,9 @@
-import { createChannelPairingChallengeIssuer } from "quantclaw/plugin-sdk/channel-pairing";
-import { upsertChannelPairingRequest } from "quantclaw/plugin-sdk/conversation-runtime";
+import { createChannelPairingChallengeIssuer } from "@openclaw/plugin-sdk/channel-pairing";
+import { upsertChannelPairingRequest } from "@openclaw/plugin-sdk/conversation-runtime";
 import {
   readStoreAllowFromForDmPolicy,
   resolveDmGroupAccessWithLists,
-} from "quantclaw/plugin-sdk/security-runtime";
+} from "@openclaw/plugin-sdk/security-runtime";
 import { isSignalSenderAllowed, type SignalSender } from "../identity.js";
 
 type SignalDmPolicy = "open" | "pairing" | "allowlist" | "disabled";

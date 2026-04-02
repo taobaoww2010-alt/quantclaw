@@ -7,7 +7,7 @@ import {
   type ChannelSetupAdapter,
   type DmPolicy,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
 import { applyBlueBubblesConnectionConfig } from "./config-apply.js";
 
 const channel = "bluebubbles" as const;

@@ -1,4 +1,4 @@
-import { resolveSendableOutboundReplyParts } from "@quantclaw/plugin-sdk/reply-payload";
+import { resolveSendableOutboundReplyParts } from "@openclaw/plugin-sdk/reply-payload";
 import type { QuantClawConfig } from "../../config/config.js";
 import { loadConfig } from "../../config/config.js";
 import { callGatewayLeastPrivilege, randomIdempotencyKey } from "../../gateway/call.js";

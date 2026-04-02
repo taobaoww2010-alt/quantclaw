@@ -1,5 +1,5 @@
-import type { QuantClawPluginApi } from "quantclaw/plugin-sdk/core";
-import { registerSandboxBackend } from "quantclaw/plugin-sdk/sandbox";
+import type { QuantClawPluginApi } from "@openclaw/plugin-sdk/core";
+import { registerSandboxBackend } from "@openclaw/plugin-sdk/sandbox";
 import {
   createOpenShellSandboxBackendFactory,
   createOpenShellSandboxBackendManager,

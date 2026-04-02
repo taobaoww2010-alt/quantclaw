@@ -2,4 +2,4 @@ export {
   buildPassiveChannelStatusSummary,
   buildPassiveProbedChannelStatusSummary,
   buildTrafficStatusSummary,
-} from "quantclaw/plugin-sdk/extension-shared";
+} from "@openclaw/plugin-sdk/extension-shared";

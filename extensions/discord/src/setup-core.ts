@@ -1,14 +1,14 @@
-import { DEFAULT_ACCOUNT_ID } from "quantclaw/plugin-sdk/account-id";
-import type { DiscordGuildEntry } from "quantclaw/plugin-sdk/config-runtime";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { createEnvPatchedAccountSetupAdapter } from "quantclaw/plugin-sdk/setup-adapter-runtime";
+import { DEFAULT_ACCOUNT_ID } from "@openclaw/plugin-sdk/account-id";
+import type { DiscordGuildEntry } from "@openclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { createEnvPatchedAccountSetupAdapter } from "@openclaw/plugin-sdk/setup-adapter-runtime";
 import type {
   ChannelSetupAdapter,
   ChannelSetupDmPolicy,
   ChannelSetupWizard,
-} from "quantclaw/plugin-sdk/setup-runtime";
-import { createStandardChannelSetupStatus } from "quantclaw/plugin-sdk/setup-runtime";
-import { formatDocsLink } from "quantclaw/plugin-sdk/setup-tools";
+} from "@openclaw/plugin-sdk/setup-runtime";
+import { createStandardChannelSetupStatus } from "@openclaw/plugin-sdk/setup-runtime";
+import { formatDocsLink } from "@openclaw/plugin-sdk/setup-tools";
 import {
   inspectDiscordSetupAccount,
   listDiscordSetupAccountIds,

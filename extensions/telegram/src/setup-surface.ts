@@ -8,9 +8,9 @@ import {
   patchChannelConfigForAccount,
   setSetupChannelEnabled,
   splitSetupEntries,
-} from "quantclaw/plugin-sdk/setup";
-import type { ChannelSetupWizard } from "quantclaw/plugin-sdk/setup";
-import { formatCliCommand, formatDocsLink } from "quantclaw/plugin-sdk/setup-tools";
+} from "@openclaw/plugin-sdk/setup";
+import type { ChannelSetupWizard } from "@openclaw/plugin-sdk/setup";
+import { formatCliCommand, formatDocsLink } from "@openclaw/plugin-sdk/setup-tools";
 import { inspectTelegramAccount } from "./account-inspect.js";
 import {
   listTelegramAccountIds,

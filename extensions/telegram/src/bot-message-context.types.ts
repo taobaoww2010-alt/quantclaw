@@ -1,12 +1,12 @@
 import type { Bot } from "grammy";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import type {
   DmPolicy,
   TelegramDirectConfig,
   TelegramGroupConfig,
   TelegramTopicConfig,
-} from "quantclaw/plugin-sdk/config-runtime";
-import type { HistoryEntry } from "quantclaw/plugin-sdk/reply-history";
+} from "@openclaw/plugin-sdk/config-runtime";
+import type { HistoryEntry } from "@openclaw/plugin-sdk/reply-history";
 import type { StickerMetadata, TelegramContext } from "./bot/types.js";
 
 export type TelegramMediaRef = {
@@ -64,7 +64,7 @@ export type BuildTelegramMessageContextParams = {
   resolveGroupRequireMention: ResolveGroupRequireMention;
   resolveTelegramGroupConfig: ResolveTelegramGroupConfig;
   loadFreshConfig?: () => QuantClawConfig;
-  upsertPairingRequest?: typeof import("quantclaw/plugin-sdk/conversation-runtime").upsertChannelPairingRequest;
+  upsertPairingRequest?: typeof import("@openclaw/plugin-sdk/conversation-runtime").upsertChannelPairingRequest;
   /** Global (per-account) handler for sendChatAction 401 backoff (#27092). */
   sendChatActionHandler: import("./sendchataction-401-backoff.js").TelegramSendChatActionHandler;
 };

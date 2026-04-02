@@ -1,7 +1,7 @@
 import { execFile } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import { decode, encode, isSilk } from "silk-wasm";
 import { debugLog, debugError, debugWarn } from "./debug-log.js";
 import { detectFfmpeg, isWindows } from "./platform.js";

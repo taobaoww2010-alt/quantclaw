@@ -8,8 +8,8 @@ import {
   createSubsystemLogger,
   type QuantClawConfig,
   type ResolvedMemorySearchConfig,
-} from "quantclaw/plugin-sdk/memory-core-host-engine-foundation";
-import { extractKeywords } from "quantclaw/plugin-sdk/memory-core-host-engine-qmd";
+} from "@openclaw/plugin-sdk/memory-core-host-engine-foundation";
+import { extractKeywords } from "@openclaw/plugin-sdk/memory-core-host-engine-qmd";
 import {
   readMemoryFile,
   type MemoryEmbeddingProbeResult,
@@ -18,7 +18,7 @@ import {
   type MemorySearchResult,
   type MemorySource,
   type MemorySyncProgressUpdate,
-} from "quantclaw/plugin-sdk/memory-core-host-engine-storage";
+} from "@openclaw/plugin-sdk/memory-core-host-engine-storage";
 import {
   createEmbeddingProvider,
   type EmbeddingProvider,

@@ -1,26 +1,26 @@
-import { buildPluginApprovalPendingReplyPayload } from "quantclaw/plugin-sdk/approval-runtime";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { buildPluginApprovalPendingReplyPayload } from "@openclaw/plugin-sdk/approval-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   createExecApprovalChannelRuntime,
   type ExecApprovalChannelRuntime,
   resolveChannelNativeApprovalDeliveryPlan,
   resolveExecApprovalSessionTarget,
-} from "quantclaw/plugin-sdk/infra-runtime";
-import { resolveExecApprovalCommandDisplay } from "quantclaw/plugin-sdk/infra-runtime";
+} from "@openclaw/plugin-sdk/infra-runtime";
+import { resolveExecApprovalCommandDisplay } from "@openclaw/plugin-sdk/infra-runtime";
 import {
   buildExecApprovalPendingReplyPayload,
   type ExecApprovalPendingReplyParams,
-} from "quantclaw/plugin-sdk/infra-runtime";
+} from "@openclaw/plugin-sdk/infra-runtime";
 import type {
   ExecApprovalRequest,
   ExecApprovalResolved,
   PluginApprovalRequest,
   PluginApprovalResolved,
-} from "quantclaw/plugin-sdk/infra-runtime";
-import { parseAgentSessionKey, normalizeAccountId } from "quantclaw/plugin-sdk/routing";
-import { createSubsystemLogger } from "quantclaw/plugin-sdk/runtime-env";
-import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
-import { compileSafeRegex, testRegexWithBoundedInput } from "quantclaw/plugin-sdk/security-runtime";
+} from "@openclaw/plugin-sdk/infra-runtime";
+import { parseAgentSessionKey, normalizeAccountId } from "@openclaw/plugin-sdk/routing";
+import { createSubsystemLogger } from "@openclaw/plugin-sdk/runtime-env";
+import type { RuntimeEnv } from "@openclaw/plugin-sdk/runtime-env";
+import { compileSafeRegex, testRegexWithBoundedInput } from "@openclaw/plugin-sdk/security-runtime";
 import { telegramNativeApprovalAdapter } from "./approval-native.js";
 import { resolveTelegramInlineButtons } from "./button-types.js";
 import {

@@ -1,8 +1,8 @@
 import {
   createResolvedApproverActionAuthAdapter,
   resolveApprovalApprovers,
-} from "quantclaw/plugin-sdk/approval-runtime";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/approval-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import { resolveSlackAccount } from "./accounts.js";
 import { normalizeSlackApproverId } from "./exec-approvals.js";
 

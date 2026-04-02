@@ -1,8 +1,8 @@
-import type { CliBackendPlugin } from "quantclaw/plugin-sdk/cli-backend";
+import type { CliBackendPlugin } from "@openclaw/plugin-sdk/cli-backend";
 import {
   CLI_FRESH_WATCHDOG_DEFAULTS,
   CLI_RESUME_WATCHDOG_DEFAULTS,
-} from "quantclaw/plugin-sdk/cli-backend";
+} from "@openclaw/plugin-sdk/cli-backend";
 
 export function buildOpenAICodexCliBackend(): CliBackendPlugin {
   return {

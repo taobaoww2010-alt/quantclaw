@@ -1,11 +1,11 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   deriveLastRoutePolicy,
   resolveAgentRoute,
   type ResolvedAgentRoute,
   type RoutePeer,
-} from "quantclaw/plugin-sdk/routing";
-import { resolveAgentIdFromSessionKey } from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/routing";
+import { resolveAgentIdFromSessionKey } from "@openclaw/plugin-sdk/routing";
 
 export function buildDiscordRoutePeer(params: {
   isDirectMessage: boolean;

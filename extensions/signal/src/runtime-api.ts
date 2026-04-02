@@ -1,13 +1,13 @@
 // Private runtime barrel for the bundled Signal extension.
 // Prefer narrower SDK subpaths plus local extension seams over the legacy signal barrel.
 
-export type { ChannelMessageActionAdapter } from "quantclaw/plugin-sdk/channel-contract";
-export { SignalConfigSchema } from "quantclaw/plugin-sdk/channel-config-schema";
-export { PAIRING_APPROVED_MESSAGE } from "quantclaw/plugin-sdk/channel-status";
-import type { QuantClawConfig as RuntimeQuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+export type { ChannelMessageActionAdapter } from "@openclaw/plugin-sdk/channel-contract";
+export { SignalConfigSchema } from "@openclaw/plugin-sdk/channel-config-schema";
+export { PAIRING_APPROVED_MESSAGE } from "@openclaw/plugin-sdk/channel-status";
+import type { QuantClawConfig as RuntimeQuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 export type { RuntimeQuantClawConfig as QuantClawConfig };
-export type { QuantClawPluginApi, PluginRuntime } from "quantclaw/plugin-sdk/core";
-export type { ChannelPlugin } from "quantclaw/plugin-sdk/core";
+export type { QuantClawPluginApi, PluginRuntime } from "@openclaw/plugin-sdk/core";
+export type { ChannelPlugin } from "@openclaw/plugin-sdk/core";
 export {
   DEFAULT_ACCOUNT_ID,
   applyAccountNameToChannelSection,
@@ -19,22 +19,22 @@ export {
   migrateBaseNameToDefaultAccount,
   normalizeAccountId,
   setAccountEnabledInConfigSection,
-} from "quantclaw/plugin-sdk/core";
-export { resolveChannelMediaMaxBytes } from "quantclaw/plugin-sdk/media-runtime";
-export { formatCliCommand, formatDocsLink } from "quantclaw/plugin-sdk/setup-tools";
-export { chunkText } from "quantclaw/plugin-sdk/reply-runtime";
-export { detectBinary, installSignalCli } from "quantclaw/plugin-sdk/setup-tools";
+} from "@openclaw/plugin-sdk/core";
+export { resolveChannelMediaMaxBytes } from "@openclaw/plugin-sdk/media-runtime";
+export { formatCliCommand, formatDocsLink } from "@openclaw/plugin-sdk/setup-tools";
+export { chunkText } from "@openclaw/plugin-sdk/reply-runtime";
+export { detectBinary, installSignalCli } from "@openclaw/plugin-sdk/setup-tools";
 export {
   resolveAllowlistProviderRuntimeGroupPolicy,
   resolveDefaultGroupPolicy,
-} from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
 export {
   buildBaseAccountStatusSnapshot,
   buildBaseChannelStatusSummary,
   collectStatusIssuesFromLastError,
   createDefaultChannelRuntimeState,
-} from "quantclaw/plugin-sdk/status-helpers";
-export { normalizeE164 } from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/status-helpers";
+export { normalizeE164 } from "@openclaw/plugin-sdk/text-runtime";
 export { looksLikeSignalTargetId, normalizeSignalMessagingTarget } from "./normalize.js";
 export {
   listEnabledSignalAccounts,

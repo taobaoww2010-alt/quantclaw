@@ -3,7 +3,7 @@ export {
   formatDocsLink,
   setSetupChannelEnabled,
   splitSetupEntries,
-} from "quantclaw/plugin-sdk/setup";
-export type { ChannelSetupDmPolicy, ChannelSetupWizard } from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
+export type { ChannelSetupDmPolicy, ChannelSetupWizard } from "@openclaw/plugin-sdk/setup";
 export { listLineAccountIds, normalizeAccountId, resolveLineAccount } from "./accounts.js";
 export type { LineConfig } from "./types.js";

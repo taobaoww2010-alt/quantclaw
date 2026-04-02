@@ -3,4 +3,4 @@ export {
   resolveThreadBindingIntroText,
   resolveThreadBindingThreadName,
   formatThreadBindingDurationLabel,
-} from "quantclaw/plugin-sdk/conversation-runtime";
+} from "@openclaw/plugin-sdk/conversation-runtime";

@@ -1,4 +1,4 @@
-import { definePluginEntry } from "quantclaw/plugin-sdk/plugin-entry";
+import { definePluginEntry } from "@openclaw/plugin-sdk/plugin-entry";
 import type { AnyAgentTool, QuantClawPluginApi, QuantClawPluginToolFactory } from "./runtime-api.js";
 import { createLobsterTool } from "./src/lobster-tool.js";
 

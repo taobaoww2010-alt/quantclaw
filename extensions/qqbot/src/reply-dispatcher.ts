@@ -1,6 +1,6 @@
 import path from "node:path";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { textToSpeech as globalTextToSpeech } from "quantclaw/plugin-sdk/speech-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { textToSpeech as globalTextToSpeech } from "@openclaw/plugin-sdk/speech-runtime";
 import {
   getAccessToken,
   sendC2CMessage,

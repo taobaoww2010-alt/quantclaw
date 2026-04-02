@@ -2,7 +2,7 @@ import type {
   ProviderAuthContext,
   ProviderAuthMethod,
   ProviderAuthResult,
-} from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/core";
 import {
   ensureApiKeyFromOptionEnvOrPrompt,
   ensureAuthProfileStore,
@@ -10,7 +10,7 @@ import {
   normalizeOptionalSecretInput,
   type SecretInput,
   validateApiKeyInput,
-} from "quantclaw/plugin-sdk/provider-auth";
+} from "@openclaw/plugin-sdk/provider-auth";
 import { getLoggedInAccount, isAzCliInstalled } from "./cli.js";
 import {
   loginWithTenantFallback,

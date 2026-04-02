@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import readline from "node:readline";
 import chokidar, { type FSWatcher } from "chokidar";
-import { withFileLock } from "quantclaw/plugin-sdk/file-lock";
+import { withFileLock } from "@openclaw/plugin-sdk/file-lock";
 import {
   createSubsystemLogger,
   resolveMemorySearchConfig,
@@ -14,7 +14,7 @@ import {
   writeFileWithinRoot,
   type QuantClawConfig,
   type ResolvedMemorySearchConfig,
-} from "quantclaw/plugin-sdk/memory-core-host-engine-foundation";
+} from "@openclaw/plugin-sdk/memory-core-host-engine-foundation";
 import {
   buildSessionEntry,
   deriveQmdScopeChannel,
@@ -26,7 +26,7 @@ import {
   runCliCommand,
   type QmdQueryResult,
   type SessionFileEntry,
-} from "quantclaw/plugin-sdk/memory-core-host-engine-qmd";
+} from "@openclaw/plugin-sdk/memory-core-host-engine-qmd";
 import {
   isFileMissingError,
   requireNodeSqlite,
@@ -40,7 +40,7 @@ import {
   type ResolvedMemoryBackendConfig,
   type ResolvedQmdConfig,
   type ResolvedQmdMcporterConfig,
-} from "quantclaw/plugin-sdk/memory-core-host-engine-storage";
+} from "@openclaw/plugin-sdk/memory-core-host-engine-storage";
 
 type SqliteDatabase = import("node:sqlite").DatabaseSync;
 

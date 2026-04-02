@@ -10,7 +10,7 @@ import { randomUUID } from "node:crypto";
 import type * as LanceDB from "@lancedb/lancedb";
 import { Type } from "@sinclair/typebox";
 import OpenAI from "openai";
-import { ensureGlobalUndiciEnvProxyDispatcher } from "quantclaw/plugin-sdk/runtime-env";
+import { ensureGlobalUndiciEnvProxyDispatcher } from "@openclaw/plugin-sdk/runtime-env";
 import { definePluginEntry, type QuantClawPluginApi } from "./api.js";
 import {
   DEFAULT_CAPTURE_MAX_CHARS,

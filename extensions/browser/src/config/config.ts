@@ -6,4 +6,4 @@ export {
   type BrowserConfig,
   type BrowserProfileConfig,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/browser-support";
+} from "@openclaw/plugin-sdk/browser-support";

@@ -1,20 +1,20 @@
 import type { WebhookRequestBody } from "@line/bot-sdk";
-import { createChannelReplyPipeline } from "quantclaw/plugin-sdk/channel-reply-pipeline";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { createChannelReplyPipeline } from "@openclaw/plugin-sdk/channel-reply-pipeline";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   dispatchReplyWithBufferedBlockDispatcher,
   chunkMarkdownText,
-} from "quantclaw/plugin-sdk/reply-runtime";
+} from "@openclaw/plugin-sdk/reply-runtime";
 import {
   danger,
   logVerbose,
   waitForAbortSignal,
   type RuntimeEnv,
-} from "quantclaw/plugin-sdk/runtime-env";
+} from "@openclaw/plugin-sdk/runtime-env";
 import {
   normalizePluginHttpPath,
   registerPluginHttpRoute,
-} from "quantclaw/plugin-sdk/webhook-ingress";
+} from "@openclaw/plugin-sdk/webhook-ingress";
 import { deliverLineAutoReply } from "./auto-reply-delivery.js";
 import { createLineBot } from "./bot.js";
 import { processLineMessage } from "./markdown-to-line.js";

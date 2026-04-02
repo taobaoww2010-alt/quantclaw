@@ -1,28 +1,28 @@
-import { describeAccountSnapshot } from "quantclaw/plugin-sdk/account-helpers";
-import { formatAllowFromLowercase } from "quantclaw/plugin-sdk/allow-from";
-import { createMessageToolCardSchema } from "quantclaw/plugin-sdk/channel-actions";
+import { describeAccountSnapshot } from "@openclaw/plugin-sdk/account-helpers";
+import { formatAllowFromLowercase } from "@openclaw/plugin-sdk/allow-from";
+import { createMessageToolCardSchema } from "@openclaw/plugin-sdk/channel-actions";
 import {
   adaptScopedAccountAccessor,
   createHybridChannelConfigAdapter,
-} from "quantclaw/plugin-sdk/channel-config-helpers";
+} from "@openclaw/plugin-sdk/channel-config-helpers";
 import type {
   ChannelMessageActionAdapter,
   ChannelMessageToolDiscovery,
-} from "quantclaw/plugin-sdk/channel-contract";
-import { createPairingPrefixStripper } from "quantclaw/plugin-sdk/channel-pairing";
+} from "@openclaw/plugin-sdk/channel-contract";
+import { createPairingPrefixStripper } from "@openclaw/plugin-sdk/channel-pairing";
 import {
   createAllowlistProviderGroupPolicyWarningCollector,
   projectConfigAccountIdWarningCollector,
-} from "quantclaw/plugin-sdk/channel-policy";
-import { getSessionBindingService } from "quantclaw/plugin-sdk/conversation-runtime";
-import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/channel-policy";
+import { getSessionBindingService } from "@openclaw/plugin-sdk/conversation-runtime";
+import { createChatChannelPlugin } from "@openclaw/plugin-sdk/core";
 import {
   createChannelDirectoryAdapter,
   createRuntimeDirectoryLiveAdapter,
-} from "quantclaw/plugin-sdk/directory-runtime";
-import { createLazyRuntimeNamedExport } from "quantclaw/plugin-sdk/lazy-runtime";
-import { createRuntimeOutboundDelegates } from "quantclaw/plugin-sdk/outbound-runtime";
-import { createComputedAccountStatusAdapter } from "quantclaw/plugin-sdk/status-helpers";
+} from "@openclaw/plugin-sdk/directory-runtime";
+import { createLazyRuntimeNamedExport } from "@openclaw/plugin-sdk/lazy-runtime";
+import { createRuntimeOutboundDelegates } from "@openclaw/plugin-sdk/outbound-runtime";
+import { createComputedAccountStatusAdapter } from "@openclaw/plugin-sdk/status-helpers";
 import type { ChannelMeta, ChannelPlugin, ClawdbotConfig } from "../runtime-api.js";
 import {
   buildChannelConfigSchema,

@@ -9,7 +9,7 @@ import {
   type ChannelSetupInput,
   type ChannelSetupWizard,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
 import { buildTlonAccountFields } from "./account-fields.js";
 import { normalizeShip } from "./targets.js";
 import { listTlonAccountIds, resolveTlonAccount, type TlonResolvedAccount } from "./types.js";

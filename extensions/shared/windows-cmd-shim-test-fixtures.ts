@@ -1,1 +1,1 @@
-export { createWindowsCmdShimFixture } from "quantclaw/plugin-sdk/testing";
+export { createWindowsCmdShimFixture } from "@openclaw/plugin-sdk/testing";

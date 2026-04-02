@@ -2,21 +2,21 @@ import {
   attachChannelToResult,
   type ChannelOutboundAdapter,
   createAttachedChannelResultAdapter,
-} from "quantclaw/plugin-sdk/channel-send-result";
+} from "@openclaw/plugin-sdk/channel-send-result";
 import {
   resolveInteractiveTextFallback,
   type InteractiveReply,
-} from "quantclaw/plugin-sdk/interactive-runtime";
+} from "@openclaw/plugin-sdk/interactive-runtime";
 import {
   resolveOutboundSendDep,
   type OutboundIdentity,
-} from "quantclaw/plugin-sdk/outbound-runtime";
-import { getGlobalHookRunner } from "quantclaw/plugin-sdk/plugin-runtime";
+} from "@openclaw/plugin-sdk/outbound-runtime";
+import { getGlobalHookRunner } from "@openclaw/plugin-sdk/plugin-runtime";
 import {
   resolvePayloadMediaUrls,
   sendPayloadMediaSequenceAndFinalize,
   sendTextMediaPayload,
-} from "quantclaw/plugin-sdk/reply-payload";
+} from "@openclaw/plugin-sdk/reply-payload";
 import { parseSlackBlocksInput } from "./blocks-input.js";
 import { buildSlackInteractiveBlocks, type SlackBlock } from "./blocks-render.js";
 import { SLACK_TEXT_LIMIT } from "./limits.js";

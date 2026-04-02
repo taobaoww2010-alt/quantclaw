@@ -1,7 +1,7 @@
 import {
   buildChannelConfigSchema,
   DiscordConfigSchema,
-} from "quantclaw/plugin-sdk/channel-config-schema";
+} from "@openclaw/plugin-sdk/channel-config-schema";
 import { discordChannelConfigUiHints } from "./config-ui-hints.js";
 
 export const DiscordChannelConfigSchema = buildChannelConfigSchema(DiscordConfigSchema, {

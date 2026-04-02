@@ -1,13 +1,13 @@
 import type {
   ChannelAccountSnapshot,
   ChannelStatusIssue,
-} from "quantclaw/plugin-sdk/channel-contract";
+} from "@openclaw/plugin-sdk/channel-contract";
 import {
   appendMatchMetadata,
   asString,
   isRecord,
   resolveEnabledConfiguredAccountId,
-} from "quantclaw/plugin-sdk/status-helpers";
+} from "@openclaw/plugin-sdk/status-helpers";
 
 type DiscordIntentSummary = {
   messageContent?: "enabled" | "limited" | "disabled";

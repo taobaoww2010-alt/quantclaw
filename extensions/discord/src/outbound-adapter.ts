@@ -2,17 +2,17 @@ import {
   attachChannelToResult,
   type ChannelOutboundAdapter,
   createAttachedChannelResultAdapter,
-} from "quantclaw/plugin-sdk/channel-send-result";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/channel-send-result";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   resolveOutboundSendDep,
   type OutboundIdentity,
-} from "quantclaw/plugin-sdk/outbound-runtime";
+} from "@openclaw/plugin-sdk/outbound-runtime";
 import {
   resolvePayloadMediaUrls,
   sendPayloadMediaSequenceOrFallback,
   sendTextMediaPayload,
-} from "quantclaw/plugin-sdk/reply-payload";
+} from "@openclaw/plugin-sdk/reply-payload";
 import type { DiscordComponentMessageSpec } from "./components.js";
 import { getThreadBindingManager, type ThreadBindingRecord } from "./monitor/thread-bindings.js";
 import { normalizeDiscordOutboundTarget } from "./normalize.js";

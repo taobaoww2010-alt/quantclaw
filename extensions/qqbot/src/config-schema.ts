@@ -2,8 +2,8 @@ import {
   AllowFromListSchema,
   buildCatchallMultiAccountChannelSchema,
   buildChannelConfigSchema,
-} from "quantclaw/plugin-sdk/channel-config-schema";
-import { buildSecretInputSchema } from "quantclaw/plugin-sdk/secret-input";
+} from "@openclaw/plugin-sdk/channel-config-schema";
+import { buildSecretInputSchema } from "@openclaw/plugin-sdk/secret-input";
 import { z } from "zod";
 
 const AudioFormatPolicySchema = z

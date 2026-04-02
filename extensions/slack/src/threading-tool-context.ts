@@ -1,8 +1,8 @@
 import type {
   ChannelThreadingContext,
   ChannelThreadingToolContext,
-} from "quantclaw/plugin-sdk/channel-contract";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/channel-contract";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import { resolveSlackAccount, resolveSlackReplyToMode } from "./accounts.js";
 
 export function buildSlackThreadingToolContext(params: {

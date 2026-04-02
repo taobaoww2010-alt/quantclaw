@@ -1,22 +1,22 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   resolveConfiguredBindingRoute,
   type ConfiguredBindingRouteResult,
-} from "quantclaw/plugin-sdk/conversation-runtime";
-import { getSessionBindingService } from "quantclaw/plugin-sdk/conversation-runtime";
-import { isPluginOwnedSessionBindingRecord } from "quantclaw/plugin-sdk/conversation-runtime";
+} from "@openclaw/plugin-sdk/conversation-runtime";
+import { getSessionBindingService } from "@openclaw/plugin-sdk/conversation-runtime";
+import { isPluginOwnedSessionBindingRecord } from "@openclaw/plugin-sdk/conversation-runtime";
 import {
   buildAgentSessionKey,
   deriveLastRoutePolicy,
   resolveAgentRoute,
-} from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/routing";
 import {
   buildAgentMainSessionKey,
   DEFAULT_ACCOUNT_ID,
   resolveAgentIdFromSessionKey,
   sanitizeAgentId,
-} from "quantclaw/plugin-sdk/routing";
-import { logVerbose } from "quantclaw/plugin-sdk/runtime-env";
+} from "@openclaw/plugin-sdk/routing";
+import { logVerbose } from "@openclaw/plugin-sdk/runtime-env";
 import {
   buildTelegramGroupPeerId,
   buildTelegramParentPeer,

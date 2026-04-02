@@ -1,42 +1,42 @@
 import fs from "node:fs/promises";
-import { resolveHumanDelayConfig } from "quantclaw/plugin-sdk/agent-runtime";
+import { resolveHumanDelayConfig } from "@openclaw/plugin-sdk/agent-runtime";
 import {
   createChannelInboundDebouncer,
   shouldDebounceTextInbound,
-} from "quantclaw/plugin-sdk/channel-inbound";
-import { createChannelPairingChallengeIssuer } from "quantclaw/plugin-sdk/channel-pairing";
-import { createChannelReplyPipeline } from "quantclaw/plugin-sdk/channel-reply-pipeline";
-import { waitForTransportReady } from "quantclaw/plugin-sdk/channel-runtime";
-import { loadConfig } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/channel-inbound";
+import { createChannelPairingChallengeIssuer } from "@openclaw/plugin-sdk/channel-pairing";
+import { createChannelReplyPipeline } from "@openclaw/plugin-sdk/channel-reply-pipeline";
+import { waitForTransportReady } from "@openclaw/plugin-sdk/channel-runtime";
+import { loadConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   resolveOpenProviderRuntimeGroupPolicy,
   resolveDefaultGroupPolicy,
   warnMissingProviderGroupPolicyFallbackOnce,
-} from "quantclaw/plugin-sdk/config-runtime";
-import { readSessionUpdatedAt, resolveStorePath } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
+import { readSessionUpdatedAt, resolveStorePath } from "@openclaw/plugin-sdk/config-runtime";
 import {
   readChannelAllowFromStore,
   upsertChannelPairingRequest,
-} from "quantclaw/plugin-sdk/conversation-runtime";
-import { recordInboundSession } from "quantclaw/plugin-sdk/conversation-runtime";
-import { normalizeScpRemoteHost } from "quantclaw/plugin-sdk/host-runtime";
+} from "@openclaw/plugin-sdk/conversation-runtime";
+import { recordInboundSession } from "@openclaw/plugin-sdk/conversation-runtime";
+import { normalizeScpRemoteHost } from "@openclaw/plugin-sdk/host-runtime";
 import {
   isInboundPathAllowed,
   resolveIMessageAttachmentRoots,
   resolveIMessageRemoteAttachmentRoots,
-} from "quantclaw/plugin-sdk/media-runtime";
-import { kindFromMime } from "quantclaw/plugin-sdk/media-runtime";
+} from "@openclaw/plugin-sdk/media-runtime";
+import { kindFromMime } from "@openclaw/plugin-sdk/media-runtime";
 import {
   clearHistoryEntriesIfEnabled,
   DEFAULT_GROUP_HISTORY_LIMIT,
   type HistoryEntry,
-} from "quantclaw/plugin-sdk/reply-history";
-import { resolveTextChunkLimit } from "quantclaw/plugin-sdk/reply-runtime";
-import { dispatchInboundMessage } from "quantclaw/plugin-sdk/reply-runtime";
-import { createReplyDispatcher } from "quantclaw/plugin-sdk/reply-runtime";
-import { danger, logVerbose, shouldLogVerbose, warn } from "quantclaw/plugin-sdk/runtime-env";
-import { resolvePinnedMainDmOwnerFromAllowlist } from "quantclaw/plugin-sdk/security-runtime";
-import { truncateUtf16Safe } from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/reply-history";
+import { resolveTextChunkLimit } from "@openclaw/plugin-sdk/reply-runtime";
+import { dispatchInboundMessage } from "@openclaw/plugin-sdk/reply-runtime";
+import { createReplyDispatcher } from "@openclaw/plugin-sdk/reply-runtime";
+import { danger, logVerbose, shouldLogVerbose, warn } from "@openclaw/plugin-sdk/runtime-env";
+import { resolvePinnedMainDmOwnerFromAllowlist } from "@openclaw/plugin-sdk/security-runtime";
+import { truncateUtf16Safe } from "@openclaw/plugin-sdk/text-runtime";
 import { resolveIMessageAccount } from "../accounts.js";
 import { createIMessageRpcClient } from "../client.js";
 import { DEFAULT_IMESSAGE_PROBE_TIMEOUT_MS } from "../constants.js";

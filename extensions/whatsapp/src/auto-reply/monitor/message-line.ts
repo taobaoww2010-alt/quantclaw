@@ -1,9 +1,9 @@
-import { resolveMessagePrefix } from "quantclaw/plugin-sdk/agent-runtime";
+import { resolveMessagePrefix } from "@openclaw/plugin-sdk/agent-runtime";
 import {
   formatInboundEnvelope,
   type EnvelopeFormatOptions,
-} from "quantclaw/plugin-sdk/channel-inbound";
-import type { loadConfig } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/channel-inbound";
+import type { loadConfig } from "@openclaw/plugin-sdk/config-runtime";
 import { getPrimaryIdentityId, getReplyContext, getSenderIdentity } from "../../identity.js";
 import type { WebInboundMsg } from "../types.js";
 

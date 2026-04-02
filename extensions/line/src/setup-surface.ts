@@ -2,7 +2,7 @@ import {
   createAllowFromSection,
   createStandardChannelSetupStatus,
   createTopLevelChannelDmPolicy,
-} from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
 import {
   isLineConfigured,
   listLineAccountIds,

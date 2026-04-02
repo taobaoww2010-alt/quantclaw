@@ -1,6 +1,6 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import type { TelegramGroupConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import type { TelegramGroupConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { normalizeAccountId } from "@openclaw/plugin-sdk/routing";
 
 type TelegramGroups = Record<string, TelegramGroupConfig>;
 

@@ -1,10 +1,10 @@
-import { normalizeAccountId } from "quantclaw/plugin-sdk/account-id";
-import { DEFAULT_ACCOUNT_ID } from "quantclaw/plugin-sdk/account-id";
+import { normalizeAccountId } from "@openclaw/plugin-sdk/account-id";
+import { DEFAULT_ACCOUNT_ID } from "@openclaw/plugin-sdk/account-id";
 import {
   listConfiguredAccountIds,
   resolveNormalizedAccountEntry,
-} from "quantclaw/plugin-sdk/account-resolution";
-import { hasConfiguredSecretInput } from "quantclaw/plugin-sdk/secret-input";
+} from "@openclaw/plugin-sdk/account-resolution";
+import { hasConfiguredSecretInput } from "@openclaw/plugin-sdk/secret-input";
 import type { CoreConfig, MatrixAccountConfig, MatrixConfig } from "../types.js";
 
 export function resolveMatrixBaseConfig(cfg: CoreConfig): MatrixConfig {

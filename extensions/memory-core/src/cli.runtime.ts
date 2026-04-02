@@ -15,19 +15,19 @@ import {
   withManager,
   withProgress,
   withProgressTotals,
-} from "quantclaw/plugin-sdk/memory-core-host-runtime-cli";
+} from "@openclaw/plugin-sdk/memory-core-host-runtime-cli";
 import {
   loadConfig,
   resolveDefaultAgentId,
   resolveSessionTranscriptsDirForAgent,
   resolveStateDir,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/memory-core-host-runtime-core";
+} from "@openclaw/plugin-sdk/memory-core-host-runtime-core";
 import {
   listMemoryFiles,
   normalizeExtraMemoryPaths,
-} from "quantclaw/plugin-sdk/memory-core-host-runtime-files";
-import { buildAgentSessionKey } from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/memory-core-host-runtime-files";
+import { buildAgentSessionKey } from "@openclaw/plugin-sdk/routing";
 import type { MemoryCommandOptions, MemorySearchCommandOptions } from "./cli.types.js";
 import { getMemorySearchManager } from "./memory/index.js";
 

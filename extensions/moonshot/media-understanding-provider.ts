@@ -4,12 +4,12 @@ import {
   type MediaUnderstandingProvider,
   type VideoDescriptionRequest,
   type VideoDescriptionResult,
-} from "quantclaw/plugin-sdk/media-understanding";
+} from "@openclaw/plugin-sdk/media-understanding";
 import {
   assertOkOrThrowHttpError,
   normalizeBaseUrl,
   postJsonRequest,
-} from "quantclaw/plugin-sdk/provider-http";
+} from "@openclaw/plugin-sdk/provider-http";
 
 export const DEFAULT_MOONSHOT_VIDEO_BASE_URL = "https://api.moonshot.ai/v1";
 const DEFAULT_MOONSHOT_VIDEO_MODEL = "kimi-k2.5";

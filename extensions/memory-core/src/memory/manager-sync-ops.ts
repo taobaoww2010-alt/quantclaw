@@ -8,7 +8,7 @@ import {
   buildCaseInsensitiveExtensionGlob,
   classifyMemoryMultimodalPath,
   getMemoryMultimodalExtensions,
-} from "quantclaw/plugin-sdk/memory-core-host-engine-embeddings";
+} from "@openclaw/plugin-sdk/memory-core-host-engine-embeddings";
 import {
   createSubsystemLogger,
   onSessionTranscriptUpdate,
@@ -17,13 +17,13 @@ import {
   resolveUserPath,
   type QuantClawConfig,
   type ResolvedMemorySearchConfig,
-} from "quantclaw/plugin-sdk/memory-core-host-engine-foundation";
+} from "@openclaw/plugin-sdk/memory-core-host-engine-foundation";
 import {
   buildSessionEntry,
   listSessionFilesForAgent,
   sessionPathForFile,
   type SessionFileEntry,
-} from "quantclaw/plugin-sdk/memory-core-host-engine-qmd";
+} from "@openclaw/plugin-sdk/memory-core-host-engine-qmd";
 import {
   buildFileEntry,
   ensureDir,
@@ -38,7 +38,7 @@ import {
   type MemoryFileEntry,
   type MemorySource,
   type MemorySyncProgressUpdate,
-} from "quantclaw/plugin-sdk/memory-core-host-engine-storage";
+} from "@openclaw/plugin-sdk/memory-core-host-engine-storage";
 import {
   createEmbeddingProvider,
   type EmbeddingProvider,

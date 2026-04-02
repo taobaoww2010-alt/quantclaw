@@ -3,25 +3,25 @@ import {
   resolveEnvelopeFormatOptions,
   toLocationContext,
   type NormalizedLocation,
-} from "quantclaw/plugin-sdk/channel-inbound";
-import { normalizeCommandBody } from "quantclaw/plugin-sdk/command-auth";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { readSessionUpdatedAt, resolveStorePath } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/channel-inbound";
+import { normalizeCommandBody } from "@openclaw/plugin-sdk/command-auth";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { readSessionUpdatedAt, resolveStorePath } from "@openclaw/plugin-sdk/config-runtime";
 import type {
   TelegramDirectConfig,
   TelegramGroupConfig,
   TelegramTopicConfig,
-} from "quantclaw/plugin-sdk/config-runtime";
-import { recordInboundSession } from "quantclaw/plugin-sdk/conversation-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
+import { recordInboundSession } from "@openclaw/plugin-sdk/conversation-runtime";
 import {
   buildPendingHistoryContextFromMap,
   type HistoryEntry,
-} from "quantclaw/plugin-sdk/reply-history";
-import { finalizeInboundContext } from "quantclaw/plugin-sdk/reply-runtime";
-import type { ResolvedAgentRoute } from "quantclaw/plugin-sdk/routing";
-import { resolveInboundLastRouteSessionKey } from "quantclaw/plugin-sdk/routing";
-import { logVerbose, shouldLogVerbose } from "quantclaw/plugin-sdk/runtime-env";
-import { resolvePinnedMainDmOwnerFromAllowlist } from "quantclaw/plugin-sdk/security-runtime";
+} from "@openclaw/plugin-sdk/reply-history";
+import { finalizeInboundContext } from "@openclaw/plugin-sdk/reply-runtime";
+import type { ResolvedAgentRoute } from "@openclaw/plugin-sdk/routing";
+import { resolveInboundLastRouteSessionKey } from "@openclaw/plugin-sdk/routing";
+import { logVerbose, shouldLogVerbose } from "@openclaw/plugin-sdk/runtime-env";
+import { resolvePinnedMainDmOwnerFromAllowlist } from "@openclaw/plugin-sdk/security-runtime";
 import { normalizeAllowFrom } from "./bot-access.js";
 import type {
   TelegramMediaRef,

@@ -10,17 +10,17 @@ import {
   type TopLevelComponents,
 } from "@buape/carbon";
 import { ButtonStyle, Routes } from "discord-api-types/v10";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { loadSessionStore, resolveStorePath } from "quantclaw/plugin-sdk/config-runtime";
-import type { DiscordExecApprovalConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { loadSessionStore, resolveStorePath } from "@openclaw/plugin-sdk/config-runtime";
+import type { DiscordExecApprovalConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   createExecApprovalChannelRuntime,
   type ExecApprovalChannelRuntime,
   resolveChannelNativeApprovalDeliveryPlan,
-} from "quantclaw/plugin-sdk/infra-runtime";
-import { buildExecApprovalActionDescriptors } from "quantclaw/plugin-sdk/infra-runtime";
-import { resolveExecApprovalCommandDisplay } from "quantclaw/plugin-sdk/infra-runtime";
-import { getExecApprovalApproverDmNoticeText } from "quantclaw/plugin-sdk/infra-runtime";
+} from "@openclaw/plugin-sdk/infra-runtime";
+import { buildExecApprovalActionDescriptors } from "@openclaw/plugin-sdk/infra-runtime";
+import { resolveExecApprovalCommandDisplay } from "@openclaw/plugin-sdk/infra-runtime";
+import { getExecApprovalApproverDmNoticeText } from "@openclaw/plugin-sdk/infra-runtime";
 import type {
   ExecApprovalActionDescriptor,
   ExecApprovalDecision,
@@ -28,15 +28,15 @@ import type {
   ExecApprovalResolved,
   PluginApprovalRequest,
   PluginApprovalResolved,
-} from "quantclaw/plugin-sdk/infra-runtime";
+} from "@openclaw/plugin-sdk/infra-runtime";
 import {
   normalizeAccountId,
   normalizeMessageChannel,
   resolveAgentIdFromSessionKey,
-} from "quantclaw/plugin-sdk/routing";
-import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
-import { compileSafeRegex, testRegexWithBoundedInput } from "quantclaw/plugin-sdk/security-runtime";
-import { logDebug, logError } from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/routing";
+import type { RuntimeEnv } from "@openclaw/plugin-sdk/runtime-env";
+import { compileSafeRegex, testRegexWithBoundedInput } from "@openclaw/plugin-sdk/security-runtime";
+import { logDebug, logError } from "@openclaw/plugin-sdk/text-runtime";
 import { createDiscordNativeApprovalAdapter } from "../approval-native.js";
 import { createDiscordClient, stripUndefinedFields } from "../send.shared.js";
 import { DiscordUiContainer } from "../ui.js";

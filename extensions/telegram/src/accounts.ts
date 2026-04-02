@@ -9,17 +9,17 @@ import {
   resolveListedDefaultAccountId,
   resolveAccountWithDefaultFallback,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/account-core";
+} from "@openclaw/plugin-sdk/account-core";
 import {
   listBoundAccountIds,
   resolveDefaultAgentBoundAccountId,
-} from "quantclaw/plugin-sdk/routing";
-import { formatSetExplicitDefaultInstruction } from "quantclaw/plugin-sdk/routing";
-import { createSubsystemLogger, isTruthyEnvValue } from "quantclaw/plugin-sdk/runtime-env";
+} from "@openclaw/plugin-sdk/routing";
+import { formatSetExplicitDefaultInstruction } from "@openclaw/plugin-sdk/routing";
+import { createSubsystemLogger, isTruthyEnvValue } from "@openclaw/plugin-sdk/runtime-env";
 import type {
   TelegramAccountConfig,
   TelegramActionConfig,
-} from "quantclaw/plugin-sdk/telegram-core";
+} from "@openclaw/plugin-sdk/telegram-core";
 import { resolveTelegramToken } from "./token.js";
 
 let log: ReturnType<typeof createSubsystemLogger> | null = null;

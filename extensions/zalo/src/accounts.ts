@@ -1,8 +1,8 @@
 import {
   createAccountListHelpers,
   resolveMergedAccountConfig,
-} from "quantclaw/plugin-sdk/account-helpers";
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "quantclaw/plugin-sdk/account-id";
+} from "@openclaw/plugin-sdk/account-helpers";
+import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "@openclaw/plugin-sdk/account-id";
 import type { QuantClawConfig } from "./runtime-api.js";
 import { resolveZaloToken } from "./token.js";
 import type { ResolvedZaloAccount, ZaloAccountConfig, ZaloConfig } from "./types.js";

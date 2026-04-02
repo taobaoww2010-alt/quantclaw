@@ -2,12 +2,12 @@ import {
   compileAllowlist,
   resolveCompiledAllowlistMatch,
   type AllowlistMatch,
-} from "quantclaw/plugin-sdk/allow-from";
+} from "@openclaw/plugin-sdk/allow-from";
 import {
   normalizeHyphenSlug,
   normalizeStringEntries,
   normalizeStringEntriesLower,
-} from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/text-runtime";
 
 const SLACK_SLUG_CACHE_MAX = 512;
 const slackSlugCache = new Map<string, string>();

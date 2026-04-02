@@ -1,4 +1,4 @@
-import { resolveChannelGroupRequireMention } from "quantclaw/plugin-sdk/channel-policy";
+import { resolveChannelGroupRequireMention } from "@openclaw/plugin-sdk/channel-policy";
 import { resolveExactLineGroupConfigKey, type QuantClawConfig } from "../runtime-api.js";
 
 type LineGroupContext = {

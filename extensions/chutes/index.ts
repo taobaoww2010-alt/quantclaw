@@ -1,12 +1,12 @@
-import { definePluginEntry } from "quantclaw/plugin-sdk/plugin-entry";
+import { definePluginEntry } from "@openclaw/plugin-sdk/plugin-entry";
 import {
   resolveOAuthApiKeyMarker,
   type ProviderAuthContext,
   type ProviderAuthResult,
-} from "quantclaw/plugin-sdk/provider-auth";
-import { buildOauthProviderAuthResult } from "quantclaw/plugin-sdk/provider-auth";
-import { createProviderApiKeyAuthMethod } from "quantclaw/plugin-sdk/provider-auth-api-key";
-import { loginChutes } from "quantclaw/plugin-sdk/provider-auth-login";
+} from "@openclaw/plugin-sdk/provider-auth";
+import { buildOauthProviderAuthResult } from "@openclaw/plugin-sdk/provider-auth";
+import { createProviderApiKeyAuthMethod } from "@openclaw/plugin-sdk/provider-auth-api-key";
+import { loginChutes } from "@openclaw/plugin-sdk/provider-auth-login";
 import {
   CHUTES_DEFAULT_MODEL_REF,
   applyChutesApiKeyConfig,

@@ -4,8 +4,8 @@ import {
   GroupPolicySchema,
   MarkdownConfigSchema,
   requireOpenAllowFrom,
-} from "quantclaw/plugin-sdk/channel-config-primitives";
-import { z } from "quantclaw/plugin-sdk/zod";
+} from "@openclaw/plugin-sdk/channel-config-primitives";
+import { z } from "@openclaw/plugin-sdk/zod";
 import { buildSecretInputSchema } from "./secret-input.js";
 
 function requireMattermostOpenAllowFrom(params: {

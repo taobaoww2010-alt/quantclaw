@@ -1,4 +1,4 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   DEFAULT_CACHE_TTL_MINUTES,
   markdownToText,
@@ -8,8 +8,8 @@ import {
   resolveCacheTtlMs,
   truncateText,
   writeCache,
-} from "quantclaw/plugin-sdk/provider-web-search";
-import { wrapExternalContent, wrapWebContent } from "quantclaw/plugin-sdk/security-runtime";
+} from "@openclaw/plugin-sdk/provider-web-search";
+import { wrapExternalContent, wrapWebContent } from "@openclaw/plugin-sdk/security-runtime";
 import {
   resolveFirecrawlApiKey,
   resolveFirecrawlBaseUrl,

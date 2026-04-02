@@ -9,9 +9,9 @@ import {
   setSetupChannelEnabled,
   type DmPolicy,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/setup";
-import type { ChannelSetupWizard } from "quantclaw/plugin-sdk/setup";
-import { formatCliCommand, formatDocsLink } from "quantclaw/plugin-sdk/setup-tools";
+} from "@openclaw/plugin-sdk/setup";
+import type { ChannelSetupWizard } from "@openclaw/plugin-sdk/setup";
+import { formatCliCommand, formatDocsLink } from "@openclaw/plugin-sdk/setup-tools";
 import { listWhatsAppAccountIds, resolveWhatsAppAuthDir } from "./accounts.js";
 import { loginWeb } from "./login.js";
 import { whatsappSetupAdapter } from "./setup-core.js";

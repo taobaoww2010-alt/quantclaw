@@ -1,11 +1,11 @@
-import { createApproverRestrictedNativeApprovalAdapter, resolveExecApprovalSessionTarget } from "quantclaw/plugin-sdk/approval-runtime";
-import type { DiscordExecApprovalConfig, QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { createApproverRestrictedNativeApprovalAdapter, resolveExecApprovalSessionTarget } from "@openclaw/plugin-sdk/approval-runtime";
+import type { DiscordExecApprovalConfig, QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import type {
   ExecApprovalRequest,
   ExecApprovalSessionTarget,
   PluginApprovalRequest,
-} from "quantclaw/plugin-sdk/infra-runtime";
-import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/infra-runtime";
+import { normalizeAccountId } from "@openclaw/plugin-sdk/routing";
 import { listDiscordAccountIds, resolveDiscordAccount } from "./accounts.js";
 import {
   getDiscordExecApprovalApprovers,

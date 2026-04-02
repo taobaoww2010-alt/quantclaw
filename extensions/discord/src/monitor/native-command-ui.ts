@@ -12,7 +12,7 @@ import {
   type StringSelectMenuInteraction,
 } from "@buape/carbon";
 import { ButtonStyle } from "discord-api-types/v10";
-import { resolveDefaultModelForAgent } from "quantclaw/plugin-sdk/agent-runtime";
+import { resolveDefaultModelForAgent } from "@openclaw/plugin-sdk/agent-runtime";
 import {
   buildCommandTextFromArgs,
   findCommandByNativeName,
@@ -24,12 +24,12 @@ import {
   type CommandArgDefinition,
   type CommandArgValues,
   type CommandArgs,
-} from "quantclaw/plugin-sdk/command-auth";
-import type { QuantClawConfig, loadConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { loadSessionStore, resolveStorePath } from "quantclaw/plugin-sdk/config-runtime";
-import type { ResolvedAgentRoute } from "quantclaw/plugin-sdk/routing";
-import { logVerbose } from "quantclaw/plugin-sdk/runtime-env";
-import { chunkItems, withTimeout } from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/command-auth";
+import type { QuantClawConfig, loadConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { loadSessionStore, resolveStorePath } from "@openclaw/plugin-sdk/config-runtime";
+import type { ResolvedAgentRoute } from "@openclaw/plugin-sdk/routing";
+import { logVerbose } from "@openclaw/plugin-sdk/runtime-env";
+import { chunkItems, withTimeout } from "@openclaw/plugin-sdk/text-runtime";
 import { resolveDiscordChannelConfigWithFallback, resolveDiscordGuildEntry } from "./allow-list.js";
 import { resolveDiscordChannelInfo } from "./message-utils.js";
 import {

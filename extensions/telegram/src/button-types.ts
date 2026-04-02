@@ -1,9 +1,9 @@
-import { reduceInteractiveReply } from "quantclaw/plugin-sdk/interactive-runtime";
+import { reduceInteractiveReply } from "@openclaw/plugin-sdk/interactive-runtime";
 import {
   normalizeInteractiveReply,
   type InteractiveReply,
   type InteractiveReplyButton,
-} from "quantclaw/plugin-sdk/interactive-runtime";
+} from "@openclaw/plugin-sdk/interactive-runtime";
 
 export type TelegramButtonStyle = "danger" | "success" | "primary";
 

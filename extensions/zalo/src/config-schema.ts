@@ -4,8 +4,8 @@ import {
   DmPolicySchema,
   GroupPolicySchema,
   MarkdownConfigSchema,
-} from "quantclaw/plugin-sdk/channel-config-schema";
-import { z } from "quantclaw/plugin-sdk/zod";
+} from "@openclaw/plugin-sdk/channel-config-schema";
+import { z } from "@openclaw/plugin-sdk/zod";
 import { buildSecretInputSchema } from "./secret-input.js";
 
 const zaloAccountSchema = z.object({

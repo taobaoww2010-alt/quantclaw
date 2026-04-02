@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import type { AgentTool } from "@mariozechner/pi-agent-core";
 import type { ImageContent } from "@mariozechner/pi-ai";
-import { KeyedAsyncQueue } from "@quantclaw/plugin-sdk/keyed-async-queue";
+import { KeyedAsyncQueue } from "@openclaw/plugin-sdk/keyed-async-queue";
 import type { ThinkLevel } from "../../auto-reply/thinking.js";
 import type { QuantClawConfig } from "../../config/config.js";
 import type { CliBackendConfig } from "../../config/types.js";

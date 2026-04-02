@@ -11,4 +11,4 @@ export {
   type ParsedChatAllowTarget,
   type ParsedChatTarget,
   type ServicePrefix,
-} from "quantclaw/plugin-sdk/channel-targets";
+} from "@openclaw/plugin-sdk/channel-targets";

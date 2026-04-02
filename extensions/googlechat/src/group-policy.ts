@@ -1,5 +1,5 @@
-import { resolveChannelGroupRequireMention } from "quantclaw/plugin-sdk/channel-policy";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/core";
+import { resolveChannelGroupRequireMention } from "@openclaw/plugin-sdk/channel-policy";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/core";
 
 type GoogleChatGroupContext = {
   cfg: QuantClawConfig;

@@ -1,4 +1,4 @@
-import { resolveHumanDelayConfig } from "quantclaw/plugin-sdk/agent-runtime";
+import { resolveHumanDelayConfig } from "@openclaw/plugin-sdk/agent-runtime";
 import {
   createStatusReactionController,
   DEFAULT_TIMING,
@@ -6,17 +6,17 @@ import {
   logTypingFailure,
   removeAckReactionAfterReply,
   type StatusReactionAdapter,
-} from "quantclaw/plugin-sdk/channel-feedback";
-import { createChannelReplyPipeline } from "quantclaw/plugin-sdk/channel-reply-pipeline";
-import { resolveStorePath, updateLastRoute } from "quantclaw/plugin-sdk/config-runtime";
-import { resolveAgentOutboundIdentity } from "quantclaw/plugin-sdk/outbound-runtime";
-import { clearHistoryEntriesIfEnabled } from "quantclaw/plugin-sdk/reply-history";
-import { resolveSendableOutboundReplyParts } from "quantclaw/plugin-sdk/reply-payload";
-import { dispatchInboundMessage } from "quantclaw/plugin-sdk/reply-runtime";
-import { createReplyDispatcherWithTyping } from "quantclaw/plugin-sdk/reply-runtime";
-import type { ReplyPayload } from "quantclaw/plugin-sdk/reply-runtime";
-import { danger, logVerbose, shouldLogVerbose } from "quantclaw/plugin-sdk/runtime-env";
-import { resolvePinnedMainDmOwnerFromAllowlist } from "quantclaw/plugin-sdk/security-runtime";
+} from "@openclaw/plugin-sdk/channel-feedback";
+import { createChannelReplyPipeline } from "@openclaw/plugin-sdk/channel-reply-pipeline";
+import { resolveStorePath, updateLastRoute } from "@openclaw/plugin-sdk/config-runtime";
+import { resolveAgentOutboundIdentity } from "@openclaw/plugin-sdk/outbound-runtime";
+import { clearHistoryEntriesIfEnabled } from "@openclaw/plugin-sdk/reply-history";
+import { resolveSendableOutboundReplyParts } from "@openclaw/plugin-sdk/reply-payload";
+import { dispatchInboundMessage } from "@openclaw/plugin-sdk/reply-runtime";
+import { createReplyDispatcherWithTyping } from "@openclaw/plugin-sdk/reply-runtime";
+import type { ReplyPayload } from "@openclaw/plugin-sdk/reply-runtime";
+import { danger, logVerbose, shouldLogVerbose } from "@openclaw/plugin-sdk/runtime-env";
+import { resolvePinnedMainDmOwnerFromAllowlist } from "@openclaw/plugin-sdk/security-runtime";
 import { editSlackMessage, reactSlackMessage, removeSlackReaction } from "../../actions.js";
 import { createSlackDraftStream } from "../../draft-stream.js";
 import { normalizeSlackOutboundText } from "../../format.js";

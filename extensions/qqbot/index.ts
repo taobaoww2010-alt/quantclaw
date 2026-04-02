@@ -1,5 +1,5 @@
-import type { ChannelPlugin, QuantClawPluginApi } from "quantclaw/plugin-sdk/core";
-import { defineChannelPluginEntry } from "quantclaw/plugin-sdk/core";
+import type { ChannelPlugin, QuantClawPluginApi } from "@openclaw/plugin-sdk/core";
+import { defineChannelPluginEntry } from "@openclaw/plugin-sdk/core";
 import { qqbotPlugin } from "./src/channel.js";
 import { resolveQQBotAccount } from "./src/config.js";
 import { sendDocument, type MediaTargetContext } from "./src/outbound.js";

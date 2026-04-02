@@ -1,4 +1,4 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/memory-core-host-engine-foundation";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/memory-core-host-engine-foundation";
 import { getMemorySearchManager, type MemoryIndexManager } from "./index.js";
 
 export async function createMemoryManagerOrThrow(

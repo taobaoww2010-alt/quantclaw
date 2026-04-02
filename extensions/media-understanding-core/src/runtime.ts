@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/core";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/core";
 import {
   buildProviderRegistry,
   createMediaAttachmentCache,
@@ -8,7 +8,7 @@ import {
   normalizeMediaProviderId,
   runCapability,
   type ActiveMediaModel,
-} from "quantclaw/plugin-sdk/media-runtime";
+} from "@openclaw/plugin-sdk/media-runtime";
 
 type MediaUnderstandingCapability = "image" | "audio" | "video";
 type MediaUnderstandingOutput = Awaited<ReturnType<typeof runCapability>>["outputs"][number];

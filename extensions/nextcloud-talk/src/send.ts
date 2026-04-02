@@ -1,5 +1,5 @@
-import { resolveMarkdownTableMode } from "quantclaw/plugin-sdk/config-runtime";
-import { convertMarkdownTables } from "quantclaw/plugin-sdk/text-runtime";
+import { resolveMarkdownTableMode } from "@openclaw/plugin-sdk/config-runtime";
+import { convertMarkdownTables } from "@openclaw/plugin-sdk/text-runtime";
 import { fetchWithSsrFGuard } from "../runtime-api.js";
 import { resolveNextcloudTalkAccount } from "./accounts.js";
 import { stripNextcloudTalkTargetPrefix } from "./normalize.js";

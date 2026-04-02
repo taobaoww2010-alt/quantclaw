@@ -3,7 +3,7 @@ import {
   stripChannelTargetPrefix,
   stripTargetKindPrefix,
   type ChannelOutboundSessionRouteParams,
-} from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/core";
 
 export function resolveMatrixOutboundSessionRoute(params: ChannelOutboundSessionRouteParams) {
   const stripped = stripChannelTargetPrefix(params.target, "matrix");

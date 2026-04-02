@@ -1,4 +1,4 @@
-import type { MarkdownTableMode } from "quantclaw/plugin-sdk/config-runtime";
+import type { MarkdownTableMode } from "@openclaw/plugin-sdk/config-runtime";
 import {
   FILE_REF_EXTENSIONS_WITH_TLD,
   isAutoLinkedFileRef,
@@ -6,8 +6,8 @@ import {
   type MarkdownLinkSpan,
   type MarkdownIR,
   renderMarkdownIRChunksWithinLimit,
-} from "quantclaw/plugin-sdk/text-runtime";
-import { renderMarkdownWithMarkers } from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/text-runtime";
+import { renderMarkdownWithMarkers } from "@openclaw/plugin-sdk/text-runtime";
 
 export type TelegramFormattedChunk = {
   html: string;

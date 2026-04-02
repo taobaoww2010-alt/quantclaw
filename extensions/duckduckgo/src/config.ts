@@ -1,4 +1,4 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 
 export const DEFAULT_DDG_SAFE_SEARCH = "moderate";
 

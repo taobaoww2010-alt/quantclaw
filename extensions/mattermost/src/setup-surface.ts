@@ -2,7 +2,7 @@ import {
   createStandardChannelSetupStatus,
   formatDocsLink,
   type ChannelSetupWizard,
-} from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
 import { listMattermostAccountIds } from "./mattermost/accounts.js";
 import { normalizeMattermostBaseUrl } from "./mattermost/client.js";
 import {

@@ -1,20 +1,20 @@
-import { resolveInboundDebounceMs } from "quantclaw/plugin-sdk/channel-inbound";
-import { enqueueSystemEvent } from "quantclaw/plugin-sdk/channel-runtime";
-import { formatCliCommand } from "quantclaw/plugin-sdk/cli-runtime";
-import { waitForever } from "quantclaw/plugin-sdk/cli-runtime";
-import { hasControlCommand } from "quantclaw/plugin-sdk/command-auth";
-import { loadConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { DEFAULT_GROUP_HISTORY_LIMIT } from "quantclaw/plugin-sdk/reply-history";
-import { getReplyFromConfig } from "quantclaw/plugin-sdk/reply-runtime";
-import { resolveAgentRoute } from "quantclaw/plugin-sdk/routing";
-import { logVerbose } from "quantclaw/plugin-sdk/runtime-env";
-import { registerUnhandledRejectionHandler } from "quantclaw/plugin-sdk/runtime-env";
-import { getChildLogger } from "quantclaw/plugin-sdk/runtime-env";
+import { resolveInboundDebounceMs } from "@openclaw/plugin-sdk/channel-inbound";
+import { enqueueSystemEvent } from "@openclaw/plugin-sdk/channel-runtime";
+import { formatCliCommand } from "@openclaw/plugin-sdk/cli-runtime";
+import { waitForever } from "@openclaw/plugin-sdk/cli-runtime";
+import { hasControlCommand } from "@openclaw/plugin-sdk/command-auth";
+import { loadConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { DEFAULT_GROUP_HISTORY_LIMIT } from "@openclaw/plugin-sdk/reply-history";
+import { getReplyFromConfig } from "@openclaw/plugin-sdk/reply-runtime";
+import { resolveAgentRoute } from "@openclaw/plugin-sdk/routing";
+import { logVerbose } from "@openclaw/plugin-sdk/runtime-env";
+import { registerUnhandledRejectionHandler } from "@openclaw/plugin-sdk/runtime-env";
+import { getChildLogger } from "@openclaw/plugin-sdk/runtime-env";
 import {
   defaultRuntime,
   formatDurationPrecise,
   type RuntimeEnv,
-} from "quantclaw/plugin-sdk/runtime-env";
+} from "@openclaw/plugin-sdk/runtime-env";
 import { resolveWhatsAppAccount, resolveWhatsAppMediaMaxBytes } from "../accounts.js";
 import { setActiveWebListener } from "../active-listener.js";
 import { monitorWebInbox } from "../inbound.js";

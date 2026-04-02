@@ -11,14 +11,14 @@ import type {
   SandboxBackendHandle,
   SandboxBackendManager,
   SshSandboxSession,
-} from "quantclaw/plugin-sdk/sandbox";
+} from "@openclaw/plugin-sdk/sandbox";
 import {
   createRemoteShellSandboxFsBridge,
   disposeSshSandboxSession,
   resolvePreferredQuantClawTmpDir,
   runSshSandboxCommand,
   sanitizeEnvVars,
-} from "quantclaw/plugin-sdk/sandbox";
+} from "@openclaw/plugin-sdk/sandbox";
 import {
   buildExecRemoteCommand,
   buildRemoteCommand,

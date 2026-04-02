@@ -3,7 +3,7 @@ import {
   stripChannelTargetPrefix,
   stripTargetKindPrefix,
   type ChannelOutboundSessionRouteParams,
-} from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/core";
 
 export function resolveMSTeamsOutboundSessionRoute(params: ChannelOutboundSessionRouteParams) {
   let trimmed = stripChannelTargetPrefix(params.target, "msteams", "teams");

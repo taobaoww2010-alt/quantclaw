@@ -6,12 +6,12 @@ import {
   type MediaUnderstandingProvider,
   type VideoDescriptionRequest,
   type VideoDescriptionResult,
-} from "quantclaw/plugin-sdk/media-understanding";
+} from "@openclaw/plugin-sdk/media-understanding";
 import {
   assertOkOrThrowHttpError,
   normalizeBaseUrl,
   postJsonRequest,
-} from "quantclaw/plugin-sdk/provider-http";
+} from "@openclaw/plugin-sdk/provider-http";
 import {
   DEFAULT_GOOGLE_API_BASE_URL,
   normalizeGoogleApiBaseUrl,

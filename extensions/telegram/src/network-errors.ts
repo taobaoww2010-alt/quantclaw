@@ -3,7 +3,7 @@ import {
   extractErrorCode,
   formatErrorMessage,
   readErrorName,
-} from "quantclaw/plugin-sdk/error-runtime";
+} from "@openclaw/plugin-sdk/error-runtime";
 
 const TELEGRAM_NETWORK_ORIGIN = Symbol("quantclaw.telegram.network-origin");
 

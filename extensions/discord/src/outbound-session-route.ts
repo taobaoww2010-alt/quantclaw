@@ -3,7 +3,7 @@ import {
   normalizeOutboundThreadId,
   resolveThreadSessionKeys,
   type RoutePeer,
-} from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/routing";
 import type { QuantClawConfig } from "./runtime-api.js";
 import { parseDiscordTarget } from "./targets.js";
 

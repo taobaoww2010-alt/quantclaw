@@ -1,8 +1,8 @@
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "quantclaw/plugin-sdk/account-id";
+import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "@openclaw/plugin-sdk/account-id";
 import {
   hasConfiguredSecretInput,
   normalizeSecretInputString,
-} from "quantclaw/plugin-sdk/secret-input";
+} from "@openclaw/plugin-sdk/secret-input";
 import {
   mergeDiscordAccountConfig,
   resolveDefaultDiscordAccountId,

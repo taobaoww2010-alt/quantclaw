@@ -10,13 +10,13 @@ import {
   setSetupChannelEnabled,
   type QuantClawConfig,
   type WizardPrompter,
-} from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
 import type {
   ChannelSetupAdapter,
   ChannelSetupWizard,
   ChannelSetupWizardTextInput,
-} from "quantclaw/plugin-sdk/setup";
-import { formatDocsLink } from "quantclaw/plugin-sdk/setup-tools";
+} from "@openclaw/plugin-sdk/setup";
+import { formatDocsLink } from "@openclaw/plugin-sdk/setup-tools";
 import {
   listIMessageAccountIds,
   resolveDefaultIMessageAccountId,

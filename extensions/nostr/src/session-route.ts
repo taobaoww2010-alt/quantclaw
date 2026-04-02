@@ -2,7 +2,7 @@ import {
   buildChannelOutboundSessionRoute,
   stripChannelTargetPrefix,
   type ChannelOutboundSessionRouteParams,
-} from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/core";
 
 export function resolveNostrOutboundSessionRoute(params: ChannelOutboundSessionRouteParams) {
   const target = stripChannelTargetPrefix(params.target, "nostr");

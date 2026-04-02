@@ -1,4 +1,4 @@
-import type { QuantClawPluginApi } from "quantclaw/plugin-sdk/core";
+import type { QuantClawPluginApi } from "@openclaw/plugin-sdk/core";
 
 interface RemindParams {
   action: "add" | "list" | "remove";

@@ -1,5 +1,5 @@
-import type { PluginRuntime } from "quantclaw/plugin-sdk/core";
-import { createPluginRuntimeStore } from "quantclaw/plugin-sdk/runtime-store";
+import type { PluginRuntime } from "@openclaw/plugin-sdk/core";
+import { createPluginRuntimeStore } from "@openclaw/plugin-sdk/runtime-store";
 
 type TelegramChannelRuntime = {
   probeTelegram?: typeof import("./probe.js").probeTelegram;

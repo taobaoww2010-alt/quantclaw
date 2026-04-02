@@ -1,17 +1,17 @@
-import { resolveNormalizedAccountEntry } from "quantclaw/plugin-sdk/account-core";
-import { formatAllowFromLowercase } from "quantclaw/plugin-sdk/allow-from";
+import { resolveNormalizedAccountEntry } from "@openclaw/plugin-sdk/account-core";
+import { formatAllowFromLowercase } from "@openclaw/plugin-sdk/allow-from";
 import {
   adaptScopedAccountAccessor,
   createScopedChannelConfigAdapter,
-} from "quantclaw/plugin-sdk/channel-config-helpers";
-import { createChannelPluginBase } from "quantclaw/plugin-sdk/core";
-import { DEFAULT_ACCOUNT_ID } from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/channel-config-helpers";
+import { createChannelPluginBase } from "@openclaw/plugin-sdk/core";
+import { DEFAULT_ACCOUNT_ID } from "@openclaw/plugin-sdk/routing";
 import {
   getChatChannelMeta,
   normalizeAccountId,
   type ChannelPlugin,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/telegram-core";
+} from "@openclaw/plugin-sdk/telegram-core";
 import { inspectTelegramAccount } from "./account-inspect.js";
 import {
   listTelegramAccountIds,

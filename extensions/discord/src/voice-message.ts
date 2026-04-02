@@ -18,11 +18,11 @@ import {
   parseFfprobeCodecAndSampleRate,
   runFfmpeg,
   runFfprobe,
-} from "quantclaw/plugin-sdk/media-runtime";
-import { MEDIA_FFMPEG_MAX_AUDIO_DURATION_SECS } from "quantclaw/plugin-sdk/media-runtime";
-import { unlinkIfExists } from "quantclaw/plugin-sdk/media-runtime";
-import type { RetryRunner } from "quantclaw/plugin-sdk/retry-runtime";
-import { resolvePreferredQuantClawTmpDir } from "quantclaw/plugin-sdk/temp-path";
+} from "@openclaw/plugin-sdk/media-runtime";
+import { MEDIA_FFMPEG_MAX_AUDIO_DURATION_SECS } from "@openclaw/plugin-sdk/media-runtime";
+import { unlinkIfExists } from "@openclaw/plugin-sdk/media-runtime";
+import type { RetryRunner } from "@openclaw/plugin-sdk/retry-runtime";
+import { resolvePreferredQuantClawTmpDir } from "@openclaw/plugin-sdk/temp-path";
 
 const DISCORD_VOICE_MESSAGE_FLAG = 1 << 13;
 const SUPPRESS_NOTIFICATIONS_FLAG = 1 << 12;

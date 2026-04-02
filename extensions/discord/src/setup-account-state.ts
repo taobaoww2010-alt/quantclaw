@@ -1,10 +1,10 @@
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "quantclaw/plugin-sdk/account-id";
-import { listCombinedAccountIds } from "quantclaw/plugin-sdk/account-resolution";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "@openclaw/plugin-sdk/account-id";
+import { listCombinedAccountIds } from "@openclaw/plugin-sdk/account-resolution";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   hasConfiguredSecretInput,
   normalizeSecretInputString,
-} from "quantclaw/plugin-sdk/secret-input";
+} from "@openclaw/plugin-sdk/secret-input";
 import { mergeDiscordAccountConfig, resolveDiscordAccountConfig } from "./accounts.js";
 import type { DiscordAccountConfig } from "./runtime-api.js";
 import { resolveDiscordToken } from "./token.js";

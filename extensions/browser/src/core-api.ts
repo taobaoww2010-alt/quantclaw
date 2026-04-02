@@ -98,7 +98,7 @@ export {
   theme,
   withTimeout,
   wrapExternalContent,
-} from "quantclaw/plugin-sdk/browser-support";
+} from "@openclaw/plugin-sdk/browser-support";
 export type {
   AnyAgentTool,
   GatewayRequestHandlers,
@@ -107,4 +107,4 @@ export type {
   NodeSession,
   QuantClawConfig,
   QuantClawPluginService,
-} from "quantclaw/plugin-sdk/browser-support";
+} from "@openclaw/plugin-sdk/browser-support";

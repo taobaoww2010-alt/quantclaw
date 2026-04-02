@@ -1,8 +1,8 @@
-import type { ProviderNormalizeResolvedModelContext } from "quantclaw/plugin-sdk/core";
+import type { ProviderNormalizeResolvedModelContext } from "@openclaw/plugin-sdk/core";
 import type {
   ModelProviderConfig,
   ProviderPlugin,
-} from "quantclaw/plugin-sdk/provider-model-shared";
+} from "@openclaw/plugin-sdk/provider-model-shared";
 import { apiKeyAuthMethod, entraIdAuthMethod } from "./auth.js";
 import { prepareFoundryRuntimeAuth } from "./runtime.js";
 import {

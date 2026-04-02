@@ -9,4 +9,4 @@ export {
   type QuantClawPluginApi,
   type QuantClawPluginToolContext,
   type QuantClawPluginToolFactory,
-} from "quantclaw/plugin-sdk/plugin-entry";
+} from "@openclaw/plugin-sdk/plugin-entry";

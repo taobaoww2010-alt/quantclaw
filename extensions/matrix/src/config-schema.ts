@@ -4,9 +4,9 @@ import {
   GroupPolicySchema,
   MarkdownConfigSchema,
   ToolPolicySchema,
-} from "quantclaw/plugin-sdk/channel-config-schema";
-import { buildSecretInputSchema } from "quantclaw/plugin-sdk/secret-input";
-import { z } from "quantclaw/plugin-sdk/zod";
+} from "@openclaw/plugin-sdk/channel-config-schema";
+import { buildSecretInputSchema } from "@openclaw/plugin-sdk/secret-input";
+import { z } from "@openclaw/plugin-sdk/zod";
 
 const matrixActionSchema = z
   .object({

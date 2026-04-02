@@ -1,5 +1,5 @@
-import type { SkillCommandSpec } from "quantclaw/plugin-sdk/command-auth";
-import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
+import type { SkillCommandSpec } from "@openclaw/plugin-sdk/command-auth";
+import type { RuntimeEnv } from "@openclaw/plugin-sdk/runtime-env";
 import { expect, vi } from "vitest";
 import type { QuantClawConfig } from "../runtime-api.js";
 import type { TelegramBotDeps } from "./bot-deps.js";
@@ -34,8 +34,8 @@ const deliveryMocks = vi.hoisted(() => ({
 export const listSkillCommandsForAgents = skillCommandMocks.listSkillCommandsForAgents;
 export const deliverReplies = deliveryMocks.deliverReplies;
 
-vi.mock("quantclaw/plugin-sdk/command-auth", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/command-auth")>();
+vi.mock("@openclaw/plugin-sdk/command-auth", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/command-auth")>();
   return {
     ...actual,
     listSkillCommandsForAgents,

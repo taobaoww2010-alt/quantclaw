@@ -12,7 +12,7 @@ import {
   type ChannelSetupWizard,
   type DmPolicy,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
 import {
   listZalouserAccountIds,
   resolveDefaultZalouserAccountId,

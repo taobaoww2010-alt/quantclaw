@@ -1,5 +1,5 @@
-import { DEFAULT_ACCOUNT_ID } from "quantclaw/plugin-sdk/account-id";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/core";
+import { DEFAULT_ACCOUNT_ID } from "@openclaw/plugin-sdk/account-id";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/core";
 
 type BlueBubblesConfigPatch = {
   serverUrl?: string;

@@ -1,4 +1,4 @@
-import { resolveGlobalDedupeCache } from "quantclaw/plugin-sdk/core";
+import { resolveGlobalDedupeCache } from "@openclaw/plugin-sdk/core";
 
 /**
  * In-memory cache of Slack threads the bot has participated in.

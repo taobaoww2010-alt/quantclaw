@@ -1,4 +1,4 @@
-import { hasOutboundReplyContent } from "@quantclaw/plugin-sdk/reply-payload";
+import { hasOutboundReplyContent } from "@openclaw/plugin-sdk/reply-payload";
 import type { QuantClawConfig } from "../../config/config.js";
 import type { TtsAutoMode } from "../../config/types.tts.js";
 import { logVerbose } from "../../globals.js";

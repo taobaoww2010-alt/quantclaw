@@ -1,4 +1,4 @@
-import { z } from "quantclaw/plugin-sdk/zod";
+import { z } from "@openclaw/plugin-sdk/zod";
 import {
   BlockStreamingCoalesceSchema,
   DmPolicySchema,

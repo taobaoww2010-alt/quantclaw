@@ -1,13 +1,13 @@
 import {
   resolveApprovalApprovers,
-} from "quantclaw/plugin-sdk/approval-runtime";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/approval-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import type {
   ExecApprovalRequest,
   PluginApprovalRequest,
-} from "quantclaw/plugin-sdk/infra-runtime";
-import type { ReplyPayload } from "quantclaw/plugin-sdk/reply-runtime";
-import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/infra-runtime";
+import type { ReplyPayload } from "@openclaw/plugin-sdk/reply-runtime";
+import { normalizeAccountId } from "@openclaw/plugin-sdk/routing";
 import { resolveSlackAccount } from "./accounts.js";
 
 type ApprovalRequest = ExecApprovalRequest | PluginApprovalRequest;

@@ -1,7 +1,7 @@
 import {
   createModelCatalogPresetAppliers,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/provider-onboard";
+} from "@openclaw/plugin-sdk/provider-onboard";
 import {
   buildSyntheticModelDefinition,
   SYNTHETIC_BASE_URL,

@@ -4,17 +4,17 @@ import {
   listNativeCommandSpecsForConfig as listNativeCommandSpecsForConfigImpl,
   parseCommandArgs as parseCommandArgsImpl,
   resolveCommandArgMenu as resolveCommandArgMenuImpl,
-} from "quantclaw/plugin-sdk/command-auth";
+} from "@openclaw/plugin-sdk/command-auth";
 
 type BuildCommandTextFromArgs =
-  typeof import("quantclaw/plugin-sdk/command-auth").buildCommandTextFromArgs;
+  typeof import("@openclaw/plugin-sdk/command-auth").buildCommandTextFromArgs;
 type FindCommandByNativeName =
-  typeof import("quantclaw/plugin-sdk/command-auth").findCommandByNativeName;
+  typeof import("@openclaw/plugin-sdk/command-auth").findCommandByNativeName;
 type ListNativeCommandSpecsForConfig =
-  typeof import("quantclaw/plugin-sdk/command-auth").listNativeCommandSpecsForConfig;
-type ParseCommandArgs = typeof import("quantclaw/plugin-sdk/command-auth").parseCommandArgs;
+  typeof import("@openclaw/plugin-sdk/command-auth").listNativeCommandSpecsForConfig;
+type ParseCommandArgs = typeof import("@openclaw/plugin-sdk/command-auth").parseCommandArgs;
 type ResolveCommandArgMenu =
-  typeof import("quantclaw/plugin-sdk/command-auth").resolveCommandArgMenu;
+  typeof import("@openclaw/plugin-sdk/command-auth").resolveCommandArgMenu;
 
 export function buildCommandTextFromArgs(
   ...args: Parameters<BuildCommandTextFromArgs>

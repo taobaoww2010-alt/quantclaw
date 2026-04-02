@@ -1,4 +1,4 @@
-import { buildUntrustedChannelMetadata } from "quantclaw/plugin-sdk/security-runtime";
+import { buildUntrustedChannelMetadata } from "@openclaw/plugin-sdk/security-runtime";
 
 export function resolveSlackRoomContextHints(params: {
   isRoomish: boolean;

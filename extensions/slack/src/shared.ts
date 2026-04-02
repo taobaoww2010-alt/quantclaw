@@ -1,15 +1,15 @@
-import { describeAccountSnapshot } from "quantclaw/plugin-sdk/account-helpers";
-import { formatAllowFromLowercase } from "quantclaw/plugin-sdk/allow-from";
+import { describeAccountSnapshot } from "@openclaw/plugin-sdk/account-helpers";
+import { formatAllowFromLowercase } from "@openclaw/plugin-sdk/allow-from";
 import {
   adaptScopedAccountAccessor,
   createScopedChannelConfigAdapter,
-} from "quantclaw/plugin-sdk/channel-config-helpers";
-import { createChannelPluginBase } from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/channel-config-helpers";
+import { createChannelPluginBase } from "@openclaw/plugin-sdk/core";
 import {
   formatDocsLink,
   hasConfiguredSecretInput,
   patchChannelConfigForAccount,
-} from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
 import { inspectSlackAccount } from "./account-inspect.js";
 import {
   listSlackAccountIds,

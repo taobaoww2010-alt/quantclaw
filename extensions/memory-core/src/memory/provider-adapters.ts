@@ -20,9 +20,9 @@ import {
   runOpenAiEmbeddingBatches,
   runVoyageEmbeddingBatches,
   type MemoryEmbeddingProviderAdapter,
-} from "quantclaw/plugin-sdk/memory-core-host-engine-embeddings";
-import { resolveUserPath } from "quantclaw/plugin-sdk/memory-core-host-engine-foundation";
-import { getProviderEnvVars } from "quantclaw/plugin-sdk/provider-env-vars";
+} from "@openclaw/plugin-sdk/memory-core-host-engine-embeddings";
+import { resolveUserPath } from "@openclaw/plugin-sdk/memory-core-host-engine-foundation";
+import { getProviderEnvVars } from "@openclaw/plugin-sdk/provider-env-vars";
 
 export type BuiltinMemoryEmbeddingProviderDoctorMetadata = {
   providerId: string;

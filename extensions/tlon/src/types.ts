@@ -3,8 +3,8 @@ import {
   listCombinedAccountIds,
   normalizeAccountId,
   resolveMergedAccountConfig,
-} from "quantclaw/plugin-sdk/account-resolution";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/account-resolution";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 
 type TlonAccountConfig = {
   name?: string;

@@ -17,13 +17,13 @@ export {
   ssrfPolicyFromAllowPrivateNetwork,
   type LookupFn,
   type SsrFPolicy,
-} from "quantclaw/plugin-sdk/ssrf-runtime";
+} from "@openclaw/plugin-sdk/ssrf-runtime";
 export {
   setMatrixThreadBindingIdleTimeoutBySessionKey,
   setMatrixThreadBindingMaxAgeBySessionKey,
 } from "./src/matrix/thread-bindings-shared.js";
 export { setMatrixRuntime } from "./src/runtime.js";
-export { writeJsonFileAtomically } from "quantclaw/plugin-sdk/json-store";
+export { writeJsonFileAtomically } from "@openclaw/plugin-sdk/json-store";
 export type {
   ChannelDirectoryEntry,
   ChannelMessageActionContext,
@@ -32,8 +32,8 @@ export type {
   RuntimeLogger,
   RuntimeEnv,
   WizardPrompter,
-} from "quantclaw/plugin-sdk/matrix-runtime-shared";
-export { formatZonedTimestamp } from "quantclaw/plugin-sdk/matrix-runtime-shared";
+} from "@openclaw/plugin-sdk/matrix-runtime-shared";
+export { formatZonedTimestamp } from "@openclaw/plugin-sdk/matrix-runtime-shared";
 
 export function chunkTextForOutbound(text: string, limit: number): string[] {
   const chunks: string[] = [];

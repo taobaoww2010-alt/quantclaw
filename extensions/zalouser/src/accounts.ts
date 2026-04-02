@@ -3,7 +3,7 @@ import {
   DEFAULT_ACCOUNT_ID,
   normalizeAccountId,
   resolveMergedAccountConfig,
-} from "quantclaw/plugin-sdk/account-resolution";
+} from "@openclaw/plugin-sdk/account-resolution";
 import type { QuantClawConfig } from "../runtime-api.js";
 import type { ResolvedZalouserAccount, ZalouserAccountConfig, ZalouserConfig } from "./types.js";
 import { checkZaloAuthenticated, getZaloUserInfo } from "./zalo-js.js";

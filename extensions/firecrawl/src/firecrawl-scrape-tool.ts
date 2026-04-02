@@ -1,10 +1,10 @@
 import { Type } from "@sinclair/typebox";
-import type { QuantClawPluginApi } from "quantclaw/plugin-sdk/plugin-runtime";
+import type { QuantClawPluginApi } from "@openclaw/plugin-sdk/plugin-runtime";
 import {
   jsonResult,
   readNumberParam,
   readStringParam,
-} from "quantclaw/plugin-sdk/provider-web-search";
+} from "@openclaw/plugin-sdk/provider-web-search";
 import { runFirecrawlScrape } from "./firecrawl-client.js";
 
 function optionalStringEnum<const T extends readonly string[]>(

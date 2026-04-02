@@ -1,7 +1,7 @@
 import {
   createDefaultModelPresetAppliers,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/provider-onboard";
+} from "@openclaw/plugin-sdk/provider-onboard";
 import {
   buildKimiCodingProvider,
   KIMI_CODING_BASE_URL,

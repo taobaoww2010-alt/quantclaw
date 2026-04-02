@@ -1,11 +1,11 @@
 import { randomUUID } from "node:crypto";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   computeBackoff,
   sleepWithAbort,
   type BackoffPolicy,
-} from "quantclaw/plugin-sdk/runtime-env";
-import { clamp } from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/runtime-env";
+import { clamp } from "@openclaw/plugin-sdk/text-runtime";
 
 export type ReconnectPolicy = BackoffPolicy & {
   maxAttempts: number;

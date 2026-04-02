@@ -2,11 +2,11 @@ import {
   DEFAULT_ACCOUNT_ID,
   normalizeAccountId,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/account-resolution";
+} from "@openclaw/plugin-sdk/account-resolution";
 import {
   hasConfiguredSecretInput,
   normalizeSecretInputString,
-} from "quantclaw/plugin-sdk/secret-input";
+} from "@openclaw/plugin-sdk/secret-input";
 import type { SlackAccountSurfaceFields } from "./account-surface-fields.js";
 import {
   mergeSlackAccountConfig,

@@ -4,7 +4,7 @@ import {
   readStringParam,
   type AnyAgentTool,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/memory-core-host-runtime-core";
+} from "@openclaw/plugin-sdk/memory-core-host-runtime-core";
 import {
   clampResultsByInjectedChars,
   decorateCitations,

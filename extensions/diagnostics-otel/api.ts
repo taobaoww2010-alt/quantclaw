@@ -1,1 +1,1 @@
-export * from "quantclaw/plugin-sdk/diagnostics-otel";
+export * from "@openclaw/plugin-sdk/diagnostics-otel";

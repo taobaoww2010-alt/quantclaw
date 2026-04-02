@@ -1,6 +1,6 @@
 import { Type } from "@sinclair/typebox";
-import { getRuntimeConfigSnapshot } from "quantclaw/plugin-sdk/config-runtime";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/plugin-entry";
+import { getRuntimeConfigSnapshot } from "@openclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/plugin-entry";
 import {
   jsonResult,
   readCache,
@@ -12,7 +12,7 @@ import {
   resolveProviderWebSearchPluginConfig,
   resolveTimeoutSeconds,
   writeCache,
-} from "quantclaw/plugin-sdk/provider-web-search";
+} from "@openclaw/plugin-sdk/provider-web-search";
 import {
   buildXaiXSearchPayload,
   requestXaiXSearch,

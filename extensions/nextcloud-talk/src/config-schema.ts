@@ -7,9 +7,9 @@ import {
   ReplyRuntimeConfigSchemaShape,
   ToolPolicySchema,
   requireOpenAllowFrom,
-} from "quantclaw/plugin-sdk/channel-config-schema";
-import { requireChannelOpenAllowFrom } from "quantclaw/plugin-sdk/extension-shared";
-import { z } from "quantclaw/plugin-sdk/zod";
+} from "@openclaw/plugin-sdk/channel-config-schema";
+import { requireChannelOpenAllowFrom } from "@openclaw/plugin-sdk/extension-shared";
+import { z } from "@openclaw/plugin-sdk/zod";
 import { buildSecretInputSchema } from "./secret-input.js";
 
 export const NextcloudTalkRoomSchema = z

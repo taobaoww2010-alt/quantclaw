@@ -4,9 +4,9 @@ import {
   normalizeAccountId,
   resolveAccountEntry,
   resolveMergedAccountConfig,
-} from "quantclaw/plugin-sdk/account-resolution";
-import { isSecretRef, type QuantClawConfig } from "quantclaw/plugin-sdk/core";
-import { safeParseJsonWithSchema, safeParseWithSchema } from "quantclaw/plugin-sdk/extension-shared";
+} from "@openclaw/plugin-sdk/account-resolution";
+import { isSecretRef, type QuantClawConfig } from "@openclaw/plugin-sdk/core";
+import { safeParseJsonWithSchema, safeParseWithSchema } from "@openclaw/plugin-sdk/extension-shared";
 import { z } from "zod";
 import type { GoogleChatAccountConfig } from "./types.config.js";
 

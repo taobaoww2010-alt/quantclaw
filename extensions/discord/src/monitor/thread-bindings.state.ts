@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
-import { loadJsonFile, saveJsonFile } from "quantclaw/plugin-sdk/json-store";
-import { normalizeAccountId, resolveAgentIdFromSessionKey } from "quantclaw/plugin-sdk/routing";
-import { resolveStateDir } from "quantclaw/plugin-sdk/state-paths";
+import { loadJsonFile, saveJsonFile } from "@openclaw/plugin-sdk/json-store";
+import { normalizeAccountId, resolveAgentIdFromSessionKey } from "@openclaw/plugin-sdk/routing";
+import { resolveStateDir } from "@openclaw/plugin-sdk/state-paths";
 import {
   DEFAULT_THREAD_BINDING_IDLE_TIMEOUT_MS,
   DEFAULT_THREAD_BINDING_MAX_AGE_MS,

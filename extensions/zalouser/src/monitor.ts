@@ -1,16 +1,16 @@
 import {
   DM_GROUP_ACCESS_REASON,
   resolveDmGroupAccessWithLists,
-} from "quantclaw/plugin-sdk/channel-policy";
-import { KeyedAsyncQueue } from "quantclaw/plugin-sdk/core";
-import { createDeferred } from "quantclaw/plugin-sdk/extension-shared";
+} from "@openclaw/plugin-sdk/channel-policy";
+import { KeyedAsyncQueue } from "@openclaw/plugin-sdk/core";
+import { createDeferred } from "@openclaw/plugin-sdk/extension-shared";
 import {
   DEFAULT_GROUP_HISTORY_LIMIT,
   type HistoryEntry,
   buildPendingHistoryContextFromMap,
   clearHistoryEntriesIfEnabled,
   recordPendingHistoryEntryIfEnabled,
-} from "quantclaw/plugin-sdk/reply-history";
+} from "@openclaw/plugin-sdk/reply-history";
 import type {
   MarkdownTableMode,
   QuantClawConfig,

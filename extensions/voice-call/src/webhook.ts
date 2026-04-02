@@ -3,7 +3,7 @@ import { URL } from "node:url";
 import {
   createWebhookInFlightLimiter,
   WEBHOOK_BODY_READ_DEFAULTS,
-} from "quantclaw/plugin-sdk/webhook-ingress";
+} from "@openclaw/plugin-sdk/webhook-ingress";
 import {
   isRequestBodyLimitError,
   readRequestBodyWithLimit,

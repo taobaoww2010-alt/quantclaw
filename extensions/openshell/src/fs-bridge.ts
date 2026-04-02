@@ -5,8 +5,8 @@ import type {
   SandboxFsBridge,
   SandboxFsStat,
   SandboxResolvedPath,
-} from "quantclaw/plugin-sdk/sandbox";
-import { createWritableRenameTargetResolver } from "quantclaw/plugin-sdk/sandbox";
+} from "@openclaw/plugin-sdk/sandbox";
+import { createWritableRenameTargetResolver } from "@openclaw/plugin-sdk/sandbox";
 import type { OpenShellSandboxBackend } from "./backend.js";
 import { movePathWithCopyFallback } from "./mirror.js";
 

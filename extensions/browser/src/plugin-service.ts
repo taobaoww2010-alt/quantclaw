@@ -2,7 +2,7 @@ import {
   startLazyPluginServiceModule,
   type LazyPluginServiceHandle,
   type QuantClawPluginService,
-} from "quantclaw/plugin-sdk/browser-support";
+} from "@openclaw/plugin-sdk/browser-support";
 
 type BrowserControlHandle = LazyPluginServiceHandle | null;
 

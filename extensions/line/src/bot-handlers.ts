@@ -11,30 +11,30 @@ import {
   buildMentionRegexes,
   matchesMentionPatterns,
   resolveMentionGatingWithBypass,
-} from "quantclaw/plugin-sdk/channel-inbound";
-import { createChannelPairingChallengeIssuer } from "quantclaw/plugin-sdk/channel-pairing";
-import { hasControlCommand, resolveControlCommandGate } from "quantclaw/plugin-sdk/command-auth";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/channel-inbound";
+import { createChannelPairingChallengeIssuer } from "@openclaw/plugin-sdk/channel-pairing";
+import { hasControlCommand, resolveControlCommandGate } from "@openclaw/plugin-sdk/command-auth";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   resolveAllowlistProviderRuntimeGroupPolicy,
   resolveDefaultGroupPolicy,
   warnMissingProviderGroupPolicyFallbackOnce,
-} from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
 import {
   readChannelAllowFromStore,
   resolvePairingIdLabel,
   upsertChannelPairingRequest,
-} from "quantclaw/plugin-sdk/conversation-runtime";
-import { evaluateMatchedGroupAccessForPolicy } from "quantclaw/plugin-sdk/group-access";
+} from "@openclaw/plugin-sdk/conversation-runtime";
+import { evaluateMatchedGroupAccessForPolicy } from "@openclaw/plugin-sdk/group-access";
 import {
   DEFAULT_GROUP_HISTORY_LIMIT,
   clearHistoryEntriesIfEnabled,
   recordPendingHistoryEntryIfEnabled,
   type HistoryEntry,
-} from "quantclaw/plugin-sdk/reply-history";
-import { resolveAgentRoute } from "quantclaw/plugin-sdk/routing";
-import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime";
-import { danger, logVerbose } from "quantclaw/plugin-sdk/runtime-env";
+} from "@openclaw/plugin-sdk/reply-history";
+import { resolveAgentRoute } from "@openclaw/plugin-sdk/routing";
+import type { RuntimeEnv } from "@openclaw/plugin-sdk/runtime";
+import { danger, logVerbose } from "@openclaw/plugin-sdk/runtime-env";
 import {
   firstDefined,
   isSenderAllowed,

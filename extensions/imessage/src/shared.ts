@@ -1,11 +1,11 @@
-import { describeAccountSnapshot } from "quantclaw/plugin-sdk/account-helpers";
+import { describeAccountSnapshot } from "@openclaw/plugin-sdk/account-helpers";
 import {
   adaptScopedAccountAccessor,
   createScopedChannelConfigAdapter,
   formatTrimmedAllowFromEntries,
-} from "quantclaw/plugin-sdk/channel-config-helpers";
-import { createRestrictSendersChannelSecurity } from "quantclaw/plugin-sdk/channel-policy";
-import { createChannelPluginBase } from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/channel-config-helpers";
+import { createRestrictSendersChannelSecurity } from "@openclaw/plugin-sdk/channel-policy";
+import { createChannelPluginBase } from "@openclaw/plugin-sdk/core";
 import { getChatChannelMeta, type ChannelPlugin } from "../runtime-api.js";
 import {
   listIMessageAccountIds,

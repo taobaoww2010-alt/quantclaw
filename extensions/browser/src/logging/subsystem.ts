@@ -1,1 +1,1 @@
-export { createSubsystemLogger } from "quantclaw/plugin-sdk/logging-core";
+export { createSubsystemLogger } from "@openclaw/plugin-sdk/logging-core";

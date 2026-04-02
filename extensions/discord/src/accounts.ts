@@ -2,9 +2,9 @@ import {
   createAccountActionGate,
   createAccountListHelpers,
   resolveMergedAccountConfig,
-} from "quantclaw/plugin-sdk/account-helpers";
-import { normalizeAccountId } from "quantclaw/plugin-sdk/account-id";
-import { resolveAccountEntry } from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/account-helpers";
+import { normalizeAccountId } from "@openclaw/plugin-sdk/account-id";
+import { resolveAccountEntry } from "@openclaw/plugin-sdk/routing";
 import type { DiscordAccountConfig, DiscordActionConfig, QuantClawConfig } from "./runtime-api.js";
 import { resolveDiscordToken } from "./token.js";
 

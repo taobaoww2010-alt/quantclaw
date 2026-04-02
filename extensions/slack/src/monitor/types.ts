@@ -1,5 +1,5 @@
-import type { QuantClawConfig, SlackSlashCommandConfig } from "quantclaw/plugin-sdk/config-runtime";
-import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
+import type { QuantClawConfig, SlackSlashCommandConfig } from "@openclaw/plugin-sdk/config-runtime";
+import type { RuntimeEnv } from "@openclaw/plugin-sdk/runtime-env";
 import type { SlackFile, SlackMessageEvent } from "../types.js";
 
 export type MonitorSlackOpts = {

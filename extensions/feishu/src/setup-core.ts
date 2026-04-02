@@ -2,7 +2,7 @@ import {
   DEFAULT_ACCOUNT_ID,
   type ChannelSetupAdapter,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
 import type { FeishuConfig } from "./types.js";
 
 export function setFeishuNamedAccountEnabled(

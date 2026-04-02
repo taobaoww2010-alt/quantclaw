@@ -1,13 +1,13 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import type { ChannelGroupPolicy } from "quantclaw/plugin-sdk/config-runtime";
-import { resolveOpenProviderRuntimeGroupPolicy } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import type { ChannelGroupPolicy } from "@openclaw/plugin-sdk/config-runtime";
+import { resolveOpenProviderRuntimeGroupPolicy } from "@openclaw/plugin-sdk/config-runtime";
 import type {
   TelegramAccountConfig,
   TelegramDirectConfig,
   TelegramGroupConfig,
   TelegramTopicConfig,
-} from "quantclaw/plugin-sdk/config-runtime";
-import { evaluateMatchedGroupAccessForPolicy } from "quantclaw/plugin-sdk/group-access";
+} from "@openclaw/plugin-sdk/config-runtime";
+import { evaluateMatchedGroupAccessForPolicy } from "@openclaw/plugin-sdk/group-access";
 import { isSenderAllowed, type NormalizedAllowFrom } from "./bot-access.js";
 import { firstDefined } from "./bot-access.js";
 

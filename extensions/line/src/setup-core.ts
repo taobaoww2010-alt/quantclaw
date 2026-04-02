@@ -1,5 +1,5 @@
-import type { ChannelSetupAdapter, QuantClawConfig } from "quantclaw/plugin-sdk/setup";
-import { createSetupInputPresenceValidator } from "quantclaw/plugin-sdk/setup";
+import type { ChannelSetupAdapter, QuantClawConfig } from "@openclaw/plugin-sdk/setup";
+import { createSetupInputPresenceValidator } from "@openclaw/plugin-sdk/setup";
 import { hasLineCredentials, parseLineAllowFromId } from "./account-helpers.js";
 import {
   DEFAULT_ACCOUNT_ID,

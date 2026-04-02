@@ -1,9 +1,9 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/provider-auth";
-import { upsertAuthProfileWithLock } from "quantclaw/plugin-sdk/provider-auth";
-import { applyAgentDefaultModelPrimary } from "quantclaw/plugin-sdk/provider-onboard";
-import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime";
-import { WizardCancelledError, type WizardPrompter } from "quantclaw/plugin-sdk/setup";
-import { fetchWithSsrFGuard } from "quantclaw/plugin-sdk/ssrf-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/provider-auth";
+import { upsertAuthProfileWithLock } from "@openclaw/plugin-sdk/provider-auth";
+import { applyAgentDefaultModelPrimary } from "@openclaw/plugin-sdk/provider-onboard";
+import type { RuntimeEnv } from "@openclaw/plugin-sdk/runtime";
+import { WizardCancelledError, type WizardPrompter } from "@openclaw/plugin-sdk/setup";
+import { fetchWithSsrFGuard } from "@openclaw/plugin-sdk/ssrf-runtime";
 import { OLLAMA_DEFAULT_BASE_URL, OLLAMA_DEFAULT_MODEL } from "./defaults.js";
 import {
   buildOllamaBaseUrlSsrFPolicy,

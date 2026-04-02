@@ -1,16 +1,16 @@
-import { describeAccountSnapshot } from "quantclaw/plugin-sdk/account-helpers";
+import { describeAccountSnapshot } from "@openclaw/plugin-sdk/account-helpers";
 import {
   createScopedDmSecurityResolver,
   createTopLevelChannelConfigAdapter,
-} from "quantclaw/plugin-sdk/channel-config-helpers";
-import { createChannelPairingController } from "quantclaw/plugin-sdk/channel-pairing";
-import { attachChannelToResult } from "quantclaw/plugin-sdk/channel-send-result";
-import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/channel-config-helpers";
+import { createChannelPairingController } from "@openclaw/plugin-sdk/channel-pairing";
+import { attachChannelToResult } from "@openclaw/plugin-sdk/channel-send-result";
+import { createChatChannelPlugin } from "@openclaw/plugin-sdk/core";
 import {
   buildPassiveChannelStatusSummary,
   buildTrafficStatusSummary,
-} from "quantclaw/plugin-sdk/extension-shared";
-import { createComputedAccountStatusAdapter } from "quantclaw/plugin-sdk/status-helpers";
+} from "@openclaw/plugin-sdk/extension-shared";
+import { createComputedAccountStatusAdapter } from "@openclaw/plugin-sdk/status-helpers";
 import {
   buildChannelConfigSchema,
   collectStatusIssuesFromLastError,

@@ -3,7 +3,7 @@ import os from "node:os";
 import {
   resolveLoggerBackedRuntime,
   safeParseJsonWithSchema,
-} from "quantclaw/plugin-sdk/extension-shared";
+} from "@openclaw/plugin-sdk/extension-shared";
 import { z } from "zod";
 import {
   WEBHOOK_RATE_LIMIT_DEFAULTS,

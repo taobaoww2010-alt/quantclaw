@@ -1,4 +1,4 @@
 // Private runtime barrel for the bundled Nostr extension.
 // Keep this barrel thin and aligned with the local extension surface.
 
-export * from "quantclaw/plugin-sdk/nostr";
+export * from "@openclaw/plugin-sdk/nostr";

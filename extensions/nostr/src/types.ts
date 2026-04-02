@@ -2,11 +2,11 @@ import {
   DEFAULT_ACCOUNT_ID,
   normalizeAccountId,
   normalizeOptionalAccountId,
-} from "quantclaw/plugin-sdk/account-id";
+} from "@openclaw/plugin-sdk/account-id";
 import {
   listCombinedAccountIds,
   resolveListedDefaultAccountId,
-} from "quantclaw/plugin-sdk/account-resolution";
+} from "@openclaw/plugin-sdk/account-resolution";
 import type { QuantClawConfig } from "../api.js";
 import type { NostrProfile } from "./config-schema.js";
 import { DEFAULT_RELAYS } from "./default-relays.js";

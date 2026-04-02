@@ -2,7 +2,7 @@ import {
   describeImageWithModel,
   describeImagesWithModel,
   type MediaUnderstandingProvider,
-} from "quantclaw/plugin-sdk/media-understanding";
+} from "@openclaw/plugin-sdk/media-understanding";
 
 export const openrouterMediaUnderstandingProvider: MediaUnderstandingProvider = {
   id: "openrouter",

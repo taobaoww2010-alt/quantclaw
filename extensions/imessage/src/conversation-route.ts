@@ -1,15 +1,15 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   getSessionBindingService,
   isPluginOwnedSessionBindingRecord,
   resolveConfiguredBindingRoute,
-} from "quantclaw/plugin-sdk/conversation-runtime";
+} from "@openclaw/plugin-sdk/conversation-runtime";
 import {
   deriveLastRoutePolicy,
   resolveAgentIdFromSessionKey,
   resolveAgentRoute,
-} from "quantclaw/plugin-sdk/routing";
-import { logVerbose } from "quantclaw/plugin-sdk/runtime-env";
+} from "@openclaw/plugin-sdk/routing";
+import { logVerbose } from "@openclaw/plugin-sdk/runtime-env";
 import { resolveIMessageInboundConversationId } from "./conversation-id.js";
 
 export function resolveIMessageConversationRoute(params: {

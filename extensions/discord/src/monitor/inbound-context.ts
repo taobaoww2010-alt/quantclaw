@@ -1,7 +1,7 @@
 import {
   buildUntrustedChannelMetadata,
   wrapExternalContent,
-} from "quantclaw/plugin-sdk/security-runtime";
+} from "@openclaw/plugin-sdk/security-runtime";
 import {
   resolveDiscordOwnerAllowFrom,
   type DiscordChannelConfigResolved,

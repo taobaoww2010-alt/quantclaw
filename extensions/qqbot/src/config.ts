@@ -1,10 +1,10 @@
 import fs from "node:fs";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   hasConfiguredSecretInput,
   normalizeResolvedSecretInputString,
   normalizeSecretInputString,
-} from "quantclaw/plugin-sdk/secret-input";
+} from "@openclaw/plugin-sdk/secret-input";
 import type { ResolvedQQBotAccount, QQBotAccountConfig } from "./types.js";
 
 export const DEFAULT_ACCOUNT_ID = "default";

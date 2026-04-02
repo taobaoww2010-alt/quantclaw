@@ -4,4 +4,4 @@ export {
   GroupPolicySchema,
   MarkdownConfigSchema,
   requireOpenAllowFrom,
-} from "quantclaw/plugin-sdk/channel-config-schema";
+} from "@openclaw/plugin-sdk/channel-config-schema";

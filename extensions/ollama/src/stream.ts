@@ -13,18 +13,18 @@ import type {
   QuantClawConfig,
   ProviderRuntimeModel,
   ProviderWrapStreamFnContext,
-} from "quantclaw/plugin-sdk/plugin-entry";
-import { isNonSecretApiKeyMarker } from "quantclaw/plugin-sdk/provider-auth";
+} from "@openclaw/plugin-sdk/plugin-entry";
+import { isNonSecretApiKeyMarker } from "@openclaw/plugin-sdk/provider-auth";
 import {
   DEFAULT_CONTEXT_TOKENS,
   normalizeProviderId,
-} from "quantclaw/plugin-sdk/provider-model-shared";
+} from "@openclaw/plugin-sdk/provider-model-shared";
 import {
   createMoonshotThinkingWrapper,
   resolveMoonshotThinkingType,
   streamWithPayloadPatch,
-} from "quantclaw/plugin-sdk/provider-stream";
-import { createSubsystemLogger } from "quantclaw/plugin-sdk/runtime";
+} from "@openclaw/plugin-sdk/provider-stream";
+import { createSubsystemLogger } from "@openclaw/plugin-sdk/runtime";
 import { OLLAMA_DEFAULT_BASE_URL } from "./defaults.js";
 
 const log = createSubsystemLogger("ollama-stream");

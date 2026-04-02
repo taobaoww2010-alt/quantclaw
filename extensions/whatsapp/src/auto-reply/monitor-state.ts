@@ -1,4 +1,4 @@
-import { createConnectedChannelStatusPatch } from "quantclaw/plugin-sdk/gateway-runtime";
+import { createConnectedChannelStatusPatch } from "@openclaw/plugin-sdk/gateway-runtime";
 import type { WebChannelHealthState, WebChannelStatus } from "./types.js";
 
 function cloneStatus(status: WebChannelStatus): WebChannelStatus {

@@ -1,4 +1,4 @@
-import type { QuantClawConfig, PluginRuntime } from "quantclaw/plugin-sdk/zalo";
+import type { QuantClawConfig, PluginRuntime } from "@openclaw/plugin-sdk/zalo";
 import { vi } from "vitest";
 import {
   createEmptyPluginRegistry,

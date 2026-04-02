@@ -2,23 +2,23 @@ import type {
   ProviderAuthContext,
   ProviderResolveDynamicModelContext,
   ProviderRuntimeModel,
-} from "quantclaw/plugin-sdk/plugin-entry";
+} from "@openclaw/plugin-sdk/plugin-entry";
 import {
   CODEX_CLI_PROFILE_ID,
   ensureAuthProfileStore,
   listProfilesForProvider,
   type OAuthCredential,
-} from "quantclaw/plugin-sdk/provider-auth";
-import { buildOauthProviderAuthResult } from "quantclaw/plugin-sdk/provider-auth";
-import { loginOpenAICodexOAuth } from "quantclaw/plugin-sdk/provider-auth-login";
+} from "@openclaw/plugin-sdk/provider-auth";
+import { buildOauthProviderAuthResult } from "@openclaw/plugin-sdk/provider-auth";
+import { loginOpenAICodexOAuth } from "@openclaw/plugin-sdk/provider-auth-login";
 import {
   DEFAULT_CONTEXT_TOKENS,
   normalizeModelCompat,
   normalizeProviderId,
   type ProviderPlugin,
-} from "quantclaw/plugin-sdk/provider-model-shared";
-import { createOpenAIAttributionHeadersWrapper } from "quantclaw/plugin-sdk/provider-stream";
-import { fetchCodexUsage } from "quantclaw/plugin-sdk/provider-usage";
+} from "@openclaw/plugin-sdk/provider-model-shared";
+import { createOpenAIAttributionHeadersWrapper } from "@openclaw/plugin-sdk/provider-stream";
+import { fetchCodexUsage } from "@openclaw/plugin-sdk/provider-usage";
 import { OPENAI_CODEX_DEFAULT_MODEL } from "./default-models.js";
 import { resolveCodexAuthIdentity } from "./openai-codex-auth-identity.js";
 import { buildOpenAICodexProvider } from "./openai-codex-catalog.js";

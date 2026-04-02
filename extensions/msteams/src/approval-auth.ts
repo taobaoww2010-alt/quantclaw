@@ -1,7 +1,7 @@
 import {
   createResolvedApproverActionAuthAdapter,
   resolveApprovalApprovers,
-} from "quantclaw/plugin-sdk/approval-runtime";
+} from "@openclaw/plugin-sdk/approval-runtime";
 import type { QuantClawConfig } from "../runtime-api.js";
 import { normalizeMSTeamsMessagingTarget } from "./resolve-allowlist.js";
 

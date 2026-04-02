@@ -1,6 +1,6 @@
-import { readAcpSessionEntry, type AcpSessionStoreEntry } from "quantclaw/plugin-sdk/acp-runtime";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
+import { readAcpSessionEntry, type AcpSessionStoreEntry } from "@openclaw/plugin-sdk/acp-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { normalizeAccountId } from "@openclaw/plugin-sdk/routing";
 import { parseDiscordTarget } from "../targets.js";
 import { resolveChannelIdForBinding } from "./thread-bindings.discord-api.js";
 import { getThreadBindingManager } from "./thread-bindings.manager.js";

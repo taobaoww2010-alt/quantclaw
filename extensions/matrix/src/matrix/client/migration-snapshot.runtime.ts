@@ -1,1 +1,1 @@
-export { maybeCreateMatrixMigrationSnapshot } from "quantclaw/plugin-sdk/matrix-runtime-heavy";
+export { maybeCreateMatrixMigrationSnapshot } from "@openclaw/plugin-sdk/matrix-runtime-heavy";

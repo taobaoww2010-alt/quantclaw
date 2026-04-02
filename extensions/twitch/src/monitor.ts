@@ -5,7 +5,7 @@
  * resolves agent routes, and handles replies.
  */
 
-import type { MarkdownTableMode, QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { MarkdownTableMode, QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import type { ReplyPayload } from "../api.js";
 import { createChannelReplyPipeline } from "../api.js";
 import { checkTwitchAccessControl } from "./access-control.js";

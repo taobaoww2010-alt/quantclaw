@@ -1,8 +1,8 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/browser-support";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/browser-support";
 import {
   normalizePluginsConfig,
   resolveEffectiveEnableState,
-} from "quantclaw/plugin-sdk/browser-support";
+} from "@openclaw/plugin-sdk/browser-support";
 
 export function isDefaultBrowserPluginEnabled(cfg: QuantClawConfig): boolean {
   return resolveEffectiveEnableState({

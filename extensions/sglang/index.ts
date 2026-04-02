@@ -2,7 +2,7 @@ import {
   definePluginEntry,
   type QuantClawPluginApi,
   type ProviderAuthMethodNonInteractiveContext,
-} from "quantclaw/plugin-sdk/plugin-entry";
+} from "@openclaw/plugin-sdk/plugin-entry";
 import {
   SGLANG_DEFAULT_API_KEY_ENV_VAR,
   SGLANG_DEFAULT_BASE_URL,
@@ -14,7 +14,7 @@ import {
 const PROVIDER_ID = "sglang";
 
 async function loadProviderSetup() {
-  return await import("quantclaw/plugin-sdk/provider-setup");
+  return await import("@openclaw/plugin-sdk/provider-setup");
 }
 
 export default definePluginEntry({

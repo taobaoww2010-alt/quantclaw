@@ -1,1 +1,1 @@
-export { runExec } from "quantclaw/plugin-sdk/browser-support";
+export { runExec } from "@openclaw/plugin-sdk/browser-support";

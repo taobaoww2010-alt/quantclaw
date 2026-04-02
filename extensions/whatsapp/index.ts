@@ -1,4 +1,4 @@
-import { defineChannelPluginEntry } from "quantclaw/plugin-sdk/core";
+import { defineChannelPluginEntry } from "@openclaw/plugin-sdk/core";
 import { whatsappPlugin } from "./src/channel.js";
 import { setWhatsAppRuntime } from "./src/runtime.js";
 

@@ -1,10 +1,10 @@
-import type { MarkdownTableMode } from "quantclaw/plugin-sdk/config-runtime";
+import type { MarkdownTableMode } from "@openclaw/plugin-sdk/config-runtime";
 import {
   markdownToIR,
   type MarkdownIR,
   type MarkdownStyle,
   renderMarkdownIRChunksWithinLimit,
-} from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/text-runtime";
 
 type SignalTextStyle = "BOLD" | "ITALIC" | "STRIKETHROUGH" | "MONOSPACE" | "SPOILER";
 

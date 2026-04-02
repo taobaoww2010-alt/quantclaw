@@ -1,4 +1,4 @@
-import { buildAgentSessionKey } from "quantclaw/plugin-sdk/core";
+import { buildAgentSessionKey } from "@openclaw/plugin-sdk/core";
 
 const CHANNEL_ID = "synology-chat";
 

@@ -1,7 +1,7 @@
 import { messagingApi } from "@line/bot-sdk";
-import { recordChannelActivity } from "quantclaw/plugin-sdk/channel-runtime";
-import { loadConfig, type QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { logVerbose } from "quantclaw/plugin-sdk/runtime-env";
+import { recordChannelActivity } from "@openclaw/plugin-sdk/channel-runtime";
+import { loadConfig, type QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { logVerbose } from "@openclaw/plugin-sdk/runtime-env";
 import { resolveLineAccount } from "./accounts.js";
 import { resolveLineChannelAccessToken } from "./channel-access-token.js";
 import type { LineSendResult } from "./types.js";

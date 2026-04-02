@@ -12,34 +12,34 @@ import {
   listNativeCommandSpecsForConfig,
   listSkillCommandsForAgents,
   type NativeCommandSpec,
-} from "quantclaw/plugin-sdk/command-auth";
+} from "@openclaw/plugin-sdk/command-auth";
 import {
   isNativeCommandsExplicitlyDisabled,
   resolveNativeCommandsEnabled,
   resolveNativeSkillsEnabled,
-} from "quantclaw/plugin-sdk/config-runtime";
-import type { QuantClawConfig, ReplyToMode } from "quantclaw/plugin-sdk/config-runtime";
-import { loadConfig } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig, ReplyToMode } from "@openclaw/plugin-sdk/config-runtime";
+import { loadConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   GROUP_POLICY_BLOCKED_LABEL,
   resolveOpenProviderRuntimeGroupPolicy,
   resolveDefaultGroupPolicy,
   warnMissingProviderGroupPolicyFallbackOnce,
-} from "quantclaw/plugin-sdk/config-runtime";
-import { createConnectedChannelStatusPatch } from "quantclaw/plugin-sdk/gateway-runtime";
-import { getPluginCommandSpecs } from "quantclaw/plugin-sdk/plugin-runtime";
-import { resolveTextChunkLimit } from "quantclaw/plugin-sdk/reply-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
+import { createConnectedChannelStatusPatch } from "@openclaw/plugin-sdk/gateway-runtime";
+import { getPluginCommandSpecs } from "@openclaw/plugin-sdk/plugin-runtime";
+import { resolveTextChunkLimit } from "@openclaw/plugin-sdk/reply-runtime";
 import {
   danger,
   isVerbose,
   logVerbose,
   shouldLogVerbose,
   warn,
-} from "quantclaw/plugin-sdk/runtime-env";
-import { createSubsystemLogger } from "quantclaw/plugin-sdk/runtime-env";
-import { createNonExitingRuntime, type RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
-import { formatErrorMessage } from "quantclaw/plugin-sdk/ssrf-runtime";
-import { summarizeStringEntries } from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/runtime-env";
+import { createSubsystemLogger } from "@openclaw/plugin-sdk/runtime-env";
+import { createNonExitingRuntime, type RuntimeEnv } from "@openclaw/plugin-sdk/runtime-env";
+import { formatErrorMessage } from "@openclaw/plugin-sdk/ssrf-runtime";
+import { summarizeStringEntries } from "@openclaw/plugin-sdk/text-runtime";
 import { resolveDiscordAccount } from "../accounts.js";
 import { fetchDiscordApplicationId } from "../probe.js";
 import { normalizeDiscordToken } from "../token.js";
@@ -952,7 +952,7 @@ export async function monitorDiscordProvider(opts: MonitorDiscordOpts = {}) {
     const logger = createSubsystemLogger("discord/monitor");
     const guildHistories = new Map<
       string,
-      import("quantclaw/plugin-sdk/reply-history").HistoryEntry[]
+      import("@openclaw/plugin-sdk/reply-history").HistoryEntry[]
     >();
     let { botUserId, botUserName } = await fetchDiscordBotIdentity({
       client,

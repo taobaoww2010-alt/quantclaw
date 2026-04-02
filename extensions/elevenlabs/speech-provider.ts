@@ -1,17 +1,17 @@
-import { normalizeResolvedSecretInputString } from "quantclaw/plugin-sdk/secret-input";
+import { normalizeResolvedSecretInputString } from "@openclaw/plugin-sdk/secret-input";
 import type {
   SpeechDirectiveTokenParseContext,
   SpeechProviderConfig,
   SpeechProviderOverrides,
   SpeechProviderPlugin,
   SpeechVoiceOption,
-} from "quantclaw/plugin-sdk/speech";
+} from "@openclaw/plugin-sdk/speech";
 import {
   normalizeApplyTextNormalization,
   normalizeLanguageCode,
   normalizeSeed,
   requireInRange,
-} from "quantclaw/plugin-sdk/speech";
+} from "@openclaw/plugin-sdk/speech";
 import { elevenLabsTTS } from "./tts.js";
 
 const DEFAULT_ELEVENLABS_BASE_URL = "https://api.elevenlabs.io";

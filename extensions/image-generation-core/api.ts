@@ -1,1 +1,1 @@
-export * from "quantclaw/plugin-sdk/image-generation-core";
+export * from "@openclaw/plugin-sdk/image-generation-core";

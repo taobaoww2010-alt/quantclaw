@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { loadConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { loadConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   formatThreadBindingDurationLabel,
   registerSessionBindingAdapter,
@@ -11,11 +11,11 @@ import {
   type BindingTargetKind,
   type SessionBindingAdapter,
   type SessionBindingRecord,
-} from "quantclaw/plugin-sdk/conversation-runtime";
-import { writeJsonFileAtomically } from "quantclaw/plugin-sdk/json-store";
-import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
-import { logVerbose } from "quantclaw/plugin-sdk/runtime-env";
-import { resolveStateDir } from "quantclaw/plugin-sdk/state-paths";
+} from "@openclaw/plugin-sdk/conversation-runtime";
+import { writeJsonFileAtomically } from "@openclaw/plugin-sdk/json-store";
+import { normalizeAccountId } from "@openclaw/plugin-sdk/routing";
+import { logVerbose } from "@openclaw/plugin-sdk/runtime-env";
+import { resolveStateDir } from "@openclaw/plugin-sdk/state-paths";
 import { createForumTopicTelegram } from "./send.js";
 import { resolveTelegramToken } from "./token.js";
 

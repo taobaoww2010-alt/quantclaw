@@ -6,7 +6,7 @@ import {
   setScopedCredentialValue,
   setProviderWebSearchPluginConfigValue,
   type WebSearchProviderPlugin,
-} from "quantclaw/plugin-sdk/provider-web-search";
+} from "@openclaw/plugin-sdk/provider-web-search";
 import { runTavilySearch } from "./tavily-client.js";
 
 const GenericTavilySearchSchema = Type.Object(

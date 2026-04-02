@@ -5,17 +5,17 @@
  * This is the primary entry point for the Twitch channel integration.
  */
 
-import { describeAccountSnapshot } from "quantclaw/plugin-sdk/account-helpers";
+import { describeAccountSnapshot } from "@openclaw/plugin-sdk/account-helpers";
 import {
   createLoggedPairingApprovalNotifier,
   createPairingPrefixStripper,
-} from "quantclaw/plugin-sdk/channel-pairing";
-import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
-import { buildPassiveProbedChannelStatusSummary } from "quantclaw/plugin-sdk/extension-shared";
+} from "@openclaw/plugin-sdk/channel-pairing";
+import { createChatChannelPlugin } from "@openclaw/plugin-sdk/core";
+import { buildPassiveProbedChannelStatusSummary } from "@openclaw/plugin-sdk/extension-shared";
 import {
   createComputedAccountStatusAdapter,
   createDefaultChannelRuntimeState,
-} from "quantclaw/plugin-sdk/status-helpers";
+} from "@openclaw/plugin-sdk/status-helpers";
 import type { QuantClawConfig } from "../api.js";
 import { buildChannelConfigSchema } from "../api.js";
 import { twitchMessageActions } from "./actions.js";
@@ -128,7 +128,7 @@ export const twitchPlugin: ChannelPlugin<ResolvedTwitchAccount> =
           accountId?: string | null;
           inputs: string[];
           kind: ChannelResolveKind;
-          runtime: import("quantclaw/plugin-sdk/runtime-env").RuntimeEnv;
+          runtime: import("@openclaw/plugin-sdk/runtime-env").RuntimeEnv;
         }): Promise<ChannelResolveResult[]> => {
           const account = getAccountConfig(cfg, accountId ?? DEFAULT_ACCOUNT_ID);
           if (!account) {

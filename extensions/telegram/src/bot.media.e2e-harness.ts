@@ -1,7 +1,7 @@
 import path from "node:path";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { resetInboundDedupe } from "quantclaw/plugin-sdk/reply-runtime";
-import type { GetReplyOptions, MsgContext } from "quantclaw/plugin-sdk/reply-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { resetInboundDedupe } from "@openclaw/plugin-sdk/reply-runtime";
+import type { GetReplyOptions, MsgContext } from "@openclaw/plugin-sdk/reply-runtime";
 import { beforeEach, vi, type Mock } from "vitest";
 import type { TelegramBotDeps } from "./bot-deps.js";
 
@@ -9,9 +9,9 @@ type TelegramBotRuntimeForTest = NonNullable<
   Parameters<typeof import("./bot.js").setTelegramBotRuntimeForTest>[0]
 >;
 type DispatchReplyWithBufferedBlockDispatcherFn =
-  typeof import("quantclaw/plugin-sdk/reply-runtime").dispatchReplyWithBufferedBlockDispatcher;
+  typeof import("@openclaw/plugin-sdk/reply-runtime").dispatchReplyWithBufferedBlockDispatcher;
 type DispatchReplyHarnessParams = Parameters<DispatchReplyWithBufferedBlockDispatcherFn>[0];
-type FetchRemoteMediaFn = typeof import("quantclaw/plugin-sdk/media-runtime").fetchRemoteMedia;
+type FetchRemoteMediaFn = typeof import("@openclaw/plugin-sdk/media-runtime").fetchRemoteMedia;
 
 export const useSpy: Mock = vi.fn();
 export const middlewareUseSpy: Mock = vi.fn();
@@ -188,7 +188,7 @@ vi.mock("undici", async (importOriginal) => {
 });
 
 export async function mockMediaRuntimeModuleForTest(
-  importOriginal: () => Promise<typeof import("quantclaw/plugin-sdk/media-runtime")>,
+  importOriginal: () => Promise<typeof import("@openclaw/plugin-sdk/media-runtime")>,
 ) {
   const actual = await importOriginal();
   const mockModule = Object.create(null) as Record<string, unknown>;
@@ -208,10 +208,10 @@ export async function mockMediaRuntimeModuleForTest(
   return mockModule;
 }
 
-vi.mock("quantclaw/plugin-sdk/media-runtime", mockMediaRuntimeModuleForTest);
+vi.mock("@openclaw/plugin-sdk/media-runtime", mockMediaRuntimeModuleForTest);
 
-vi.doMock("quantclaw/plugin-sdk/config-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/config-runtime")>();
+vi.doMock("@openclaw/plugin-sdk/config-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/config-runtime")>();
   return {
     ...actual,
     loadConfig: telegramBotDepsForTest.loadConfig,
@@ -219,8 +219,8 @@ vi.doMock("quantclaw/plugin-sdk/config-runtime", async (importOriginal) => {
   };
 });
 
-vi.doMock("quantclaw/plugin-sdk/agent-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/agent-runtime")>();
+vi.doMock("@openclaw/plugin-sdk/agent-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/agent-runtime")>();
   return {
     ...actual,
     findModelInCatalog: vi.fn(() => undefined),
@@ -233,8 +233,8 @@ vi.doMock("quantclaw/plugin-sdk/agent-runtime", async (importOriginal) => {
   };
 });
 
-vi.doMock("quantclaw/plugin-sdk/conversation-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/conversation-runtime")>();
+vi.doMock("@openclaw/plugin-sdk/conversation-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/conversation-runtime")>();
   return {
     ...actual,
     readChannelAllowFromStore: telegramBotDepsForTest.readChannelAllowFromStore,
@@ -245,8 +245,8 @@ vi.doMock("quantclaw/plugin-sdk/conversation-runtime", async (importOriginal) =>
   };
 });
 
-vi.doMock("quantclaw/plugin-sdk/reply-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/reply-runtime")>();
+vi.doMock("@openclaw/plugin-sdk/reply-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/reply-runtime")>();
   return {
     ...actual,
     getReplyFromConfig: mediaHarnessReplySpy,

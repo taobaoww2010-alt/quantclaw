@@ -2,7 +2,7 @@ import { EventEmitter } from "node:events";
 import fsSync from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { resetLogger, setLoggerOverride } from "quantclaw/plugin-sdk/runtime-env";
+import { resetLogger, setLoggerOverride } from "@openclaw/plugin-sdk/runtime-env";
 import { afterEach, beforeEach, expect, vi } from "vitest";
 import {
   loadConfigMock,
@@ -78,8 +78,8 @@ function createMockSock(): MockSock {
   };
 }
 
-vi.mock("quantclaw/plugin-sdk/media-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/media-runtime")>();
+vi.mock("@openclaw/plugin-sdk/media-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/media-runtime")>();
   return {
     ...actual,
     saveMediaBuffer: vi.fn().mockResolvedValue({

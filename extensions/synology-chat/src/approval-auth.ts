@@ -1,8 +1,8 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/account-resolution";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/account-resolution";
 import {
   createResolvedApproverActionAuthAdapter,
   resolveApprovalApprovers,
-} from "quantclaw/plugin-sdk/approval-runtime";
+} from "@openclaw/plugin-sdk/approval-runtime";
 import { resolveAccount } from "./accounts.js";
 
 function normalizeSynologyChatApproverId(value: string | number): string | undefined {

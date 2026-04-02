@@ -1,13 +1,13 @@
 import type { Chat, Message, MessageOrigin, User } from "@grammyjs/types";
-import { formatLocationText, type NormalizedLocation } from "quantclaw/plugin-sdk/channel-inbound";
-import { resolveTelegramPreviewStreamMode } from "quantclaw/plugin-sdk/config-runtime";
+import { formatLocationText, type NormalizedLocation } from "@openclaw/plugin-sdk/channel-inbound";
+import { resolveTelegramPreviewStreamMode } from "@openclaw/plugin-sdk/config-runtime";
 import type {
   TelegramDirectConfig,
   TelegramGroupConfig,
   TelegramTopicConfig,
-} from "quantclaw/plugin-sdk/config-runtime";
-import { readChannelAllowFromStore } from "quantclaw/plugin-sdk/conversation-runtime";
-import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/config-runtime";
+import { readChannelAllowFromStore } from "@openclaw/plugin-sdk/conversation-runtime";
+import { normalizeAccountId } from "@openclaw/plugin-sdk/routing";
 import { firstDefined, normalizeAllowFrom, type NormalizedAllowFrom } from "../bot-access.js";
 import { normalizeTelegramReplyToMessageId } from "../outbound-params.js";
 import type { TelegramGetChat, TelegramStreamMode } from "./types.js";

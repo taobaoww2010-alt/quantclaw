@@ -1,4 +1,4 @@
 export {
   coerceStatusIssueAccountId,
   readStatusIssueFields,
-} from "quantclaw/plugin-sdk/extension-shared";
+} from "@openclaw/plugin-sdk/extension-shared";

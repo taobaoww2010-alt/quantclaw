@@ -11,14 +11,14 @@ import {
   parseMentionOrPrefixedId,
   patchChannelConfigForAccount,
   setSetupChannelEnabled,
-} from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
 import {
   type ChannelSetupAdapter,
   type ChannelSetupDmPolicy,
   type ChannelSetupWizard,
   type ChannelSetupWizardAllowFromEntry,
-} from "quantclaw/plugin-sdk/setup";
-import { formatDocsLink } from "quantclaw/plugin-sdk/setup-tools";
+} from "@openclaw/plugin-sdk/setup";
+import { formatDocsLink } from "@openclaw/plugin-sdk/setup-tools";
 import { inspectSlackAccount } from "./account-inspect.js";
 import { listSlackAccountIds, resolveSlackAccount, type ResolvedSlackAccount } from "./accounts.js";
 import {

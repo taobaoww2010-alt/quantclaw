@@ -1,23 +1,23 @@
 import { type Bot, GrammyError, InputFile } from "grammy";
-import type { ReplyToMode } from "quantclaw/plugin-sdk/config-runtime";
-import type { MarkdownTableMode } from "quantclaw/plugin-sdk/config-runtime";
-import { fireAndForgetHook } from "quantclaw/plugin-sdk/hook-runtime";
-import { createInternalHookEvent, triggerInternalHook } from "quantclaw/plugin-sdk/hook-runtime";
+import type { ReplyToMode } from "@openclaw/plugin-sdk/config-runtime";
+import type { MarkdownTableMode } from "@openclaw/plugin-sdk/config-runtime";
+import { fireAndForgetHook } from "@openclaw/plugin-sdk/hook-runtime";
+import { createInternalHookEvent, triggerInternalHook } from "@openclaw/plugin-sdk/hook-runtime";
 import {
   buildCanonicalSentMessageHookContext,
   toInternalMessageSentContext,
   toPluginMessageContext,
   toPluginMessageSentEvent,
-} from "quantclaw/plugin-sdk/hook-runtime";
-import { buildOutboundMediaLoadOptions } from "quantclaw/plugin-sdk/media-runtime";
-import { isGifMedia, kindFromMime } from "quantclaw/plugin-sdk/media-runtime";
-import { getGlobalHookRunner } from "quantclaw/plugin-sdk/plugin-runtime";
-import type { ReplyPayload } from "quantclaw/plugin-sdk/reply-runtime";
-import { chunkMarkdownTextWithMode, type ChunkMode } from "quantclaw/plugin-sdk/reply-runtime";
-import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
-import { danger, logVerbose } from "quantclaw/plugin-sdk/runtime-env";
-import { formatErrorMessage } from "quantclaw/plugin-sdk/ssrf-runtime";
-import { loadWebMedia } from "quantclaw/plugin-sdk/web-media";
+} from "@openclaw/plugin-sdk/hook-runtime";
+import { buildOutboundMediaLoadOptions } from "@openclaw/plugin-sdk/media-runtime";
+import { isGifMedia, kindFromMime } from "@openclaw/plugin-sdk/media-runtime";
+import { getGlobalHookRunner } from "@openclaw/plugin-sdk/plugin-runtime";
+import type { ReplyPayload } from "@openclaw/plugin-sdk/reply-runtime";
+import { chunkMarkdownTextWithMode, type ChunkMode } from "@openclaw/plugin-sdk/reply-runtime";
+import type { RuntimeEnv } from "@openclaw/plugin-sdk/runtime-env";
+import { danger, logVerbose } from "@openclaw/plugin-sdk/runtime-env";
+import { formatErrorMessage } from "@openclaw/plugin-sdk/ssrf-runtime";
+import { loadWebMedia } from "@openclaw/plugin-sdk/web-media";
 import type { TelegramInlineButtons } from "../button-types.js";
 import { splitTelegramCaption } from "../caption.js";
 import {

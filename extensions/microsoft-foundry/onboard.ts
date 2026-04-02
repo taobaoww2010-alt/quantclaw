@@ -1,4 +1,4 @@
-import type { ProviderAuthContext } from "quantclaw/plugin-sdk/core";
+import type { ProviderAuthContext } from "@openclaw/plugin-sdk/core";
 import {
   azLoginDeviceCode,
   azLoginDeviceCodeWithOptions,

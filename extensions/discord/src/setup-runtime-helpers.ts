@@ -8,4 +8,4 @@ export {
   promptLegacyChannelAllowFromForAccount,
   resolveEntriesWithOptionalToken,
   setSetupChannelEnabled,
-} from "quantclaw/plugin-sdk/setup-runtime";
+} from "@openclaw/plugin-sdk/setup-runtime";

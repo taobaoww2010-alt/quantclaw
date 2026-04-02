@@ -8,8 +8,8 @@ import {
   listCombinedAccountIds,
   resolveMergedAccountConfig,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/account-resolution";
-import { resolveDangerousNameMatchingEnabled } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/account-resolution";
+import { resolveDangerousNameMatchingEnabled } from "@openclaw/plugin-sdk/config-runtime";
 import type {
   SynologyChatChannelConfig,
   ResolvedSynologyChatAccount,

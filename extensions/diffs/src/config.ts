@@ -1,5 +1,5 @@
-import { buildPluginConfigSchema } from "quantclaw/plugin-sdk/core";
-import { z } from "quantclaw/plugin-sdk/zod";
+import { buildPluginConfigSchema } from "@openclaw/plugin-sdk/core";
+import { z } from "@openclaw/plugin-sdk/zod";
 import type { QuantClawPluginConfigSchema } from "../api.js";
 import {
   DIFF_IMAGE_QUALITY_PRESETS,

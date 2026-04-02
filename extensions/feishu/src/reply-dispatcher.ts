@@ -2,7 +2,7 @@ import {
   resolveSendableOutboundReplyParts,
   resolveTextChunksWithFallback,
   sendMediaWithLeadingCaption,
-} from "quantclaw/plugin-sdk/reply-payload";
+} from "@openclaw/plugin-sdk/reply-payload";
 import {
   createChannelReplyPipeline,
   createReplyPrefixContext,

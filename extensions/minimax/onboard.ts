@@ -3,7 +3,7 @@ import {
   applyOnboardAuthAgentModelsAndProviders,
   type ModelProviderConfig,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/provider-onboard";
+} from "@openclaw/plugin-sdk/provider-onboard";
 import {
   buildMinimaxApiModelDefinition,
   MINIMAX_API_BASE_URL,

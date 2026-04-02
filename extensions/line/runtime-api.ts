@@ -6,23 +6,23 @@ export type {
   QuantClawConfig,
   QuantClawPluginApi,
   PluginRuntime,
-} from "quantclaw/plugin-sdk/core";
-export { clearAccountEntryFields } from "quantclaw/plugin-sdk/core";
-export { buildChannelConfigSchema } from "quantclaw/plugin-sdk/channel-config-schema";
-export type { ReplyPayload } from "quantclaw/plugin-sdk/reply-runtime";
-export type { ChannelAccountSnapshot, ChannelGatewayContext } from "quantclaw/plugin-sdk/testing";
-export type { ChannelStatusIssue } from "quantclaw/plugin-sdk/channel-contract";
-export type { ChannelSetupDmPolicy, ChannelSetupWizard } from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/core";
+export { clearAccountEntryFields } from "@openclaw/plugin-sdk/core";
+export { buildChannelConfigSchema } from "@openclaw/plugin-sdk/channel-config-schema";
+export type { ReplyPayload } from "@openclaw/plugin-sdk/reply-runtime";
+export type { ChannelAccountSnapshot, ChannelGatewayContext } from "@openclaw/plugin-sdk/testing";
+export type { ChannelStatusIssue } from "@openclaw/plugin-sdk/channel-contract";
+export type { ChannelSetupDmPolicy, ChannelSetupWizard } from "@openclaw/plugin-sdk/setup";
 export {
   buildComputedAccountStatusSnapshot,
   buildTokenChannelStatusSummary,
-} from "quantclaw/plugin-sdk/status-helpers";
+} from "@openclaw/plugin-sdk/status-helpers";
 export {
   DEFAULT_ACCOUNT_ID,
   formatDocsLink,
   setSetupChannelEnabled,
   splitSetupEntries,
-} from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
 // Keep named exports explicit here so the runtime barrel stays self-contained
 // and plugin-sdk can re-export this file directly without reaching into
 // extension internals.

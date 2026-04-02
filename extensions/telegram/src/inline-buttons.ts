@@ -1,5 +1,5 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import type { TelegramInlineButtonsScope } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import type { TelegramInlineButtonsScope } from "@openclaw/plugin-sdk/config-runtime";
 import { listTelegramAccountIds, resolveTelegramAccount } from "./accounts.js";
 
 const DEFAULT_INLINE_BUTTONS_SCOPE: TelegramInlineButtonsScope = "allowlist";

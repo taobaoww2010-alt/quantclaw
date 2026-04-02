@@ -6,8 +6,8 @@ const hoisted = vi.hoisted(() => ({
 
 export const recordInboundSessionMock = hoisted.recordInboundSessionMock;
 
-vi.mock("quantclaw/plugin-sdk/conversation-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("quantclaw/plugin-sdk/conversation-runtime")>();
+vi.mock("@openclaw/plugin-sdk/conversation-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@openclaw/plugin-sdk/conversation-runtime")>();
   return {
     ...actual,
     recordInboundSession: (...args: unknown[]) => recordInboundSessionMock(...args),

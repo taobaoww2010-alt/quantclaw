@@ -1,4 +1,4 @@
-import type { QuantClawPluginApi } from "quantclaw/plugin-sdk/core";
+import type { QuantClawPluginApi } from "@openclaw/plugin-sdk/core";
 import { getAccessToken } from "../api.js";
 import { listQQBotAccountIds, resolveQQBotAccount } from "../config.js";
 import { debugError, debugLog } from "../utils/debug-log.js";

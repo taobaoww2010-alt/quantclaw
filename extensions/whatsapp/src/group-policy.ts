@@ -2,7 +2,7 @@ import {
   resolveChannelGroupRequireMention,
   resolveChannelGroupToolsPolicy,
   type GroupToolPolicyConfig,
-} from "quantclaw/plugin-sdk/channel-policy";
+} from "@openclaw/plugin-sdk/channel-policy";
 import type { QuantClawConfig } from "./runtime-api.js";
 
 type WhatsAppGroupContext = {

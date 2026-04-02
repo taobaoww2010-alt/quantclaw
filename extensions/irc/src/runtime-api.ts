@@ -20,7 +20,7 @@ export {
   resolveDefaultGroupPolicy,
   resolveEffectiveAllowFromLists,
   warnMissingProviderGroupPolicyFallbackOnce,
-} from "quantclaw/plugin-sdk/irc";
+} from "@openclaw/plugin-sdk/irc";
 export type {
   BaseProbeResult,
   BlockStreamingCoalesceConfig,
@@ -35,4 +35,4 @@ export type {
   OutboundReplyPayload,
   PluginRuntime,
   RuntimeEnv,
-} from "quantclaw/plugin-sdk/irc";
+} from "@openclaw/plugin-sdk/irc";

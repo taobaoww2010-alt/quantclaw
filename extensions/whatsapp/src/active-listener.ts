@@ -1,6 +1,6 @@
-import { formatCliCommand } from "quantclaw/plugin-sdk/cli-runtime";
-import type { PollInput } from "quantclaw/plugin-sdk/media-runtime";
-import { DEFAULT_ACCOUNT_ID } from "quantclaw/plugin-sdk/routing";
+import { formatCliCommand } from "@openclaw/plugin-sdk/cli-runtime";
+import type { PollInput } from "@openclaw/plugin-sdk/media-runtime";
+import { DEFAULT_ACCOUNT_ID } from "@openclaw/plugin-sdk/routing";
 
 export type ActiveWebSendOptions = {
   gifPlayback?: boolean;

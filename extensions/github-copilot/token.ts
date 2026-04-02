@@ -1,1 +1,1 @@
-export * from "quantclaw/plugin-sdk/github-copilot-token";
+export * from "@openclaw/plugin-sdk/github-copilot-token";

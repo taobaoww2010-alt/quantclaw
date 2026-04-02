@@ -1,4 +1,4 @@
-import { adaptScopedAccountAccessor } from "quantclaw/plugin-sdk/channel-config-helpers";
+import { adaptScopedAccountAccessor } from "@openclaw/plugin-sdk/channel-config-helpers";
 import {
   noteChannelLookupFailure,
   noteChannelLookupSummary,
@@ -7,12 +7,12 @@ import {
   parseMentionOrPrefixedId,
   promptLegacyChannelAllowFromForAccount,
   type WizardPrompter,
-} from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
 import type {
   ChannelSetupWizard,
   ChannelSetupWizardAllowFromEntry,
-} from "quantclaw/plugin-sdk/setup";
-import { formatDocsLink } from "quantclaw/plugin-sdk/setup-tools";
+} from "@openclaw/plugin-sdk/setup";
+import { formatDocsLink } from "@openclaw/plugin-sdk/setup-tools";
 import {
   resolveDefaultSlackAccountId,
   resolveSlackAccount,

@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import { chmod, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { resolvePreferredQuantClawTmpDir } from "quantclaw/plugin-sdk/temp-path";
+import { resolvePreferredQuantClawTmpDir } from "@openclaw/plugin-sdk/temp-path";
 import type { ResolvedAcpxPluginConfig } from "../config.js";
 import { ACPX_PINNED_VERSION } from "../config.js";
 import { AcpxRuntime } from "../runtime.js";

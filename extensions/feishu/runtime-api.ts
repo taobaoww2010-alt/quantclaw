@@ -10,7 +10,7 @@ export type {
   QuantClawPluginApi,
   PluginRuntime,
   RuntimeEnv,
-} from "quantclaw/plugin-sdk/feishu";
+} from "@openclaw/plugin-sdk/feishu";
 export {
   DEFAULT_ACCOUNT_ID,
   PAIRING_APPROVED_MESSAGE,
@@ -18,10 +18,10 @@ export {
   buildProbeChannelStatusSummary,
   createActionGate,
   createDefaultChannelRuntimeState,
-} from "quantclaw/plugin-sdk/feishu";
-export * from "quantclaw/plugin-sdk/feishu";
+} from "@openclaw/plugin-sdk/feishu";
+export * from "@openclaw/plugin-sdk/feishu";
 export {
   isRequestBodyLimitError,
   readRequestBodyWithLimit,
   requestBodyErrorToText,
-} from "quantclaw/plugin-sdk/webhook-ingress";
+} from "@openclaw/plugin-sdk/webhook-ingress";

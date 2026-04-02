@@ -1,4 +1,4 @@
-import { createDedupeCache } from "quantclaw/plugin-sdk/core";
+import { createDedupeCache } from "@openclaw/plugin-sdk/core";
 
 const RECENT_WEB_MESSAGE_TTL_MS = 20 * 60_000;
 const RECENT_WEB_MESSAGE_MAX = 5000;

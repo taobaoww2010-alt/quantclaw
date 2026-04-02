@@ -3,13 +3,13 @@ import {
   listConfiguredAccountIds,
   resolveListedDefaultAccountId,
   resolveNormalizedAccountEntry,
-} from "quantclaw/plugin-sdk/account-core";
+} from "@openclaw/plugin-sdk/account-core";
 import {
   DEFAULT_ACCOUNT_ID,
   normalizeAccountId,
   normalizeOptionalAccountId,
-} from "quantclaw/plugin-sdk/account-id";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/account-id";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import { listMatrixEnvAccountIds } from "./env-vars.js";
 
 function isRecord(value: unknown): value is Record<string, unknown> {

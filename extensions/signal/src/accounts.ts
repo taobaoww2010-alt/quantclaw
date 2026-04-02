@@ -3,7 +3,7 @@ import {
   normalizeAccountId,
   resolveMergedAccountConfig,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/account-resolution";
+} from "@openclaw/plugin-sdk/account-resolution";
 import type { SignalAccountConfig } from "./runtime-api.js";
 
 export type ResolvedSignalAccount = {

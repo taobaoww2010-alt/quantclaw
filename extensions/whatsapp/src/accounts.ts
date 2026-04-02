@@ -8,8 +8,8 @@ import {
   resolveMergedAccountConfig,
   resolveUserPath,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/account-core";
-import { resolveOAuthDir } from "quantclaw/plugin-sdk/state-paths";
+} from "@openclaw/plugin-sdk/account-core";
+import { resolveOAuthDir } from "@openclaw/plugin-sdk/state-paths";
 import { hasWebCredsSync } from "./creds-files.js";
 import type { DmPolicy, GroupPolicy, WhatsAppAccountConfig } from "./runtime-api.js";
 

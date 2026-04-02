@@ -1,28 +1,28 @@
-import { describeWebhookAccountSnapshot } from "quantclaw/plugin-sdk/account-helpers";
+import { describeWebhookAccountSnapshot } from "@openclaw/plugin-sdk/account-helpers";
 import {
   adaptScopedAccountAccessor,
   createScopedChannelConfigAdapter,
   createScopedDmSecurityResolver,
   mapAllowFromEntries,
-} from "quantclaw/plugin-sdk/channel-config-helpers";
+} from "@openclaw/plugin-sdk/channel-config-helpers";
 import {
   buildOpenGroupPolicyRestrictSendersWarning,
   buildOpenGroupPolicyWarning,
   createOpenProviderGroupPolicyWarningCollector,
-} from "quantclaw/plugin-sdk/channel-policy";
+} from "@openclaw/plugin-sdk/channel-policy";
 import {
   createEmptyChannelResult,
   createRawChannelSendResultAdapter,
-} from "quantclaw/plugin-sdk/channel-send-result";
-import { createStaticReplyToModeResolver } from "quantclaw/plugin-sdk/conversation-runtime";
-import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
-import { createChannelDirectoryAdapter } from "quantclaw/plugin-sdk/directory-runtime";
-import { listResolvedDirectoryUserEntriesFromAllowFrom } from "quantclaw/plugin-sdk/directory-runtime";
-import { createLazyRuntimeModule } from "quantclaw/plugin-sdk/lazy-runtime";
+} from "@openclaw/plugin-sdk/channel-send-result";
+import { createStaticReplyToModeResolver } from "@openclaw/plugin-sdk/conversation-runtime";
+import { createChatChannelPlugin } from "@openclaw/plugin-sdk/core";
+import { createChannelDirectoryAdapter } from "@openclaw/plugin-sdk/directory-runtime";
+import { listResolvedDirectoryUserEntriesFromAllowFrom } from "@openclaw/plugin-sdk/directory-runtime";
+import { createLazyRuntimeModule } from "@openclaw/plugin-sdk/lazy-runtime";
 import {
   createComputedAccountStatusAdapter,
   createDefaultChannelRuntimeState,
-} from "quantclaw/plugin-sdk/status-helpers";
+} from "@openclaw/plugin-sdk/status-helpers";
 import {
   listZaloAccountIds,
   resolveDefaultZaloAccountId,

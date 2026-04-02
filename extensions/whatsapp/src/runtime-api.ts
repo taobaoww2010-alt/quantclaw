@@ -15,7 +15,7 @@ export {
   WhatsAppConfigSchema,
   type ChannelPlugin,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/whatsapp-core";
+} from "@openclaw/plugin-sdk/whatsapp-core";
 
 export {
   createWhatsAppOutboundBase,
@@ -28,7 +28,7 @@ export {
   type DmPolicy,
   type GroupPolicy,
   type WhatsAppAccountConfig,
-} from "quantclaw/plugin-sdk/whatsapp-shared";
+} from "@openclaw/plugin-sdk/whatsapp-shared";
 export {
   isWhatsAppGroupJid,
   isWhatsAppUserTarget,

@@ -1,8 +1,8 @@
-import { defineSingleProviderPluginEntry } from "quantclaw/plugin-sdk/provider-entry";
+import { defineSingleProviderPluginEntry } from "@openclaw/plugin-sdk/provider-entry";
 import {
   createKilocodeWrapper,
   isProxyReasoningUnsupported,
-} from "quantclaw/plugin-sdk/provider-stream";
+} from "@openclaw/plugin-sdk/provider-stream";
 import { applyKilocodeConfig, KILOCODE_DEFAULT_MODEL_REF } from "./onboard.js";
 import { buildKilocodeProviderWithDiscovery } from "./provider-catalog.js";
 

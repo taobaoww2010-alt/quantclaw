@@ -1,5 +1,5 @@
-import { resolveActiveTalkProviderConfig } from "quantclaw/plugin-sdk/config-runtime";
-import type { SpeechVoiceOption } from "quantclaw/plugin-sdk/speech";
+import { resolveActiveTalkProviderConfig } from "@openclaw/plugin-sdk/config-runtime";
+import type { SpeechVoiceOption } from "@openclaw/plugin-sdk/speech";
 import { definePluginEntry, type QuantClawPluginApi } from "./api.js";
 
 function mask(s: string, keep: number = 6): string {

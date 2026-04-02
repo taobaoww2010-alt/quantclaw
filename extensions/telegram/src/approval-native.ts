@@ -1,12 +1,12 @@
-import { createApproverRestrictedNativeApprovalAdapter } from "quantclaw/plugin-sdk/approval-runtime";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { createApproverRestrictedNativeApprovalAdapter } from "@openclaw/plugin-sdk/approval-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import type {
   ExecApprovalRequest,
   ExecApprovalSessionTarget,
   PluginApprovalRequest,
-} from "quantclaw/plugin-sdk/infra-runtime";
-import { resolveExecApprovalSessionTarget } from "quantclaw/plugin-sdk/infra-runtime";
-import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/infra-runtime";
+import { resolveExecApprovalSessionTarget } from "@openclaw/plugin-sdk/infra-runtime";
+import { normalizeAccountId } from "@openclaw/plugin-sdk/routing";
 import { listTelegramAccountIds } from "./accounts.js";
 import {
   getTelegramExecApprovalApprovers,

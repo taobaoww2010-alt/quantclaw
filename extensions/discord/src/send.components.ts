@@ -5,9 +5,9 @@ import {
   type RequestClient,
 } from "@buape/carbon";
 import { ChannelType, Routes } from "discord-api-types/v10";
-import { recordChannelActivity } from "quantclaw/plugin-sdk/channel-runtime";
-import { loadConfig, type QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { loadWebMedia } from "quantclaw/plugin-sdk/web-media";
+import { recordChannelActivity } from "@openclaw/plugin-sdk/channel-runtime";
+import { loadConfig, type QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { loadWebMedia } from "@openclaw/plugin-sdk/web-media";
 import { resolveDiscordAccount } from "./accounts.js";
 import { registerDiscordComponentEntries } from "./components-registry.js";
 import {

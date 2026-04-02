@@ -1,13 +1,13 @@
-import type { ChannelSetupInput } from "quantclaw/plugin-sdk/channel-setup";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { DEFAULT_ACCOUNT_ID } from "quantclaw/plugin-sdk/routing";
-import { hasConfiguredSecretInput } from "quantclaw/plugin-sdk/secret-input";
+import type { ChannelSetupInput } from "@openclaw/plugin-sdk/channel-setup";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { DEFAULT_ACCOUNT_ID } from "@openclaw/plugin-sdk/routing";
+import { hasConfiguredSecretInput } from "@openclaw/plugin-sdk/secret-input";
 import {
   createStandardChannelSetupStatus,
   formatDocsLink,
   setSetupChannelEnabled,
   type ChannelSetupWizard,
-} from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
 import { listNextcloudTalkAccountIds, resolveNextcloudTalkAccount } from "./accounts.js";
 import {
   clearNextcloudTalkAccountFields,

@@ -1,6 +1,6 @@
 import type { App } from "@slack/bolt";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import type { RuntimeEnv } from "@openclaw/plugin-sdk/runtime-env";
 import type { ResolvedSlackAccount } from "../../accounts.js";
 import { createSlackMonitorContext } from "../context.js";
 

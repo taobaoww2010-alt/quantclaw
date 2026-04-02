@@ -1,4 +1,4 @@
-import { isBlockedHostnameOrIp } from "quantclaw/plugin-sdk/ssrf-runtime";
+import { isBlockedHostnameOrIp } from "@openclaw/plugin-sdk/ssrf-runtime";
 import { resolveBlueBubblesAccount } from "./accounts.js";
 import type { QuantClawConfig } from "./runtime-api.js";
 import { normalizeResolvedSecretInputString } from "./secret-input.js";

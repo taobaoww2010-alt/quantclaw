@@ -1,7 +1,7 @@
-import { createArmableStallWatchdog } from "quantclaw/plugin-sdk/channel-lifecycle";
-import { createConnectedChannelStatusPatch } from "quantclaw/plugin-sdk/gateway-runtime";
-import { danger } from "quantclaw/plugin-sdk/runtime-env";
-import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
+import { createArmableStallWatchdog } from "@openclaw/plugin-sdk/channel-lifecycle";
+import { createConnectedChannelStatusPatch } from "@openclaw/plugin-sdk/gateway-runtime";
+import { danger } from "@openclaw/plugin-sdk/runtime-env";
+import type { RuntimeEnv } from "@openclaw/plugin-sdk/runtime-env";
 import type { MutableDiscordGateway } from "./gateway-handle.js";
 import type { DiscordMonitorStatusSink } from "./status.js";
 

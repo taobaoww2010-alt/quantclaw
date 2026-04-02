@@ -2,8 +2,8 @@ import {
   resolveChannelGroupRequireMention,
   resolveChannelGroupToolsPolicy,
   type GroupToolPolicyConfig,
-} from "quantclaw/plugin-sdk/channel-policy";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/channel-policy";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 
 type BlueBubblesGroupContext = {
   cfg: QuantClawConfig;

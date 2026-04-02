@@ -1,9 +1,9 @@
 import crypto from "node:crypto";
-import type { ChannelAccountSnapshot } from "quantclaw/plugin-sdk/channel-contract";
-import type { ChannelOutboundAdapter } from "quantclaw/plugin-sdk/channel-send-result";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import type { ChannelPlugin } from "quantclaw/plugin-sdk/core";
-import { createLoggerBackedRuntime } from "quantclaw/plugin-sdk/runtime";
+import type { ChannelAccountSnapshot } from "@openclaw/plugin-sdk/channel-contract";
+import type { ChannelOutboundAdapter } from "@openclaw/plugin-sdk/channel-send-result";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import type { ChannelPlugin } from "@openclaw/plugin-sdk/core";
+import { createLoggerBackedRuntime } from "@openclaw/plugin-sdk/runtime";
 import { monitorTlonProvider } from "./monitor/index.js";
 import { tlonSetupWizard } from "./setup-surface.js";
 import {

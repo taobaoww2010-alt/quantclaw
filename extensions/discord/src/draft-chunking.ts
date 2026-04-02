@@ -1,7 +1,7 @@
-import { type QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { resolveTextChunkLimit } from "quantclaw/plugin-sdk/reply-runtime";
-import { resolveAccountEntry } from "quantclaw/plugin-sdk/routing";
-import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
+import { type QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { resolveTextChunkLimit } from "@openclaw/plugin-sdk/reply-runtime";
+import { resolveAccountEntry } from "@openclaw/plugin-sdk/routing";
+import { normalizeAccountId } from "@openclaw/plugin-sdk/routing";
 import { DISCORD_TEXT_CHUNK_LIMIT } from "./outbound-adapter.js";
 
 const DEFAULT_DISCORD_DRAFT_STREAM_MIN = 200;

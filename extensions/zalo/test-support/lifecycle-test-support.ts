@@ -1,5 +1,5 @@
 import { request as httpRequest } from "node:http";
-import type { QuantClawConfig, PluginRuntime } from "quantclaw/plugin-sdk/zalo";
+import type { QuantClawConfig, PluginRuntime } from "@openclaw/plugin-sdk/zalo";
 import { expect, vi } from "vitest";
 import { createPluginRuntimeMock } from "../../../test/helpers/plugins/plugin-runtime-mock.js";
 import type { ResolvedZaloAccount } from "../src/types.js";

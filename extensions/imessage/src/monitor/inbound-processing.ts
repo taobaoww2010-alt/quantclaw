@@ -6,27 +6,27 @@ import {
   logInboundDrop,
   matchesMentionPatterns,
   resolveEnvelopeFormatOptions,
-} from "quantclaw/plugin-sdk/channel-inbound";
-import { hasControlCommand } from "quantclaw/plugin-sdk/command-auth";
-import { resolveDualTextControlCommandGate } from "quantclaw/plugin-sdk/command-auth";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/channel-inbound";
+import { hasControlCommand } from "@openclaw/plugin-sdk/command-auth";
+import { resolveDualTextControlCommandGate } from "@openclaw/plugin-sdk/command-auth";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   resolveChannelGroupPolicy,
   resolveChannelGroupRequireMention,
-} from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
 import {
   buildPendingHistoryContextFromMap,
   recordPendingHistoryEntryIfEnabled,
   type HistoryEntry,
-} from "quantclaw/plugin-sdk/reply-history";
-import { finalizeInboundContext } from "quantclaw/plugin-sdk/reply-runtime";
-import { resolveAgentRoute } from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/reply-history";
+import { finalizeInboundContext } from "@openclaw/plugin-sdk/reply-runtime";
+import { resolveAgentRoute } from "@openclaw/plugin-sdk/routing";
 import {
   DM_GROUP_ACCESS_REASON,
   resolveDmGroupAccessWithLists,
-} from "quantclaw/plugin-sdk/security-runtime";
-import { sanitizeTerminalText } from "quantclaw/plugin-sdk/text-runtime";
-import { truncateUtf16Safe } from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/security-runtime";
+import { sanitizeTerminalText } from "@openclaw/plugin-sdk/text-runtime";
+import { truncateUtf16Safe } from "@openclaw/plugin-sdk/text-runtime";
 import { resolveIMessageConversationRoute } from "../conversation-route.js";
 import {
   formatIMessageChatTarget,

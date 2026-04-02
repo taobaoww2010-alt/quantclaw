@@ -1,6 +1,6 @@
 import type { RequestClient } from "@buape/carbon";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import type { RetryConfig } from "quantclaw/plugin-sdk/retry-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import type { RetryConfig } from "@openclaw/plugin-sdk/retry-runtime";
 
 export class DiscordSendError extends Error {
   kind?: "missing-permissions" | "dm-blocked";

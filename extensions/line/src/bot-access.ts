@@ -2,7 +2,7 @@ import {
   firstDefined,
   isSenderIdAllowed,
   mergeDmAllowFromSources,
-} from "quantclaw/plugin-sdk/allow-from";
+} from "@openclaw/plugin-sdk/allow-from";
 
 export type NormalizedAllowFrom = {
   entries: string[];

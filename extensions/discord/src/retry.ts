@@ -3,7 +3,7 @@ import {
   createRateLimitRetryRunner,
   type RetryConfig,
   type RetryRunner,
-} from "quantclaw/plugin-sdk/retry-runtime";
+} from "@openclaw/plugin-sdk/retry-runtime";
 
 export const DISCORD_RETRY_DEFAULTS = {
   attempts: 3,

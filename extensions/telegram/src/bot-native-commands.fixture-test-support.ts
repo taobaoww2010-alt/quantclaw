@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
+import type { RuntimeEnv } from "@openclaw/plugin-sdk/runtime-env";
 import { vi } from "vitest";
 import type { QuantClawConfig, TelegramAccountConfig } from "../runtime-api.js";
 import type { RegisterTelegramNativeCommandsParams } from "./bot-native-commands.js";

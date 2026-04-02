@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/memory-core-host-engine-foundation";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/memory-core-host-engine-foundation";
 import { afterAll, beforeAll, beforeEach, expect, vi, type Mock } from "vitest";
 import type { MemoryIndexManager, MemorySearchManager } from "./index.js";
 

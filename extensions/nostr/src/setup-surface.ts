@@ -1,6 +1,6 @@
-import type { ChannelSetupAdapter } from "quantclaw/plugin-sdk/channel-setup";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { DEFAULT_ACCOUNT_ID } from "quantclaw/plugin-sdk/routing";
+import type { ChannelSetupAdapter } from "@openclaw/plugin-sdk/channel-setup";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { DEFAULT_ACCOUNT_ID } from "@openclaw/plugin-sdk/routing";
 import {
   createTopLevelChannelParsedAllowFromPrompt,
   createTopLevelChannelDmPolicy,
@@ -9,10 +9,10 @@ import {
   parseSetupEntriesWithParser,
   patchTopLevelChannelConfigSection,
   splitSetupEntries,
-} from "quantclaw/plugin-sdk/setup";
-import type { ChannelSetupDmPolicy } from "quantclaw/plugin-sdk/setup";
-import type { ChannelSetupWizard } from "quantclaw/plugin-sdk/setup";
-import { formatDocsLink } from "quantclaw/plugin-sdk/setup";
+} from "@openclaw/plugin-sdk/setup";
+import type { ChannelSetupDmPolicy } from "@openclaw/plugin-sdk/setup";
+import type { ChannelSetupWizard } from "@openclaw/plugin-sdk/setup";
+import { formatDocsLink } from "@openclaw/plugin-sdk/setup";
 import { DEFAULT_RELAYS } from "./default-relays.js";
 import { getPublicKeyFromPrivate, normalizePubkey } from "./nostr-bus.js";
 import { resolveNostrAccount } from "./types.js";

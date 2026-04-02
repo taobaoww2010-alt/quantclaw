@@ -1,8 +1,8 @@
 import {
   coerceSecretRef,
   resolveConfiguredSecretInputString,
-} from "quantclaw/plugin-sdk/config-runtime";
-import type { PinnedDispatcherPolicy } from "quantclaw/plugin-sdk/infra-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
+import type { PinnedDispatcherPolicy } from "@openclaw/plugin-sdk/infra-runtime";
 import {
   requiresExplicitMatrixDefaultAccount,
   resolveMatrixDefaultOrOnlyAccountId,

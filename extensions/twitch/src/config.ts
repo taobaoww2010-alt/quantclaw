@@ -1,4 +1,4 @@
-import { listCombinedAccountIds } from "quantclaw/plugin-sdk/account-resolution";
+import { listCombinedAccountIds } from "@openclaw/plugin-sdk/account-resolution";
 import type { QuantClawConfig } from "../runtime-api.js";
 import { resolveTwitchToken, type TwitchTokenResolution } from "./token.js";
 import type { TwitchAccountConfig } from "./types.js";

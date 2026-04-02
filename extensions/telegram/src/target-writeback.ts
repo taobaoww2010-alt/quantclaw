@@ -1,14 +1,14 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   readConfigFileSnapshotForWrite,
   writeConfigFile,
-} from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
 import {
   loadCronStore,
   resolveCronStorePath,
   saveCronStore,
-} from "quantclaw/plugin-sdk/config-runtime";
-import { createSubsystemLogger } from "quantclaw/plugin-sdk/runtime-env";
+} from "@openclaw/plugin-sdk/config-runtime";
+import { createSubsystemLogger } from "@openclaw/plugin-sdk/runtime-env";
 import {
   normalizeTelegramChatId,
   normalizeTelegramLookupTarget,

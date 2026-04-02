@@ -1,10 +1,10 @@
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import {
   resolveThreadBindingIdleTimeoutMs,
   resolveThreadBindingMaxAgeMs,
   resolveThreadBindingsEnabled,
-} from "quantclaw/plugin-sdk/conversation-runtime";
-import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/conversation-runtime";
+import { normalizeAccountId } from "@openclaw/plugin-sdk/routing";
 
 export {
   resolveThreadBindingIdleTimeoutMs,

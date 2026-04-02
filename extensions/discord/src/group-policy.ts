@@ -1,10 +1,10 @@
-import type { ChannelGroupContext } from "quantclaw/plugin-sdk/channel-contract";
+import type { ChannelGroupContext } from "@openclaw/plugin-sdk/channel-contract";
 import {
   resolveToolsBySender,
   type GroupToolPolicyBySenderConfig,
   type GroupToolPolicyConfig,
-} from "quantclaw/plugin-sdk/channel-policy";
-import { normalizeAtHashSlug } from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/channel-policy";
+import { normalizeAtHashSlug } from "@openclaw/plugin-sdk/core";
 import type { DiscordConfig } from "./runtime-api.js";
 
 function normalizeDiscordSlug(value?: string | null) {

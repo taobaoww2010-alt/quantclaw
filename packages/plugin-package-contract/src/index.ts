@@ -2,7 +2,7 @@ export type JsonObject = Record<string, unknown>;
 
 export type ExternalPluginCompatibility = {
   pluginApiRange?: string;
-  builtWithOpenClawVersion?: string;
+  builtWithQuantClawVersion?: string;
   pluginSdkVersion?: string;
   minGatewayVersion?: string;
 };
@@ -18,8 +18,8 @@ export type ExternalCodePluginValidationResult = {
 };
 
 export const EXTERNAL_CODE_PLUGIN_REQUIRED_FIELD_PATHS = [
-  "openclaw.compat.pluginApi",
-  "openclaw.build.openclawVersion",
+  "quantclaw.compat.pluginApi",
+  "quantclaw.build.quantclawVersion",
 ] as const;
 
 function isRecord(value: unknown): value is JsonObject {
@@ -30,19 +30,19 @@ function getTrimmedString(value: unknown): string | undefined {
   return typeof value === "string" && value.trim() ? value.trim() : undefined;
 }
 
-function readOpenClawBlock(packageJson: unknown) {
+function readQuantClawBlock(packageJson: unknown) {
   const root = isRecord(packageJson) ? packageJson : undefined;
-  const openclaw = isRecord(root?.openclaw) ? root.openclaw : undefined;
-  const compat = isRecord(openclaw?.compat) ? openclaw.compat : undefined;
-  const build = isRecord(openclaw?.build) ? openclaw.build : undefined;
-  const install = isRecord(openclaw?.install) ? openclaw.install : undefined;
-  return { root, openclaw, compat, build, install };
+  const quantclaw = isRecord(root?.quantclaw) ? root.quantclaw : undefined;
+  const compat = isRecord(quantclaw?.compat) ? quantclaw.compat : undefined;
+  const build = isRecord(quantclaw?.build) ? quantclaw.build : undefined;
+  const install = isRecord(quantclaw?.install) ? quantclaw.install : undefined;
+  return { root, quantclaw, compat, build, install };
 }
 
 export function normalizeExternalPluginCompatibility(
   packageJson: unknown,
 ): ExternalPluginCompatibility | undefined {
-  const { root, compat, build, install } = readOpenClawBlock(packageJson);
+  const { root, compat, build, install } = readQuantClawBlock(packageJson);
   const version = getTrimmedString(root?.version);
   const minHostVersion = getTrimmedString(install?.minHostVersion);
   const compatibility: ExternalPluginCompatibility = {};
@@ -57,9 +57,9 @@ export function normalizeExternalPluginCompatibility(
     compatibility.minGatewayVersion = minGatewayVersion;
   }
 
-  const builtWithOpenClawVersion = getTrimmedString(build?.openclawVersion) ?? version;
-  if (builtWithOpenClawVersion) {
-    compatibility.builtWithOpenClawVersion = builtWithOpenClawVersion;
+  const builtWithQuantClawVersion = getTrimmedString(build?.quantclawVersion) ?? version;
+  if (builtWithQuantClawVersion) {
+    compatibility.builtWithQuantClawVersion = builtWithQuantClawVersion;
   }
 
   const pluginSdkVersion = getTrimmedString(build?.pluginSdkVersion);
@@ -71,13 +71,13 @@ export function normalizeExternalPluginCompatibility(
 }
 
 export function listMissingExternalCodePluginFieldPaths(packageJson: unknown): string[] {
-  const { compat, build } = readOpenClawBlock(packageJson);
+  const { compat, build } = readQuantClawBlock(packageJson);
   const missing: string[] = [];
   if (!getTrimmedString(compat?.pluginApi)) {
-    missing.push("openclaw.compat.pluginApi");
+    missing.push("quantclaw.compat.pluginApi");
   }
-  if (!getTrimmedString(build?.openclawVersion)) {
-    missing.push("openclaw.build.openclawVersion");
+  if (!getTrimmedString(build?.quantclawVersion)) {
+    missing.push("quantclaw.build.quantclawVersion");
   }
   return missing;
 }

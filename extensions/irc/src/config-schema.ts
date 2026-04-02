@@ -8,8 +8,8 @@ import {
   ReplyRuntimeConfigSchemaShape,
   ToolPolicySchema,
   requireOpenAllowFrom,
-} from "quantclaw/plugin-sdk/channel-config-schema";
-import { z } from "quantclaw/plugin-sdk/zod";
+} from "@openclaw/plugin-sdk/channel-config-schema";
+import { z } from "@openclaw/plugin-sdk/zod";
 import { ircChannelConfigUiHints } from "./config-ui-hints.js";
 
 const IrcGroupSchema = z

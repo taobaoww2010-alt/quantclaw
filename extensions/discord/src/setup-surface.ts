@@ -2,8 +2,8 @@ import {
   type QuantClawConfig,
   type WizardPrompter,
   type ChannelSetupWizard,
-} from "quantclaw/plugin-sdk/setup-runtime";
-import { formatDocsLink } from "quantclaw/plugin-sdk/setup-tools";
+} from "@openclaw/plugin-sdk/setup-runtime";
+import { formatDocsLink } from "@openclaw/plugin-sdk/setup-tools";
 import { resolveDiscordChannelAllowlist } from "./resolve-channels.js";
 import { resolveDiscordUserAllowlist } from "./resolve-users.js";
 import {

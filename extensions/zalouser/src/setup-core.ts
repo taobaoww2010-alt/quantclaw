@@ -1,4 +1,4 @@
-import { createPatchedAccountSetupAdapter } from "quantclaw/plugin-sdk/setup";
+import { createPatchedAccountSetupAdapter } from "@openclaw/plugin-sdk/setup";
 
 const channel = "zalouser" as const;
 

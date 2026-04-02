@@ -1,14 +1,14 @@
 import type {
   GeneratedImageAsset,
   ImageGenerationProvider,
-} from "quantclaw/plugin-sdk/image-generation";
-import { resolveApiKeyForProvider } from "quantclaw/plugin-sdk/provider-auth-runtime";
+} from "@openclaw/plugin-sdk/image-generation";
+import { resolveApiKeyForProvider } from "@openclaw/plugin-sdk/provider-auth-runtime";
 import {
   buildHostnameAllowlistPolicyFromSuffixAllowlist,
   fetchWithSsrFGuard,
   type SsrFPolicy,
   ssrfPolicyFromAllowPrivateNetwork,
-} from "quantclaw/plugin-sdk/ssrf-runtime";
+} from "@openclaw/plugin-sdk/ssrf-runtime";
 
 const DEFAULT_FAL_BASE_URL = "https://fal.run";
 const DEFAULT_FAL_IMAGE_MODEL = "fal-ai/flux/dev";

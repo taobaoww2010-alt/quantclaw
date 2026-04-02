@@ -3,25 +3,25 @@ import {
   buildLegacyDmAccountAllowlistAdapter,
   createAccountScopedAllowlistNameResolver,
   createNestedAllowlistOverrideResolver,
-} from "quantclaw/plugin-sdk/allowlist-config-edit";
-import { createScopedDmSecurityResolver } from "quantclaw/plugin-sdk/channel-config-helpers";
-import { createPairingPrefixStripper } from "quantclaw/plugin-sdk/channel-pairing";
-import { createOpenProviderConfiguredRouteWarningCollector } from "quantclaw/plugin-sdk/channel-policy";
-import { resolveTargetsWithOptionalToken } from "quantclaw/plugin-sdk/channel-targets";
-import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/allowlist-config-edit";
+import { createScopedDmSecurityResolver } from "@openclaw/plugin-sdk/channel-config-helpers";
+import { createPairingPrefixStripper } from "@openclaw/plugin-sdk/channel-pairing";
+import { createOpenProviderConfiguredRouteWarningCollector } from "@openclaw/plugin-sdk/channel-policy";
+import { resolveTargetsWithOptionalToken } from "@openclaw/plugin-sdk/channel-targets";
+import { createChatChannelPlugin } from "@openclaw/plugin-sdk/core";
 import {
   createChannelDirectoryAdapter,
   createRuntimeDirectoryLiveAdapter,
-} from "quantclaw/plugin-sdk/directory-runtime";
+} from "@openclaw/plugin-sdk/directory-runtime";
 import {
   createRuntimeOutboundDelegates,
   resolveOutboundSendDep,
-} from "quantclaw/plugin-sdk/outbound-runtime";
-import { normalizeMessageChannel } from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/outbound-runtime";
+import { normalizeMessageChannel } from "@openclaw/plugin-sdk/routing";
 import {
   createComputedAccountStatusAdapter,
   createDefaultChannelRuntimeState,
-} from "quantclaw/plugin-sdk/status-helpers";
+} from "@openclaw/plugin-sdk/status-helpers";
 import {
   listDiscordAccountIds,
   resolveDiscordAccount,

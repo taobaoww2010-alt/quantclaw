@@ -1,5 +1,5 @@
-import type { QuantClawConfig, ProviderAuthResult } from "quantclaw/plugin-sdk/provider-auth";
-import { readClaudeCliCredentialsCached } from "quantclaw/plugin-sdk/provider-auth";
+import type { QuantClawConfig, ProviderAuthResult } from "@openclaw/plugin-sdk/provider-auth";
+import { readClaudeCliCredentialsCached } from "@openclaw/plugin-sdk/provider-auth";
 
 const DEFAULT_CLAUDE_CLI_MODEL = "claude-cli/claude-sonnet-4-6";
 type AgentDefaultsModel = NonNullable<NonNullable<QuantClawConfig["agents"]>["defaults"]>["model"];

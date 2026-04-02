@@ -1,13 +1,13 @@
 import type {
   AudioTranscriptionRequest,
   AudioTranscriptionResult,
-} from "quantclaw/plugin-sdk/media-understanding";
+} from "@openclaw/plugin-sdk/media-understanding";
 import {
   assertOkOrThrowHttpError,
   normalizeBaseUrl,
   postTranscriptionRequest,
   requireTranscriptionText,
-} from "quantclaw/plugin-sdk/provider-http";
+} from "@openclaw/plugin-sdk/provider-http";
 
 export const DEFAULT_DEEPGRAM_AUDIO_BASE_URL = "https://api.deepgram.com/v1";
 export const DEFAULT_DEEPGRAM_AUDIO_MODEL = "nova-3";

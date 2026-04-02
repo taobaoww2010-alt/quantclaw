@@ -3,7 +3,7 @@ import {
   formatDocsLink,
   formatHelpExamples,
   theme,
-} from "quantclaw/plugin-sdk/memory-core-host-runtime-cli";
+} from "@openclaw/plugin-sdk/memory-core-host-runtime-cli";
 import type { MemoryCommandOptions, MemorySearchCommandOptions } from "./cli.types.js";
 
 type MemoryCliRuntime = typeof import("./cli.runtime.js");

@@ -1,8 +1,8 @@
-import { defineSingleProviderPluginEntry } from "quantclaw/plugin-sdk/provider-entry";
+import { defineSingleProviderPluginEntry } from "@openclaw/plugin-sdk/provider-entry";
 import {
   createMoonshotThinkingWrapper,
   resolveMoonshotThinkingType,
-} from "quantclaw/plugin-sdk/provider-moonshot";
+} from "@openclaw/plugin-sdk/provider-moonshot";
 import { applyMoonshotNativeStreamingUsageCompat } from "./api.js";
 import { moonshotMediaUnderstandingProvider } from "./media-understanding-provider.js";
 import {

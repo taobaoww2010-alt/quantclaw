@@ -3,15 +3,15 @@ import {
   resolveAgentWorkspaceDir,
   resolveGlobalSingleton,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/memory-core-host-engine-foundation";
-import { checkQmdBinaryAvailability } from "quantclaw/plugin-sdk/memory-core-host-engine-qmd";
+} from "@openclaw/plugin-sdk/memory-core-host-engine-foundation";
+import { checkQmdBinaryAvailability } from "@openclaw/plugin-sdk/memory-core-host-engine-qmd";
 import {
   resolveMemoryBackendConfig,
   type MemoryEmbeddingProbeResult,
   type MemorySearchManager,
   type MemorySyncProgressUpdate,
   type ResolvedQmdConfig,
-} from "quantclaw/plugin-sdk/memory-core-host-engine-storage";
+} from "@openclaw/plugin-sdk/memory-core-host-engine-storage";
 
 const MEMORY_SEARCH_MANAGER_CACHE_KEY = Symbol.for("quantclaw.memorySearchManagerCache");
 type MemorySearchManagerCacheStore = {

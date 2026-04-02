@@ -3,7 +3,7 @@ import {
   computeBackoff,
   sleepWithAbort,
   type BackoffPolicy,
-} from "quantclaw/plugin-sdk/runtime-env";
+} from "@openclaw/plugin-sdk/runtime-env";
 
 export type TelegramSendChatActionLogger = (message: string) => void;
 

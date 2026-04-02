@@ -3,7 +3,7 @@ import fs from "node:fs";
 import {
   hasOutboundReplyContent,
   resolveSendableOutboundReplyParts,
-} from "@quantclaw/plugin-sdk/reply-payload";
+} from "@openclaw/plugin-sdk/reply-payload";
 import { resolveBootstrapWarningSignaturesSeen } from "../../agents/bootstrap-budget.js";
 import { runCliAgent } from "../../agents/cli-runner.js";
 import { getCliSessionBinding } from "../../agents/cli-session.js";

@@ -1,5 +1,5 @@
-import { resolveMarkdownTableMode } from "quantclaw/plugin-sdk/config-runtime";
-import { convertMarkdownTables } from "quantclaw/plugin-sdk/text-runtime";
+import { resolveMarkdownTableMode } from "@openclaw/plugin-sdk/config-runtime";
+import { convertMarkdownTables } from "@openclaw/plugin-sdk/text-runtime";
 import type { QuantClawConfig } from "../runtime-api.js";
 import { loadOutboundMediaFromUrl } from "../runtime-api.js";
 import { createMSTeamsConversationStoreFs } from "./conversation-store-fs.js";

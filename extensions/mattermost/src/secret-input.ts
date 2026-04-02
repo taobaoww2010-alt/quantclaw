@@ -1,7 +1,7 @@
-export type { SecretInput } from "quantclaw/plugin-sdk/secret-input";
+export type { SecretInput } from "@openclaw/plugin-sdk/secret-input";
 export {
   buildSecretInputSchema,
   hasConfiguredSecretInput,
   normalizeResolvedSecretInputString,
   normalizeSecretInputString,
-} from "quantclaw/plugin-sdk/secret-input";
+} from "@openclaw/plugin-sdk/secret-input";

@@ -1,4 +1,4 @@
-import type { ChannelConfigUiHint } from "quantclaw/plugin-sdk/core";
+import type { ChannelConfigUiHint } from "@openclaw/plugin-sdk/core";
 
 export const slackChannelConfigUiHints = {
   "": {

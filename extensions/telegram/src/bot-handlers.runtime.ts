@@ -1,41 +1,41 @@
 import type { Message, ReactionTypeEmoji } from "@grammyjs/types";
-import { resolveAgentDir, resolveDefaultAgentId } from "quantclaw/plugin-sdk/agent-runtime";
-import { resolveDefaultModelForAgent } from "quantclaw/plugin-sdk/agent-runtime";
-import { resolveChannelConfigWrites } from "quantclaw/plugin-sdk/channel-config-helpers";
-import { shouldDebounceTextInbound } from "quantclaw/plugin-sdk/channel-inbound";
+import { resolveAgentDir, resolveDefaultAgentId } from "@openclaw/plugin-sdk/agent-runtime";
+import { resolveDefaultModelForAgent } from "@openclaw/plugin-sdk/agent-runtime";
+import { resolveChannelConfigWrites } from "@openclaw/plugin-sdk/channel-config-helpers";
+import { shouldDebounceTextInbound } from "@openclaw/plugin-sdk/channel-inbound";
 import {
   createInboundDebouncer,
   resolveInboundDebounceMs,
-} from "quantclaw/plugin-sdk/channel-inbound";
+} from "@openclaw/plugin-sdk/channel-inbound";
 import {
   buildCommandsMessagePaginated,
   buildCommandsPaginationKeyboard,
   formatModelsAvailableHeader,
   resolveStoredModelOverride,
-} from "quantclaw/plugin-sdk/command-auth";
-import { writeConfigFile } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/command-auth";
+import { writeConfigFile } from "@openclaw/plugin-sdk/config-runtime";
 import {
   loadSessionStore,
   resolveSessionStoreEntry,
   updateSessionStore,
-} from "quantclaw/plugin-sdk/config-runtime";
-import type { DmPolicy } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
+import type { DmPolicy } from "@openclaw/plugin-sdk/config-runtime";
 import type {
   TelegramDirectConfig,
   TelegramGroupConfig,
   TelegramTopicConfig,
-} from "quantclaw/plugin-sdk/config-runtime";
-import { applyModelOverrideToSessionEntry } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
+import { applyModelOverrideToSessionEntry } from "@openclaw/plugin-sdk/config-runtime";
 import {
   buildPluginBindingResolvedText,
   parsePluginBindingApprovalCustomId,
   resolvePluginConversationBindingApproval,
-} from "quantclaw/plugin-sdk/conversation-runtime";
-import { parseExecApprovalCommandText } from "quantclaw/plugin-sdk/infra-runtime";
-import { dispatchPluginInteractiveHandler } from "quantclaw/plugin-sdk/plugin-runtime";
-import { resolveAgentRoute } from "quantclaw/plugin-sdk/routing";
-import { resolveThreadSessionKeys } from "quantclaw/plugin-sdk/routing";
-import { danger, logVerbose, warn } from "quantclaw/plugin-sdk/runtime-env";
+} from "@openclaw/plugin-sdk/conversation-runtime";
+import { parseExecApprovalCommandText } from "@openclaw/plugin-sdk/infra-runtime";
+import { dispatchPluginInteractiveHandler } from "@openclaw/plugin-sdk/plugin-runtime";
+import { resolveAgentRoute } from "@openclaw/plugin-sdk/routing";
+import { resolveThreadSessionKeys } from "@openclaw/plugin-sdk/routing";
+import { danger, logVerbose, warn } from "@openclaw/plugin-sdk/runtime-env";
 import { withTelegramApiErrorLogging } from "./api-logging.js";
 import {
   isSenderAllowed,

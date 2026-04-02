@@ -1,4 +1,4 @@
-import { normalizeE164 } from "quantclaw/plugin-sdk/account-resolution";
+import { normalizeE164 } from "@openclaw/plugin-sdk/account-resolution";
 import {
   createAllowedChatSenderMatcher,
   type ChatSenderAllowParams,

@@ -1,6 +1,6 @@
-export { definePluginEntry } from "quantclaw/plugin-sdk/plugin-entry";
+export { definePluginEntry } from "@openclaw/plugin-sdk/plugin-entry";
 export type {
   QuantClawPluginApi,
   ProviderAuthContext,
   ProviderAuthResult,
-} from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/core";

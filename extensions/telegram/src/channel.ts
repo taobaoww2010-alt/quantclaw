@@ -1,27 +1,27 @@
 import {
   buildDmGroupAccountAllowlistAdapter,
   createNestedAllowlistOverrideResolver,
-} from "quantclaw/plugin-sdk/allowlist-config-edit";
-import { createPairingPrefixStripper } from "quantclaw/plugin-sdk/channel-pairing";
-import { createAllowlistProviderRouteAllowlistWarningCollector } from "quantclaw/plugin-sdk/channel-policy";
-import { attachChannelToResult } from "quantclaw/plugin-sdk/channel-send-result";
-import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
-import { createChannelDirectoryAdapter } from "quantclaw/plugin-sdk/directory-runtime";
+} from "@openclaw/plugin-sdk/allowlist-config-edit";
+import { createPairingPrefixStripper } from "@openclaw/plugin-sdk/channel-pairing";
+import { createAllowlistProviderRouteAllowlistWarningCollector } from "@openclaw/plugin-sdk/channel-policy";
+import { attachChannelToResult } from "@openclaw/plugin-sdk/channel-send-result";
+import { createChatChannelPlugin } from "@openclaw/plugin-sdk/core";
+import { createChannelDirectoryAdapter } from "@openclaw/plugin-sdk/directory-runtime";
 import {
   resolveOutboundSendDep,
   type OutboundSendDeps,
-} from "quantclaw/plugin-sdk/outbound-runtime";
+} from "@openclaw/plugin-sdk/outbound-runtime";
 import {
   buildOutboundBaseSessionKey,
   normalizeMessageChannel,
   normalizeOutboundThreadId,
   resolveThreadSessionKeys,
   type RoutePeer,
-} from "quantclaw/plugin-sdk/routing";
+} from "@openclaw/plugin-sdk/routing";
 import {
   createComputedAccountStatusAdapter,
   createDefaultChannelRuntimeState,
-} from "quantclaw/plugin-sdk/status-helpers";
+} from "@openclaw/plugin-sdk/status-helpers";
 import {
   buildTokenChannelStatusSummary,
   clearAccountEntryFields,
@@ -32,7 +32,7 @@ import {
   resolveConfiguredFromCredentialStatuses,
   type ChannelMessageActionAdapter,
   type QuantClawConfig,
-} from "quantclaw/plugin-sdk/telegram-core";
+} from "@openclaw/plugin-sdk/telegram-core";
 import {
   listTelegramAccountIds,
   resolveTelegramAccount,

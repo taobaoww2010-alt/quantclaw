@@ -2,8 +2,8 @@
  * Signal reactions via signal-cli JSON-RPC API
  */
 
-import { loadConfig } from "quantclaw/plugin-sdk/config-runtime";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { loadConfig } from "@openclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
 import { resolveSignalAccount } from "./accounts.js";
 import { signalRpcRequest } from "./client.js";
 import { resolveSignalRpcContext } from "./rpc-context.js";

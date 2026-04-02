@@ -1,27 +1,27 @@
-import { resolveDefaultAgentId } from "quantclaw/plugin-sdk/agent-runtime";
+import { resolveDefaultAgentId } from "@openclaw/plugin-sdk/agent-runtime";
 import {
   isNativeCommandsExplicitlyDisabled,
   resolveNativeCommandsEnabled,
   resolveNativeSkillsEnabled,
-} from "quantclaw/plugin-sdk/config-runtime";
-import type { QuantClawConfig, ReplyToMode } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig, ReplyToMode } from "@openclaw/plugin-sdk/config-runtime";
 import {
   resolveChannelGroupPolicy,
   resolveChannelGroupRequireMention,
-} from "quantclaw/plugin-sdk/config-runtime";
-import { loadSessionStore, resolveStorePath } from "quantclaw/plugin-sdk/config-runtime";
+} from "@openclaw/plugin-sdk/config-runtime";
+import { loadSessionStore, resolveStorePath } from "@openclaw/plugin-sdk/config-runtime";
 import {
   resolveThreadBindingIdleTimeoutMsForChannel,
   resolveThreadBindingMaxAgeMsForChannel,
   resolveThreadBindingSpawnPolicy,
-} from "quantclaw/plugin-sdk/conversation-runtime";
-import { formatUncaughtError } from "quantclaw/plugin-sdk/error-runtime";
-import { DEFAULT_GROUP_HISTORY_LIMIT, type HistoryEntry } from "quantclaw/plugin-sdk/reply-history";
-import { resolveTextChunkLimit } from "quantclaw/plugin-sdk/reply-runtime";
-import { danger, logVerbose, shouldLogVerbose } from "quantclaw/plugin-sdk/runtime-env";
-import { getChildLogger } from "quantclaw/plugin-sdk/runtime-env";
-import { createSubsystemLogger } from "quantclaw/plugin-sdk/runtime-env";
-import { createNonExitingRuntime, type RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
+} from "@openclaw/plugin-sdk/conversation-runtime";
+import { formatUncaughtError } from "@openclaw/plugin-sdk/error-runtime";
+import { DEFAULT_GROUP_HISTORY_LIMIT, type HistoryEntry } from "@openclaw/plugin-sdk/reply-history";
+import { resolveTextChunkLimit } from "@openclaw/plugin-sdk/reply-runtime";
+import { danger, logVerbose, shouldLogVerbose } from "@openclaw/plugin-sdk/runtime-env";
+import { getChildLogger } from "@openclaw/plugin-sdk/runtime-env";
+import { createSubsystemLogger } from "@openclaw/plugin-sdk/runtime-env";
+import { createNonExitingRuntime, type RuntimeEnv } from "@openclaw/plugin-sdk/runtime-env";
 import { resolveTelegramAccount } from "./accounts.js";
 import { defaultTelegramBotDeps, type TelegramBotDeps } from "./bot-deps.js";
 import { registerTelegramHandlers } from "./bot-handlers.js";

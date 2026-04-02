@@ -1,18 +1,18 @@
 import {
   type ProviderResolveDynamicModelContext,
   type ProviderRuntimeModel,
-} from "quantclaw/plugin-sdk/plugin-entry";
-import { createProviderApiKeyAuthMethod } from "quantclaw/plugin-sdk/provider-auth-api-key";
+} from "@openclaw/plugin-sdk/plugin-entry";
+import { createProviderApiKeyAuthMethod } from "@openclaw/plugin-sdk/provider-auth-api-key";
 import {
   DEFAULT_CONTEXT_TOKENS,
   normalizeModelCompat,
   normalizeProviderId,
   type ProviderPlugin,
-} from "quantclaw/plugin-sdk/provider-model-shared";
+} from "@openclaw/plugin-sdk/provider-model-shared";
 import {
   createOpenAIAttributionHeadersWrapper,
   createOpenAIDefaultTransportWrapper,
-} from "quantclaw/plugin-sdk/provider-stream";
+} from "@openclaw/plugin-sdk/provider-stream";
 import { applyOpenAIConfig, OPENAI_DEFAULT_MODEL } from "./default-models.js";
 import {
   cloneFirstTemplateModel,

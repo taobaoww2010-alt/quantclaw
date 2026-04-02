@@ -1,8 +1,8 @@
-import { normalizeAccountId } from "quantclaw/plugin-sdk/account-resolution";
+import { normalizeAccountId } from "@openclaw/plugin-sdk/account-resolution";
 import {
   createResolvedDirectoryEntriesLister,
   type DirectoryConfigParams,
-} from "quantclaw/plugin-sdk/directory-runtime";
+} from "@openclaw/plugin-sdk/directory-runtime";
 import { mergeSlackAccountConfig, resolveDefaultSlackAccountId } from "./accounts.js";
 import { parseSlackTarget } from "./targets.js";
 

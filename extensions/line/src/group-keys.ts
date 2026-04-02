@@ -1,6 +1,6 @@
-import { normalizeAccountId } from "quantclaw/plugin-sdk/account-id";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/account-resolution";
-import { resolveAccountEntry } from "quantclaw/plugin-sdk/account-resolution";
+import { normalizeAccountId } from "@openclaw/plugin-sdk/account-id";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/account-resolution";
+import { resolveAccountEntry } from "@openclaw/plugin-sdk/account-resolution";
 import type { LineConfig, LineGroupConfig } from "./types.js";
 
 export function resolveLineGroupLookupIds(groupId?: string | null): string[] {

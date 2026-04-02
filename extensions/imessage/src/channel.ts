@@ -1,13 +1,13 @@
-import { buildDmGroupAccountAllowlistAdapter } from "quantclaw/plugin-sdk/allowlist-config-edit";
-import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
-import { buildPassiveProbedChannelStatusSummary } from "quantclaw/plugin-sdk/extension-shared";
-import { createLazyRuntimeModule } from "quantclaw/plugin-sdk/lazy-runtime";
-import { resolveOutboundSendDep } from "quantclaw/plugin-sdk/outbound-runtime";
-import { buildOutboundBaseSessionKey, type RoutePeer } from "quantclaw/plugin-sdk/routing";
+import { buildDmGroupAccountAllowlistAdapter } from "@openclaw/plugin-sdk/allowlist-config-edit";
+import { createChatChannelPlugin } from "@openclaw/plugin-sdk/core";
+import { buildPassiveProbedChannelStatusSummary } from "@openclaw/plugin-sdk/extension-shared";
+import { createLazyRuntimeModule } from "@openclaw/plugin-sdk/lazy-runtime";
+import { resolveOutboundSendDep } from "@openclaw/plugin-sdk/outbound-runtime";
+import { buildOutboundBaseSessionKey, type RoutePeer } from "@openclaw/plugin-sdk/routing";
 import {
   createComputedAccountStatusAdapter,
   createDefaultChannelRuntimeState,
-} from "quantclaw/plugin-sdk/status-helpers";
+} from "@openclaw/plugin-sdk/status-helpers";
 import {
   chunkTextForOutbound,
   collectStatusIssuesFromLastError,

@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildPluginConfigSchema } from "quantclaw/plugin-sdk/core";
-import { z } from "quantclaw/plugin-sdk/zod";
+import { buildPluginConfigSchema } from "@openclaw/plugin-sdk/core";
+import { z } from "@openclaw/plugin-sdk/zod";
 import type { QuantClawPluginConfigSchema } from "../runtime-api.js";
 
 export const ACPX_PERMISSION_MODES = ["approve-all", "approve-reads", "deny-all"] as const;

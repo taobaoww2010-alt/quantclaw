@@ -1,11 +1,11 @@
 import {
   describeImageWithModel as describeImageWithModelImpl,
   transcribeFirstAudio as transcribeFirstAudioImpl,
-} from "quantclaw/plugin-sdk/media-runtime";
+} from "@openclaw/plugin-sdk/media-runtime";
 
 type DescribeImageWithModel =
-  typeof import("quantclaw/plugin-sdk/media-runtime").describeImageWithModel;
-type TranscribeFirstAudio = typeof import("quantclaw/plugin-sdk/media-runtime").transcribeFirstAudio;
+  typeof import("@openclaw/plugin-sdk/media-runtime").describeImageWithModel;
+type TranscribeFirstAudio = typeof import("@openclaw/plugin-sdk/media-runtime").transcribeFirstAudio;
 
 export async function describeImageWithModel(
   ...args: Parameters<DescribeImageWithModel>

@@ -1,6 +1,6 @@
 import path from "node:path";
-import { buildPluginConfigSchema, type QuantClawPluginConfigSchema } from "quantclaw/plugin-sdk/core";
-import { z } from "quantclaw/plugin-sdk/zod";
+import { buildPluginConfigSchema, type QuantClawPluginConfigSchema } from "@openclaw/plugin-sdk/core";
+import { z } from "@openclaw/plugin-sdk/zod";
 
 export type OpenShellPluginConfig = {
   mode?: "mirror" | "remote";

@@ -1,5 +1,5 @@
-import { defineSingleProviderPluginEntry } from "quantclaw/plugin-sdk/provider-entry";
-import { PROVIDER_LABELS } from "quantclaw/plugin-sdk/provider-usage";
+import { defineSingleProviderPluginEntry } from "@openclaw/plugin-sdk/provider-entry";
+import { PROVIDER_LABELS } from "@openclaw/plugin-sdk/provider-usage";
 import { applyXiaomiConfig, XIAOMI_DEFAULT_MODEL_REF } from "./onboard.js";
 import { buildXiaomiProvider } from "./provider-catalog.js";
 

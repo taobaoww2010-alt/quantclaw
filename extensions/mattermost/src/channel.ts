@@ -1,25 +1,25 @@
 import { Type } from "@sinclair/typebox";
-import { describeAccountSnapshot } from "quantclaw/plugin-sdk/account-helpers";
-import { formatNormalizedAllowFromEntries } from "quantclaw/plugin-sdk/allow-from";
-import { createMessageToolButtonsSchema } from "quantclaw/plugin-sdk/channel-actions";
+import { describeAccountSnapshot } from "@openclaw/plugin-sdk/account-helpers";
+import { formatNormalizedAllowFromEntries } from "@openclaw/plugin-sdk/allow-from";
+import { createMessageToolButtonsSchema } from "@openclaw/plugin-sdk/channel-actions";
 import {
   adaptScopedAccountAccessor,
   createScopedChannelConfigAdapter,
-} from "quantclaw/plugin-sdk/channel-config-helpers";
+} from "@openclaw/plugin-sdk/channel-config-helpers";
 import type {
   ChannelMessageActionAdapter,
   ChannelMessageActionName,
   ChannelMessageToolDiscovery,
-} from "quantclaw/plugin-sdk/channel-contract";
-import { createLoggedPairingApprovalNotifier } from "quantclaw/plugin-sdk/channel-pairing";
-import { createRestrictSendersChannelSecurity } from "quantclaw/plugin-sdk/channel-policy";
-import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
-import { createChannelDirectoryAdapter } from "quantclaw/plugin-sdk/directory-runtime";
-import { buildPassiveProbedChannelStatusSummary } from "quantclaw/plugin-sdk/extension-shared";
+} from "@openclaw/plugin-sdk/channel-contract";
+import { createLoggedPairingApprovalNotifier } from "@openclaw/plugin-sdk/channel-pairing";
+import { createRestrictSendersChannelSecurity } from "@openclaw/plugin-sdk/channel-policy";
+import { createChatChannelPlugin } from "@openclaw/plugin-sdk/core";
+import { createChannelDirectoryAdapter } from "@openclaw/plugin-sdk/directory-runtime";
+import { buildPassiveProbedChannelStatusSummary } from "@openclaw/plugin-sdk/extension-shared";
 import {
   createComputedAccountStatusAdapter,
   createDefaultChannelRuntimeState,
-} from "quantclaw/plugin-sdk/status-helpers";
+} from "@openclaw/plugin-sdk/status-helpers";
 import { mattermostApprovalAuth } from "./approval-auth.js";
 import { MattermostChannelConfigSchema } from "./config-surface.js";
 import { resolveMattermostGroupRequireMention } from "./group-mentions.js";

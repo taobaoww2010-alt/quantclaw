@@ -3,4 +3,4 @@ export {
   escapeRegExp,
   resolveUserPath,
   shortenHomePath,
-} from "quantclaw/plugin-sdk/browser-support";
+} from "@openclaw/plugin-sdk/browser-support";

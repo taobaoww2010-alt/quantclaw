@@ -1,7 +1,7 @@
-import { createActionGate } from "quantclaw/plugin-sdk/agent-runtime";
-import type { ChannelMessageActionName } from "quantclaw/plugin-sdk/channel-contract";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import type { ChannelToolSend } from "quantclaw/plugin-sdk/tool-send";
+import { createActionGate } from "@openclaw/plugin-sdk/agent-runtime";
+import type { ChannelMessageActionName } from "@openclaw/plugin-sdk/channel-contract";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import type { ChannelToolSend } from "@openclaw/plugin-sdk/tool-send";
 import { listEnabledSlackAccounts } from "./accounts.js";
 
 export function listSlackMessageActions(cfg: QuantClawConfig): ChannelMessageActionName[] {

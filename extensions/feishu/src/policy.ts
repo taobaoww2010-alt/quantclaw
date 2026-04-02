@@ -1,8 +1,8 @@
 import {
   normalizeAccountId,
   resolveMergedAccountConfig,
-} from "quantclaw/plugin-sdk/account-resolution";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/account-resolution";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/core";
 import type { AllowlistMatch, ChannelGroupContext, GroupToolPolicyConfig } from "../runtime-api.js";
 import { evaluateSenderGroupAccessForPolicy } from "../runtime-api.js";
 import { normalizeFeishuTarget } from "./targets.js";

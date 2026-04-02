@@ -1,12 +1,12 @@
-export { definePluginEntry } from "quantclaw/plugin-sdk/core";
+export { definePluginEntry } from "@openclaw/plugin-sdk/core";
 export type {
   AnyAgentTool,
   QuantClawPluginApi,
   QuantClawPluginToolContext,
   QuantClawPluginToolFactory,
-} from "quantclaw/plugin-sdk/core";
+} from "@openclaw/plugin-sdk/core";
 export {
   applyWindowsSpawnProgramPolicy,
   materializeWindowsSpawnProgram,
   resolveWindowsSpawnProgramCandidate,
-} from "quantclaw/plugin-sdk/windows-spawn";
+} from "@openclaw/plugin-sdk/windows-spawn";

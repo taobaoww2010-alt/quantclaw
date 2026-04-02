@@ -3,24 +3,24 @@ import { createServer } from "node:http";
 import type { IncomingMessage } from "node:http";
 import net from "node:net";
 import * as grammy from "grammy";
-import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
-import { isDiagnosticsEnabled } from "quantclaw/plugin-sdk/diagnostic-runtime";
-import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
-import { defaultRuntime } from "quantclaw/plugin-sdk/runtime-env";
-import { formatErrorMessage } from "quantclaw/plugin-sdk/ssrf-runtime";
+import type { QuantClawConfig } from "@openclaw/plugin-sdk/config-runtime";
+import { isDiagnosticsEnabled } from "@openclaw/plugin-sdk/diagnostic-runtime";
+import type { RuntimeEnv } from "@openclaw/plugin-sdk/runtime-env";
+import { defaultRuntime } from "@openclaw/plugin-sdk/runtime-env";
+import { formatErrorMessage } from "@openclaw/plugin-sdk/ssrf-runtime";
 import {
   logWebhookError,
   logWebhookProcessed,
   logWebhookReceived,
   startDiagnosticHeartbeat,
   stopDiagnosticHeartbeat,
-} from "quantclaw/plugin-sdk/text-runtime";
+} from "@openclaw/plugin-sdk/text-runtime";
 import {
   applyBasicWebhookRequestGuards,
   createFixedWindowRateLimiter,
   WEBHOOK_RATE_LIMIT_DEFAULTS,
-} from "quantclaw/plugin-sdk/webhook-ingress";
-import { readJsonBodyWithLimit } from "quantclaw/plugin-sdk/webhook-request-guards";
+} from "@openclaw/plugin-sdk/webhook-ingress";
+import { readJsonBodyWithLimit } from "@openclaw/plugin-sdk/webhook-request-guards";
 import { resolveTelegramAllowedUpdates } from "./allowed-updates.js";
 import { withTelegramApiErrorLogging } from "./api-logging.js";
 import { createTelegramBot } from "./bot.js";

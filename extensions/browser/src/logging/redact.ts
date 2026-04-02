@@ -1,1 +1,1 @@
-export { redactSensitiveText } from "quantclaw/plugin-sdk/browser-support";
+export { redactSensitiveText } from "@openclaw/plugin-sdk/browser-support";

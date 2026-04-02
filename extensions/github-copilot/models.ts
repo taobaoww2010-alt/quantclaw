@@ -1,8 +1,8 @@
 import type {
   ProviderResolveDynamicModelContext,
   ProviderRuntimeModel,
-} from "quantclaw/plugin-sdk/core";
-import { normalizeModelCompat } from "quantclaw/plugin-sdk/provider-model-shared";
+} from "@openclaw/plugin-sdk/core";
+import { normalizeModelCompat } from "@openclaw/plugin-sdk/provider-model-shared";
 
 export const PROVIDER_ID = "github-copilot";
 const CODEX_GPT_54_MODEL_ID = "gpt-5.4";
