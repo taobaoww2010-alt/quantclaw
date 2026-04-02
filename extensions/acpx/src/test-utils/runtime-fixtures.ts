@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import { chmod, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { resolvePreferredOpenClawTmpDir } from "openclaw/plugin-sdk/temp-path";
+import { resolvePreferredQuantClawTmpDir } from "quantclaw/plugin-sdk/temp-path";
 import type { ResolvedAcpxPluginConfig } from "../config.js";
 import { ACPX_PINNED_VERSION } from "../config.js";
 import { AcpxRuntime } from "../runtime.js";
@@ -23,7 +23,7 @@ const fs = require("node:fs");
 (async () => {
 const args = process.argv.slice(2);
 const logPath = process.env.MOCK_ACPX_LOG;
-const openclawShell = process.env.OPENCLAW_SHELL || "";
+const quantclawShell = process.env.OPENCLAW_SHELL || "";
 const writeLog = (entry) => {
   if (!logPath) return;
   fs.appendFileSync(logPath, JSON.stringify(entry) + "\n");
@@ -229,7 +229,7 @@ if (command === "prompt") {
     args,
     sessionName: sessionFromOption,
     stdinText,
-    openclawShell,
+    quantclawShell,
     openaiApiKey: process.env.OPENAI_API_KEY || "",
     githubToken: process.env.GITHUB_TOKEN || "",
   });
@@ -391,7 +391,7 @@ async function ensureMockCliScriptPath(): Promise<string> {
   }
   sharedMockCliScriptPath = (async () => {
     const dir = await mkdtemp(
-      path.join(resolvePreferredOpenClawTmpDir(), "openclaw-acpx-runtime-test-"),
+      path.join(resolvePreferredQuantClawTmpDir(), "quantclaw-acpx-runtime-test-"),
     );
     tempDirs.push(dir);
     const scriptPath = path.join(dir, "mock-acpx.cjs");

@@ -59,7 +59,7 @@ type CliOptions = {
 const DEFAULT_RUNS = 5;
 const DEFAULT_WARMUP = 1;
 const DEFAULT_TIMEOUT_MS = 30_000;
-const DEFAULT_ENTRY = "openclaw.mjs";
+const DEFAULT_ENTRY = "quantclaw.mjs";
 const MAX_RSS_MARKER = "__OPENCLAW_MAX_RSS_KB__=";
 
 const COMMAND_CASES: readonly CommandCase[] = [
@@ -425,7 +425,7 @@ function parseOptions(): CliOptions {
 }
 
 function printUsage(): void {
-  console.log(`OpenClaw CLI benchmark
+  console.log(`QuantClaw CLI benchmark
 
 Usage:
   pnpm tsx scripts/bench-cli-startup.ts [options]
@@ -433,7 +433,7 @@ Usage:
 Options:
   --preset <startup|real|all>  Command preset to run (default: startup)
   --case <id>                  Specific case id to run; repeatable
-  --entry <path>               Primary entry file (default: openclaw.mjs)
+  --entry <path>               Primary entry file (default: quantclaw.mjs)
   --entry-secondary <path>     Secondary entry file for avg delta comparison
   --runs <n>                   Measured runs per case (default: ${DEFAULT_RUNS})
   --warmup <n>                 Warmup runs per case (default: ${DEFAULT_WARMUP})
@@ -456,7 +456,7 @@ async function main(): Promise<void> {
   }
 
   const options = parseOptions();
-  const tmpDir = mkdtempSync(path.join(os.tmpdir(), "openclaw-cli-bench-"));
+  const tmpDir = mkdtempSync(path.join(os.tmpdir(), "quantclaw-cli-bench-"));
   const rssHookPath = buildRssHook(tmpDir);
   try {
     const primary = buildSuiteResult({

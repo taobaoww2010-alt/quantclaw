@@ -1,11 +1,11 @@
 import {
   definePluginEntry,
-  type OpenClawPluginApi,
+  type QuantClawPluginApi,
   type ProviderAuthContext,
   type ProviderAuthMethodNonInteractiveContext,
   type ProviderAuthResult,
   type ProviderDiscoveryContext,
-} from "openclaw/plugin-sdk/plugin-entry";
+} from "quantclaw/plugin-sdk/plugin-entry";
 import {
   buildOllamaProvider,
   configureOllamaNonInteractive,
@@ -34,7 +34,7 @@ export default definePluginEntry({
   id: "ollama",
   name: "Ollama Provider",
   description: "Bundled Ollama provider plugin",
-  register(api: OpenClawPluginApi) {
+  register(api: QuantClawPluginApi) {
     api.registerProvider({
       id: PROVIDER_ID,
       label: "Ollama",
@@ -179,8 +179,8 @@ export default definePluginEntry({
       },
       buildUnknownModelHint: () =>
         "Ollama requires authentication to be registered as a provider. " +
-        'Set OLLAMA_API_KEY="ollama-local" (any value works) or run "openclaw configure". ' +
-        "See: https://docs.openclaw.ai/providers/ollama",
+        'Set OLLAMA_API_KEY="ollama-local" (any value works) or run "quantclaw configure". ' +
+        "See: https://docs.quantclaw.ai/providers/ollama",
     });
   },
 });

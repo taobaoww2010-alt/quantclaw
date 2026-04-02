@@ -1,15 +1,15 @@
-import { buildDmGroupAccountAllowlistAdapter } from "openclaw/plugin-sdk/allowlist-config-edit";
-import { createPairingPrefixStripper } from "openclaw/plugin-sdk/channel-pairing";
+import { buildDmGroupAccountAllowlistAdapter } from "quantclaw/plugin-sdk/allowlist-config-edit";
+import { createPairingPrefixStripper } from "quantclaw/plugin-sdk/channel-pairing";
 import {
   attachChannelToResult,
   attachChannelToResults,
-} from "openclaw/plugin-sdk/channel-send-result";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
-import { createChatChannelPlugin } from "openclaw/plugin-sdk/core";
-import { resolveOutboundSendDep } from "openclaw/plugin-sdk/outbound-runtime";
-import { resolveTextChunkLimit } from "openclaw/plugin-sdk/reply-runtime";
-import { buildOutboundBaseSessionKey, type RoutePeer } from "openclaw/plugin-sdk/routing";
-import { createComputedAccountStatusAdapter } from "openclaw/plugin-sdk/status-helpers";
+} from "quantclaw/plugin-sdk/channel-send-result";
+import { resolveMarkdownTableMode } from "quantclaw/plugin-sdk/config-runtime";
+import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
+import { resolveOutboundSendDep } from "quantclaw/plugin-sdk/outbound-runtime";
+import { resolveTextChunkLimit } from "quantclaw/plugin-sdk/reply-runtime";
+import { buildOutboundBaseSessionKey, type RoutePeer } from "quantclaw/plugin-sdk/routing";
+import { createComputedAccountStatusAdapter } from "quantclaw/plugin-sdk/status-helpers";
 import { resolveSignalAccount, type ResolvedSignalAccount } from "./accounts.js";
 import { signalApprovalAuth } from "./approval-auth.js";
 import { markdownToSignalTextChunks } from "./format.js";

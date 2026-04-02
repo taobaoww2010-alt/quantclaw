@@ -9,7 +9,7 @@ import {
 } from "./schema.hints.js";
 import { asSchemaObject, cloneSchema } from "./schema.shared.js";
 import { applyDerivedTags } from "./schema.tags.js";
-import { OpenClawSchema } from "./zod-schema.js";
+import { QuantClawSchema } from "./zod-schema.js";
 
 type ConfigSchema = Record<string, unknown>;
 
@@ -62,14 +62,14 @@ function computeBaseConfigSchemaStablePayload(): BaseConfigSchemaStablePayload {
       version: baseConfigSchemaStablePayload.version,
     };
   }
-  const schema = OpenClawSchema.toJSONSchema({
+  const schema = QuantClawSchema.toJSONSchema({
     target: "draft-07",
     unrepresentable: "any",
   });
   schema.title = "☯️ QuantClawConfig";
-  const baseHints = mapSensitivePaths(OpenClawSchema, "", buildBaseHints());
+  const baseHints = mapSensitivePaths(QuantClawSchema, "", buildBaseHints());
   const sensitiveUrlPaths = collectMatchingSchemaPaths(
-    OpenClawSchema,
+    QuantClawSchema,
     "",
     isSensitiveUrlConfigPath,
   );

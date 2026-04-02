@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/openrouter-provider",
+  "name": "@quantclaw/openrouter-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw OpenRouter provider plugin",
+  "description": "QuantClaw OpenRouter provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

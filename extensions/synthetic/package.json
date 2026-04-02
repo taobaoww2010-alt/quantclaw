@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/synthetic-provider",
+  "name": "@quantclaw/synthetic-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Synthetic provider plugin",
+  "description": "QuantClaw Synthetic provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

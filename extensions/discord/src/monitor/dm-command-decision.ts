@@ -1,5 +1,5 @@
-import { createChannelPairingChallengeIssuer } from "openclaw/plugin-sdk/channel-pairing";
-import { upsertChannelPairingRequest } from "openclaw/plugin-sdk/conversation-runtime";
+import { createChannelPairingChallengeIssuer } from "quantclaw/plugin-sdk/channel-pairing";
+import { upsertChannelPairingRequest } from "quantclaw/plugin-sdk/conversation-runtime";
 import type { DiscordDmCommandAccess } from "./dm-command-auth.js";
 
 export async function handleDiscordDmCommandDecision(params: {

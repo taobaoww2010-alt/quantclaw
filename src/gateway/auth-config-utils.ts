@@ -1,8 +1,8 @@
-import type { GatewayAuthConfig, OpenClawConfig } from "../config/config.js";
+import type { GatewayAuthConfig, QuantClawConfig } from "../config/config.js";
 import { resolveSecretInputRef } from "../config/types.secrets.js";
 import { resolveRequiredConfiguredSecretRefInputString } from "./resolve-configured-secret-input-string.js";
 
-export function withGatewayAuthPassword(cfg: OpenClawConfig, password: string): OpenClawConfig {
+export function withGatewayAuthPassword(cfg: QuantClawConfig, password: string): QuantClawConfig {
   return {
     ...cfg,
     gateway: {
@@ -33,12 +33,12 @@ function shouldResolveGatewayPasswordSecretRef(params: {
 }
 
 export async function resolveGatewayPasswordSecretRef(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   env: NodeJS.ProcessEnv;
   mode?: GatewayAuthConfig["mode"];
   hasPasswordCandidate: boolean;
   hasTokenCandidate: boolean;
-}): Promise<OpenClawConfig> {
+}): Promise<QuantClawConfig> {
   const authPassword = params.cfg.gateway?.auth?.password;
   const { ref } = resolveSecretInputRef({
     value: authPassword,

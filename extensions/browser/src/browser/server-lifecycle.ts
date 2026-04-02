@@ -1,4 +1,4 @@
-import { stopOpenClawChrome } from "./chrome.js";
+import { stopQuantClawChrome } from "./chrome.js";
 import type { ResolvedBrowserConfig } from "./config.js";
 import {
   type BrowserServerState,
@@ -32,7 +32,7 @@ export async function stopKnownBrowserProfiles(params: {
       try {
         const runtime = current.profiles.get(name);
         if (runtime?.running) {
-          await stopOpenClawChrome(runtime.running);
+          await stopQuantClawChrome(runtime.running);
           runtime.running = null;
           continue;
         }
@@ -42,6 +42,6 @@ export async function stopKnownBrowserProfiles(params: {
       }
     }
   } catch (err) {
-    params.onWarn(`openclaw browser stop failed: ${String(err)}`);
+    params.onWarn(`quantclaw browser stop failed: ${String(err)}`);
   }
 }

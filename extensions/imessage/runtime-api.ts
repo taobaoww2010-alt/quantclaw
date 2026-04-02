@@ -1,25 +1,25 @@
-import type { OpenClawConfig as RuntimeApiOpenClawConfig } from "openclaw/plugin-sdk/core";
+import type { QuantClawConfig as RuntimeApiQuantClawConfig } from "quantclaw/plugin-sdk/core";
 
 export {
   DEFAULT_ACCOUNT_ID,
   buildChannelConfigSchema,
   getChatChannelMeta,
   type ChannelPlugin,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/core";
-export { PAIRING_APPROVED_MESSAGE } from "openclaw/plugin-sdk/channel-status";
+  type QuantClawConfig,
+} from "quantclaw/plugin-sdk/core";
+export { PAIRING_APPROVED_MESSAGE } from "quantclaw/plugin-sdk/channel-status";
 export {
   buildComputedAccountStatusSnapshot,
   collectStatusIssuesFromLastError,
-} from "openclaw/plugin-sdk/status-helpers";
+} from "quantclaw/plugin-sdk/status-helpers";
 export {
   formatTrimmedAllowFromEntries,
   resolveIMessageConfigAllowFrom,
   resolveIMessageConfigDefaultTo,
-} from "openclaw/plugin-sdk/channel-config-helpers";
+} from "quantclaw/plugin-sdk/channel-config-helpers";
 export { looksLikeIMessageTargetId, normalizeIMessageMessagingTarget } from "./src/normalize.js";
-export { resolveChannelMediaMaxBytes } from "openclaw/plugin-sdk/media-runtime";
-export { IMessageConfigSchema } from "openclaw/plugin-sdk/channel-config-schema";
+export { resolveChannelMediaMaxBytes } from "quantclaw/plugin-sdk/media-runtime";
+export { IMessageConfigSchema } from "quantclaw/plugin-sdk/channel-config-schema";
 export {
   resolveIMessageGroupRequireMention,
   resolveIMessageGroupToolPolicy,
@@ -32,7 +32,7 @@ export type { IMessageProbe } from "./src/probe.js";
 export { sendMessageIMessage } from "./src/send.js";
 
 export type IMessageAccountConfig = Omit<
-  NonNullable<NonNullable<RuntimeApiOpenClawConfig["channels"]>["imessage"]>,
+  NonNullable<NonNullable<RuntimeApiQuantClawConfig["channels"]>["imessage"]>,
   "accounts" | "defaultAccount"
 >;
 

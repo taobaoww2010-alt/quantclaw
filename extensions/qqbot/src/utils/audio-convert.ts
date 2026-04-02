@@ -1,7 +1,7 @@
 import { execFile } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
 import { decode, encode, isSilk } from "silk-wasm";
 import { debugLog, debugError, debugWarn } from "./debug-log.js";
 import { detectFfmpeg, isWindows } from "./platform.js";
@@ -252,7 +252,7 @@ export function resolveTTSConfig(cfg: Record<string, unknown>): TTSConfig | null
  * This does NOT guarantee a specific provider is registered/configured – it
  * only checks that TTS is not explicitly (or implicitly) disabled.
  */
-export function isGlobalTTSAvailable(cfg: OpenClawConfig): boolean {
+export function isGlobalTTSAvailable(cfg: QuantClawConfig): boolean {
   const msgTts = cfg.messages?.tts;
   if (!msgTts) return false;
   // Framework canonical field takes precedence.

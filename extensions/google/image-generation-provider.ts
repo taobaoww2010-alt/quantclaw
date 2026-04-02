@@ -1,10 +1,10 @@
-import type { ImageGenerationProvider } from "openclaw/plugin-sdk/image-generation";
-import { resolveApiKeyForProvider } from "openclaw/plugin-sdk/provider-auth-runtime";
+import type { ImageGenerationProvider } from "quantclaw/plugin-sdk/image-generation";
+import { resolveApiKeyForProvider } from "quantclaw/plugin-sdk/provider-auth-runtime";
 import {
   assertOkOrThrowHttpError,
   normalizeBaseUrl,
   postJsonRequest,
-} from "openclaw/plugin-sdk/provider-http";
+} from "quantclaw/plugin-sdk/provider-http";
 import {
   DEFAULT_GOOGLE_API_BASE_URL,
   normalizeGoogleApiBaseUrl,

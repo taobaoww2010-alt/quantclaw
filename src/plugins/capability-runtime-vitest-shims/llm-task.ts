@@ -1,1 +1,1 @@
-export { resolvePreferredOpenClawTmpDir } from "../../infra/tmp-openclaw-dir.js";
+export { resolvePreferredQuantClawTmpDir } from "../../infra/tmp-quantclaw-dir.js";

@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/brave-plugin",
+  "name": "@quantclaw/brave-plugin",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Brave plugin",
+  "description": "QuantClaw Brave plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

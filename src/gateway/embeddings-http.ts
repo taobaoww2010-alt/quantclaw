@@ -238,7 +238,7 @@ export async function handleOpenAiEmbeddingsHttpRequest(
   if (requestModel !== OPENCLAW_MODEL_ID && !resolveAgentIdFromModel(requestModel, cfg)) {
     sendJson(res, 400, {
       error: {
-        message: "Invalid `model`. Use `openclaw` or `openclaw/<agentId>`.",
+        message: "Invalid `model`. Use `quantclaw` or `quantclaw/<agentId>`.",
         type: "invalid_request_error",
       },
     });
@@ -267,7 +267,7 @@ export async function handleOpenAiEmbeddingsHttpRequest(
   const agentDir = resolveAgentDir(cfg, agentId);
   const memorySearch = resolveMemorySearchConfig(cfg, agentId);
   const configuredProvider = memorySearch?.provider ?? "openai";
-  const overrideModel = getHeader(req, "x-openclaw-model")?.trim() || memorySearch?.model || "";
+  const overrideModel = getHeader(req, "x-quantclaw-model")?.trim() || memorySearch?.model || "";
   const target = resolveEmbeddingsTarget({ requestModel: overrideModel, configuredProvider });
   if ("errorMessage" in target) {
     sendJson(res, 400, {

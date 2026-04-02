@@ -3,7 +3,7 @@ import fs from "node:fs";
 import {
   hasOutboundReplyContent,
   resolveSendableOutboundReplyParts,
-} from "@openclaw/plugin-sdk/reply-payload";
+} from "@quantclaw/plugin-sdk/reply-payload";
 import { resolveBootstrapWarningSignaturesSeen } from "../../agents/bootstrap-budget.js";
 import { runCliAgent } from "../../agents/cli-runner.js";
 import { getCliSessionBinding } from "../../agents/cli-session.js";
@@ -524,7 +524,7 @@ export async function runAgentTurnWithFallback(params: {
                       // Serialize tool result delivery to preserve message ordering.
                       // Without this, concurrent tool callbacks race through typing signals
                       // and message sends, causing out-of-order delivery to the user.
-                      // See: https://github.com/openclaw/openclaw/issues/11044
+                      // See: https://github.com/quantclaw/quantclaw/issues/11044
                       let toolResultChain: Promise<void> = Promise.resolve();
                       return (payload: ReplyPayload) => {
                         toolResultChain = toolResultChain

@@ -1,16 +1,16 @@
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import { emptyPluginConfigSchema } from "../plugins/config-schema.js";
 import type {
   AnyAgentTool,
   MediaUnderstandingProviderPlugin,
-  OpenClawPluginApi,
-  OpenClawPluginCommandDefinition,
-  OpenClawPluginConfigSchema,
-  OpenClawPluginDefinition,
-  OpenClawPluginService,
-  OpenClawPluginServiceContext,
-  OpenClawPluginToolContext,
-  OpenClawPluginToolFactory,
+  QuantClawPluginApi,
+  QuantClawPluginCommandDefinition,
+  QuantClawPluginConfigSchema,
+  QuantClawPluginDefinition,
+  QuantClawPluginService,
+  QuantClawPluginServiceContext,
+  QuantClawPluginToolContext,
+  QuantClawPluginToolFactory,
   PluginInteractiveTelegramHandlerContext,
   PluginLogger,
   ProviderAugmentModelCatalogContext,
@@ -52,11 +52,11 @@ import type {
 export type {
   AnyAgentTool,
   MediaUnderstandingProviderPlugin,
-  OpenClawPluginApi,
-  OpenClawPluginToolContext,
-  OpenClawPluginToolFactory,
+  QuantClawPluginApi,
+  QuantClawPluginToolContext,
+  QuantClawPluginToolFactory,
   PluginCommandContext,
-  OpenClawPluginConfigSchema,
+  QuantClawPluginConfigSchema,
   ProviderDiscoveryContext,
   ProviderCatalogContext,
   ProviderCatalogResult,
@@ -85,19 +85,19 @@ export type {
   SpeechProviderPlugin,
   ProviderThinkingPolicyContext,
   ProviderWrapStreamFnContext,
-  OpenClawPluginService,
-  OpenClawPluginServiceContext,
+  QuantClawPluginService,
+  QuantClawPluginServiceContext,
   ProviderAuthContext,
   ProviderAuthDoctorHintContext,
   ProviderAuthMethodNonInteractiveContext,
   ProviderAuthMethod,
   ProviderAuthResult,
-  OpenClawPluginCommandDefinition,
-  OpenClawPluginDefinition,
+  QuantClawPluginCommandDefinition,
+  QuantClawPluginDefinition,
   PluginLogger,
   PluginInteractiveTelegramHandlerContext,
 };
-export type { OpenClawConfig };
+export type { QuantClawConfig };
 
 export { emptyPluginConfigSchema } from "../plugins/config-schema.js";
 
@@ -106,24 +106,24 @@ type DefinePluginEntryOptions = {
   id: string;
   name: string;
   description: string;
-  kind?: OpenClawPluginDefinition["kind"];
-  configSchema?: OpenClawPluginConfigSchema | (() => OpenClawPluginConfigSchema);
-  register: (api: OpenClawPluginApi) => void;
+  kind?: QuantClawPluginDefinition["kind"];
+  configSchema?: QuantClawPluginConfigSchema | (() => QuantClawPluginConfigSchema);
+  register: (api: QuantClawPluginApi) => void;
 };
 
-/** Normalized object shape that OpenClaw loads from a plugin entry module. */
+/** Normalized object shape that QuantClaw loads from a plugin entry module. */
 type DefinedPluginEntry = {
   id: string;
   name: string;
   description: string;
-  configSchema: OpenClawPluginConfigSchema;
-  register: NonNullable<OpenClawPluginDefinition["register"]>;
-} & Pick<OpenClawPluginDefinition, "kind">;
+  configSchema: QuantClawPluginConfigSchema;
+  register: NonNullable<QuantClawPluginDefinition["register"]>;
+} & Pick<QuantClawPluginDefinition, "kind">;
 
 /** Resolve either a concrete config schema or a lazy schema factory. */
 function resolvePluginConfigSchema(
   configSchema: DefinePluginEntryOptions["configSchema"] = emptyPluginConfigSchema,
-): OpenClawPluginConfigSchema {
+): QuantClawPluginConfigSchema {
   return typeof configSchema === "function" ? configSchema() : configSchema;
 }
 
@@ -132,7 +132,7 @@ function resolvePluginConfigSchema(
  *
  * Use this for provider, tool, command, service, memory, and context-engine
  * plugins. Channel plugins should use `defineChannelPluginEntry(...)` from
- * `openclaw/plugin-sdk/core` so they inherit the channel capability wiring.
+ * `quantclaw/plugin-sdk/core` so they inherit the channel capability wiring.
  */
 export function definePluginEntry({
   id,

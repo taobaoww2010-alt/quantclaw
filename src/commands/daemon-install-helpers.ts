@@ -4,7 +4,7 @@ import {
 } from "../agents/auth-profiles.js";
 import { formatCliCommand } from "../cli/command-format.js";
 import { collectDurableServiceEnvVars } from "../config/state-dir-dotenv.js";
-import type { OpenClawConfig } from "../config/types.js";
+import type { QuantClawConfig } from "../config/types.js";
 import { resolveGatewayLaunchAgentLabel } from "../daemon/constants.js";
 import { resolveGatewayProgramArguments } from "../daemon/program-args.js";
 import { buildServiceEnvironment } from "../daemon/service-env.js";
@@ -70,7 +70,7 @@ function collectAuthProfileServiceEnvVars(params: {
 
 function buildGatewayInstallEnvironment(params: {
   env: Record<string, string | undefined>;
-  config?: OpenClawConfig;
+  config?: QuantClawConfig;
   authStore?: AuthProfileStore;
   warn?: DaemonInstallWarnFn;
   serviceEnvironment: Record<string, string | undefined>;
@@ -98,7 +98,7 @@ export async function buildGatewayInstallPlan(params: {
   nodePath?: string;
   warn?: DaemonInstallWarnFn;
   /** Full config to extract env vars from (env vars + inline env keys). */
-  config?: OpenClawConfig;
+  config?: QuantClawConfig;
   authStore?: AuthProfileStore;
 }): Promise<GatewayInstallPlan> {
   const { devMode, nodePath } = await resolveDaemonInstallRuntimeInputs({
@@ -125,7 +125,7 @@ export async function buildGatewayInstallPlan(params: {
     port: params.port,
     launchdLabel:
       process.platform === "darwin"
-        ? resolveGatewayLaunchAgentLabel(params.env.OPENCLAW_PROFILE)
+        ? resolveGatewayLaunchAgentLabel(params.env.QUANTCLAW_PROFILE)
         : undefined,
     // Keep npm/pnpm available to the service when the selected daemon node comes from
     // a version-manager bin directory that isn't covered by static PATH guesses.
@@ -133,10 +133,10 @@ export async function buildGatewayInstallPlan(params: {
   });
 
   // Merge env sources into the service environment in ascending priority:
-  //   1. ~/.openclaw/.env file vars  (lowest — user secrets / fallback keys)
-  //   2. Config env vars              (openclaw.json env.vars + inline keys)
+  //   1. ~/.quantclaw/.env file vars  (lowest — user secrets / fallback keys)
+  //   2. Config env vars              (quantclaw.json env.vars + inline keys)
   //   3. Auth-profile env refs        (credential store → env var lookups)
-  //   4. Service environment          (HOME, PATH, OPENCLAW_* — highest)
+  //   4. Service environment          (HOME, PATH, QUANTCLAW_* — highest)
   return {
     programArguments,
     workingDirectory,

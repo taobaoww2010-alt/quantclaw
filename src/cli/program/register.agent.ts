@@ -223,13 +223,13 @@ ${formatHelpExamples([
     'quantclaw agents set-identity --agent main --name "☯️ QuantClaw" --emoji "🦞"',
     "Set name + emoji.",
   ],
-  ["quantclaw agents set-identity --agent main --avatar avatars/openclaw.png", "Set avatar path."],
+  ["quantclaw agents set-identity --agent main --avatar avatars/quantclaw.png", "Set avatar path."],
   [
-    "quantclaw agents set-identity --workspace ~/.openclaw/workspace --from-identity",
+    "quantclaw agents set-identity --workspace ~/.quantclaw/workspace --from-identity",
     "Load from IDENTITY.md.",
   ],
   [
-    "quantclaw agents set-identity --identity-file ~/.openclaw/workspace/IDENTITY.md --agent main",
+    "quantclaw agents set-identity --identity-file ~/.quantclaw/workspace/IDENTITY.md --agent main",
     "Use a specific IDENTITY.md.",
   ],
 ])}

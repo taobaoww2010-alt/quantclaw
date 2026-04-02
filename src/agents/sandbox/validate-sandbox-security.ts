@@ -19,7 +19,7 @@ import { getBlockedNetworkModeReason } from "./network-mode.js";
 
 // Static portion of the targeted denylist: host paths that should never be exposed
 // inside sandbox containers. The full runtime set also includes sensitive home
-// subdirectories and the resolved OpenClaw state directory.
+// subdirectories and the resolved QuantClaw state directory.
 export const BLOCKED_HOST_PATHS = [
   "/etc",
   "/private/etc",
@@ -41,7 +41,7 @@ export const BLOCKED_HOST_PATHS = [
   "/private/var/log",
 ];
 
-const BLOCKED_HOME_SUBPATHS = [".aws", ".config", ".kube", ".openclaw", ".ssh"] as const;
+const BLOCKED_HOME_SUBPATHS = [".aws", ".config", ".kube", ".quantclaw", ".ssh"] as const;
 let cachedBlockedHostPaths:
   | {
       key: string;
@@ -285,7 +285,7 @@ function formatBindBlockedError(params: { bind: string; reason: BlockedBindReaso
   if (params.reason.kind === "reserved_target") {
     return new Error(
       `Sandbox security: bind mount "${params.bind}" targets reserved container path "${params.reason.reservedPath}" ` +
-        `(resolved target: "${params.reason.targetPath}"). This can shadow OpenClaw sandbox mounts. ` +
+        `(resolved target: "${params.reason.targetPath}"). This can shadow QuantClaw sandbox mounts. ` +
         "Use a dangerous override only when you fully trust this runtime.",
     );
   }

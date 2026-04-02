@@ -1,4 +1,4 @@
-import { missingTargetError } from "openclaw/plugin-sdk/channel-feedback";
+import { missingTargetError } from "quantclaw/plugin-sdk/channel-feedback";
 import { isWhatsAppGroupJid, normalizeWhatsAppTarget } from "./normalize-target.js";
 
 export type WhatsAppOutboundTargetResolution =

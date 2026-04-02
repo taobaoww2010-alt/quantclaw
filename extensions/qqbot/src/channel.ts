@@ -1,11 +1,11 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { ChannelPlugin } from "openclaw/plugin-sdk/core";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { ChannelPlugin } from "quantclaw/plugin-sdk/core";
 import {
   applyAccountNameToChannelSection,
   deleteAccountFromConfigSection,
   setAccountEnabledInConfigSection,
-} from "openclaw/plugin-sdk/core";
-import { hasConfiguredSecretInput } from "openclaw/plugin-sdk/secret-input";
+} from "quantclaw/plugin-sdk/core";
+import { hasConfiguredSecretInput } from "quantclaw/plugin-sdk/secret-input";
 import { initApiConfig } from "./api.js";
 import { qqbotChannelConfigSchema } from "./config-schema.js";
 import {
@@ -253,7 +253,7 @@ export const qqbotPlugin: ChannelPlugin<ResolvedQQBotAccount> = {
       });
     },
     logoutAccount: async ({ accountId, cfg }) => {
-      const nextCfg = { ...cfg } as OpenClawConfig;
+      const nextCfg = { ...cfg } as QuantClawConfig;
       const nextQQBot = cfg.channels?.qqbot ? { ...cfg.channels.qqbot } : undefined;
       let cleared = false;
       let changed = false;
@@ -296,7 +296,7 @@ export const qqbotPlugin: ChannelPlugin<ResolvedQQBotAccount> = {
         nextCfg.channels = { ...nextCfg.channels, qqbot: nextQQBot };
         const runtime = getQQBotRuntime();
         const configApi = runtime.config as {
-          writeConfigFile: (cfg: OpenClawConfig) => Promise<void>;
+          writeConfigFile: (cfg: QuantClawConfig) => Promise<void>;
         };
         await configApi.writeConfigFile(nextCfg);
       }

@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { resolveQuantClawPackageRoot } from "../infra/openclaw-root.js";
+import { resolveQuantClawPackageRoot } from "../infra/quantclaw-root.js";
 
 export async function resolveQuantClawDocsPath(params: {
   workspaceDir?: string;

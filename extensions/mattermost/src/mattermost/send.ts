@@ -1,5 +1,5 @@
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
-import { convertMarkdownTables } from "openclaw/plugin-sdk/text-runtime";
+import { resolveMarkdownTableMode } from "quantclaw/plugin-sdk/config-runtime";
+import { convertMarkdownTables } from "quantclaw/plugin-sdk/text-runtime";
 import { getMattermostRuntime } from "../runtime.js";
 import { resolveMattermostAccount } from "./accounts.js";
 import {
@@ -21,11 +21,11 @@ import {
   setInteractionSecret,
   type MattermostInteractiveButtonInput,
 } from "./interactions.js";
-import { loadOutboundMediaFromUrl, type OpenClawConfig } from "./runtime-api.js";
+import { loadOutboundMediaFromUrl, type QuantClawConfig } from "./runtime-api.js";
 import { isMattermostId, resolveMattermostOpaqueTarget } from "./target-resolution.js";
 
 export type MattermostSendOpts = {
-  cfg?: OpenClawConfig;
+  cfg?: QuantClawConfig;
   botToken?: string;
   baseUrl?: string;
   accountId?: string;
@@ -299,7 +299,7 @@ async function resolveTargetChannelId(params: ResolveTargetChannelIdParams): Pro
 }
 
 type MattermostSendContext = {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
   token: string;
   baseUrl: string;

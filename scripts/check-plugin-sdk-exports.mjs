@@ -98,9 +98,9 @@ if (!existsSync(generatedFacadeTypeMapDts)) {
   missing += 1;
 } else {
   const facadeTypeMapContent = readFileSync(generatedFacadeTypeMapDts, "utf-8");
-  if (facadeTypeMapContent.includes("@openclaw/")) {
+  if (facadeTypeMapContent.includes("@quantclaw/")) {
     console.error(
-      "INVALID GENERATED FACADE TYPE MAP DTS: dist/plugin-sdk/src/generated/plugin-sdk-facade-type-map.generated.d.ts leaks @openclaw/* imports",
+      "INVALID GENERATED FACADE TYPE MAP DTS: dist/plugin-sdk/src/generated/plugin-sdk-facade-type-map.generated.d.ts leaks @quantclaw/* imports",
     );
     missing += 1;
   }

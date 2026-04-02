@@ -1,6 +1,6 @@
 import type { ResolvedMattermostAccount } from "./accounts.js";
 import type { MattermostChannel } from "./client.js";
-import type { OpenClawConfig } from "./runtime-api.js";
+import type { QuantClawConfig } from "./runtime-api.js";
 import {
   evaluateSenderGroupAccessForPolicy,
   isDangerousNameMatchingEnabled,
@@ -108,7 +108,7 @@ export type MattermostCommandAuthDecision =
 
 export function authorizeMattermostCommandInvocation(params: {
   account: ResolvedMattermostAccount;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   senderId: string;
   senderName: string;
   channelId: string;

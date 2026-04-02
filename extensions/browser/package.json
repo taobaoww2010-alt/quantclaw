@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/browser-plugin",
+  "name": "@quantclaw/browser-plugin",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw browser tool plugin",
+  "description": "QuantClaw browser tool plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

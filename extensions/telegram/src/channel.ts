@@ -1,27 +1,27 @@
 import {
   buildDmGroupAccountAllowlistAdapter,
   createNestedAllowlistOverrideResolver,
-} from "openclaw/plugin-sdk/allowlist-config-edit";
-import { createPairingPrefixStripper } from "openclaw/plugin-sdk/channel-pairing";
-import { createAllowlistProviderRouteAllowlistWarningCollector } from "openclaw/plugin-sdk/channel-policy";
-import { attachChannelToResult } from "openclaw/plugin-sdk/channel-send-result";
-import { createChatChannelPlugin } from "openclaw/plugin-sdk/core";
-import { createChannelDirectoryAdapter } from "openclaw/plugin-sdk/directory-runtime";
+} from "quantclaw/plugin-sdk/allowlist-config-edit";
+import { createPairingPrefixStripper } from "quantclaw/plugin-sdk/channel-pairing";
+import { createAllowlistProviderRouteAllowlistWarningCollector } from "quantclaw/plugin-sdk/channel-policy";
+import { attachChannelToResult } from "quantclaw/plugin-sdk/channel-send-result";
+import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
+import { createChannelDirectoryAdapter } from "quantclaw/plugin-sdk/directory-runtime";
 import {
   resolveOutboundSendDep,
   type OutboundSendDeps,
-} from "openclaw/plugin-sdk/outbound-runtime";
+} from "quantclaw/plugin-sdk/outbound-runtime";
 import {
   buildOutboundBaseSessionKey,
   normalizeMessageChannel,
   normalizeOutboundThreadId,
   resolveThreadSessionKeys,
   type RoutePeer,
-} from "openclaw/plugin-sdk/routing";
+} from "quantclaw/plugin-sdk/routing";
 import {
   createComputedAccountStatusAdapter,
   createDefaultChannelRuntimeState,
-} from "openclaw/plugin-sdk/status-helpers";
+} from "quantclaw/plugin-sdk/status-helpers";
 import {
   buildTokenChannelStatusSummary,
   clearAccountEntryFields,
@@ -31,8 +31,8 @@ import {
   projectCredentialSnapshotFields,
   resolveConfiguredFromCredentialStatuses,
   type ChannelMessageActionAdapter,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/telegram-core";
+  type QuantClawConfig,
+} from "quantclaw/plugin-sdk/telegram-core";
 import {
   listTelegramAccountIds,
   resolveTelegramAccount,
@@ -143,7 +143,7 @@ function resolveTelegramTokenHelper() {
 }
 
 function buildTelegramSendOptions(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   mediaUrl?: string | null;
   mediaLocalRoots?: readonly string[] | null;
   accountId?: string | null;
@@ -170,7 +170,7 @@ function buildTelegramSendOptions(params: {
 }
 
 async function sendTelegramOutbound(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   to: string;
   text: string;
   mediaUrl?: string | null;
@@ -298,7 +298,7 @@ function parseTelegramExplicitTarget(raw: string) {
 }
 
 function buildTelegramBaseSessionKey(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   agentId: string;
   accountId?: string | null;
   peer: RoutePeer;
@@ -307,7 +307,7 @@ function buildTelegramBaseSessionKey(params: {
 }
 
 function resolveTelegramOutboundSessionRoute(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   agentId: string;
   accountId?: string | null;
   target: string;
@@ -358,7 +358,7 @@ function resolveTelegramOutboundSessionRoute(params: {
 }
 
 async function resolveTelegramTargets(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   inputs: string[];
   kind: "user" | "group";
@@ -744,7 +744,7 @@ export const telegramPlugin = createChatChannelPlugin({
       },
       logoutAccount: async ({ accountId, cfg }) => {
         const envToken = process.env.TELEGRAM_BOT_TOKEN?.trim() ?? "";
-        const nextCfg = { ...cfg } as OpenClawConfig;
+        const nextCfg = { ...cfg } as QuantClawConfig;
         const nextTelegram = cfg.channels?.telegram ? { ...cfg.channels.telegram } : undefined;
         let cleared = false;
         let changed = false;

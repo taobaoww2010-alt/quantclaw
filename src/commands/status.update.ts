@@ -1,5 +1,5 @@
 import { formatCliCommand } from "../cli/command-format.js";
-import { resolveQuantClawPackageRoot } from "../infra/openclaw-root.js";
+import { resolveQuantClawPackageRoot } from "../infra/quantclaw-root.js";
 import {
   checkUpdateStatus,
   compareSemverStrings,

@@ -10,7 +10,7 @@ import { formatHelpExamples } from "../help-format.js";
 export function registerBackupCommand(program: Command) {
   const backup = program
     .command("backup")
-    .description("Create and verify local backup archives for OpenClaw state")
+    .description("Create and verify local backup archives for QuantClaw state")
     .addHelpText(
       "after",
       () =>
@@ -72,7 +72,7 @@ export function registerBackupCommand(program: Command) {
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
           [
-            "quantclaw backup verify ./2026-03-09T00-00-00.000Z-openclaw-backup.tar.gz",
+            "quantclaw backup verify ./2026-03-09T00-00-00.000Z-quantclaw-backup.tar.gz",
             "Check that the archive structure and manifest are intact.",
           ],
           [

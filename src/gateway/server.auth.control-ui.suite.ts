@@ -369,7 +369,7 @@ export function registerControlUiAndPairingSuite(): void {
           clientMode: GATEWAY_CLIENT_MODES.WEBCHAT,
           identityPath: path.join(
             os.tmpdir(),
-            `openclaw-controlui-device-${process.pid}-${process.env.VITEST_POOL_ID ?? "0"}-${controlUiIdentityPathSeq++}.json`,
+            `quantclaw-controlui-device-${process.pid}-${process.env.VITEST_POOL_ID ?? "0"}-${controlUiIdentityPathSeq++}.json`,
           ),
           nonce: String(nonce),
         });

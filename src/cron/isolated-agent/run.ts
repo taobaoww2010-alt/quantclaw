@@ -32,7 +32,7 @@ import {
   supportsXHighThinking,
 } from "../../auto-reply/thinking.js";
 import type { CliDeps } from "../../cli/outbound-send-deps.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { QuantClawConfig } from "../../config/config.js";
 import {
   resolveSessionTranscriptPath,
   setSessionRuntimeModel,
@@ -114,7 +114,7 @@ function resolveCronToolPolicy(params: {
 }
 
 async function resolveCronDeliveryContext(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   job: CronJob;
   agentId: string;
   deliveryContract: IsolatedDeliveryContract;
@@ -170,7 +170,7 @@ function appendCronDeliveryInstruction(params: {
 }
 
 export async function runCronIsolatedAgentTurn(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   deps: CliDeps;
   job: CronJob;
   message: string;
@@ -189,7 +189,7 @@ export async function runCronIsolatedAgentTurn(params: {
       ? reason.trim()
       : "cron: job execution timed out";
   };
-  const isFastTestEnv = process.env.OPENCLAW_TEST_FAST === "1";
+  const isFastTestEnv = process.env.QUANTCLAW_TEST_FAST === "1";
   const deliveryContract = params.deliveryContract ?? "cron-owned";
   const defaultAgentId = resolveDefaultAgentId(params.cfg);
   const requestedAgentId =
@@ -204,13 +204,13 @@ export async function runCronIsolatedAgentTurn(params: {
     : undefined;
   // Use the requested agentId even when there is no explicit agent config entry.
   // This ensures auth-profiles, workspace, and agentDir all resolve to the
-  // correct per-agent paths (e.g. ~/.openclaw/agents/<agentId>/agent/).
+  // correct per-agent paths (e.g. ~/.quantclaw/agents/<agentId>/agent/).
   const agentId = normalizedRequested ?? defaultAgentId;
   const agentCfg = buildCronAgentDefaultsConfig({
     defaults: params.cfg.agents?.defaults,
     agentConfigOverride,
   });
-  const cfgWithAgentDefaults: OpenClawConfig = {
+  const cfgWithAgentDefaults: QuantClawConfig = {
     ...params.cfg,
     agents: Object.assign({}, params.cfg.agents, { defaults: agentCfg }),
   };
@@ -499,7 +499,7 @@ export async function runCronIsolatedAgentTurn(params: {
             // Passing an existing ID activates the resume watchdog profile
             // (noOutputTimeoutRatio 0.3, maxMs 180 s) instead of the fresh profile
             // (ratio 0.8, maxMs 600 s), causing jobs to time out at roughly 1/3 of
-            // the configured timeoutSeconds. See: https://github.com/openclaw/openclaw/issues/29774
+            // the configured timeoutSeconds. See: https://github.com/quantclaw/quantclaw/issues/29774
             const cliSessionId = cronSession.isNewSession
               ? undefined
               : getCliSessionId(cronSession.sessionEntry, providerOverride);
@@ -534,7 +534,7 @@ export async function runCronIsolatedAgentTurn(params: {
             // explicit subagent late-binding as other gateway-owned runners.
             allowGatewaySubagentBinding: true,
             // Cron jobs are trusted local automation, so isolated runs should
-            // inherit owner-only tooling like local `openclaw agent` runs.
+            // inherit owner-only tooling like local `quantclaw agent` runs.
             senderIsOwner: true,
             messageChannel,
             agentAccountId: resolvedDelivery.accountId,
@@ -590,7 +590,7 @@ export async function runCronIsolatedAgentTurn(params: {
     // restart with the model requested by the error — mirroring the retry logic
     // in the main agent runner (agent-runner-execution.ts). Without this, cron
     // jobs that specify a model different from the agent primary always fail.
-    // See: https://github.com/openclaw/openclaw/issues/57206
+    // See: https://github.com/quantclaw/quantclaw/issues/57206
     while (true) {
       try {
         await runPrompt(commandBody);

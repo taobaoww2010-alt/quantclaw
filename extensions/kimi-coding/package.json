@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/kimi-provider",
+  "name": "@quantclaw/kimi-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Kimi provider plugin",
+  "description": "QuantClaw Kimi provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

@@ -4,12 +4,12 @@ import {
   patchChannelConfigForAccount,
   promptResolvedAllowFrom,
   splitSetupEntries,
-  type OpenClawConfig,
+  type QuantClawConfig,
   type WizardPrompter,
-} from "openclaw/plugin-sdk/setup";
-import type { ChannelSetupAdapter, ChannelSetupDmPolicy } from "openclaw/plugin-sdk/setup";
-import { formatCliCommand, formatDocsLink } from "openclaw/plugin-sdk/setup-tools";
-import type { TelegramNetworkConfig } from "openclaw/plugin-sdk/telegram-core";
+} from "quantclaw/plugin-sdk/setup";
+import type { ChannelSetupAdapter, ChannelSetupDmPolicy } from "quantclaw/plugin-sdk/setup";
+import { formatCliCommand, formatDocsLink } from "quantclaw/plugin-sdk/setup-tools";
+import type { TelegramNetworkConfig } from "quantclaw/plugin-sdk/telegram-core";
 import { resolveDefaultTelegramAccountId, resolveTelegramAccount } from "./accounts.js";
 import { lookupTelegramChatId } from "./api-fetch.js";
 
@@ -21,15 +21,15 @@ export const TELEGRAM_TOKEN_HELP_LINES = [
   "3) Copy the token (looks like 123456:ABC...)",
   "Tip: you can also set TELEGRAM_BOT_TOKEN in your env.",
   `Docs: ${formatDocsLink("/telegram")}`,
-  "Website: https://openclaw.ai",
+  "Website: https://quantclaw.ai",
 ];
 
 export const TELEGRAM_USER_ID_HELP_LINES = [
-  `1) DM your bot, then read from.id in \`${formatCliCommand("openclaw logs --follow")}\` (safest)`,
+  `1) DM your bot, then read from.id in \`${formatCliCommand("quantclaw logs --follow")}\` (safest)`,
   "2) Or call https://api.telegram.org/bot<bot_token>/getUpdates and read message.from.id",
   "3) Third-party: DM @userinfobot or @getidsbot",
   `Docs: ${formatDocsLink("/telegram")}`,
-  "Website: https://openclaw.ai",
+  "Website: https://quantclaw.ai",
 ];
 
 export function normalizeTelegramAllowFromInput(raw: string): string {
@@ -75,7 +75,7 @@ export async function resolveTelegramAllowFromEntries(params: {
 }
 
 export async function promptTelegramAllowFromForAccount(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   prompter: WizardPrompter;
   accountId?: string;
 }) {

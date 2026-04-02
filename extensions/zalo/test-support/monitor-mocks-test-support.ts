@@ -1,4 +1,4 @@
-import type { OpenClawConfig, PluginRuntime } from "openclaw/plugin-sdk/zalo";
+import type { QuantClawConfig, PluginRuntime } from "quantclaw/plugin-sdk/zalo";
 import { vi } from "vitest";
 import {
   createEmptyPluginRegistry,
@@ -105,7 +105,7 @@ export async function loadLifecycleMonitorModule(): Promise<MonitorModule> {
 
 export async function startWebhookLifecycleMonitor(params: {
   account: ResolvedZaloAccount;
-  config: OpenClawConfig;
+  config: QuantClawConfig;
   token?: string;
   webhookUrl?: string;
   webhookSecret?: string;

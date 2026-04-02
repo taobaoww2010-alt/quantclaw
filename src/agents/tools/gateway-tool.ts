@@ -1,6 +1,6 @@
 import { Type } from "@sinclair/typebox";
 import { isRestartEnabled } from "../../config/commands.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { QuantClawConfig } from "../../config/config.js";
 import { parseConfigJson5, resolveConfigSnapshotHash } from "../../config/io.js";
 import { applyLegacyMigrations } from "../../config/legacy.js";
 import { applyMergePatch } from "../../config/merge-patch.js";
@@ -137,7 +137,7 @@ const GatewayToolSchema = Type.Object({
 
 export function createGatewayTool(opts?: {
   agentSessionKey?: string;
-  config?: OpenClawConfig;
+  config?: QuantClawConfig;
 }): AnyAgentTool {
   return {
     label: "Gateway",

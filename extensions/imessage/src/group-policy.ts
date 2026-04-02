@@ -2,11 +2,11 @@ import {
   resolveChannelGroupRequireMention,
   resolveChannelGroupToolsPolicy,
   type GroupToolPolicyConfig,
-} from "openclaw/plugin-sdk/channel-policy";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/core";
+} from "quantclaw/plugin-sdk/channel-policy";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/core";
 
 type IMessageGroupContext = {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   groupId?: string | null;
   senderId?: string | null;

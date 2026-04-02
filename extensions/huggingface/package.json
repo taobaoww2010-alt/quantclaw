@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/huggingface-provider",
+  "name": "@quantclaw/huggingface-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Hugging Face provider plugin",
+  "description": "QuantClaw Hugging Face provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

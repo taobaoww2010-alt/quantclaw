@@ -81,19 +81,19 @@ function resolveChannelConfigSchemaModulePath(rootDir: string): string | null {
 }
 
 function resolvePackageChannelMeta(source: BundledPluginSource) {
-  const openclawMeta =
+  const quantclawMeta =
     source.packageJson &&
     typeof source.packageJson === "object" &&
     !Array.isArray(source.packageJson) &&
-    "openclaw" in source.packageJson
-      ? (source.packageJson.openclaw as Record<string, unknown> | undefined)
+    "quantclaw" in source.packageJson
+      ? (source.packageJson.quantclaw as Record<string, unknown> | undefined)
       : undefined;
   const channelMeta =
-    openclawMeta &&
-    typeof openclawMeta.channel === "object" &&
-    openclawMeta.channel &&
-    !Array.isArray(openclawMeta.channel)
-      ? (openclawMeta.channel as Record<string, unknown>)
+    quantclawMeta &&
+    typeof quantclawMeta.channel === "object" &&
+    quantclawMeta.channel &&
+    !Array.isArray(quantclawMeta.channel)
+      ? (quantclawMeta.channel as Record<string, unknown>)
       : undefined;
   return channelMeta;
 }

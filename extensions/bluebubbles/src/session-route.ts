@@ -2,7 +2,7 @@ import {
   buildChannelOutboundSessionRoute,
   stripChannelTargetPrefix,
   type ChannelOutboundSessionRouteParams,
-} from "openclaw/plugin-sdk/core";
+} from "quantclaw/plugin-sdk/core";
 import { parseBlueBubblesTarget } from "./targets.js";
 
 export function resolveBlueBubblesOutboundSessionRoute(params: ChannelOutboundSessionRouteParams) {

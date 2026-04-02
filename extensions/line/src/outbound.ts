@@ -1,8 +1,8 @@
 import {
   createAttachedChannelResultAdapter,
   createEmptyChannelResult,
-} from "openclaw/plugin-sdk/channel-send-result";
-import { resolveOutboundMediaUrls } from "openclaw/plugin-sdk/reply-payload";
+} from "quantclaw/plugin-sdk/channel-send-result";
+import { resolveOutboundMediaUrls } from "quantclaw/plugin-sdk/reply-payload";
 import {
   processLineMessage,
   type ChannelPlugin,

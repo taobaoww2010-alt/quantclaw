@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/qianfan-provider",
+  "name": "@quantclaw/qianfan-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Qianfan provider plugin",
+  "description": "QuantClaw Qianfan provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

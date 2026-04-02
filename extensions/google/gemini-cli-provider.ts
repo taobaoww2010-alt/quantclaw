@@ -1,10 +1,10 @@
 import type {
-  OpenClawPluginApi,
+  QuantClawPluginApi,
   ProviderAuthContext,
   ProviderFetchUsageSnapshotContext,
-} from "openclaw/plugin-sdk/plugin-entry";
-import { buildOauthProviderAuthResult } from "openclaw/plugin-sdk/provider-auth-result";
-import { fetchGeminiUsage } from "openclaw/plugin-sdk/provider-usage";
+} from "quantclaw/plugin-sdk/plugin-entry";
+import { buildOauthProviderAuthResult } from "quantclaw/plugin-sdk/provider-auth-result";
+import { fetchGeminiUsage } from "quantclaw/plugin-sdk/provider-usage";
 import { isModernGoogleModel, resolveGoogle31ForwardCompatModel } from "./provider-models.js";
 
 const PROVIDER_ID = "google-gemini-cli";
@@ -47,7 +47,7 @@ async function fetchGeminiCliUsage(ctx: ProviderFetchUsageSnapshotContext) {
   return await fetchGeminiUsage(ctx.token, ctx.timeoutMs, ctx.fetchFn, PROVIDER_ID);
 }
 
-export function registerGoogleGeminiCliProvider(api: OpenClawPluginApi) {
+export function registerGoogleGeminiCliProvider(api: QuantClawPluginApi) {
   api.registerProvider({
     id: PROVIDER_ID,
     label: PROVIDER_LABEL,

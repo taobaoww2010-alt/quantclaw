@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/exa-plugin",
+  "name": "@quantclaw/exa-plugin",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Exa plugin",
+  "description": "QuantClaw Exa plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

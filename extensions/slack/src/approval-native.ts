@@ -1,14 +1,14 @@
 import {
   createApproverRestrictedNativeApprovalAdapter,
   resolveExecApprovalSessionTarget,
-} from "openclaw/plugin-sdk/approval-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+} from "quantclaw/plugin-sdk/approval-runtime";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
 import type {
   ExecApprovalRequest,
   ExecApprovalSessionTarget,
   PluginApprovalRequest,
-} from "openclaw/plugin-sdk/infra-runtime";
-import { normalizeAccountId } from "openclaw/plugin-sdk/routing";
+} from "quantclaw/plugin-sdk/infra-runtime";
+import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
 import { listSlackAccountIds } from "./accounts.js";
 import { isSlackApprovalAuthorizedSender } from "./approval-auth.js";
 import {
@@ -68,7 +68,7 @@ function normalizeSlackThreadMatchKey(threadId?: string): string {
 }
 
 function resolveRequestSessionTarget(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   request: ApprovalRequest;
 }): ExecApprovalSessionTarget | null {
   const execLikeRequest = toExecLikeRequest(params.request);
@@ -119,7 +119,7 @@ function resolveTurnSourceSlackOriginTarget(params: {
 }
 
 function resolveSessionSlackOriginTarget(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
   request: ApprovalRequest;
 }): SlackOriginTarget | null {
@@ -158,7 +158,7 @@ function slackTargetsMatch(a: SlackOriginTarget, b: SlackOriginTarget): boolean 
 }
 
 function resolveSlackOriginTarget(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
   request: ApprovalRequest;
 }) {
@@ -175,7 +175,7 @@ function resolveSlackOriginTarget(params: {
 }
 
 function resolveSlackApproverDmTargets(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   request: ApprovalRequest;
 }) {

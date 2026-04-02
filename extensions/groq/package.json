@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/groq-provider",
+  "name": "@quantclaw/groq-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Groq media-understanding provider",
+  "description": "QuantClaw Groq media-understanding provider",
   "type": "module",
   "quantclaw": {
     "extensions": [

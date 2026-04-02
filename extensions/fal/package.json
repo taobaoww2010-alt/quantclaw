@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/fal-provider",
+  "name": "@quantclaw/fal-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw fal provider plugin",
+  "description": "QuantClaw fal provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

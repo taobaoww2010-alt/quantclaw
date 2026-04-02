@@ -1,1 +1,1 @@
-export * from "openclaw/plugin-sdk/llm-task";
+export * from "quantclaw/plugin-sdk/llm-task";

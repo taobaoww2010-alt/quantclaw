@@ -43,7 +43,7 @@ function hasRuntimeDeps(packageJson) {
 }
 
 function shouldStageRuntimeDeps(packageJson) {
-  return packageJson.openclaw?.bundle?.stageRuntimeDependencies === true;
+  return packageJson.quantclaw?.bundle?.stageRuntimeDependencies === true;
 }
 
 function sanitizeBundledManifestForRuntimeInstall(pluginDir) {
@@ -51,9 +51,9 @@ function sanitizeBundledManifestForRuntimeInstall(pluginDir) {
   const packageJson = readJson(manifestPath);
   let changed = false;
 
-  if (packageJson.peerDependencies?.openclaw) {
+  if (packageJson.peerDependencies?.quantclaw) {
     const nextPeerDependencies = { ...packageJson.peerDependencies };
-    delete nextPeerDependencies.openclaw;
+    delete nextPeerDependencies.quantclaw;
     if (Object.keys(nextPeerDependencies).length === 0) {
       delete packageJson.peerDependencies;
     } else {
@@ -62,9 +62,9 @@ function sanitizeBundledManifestForRuntimeInstall(pluginDir) {
     changed = true;
   }
 
-  if (packageJson.peerDependenciesMeta?.openclaw) {
+  if (packageJson.peerDependenciesMeta?.quantclaw) {
     const nextPeerDependenciesMeta = { ...packageJson.peerDependenciesMeta };
-    delete nextPeerDependenciesMeta.openclaw;
+    delete nextPeerDependenciesMeta.quantclaw;
     if (Object.keys(nextPeerDependenciesMeta).length === 0) {
       delete packageJson.peerDependenciesMeta;
     } else {
@@ -73,9 +73,9 @@ function sanitizeBundledManifestForRuntimeInstall(pluginDir) {
     changed = true;
   }
 
-  if (packageJson.devDependencies?.openclaw) {
+  if (packageJson.devDependencies?.quantclaw) {
     const nextDevDependencies = { ...packageJson.devDependencies };
-    delete nextDevDependencies.openclaw;
+    delete nextDevDependencies.quantclaw;
     if (Object.keys(nextDevDependencies).length === 0) {
       delete packageJson.devDependencies;
     } else {
@@ -92,7 +92,7 @@ function sanitizeBundledManifestForRuntimeInstall(pluginDir) {
 }
 
 function resolveRuntimeDepsStampPath(pluginDir) {
-  return path.join(pluginDir, ".openclaw-runtime-deps-stamp.json");
+  return path.join(pluginDir, ".quantclaw-runtime-deps-stamp.json");
 }
 
 function createRuntimeDepsFingerprint(packageJson) {
@@ -140,7 +140,7 @@ export function resolveNpmRunner(params = {}) {
     throw new Error(
       `failed to resolve a toolchain-local npm next to ${execPath}. ` +
         `Checked: ${expectedPaths.join(", ")}. ` +
-        "OpenClaw refuses to shell out to bare npm on Windows; install a Node.js toolchain that bundles npm or run with a matching Node installation.",
+        "QuantClaw refuses to shell out to bare npm on Windows; install a Node.js toolchain that bundles npm or run with a matching Node installation.",
     );
   }
   const pathKey = resolvePathEnvKey(env);

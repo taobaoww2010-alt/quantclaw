@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/github-copilot-provider",
+  "name": "@quantclaw/github-copilot-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw GitHub Copilot provider plugin",
+  "description": "QuantClaw GitHub Copilot provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

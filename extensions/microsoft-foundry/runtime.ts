@@ -1,5 +1,5 @@
-import type { ProviderPrepareRuntimeAuthContext } from "openclaw/plugin-sdk/core";
-import { ensureAuthProfileStore } from "openclaw/plugin-sdk/provider-auth";
+import type { ProviderPrepareRuntimeAuthContext } from "quantclaw/plugin-sdk/core";
+import { ensureAuthProfileStore } from "quantclaw/plugin-sdk/provider-auth";
 import { getAccessTokenResultAsync } from "./cli.js";
 import {
   type CachedTokenEntry,

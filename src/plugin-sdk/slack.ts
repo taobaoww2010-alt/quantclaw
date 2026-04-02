@@ -1,10 +1,10 @@
-export type { OpenClawConfig } from "../config/config.js";
+export type { QuantClawConfig } from "../config/config.js";
 export type { SlackAccountConfig } from "../config/types.slack.js";
 export type { InspectedSlackAccount, ResolvedSlackAccount } from "./slack-surface.js";
 export type {
   ChannelMessageActionContext,
   ChannelPlugin,
-  OpenClawPluginApi,
+  QuantClawPluginApi,
   PluginRuntime,
 } from "./channel-plugin-common.js";
 export {

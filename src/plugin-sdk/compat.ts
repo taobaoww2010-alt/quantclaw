@@ -8,7 +8,7 @@ const shouldWarnCompatImport =
 
 if (shouldWarnCompatImport) {
   process.emitWarning(
-    "quantclaw/plugin-sdk/compat is deprecated for new plugins. Migrate to focused openclaw/plugin-sdk/<subpath> imports. See https://docs.quantclaw.ai/plugins/sdk-migration",
+    "quantclaw/plugin-sdk/compat is deprecated for new plugins. Migrate to focused quantclaw/plugin-sdk/<subpath> imports. See https://docs.quantclaw.ai/plugins/sdk-migration",
     {
       code: "OPENCLAW_PLUGIN_SDK_COMPAT_DEPRECATED",
       detail:

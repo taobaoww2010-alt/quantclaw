@@ -1,29 +1,29 @@
-import { describeWebhookAccountSnapshot } from "openclaw/plugin-sdk/account-helpers";
-import { formatAllowFromLowercase } from "openclaw/plugin-sdk/allow-from";
+import { describeWebhookAccountSnapshot } from "quantclaw/plugin-sdk/account-helpers";
+import { formatAllowFromLowercase } from "quantclaw/plugin-sdk/allow-from";
 import {
   adaptScopedAccountAccessor,
   createScopedChannelConfigAdapter,
   createScopedDmSecurityResolver,
-} from "openclaw/plugin-sdk/channel-config-helpers";
-import { createAccountStatusSink } from "openclaw/plugin-sdk/channel-lifecycle";
+} from "quantclaw/plugin-sdk/channel-config-helpers";
+import { createAccountStatusSink } from "quantclaw/plugin-sdk/channel-lifecycle";
 import {
   createLoggedPairingApprovalNotifier,
   createPairingPrefixStripper,
-} from "openclaw/plugin-sdk/channel-pairing";
-import { createAllowlistProviderRouteAllowlistWarningCollector } from "openclaw/plugin-sdk/channel-policy";
-import { createChatChannelPlugin } from "openclaw/plugin-sdk/core";
-import { runStoppablePassiveMonitor } from "openclaw/plugin-sdk/extension-shared";
+} from "quantclaw/plugin-sdk/channel-pairing";
+import { createAllowlistProviderRouteAllowlistWarningCollector } from "quantclaw/plugin-sdk/channel-policy";
+import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
+import { runStoppablePassiveMonitor } from "quantclaw/plugin-sdk/extension-shared";
 import {
   buildWebhookChannelStatusSummary,
   createComputedAccountStatusAdapter,
   createDefaultChannelRuntimeState,
-} from "openclaw/plugin-sdk/status-helpers";
+} from "quantclaw/plugin-sdk/status-helpers";
 import {
   buildChannelConfigSchema,
   clearAccountEntryFields,
   DEFAULT_ACCOUNT_ID,
   type ChannelPlugin,
-  type OpenClawConfig,
+  type QuantClawConfig,
 } from "../runtime-api.js";
 import {
   listNextcloudTalkAccountIds,
@@ -219,7 +219,7 @@ export const nextcloudTalkPlugin: ChannelPlugin<ResolvedNextcloudTalkAccount> =
           });
         },
         logoutAccount: async ({ accountId, cfg }) => {
-          const nextCfg = { ...cfg } as OpenClawConfig;
+          const nextCfg = { ...cfg } as QuantClawConfig;
           const nextSection = cfg.channels?.["nextcloud-talk"]
             ? { ...cfg.channels["nextcloud-talk"] }
             : undefined;
@@ -257,7 +257,7 @@ export const nextcloudTalkPlugin: ChannelPlugin<ResolvedNextcloudTalkAccount> =
               const nextChannels = { ...nextCfg.channels } as Record<string, unknown>;
               delete nextChannels["nextcloud-talk"];
               if (Object.keys(nextChannels).length > 0) {
-                nextCfg.channels = nextChannels as OpenClawConfig["channels"];
+                nextCfg.channels = nextChannels as QuantClawConfig["channels"];
               } else {
                 delete nextCfg.channels;
               }
@@ -285,7 +285,7 @@ export const nextcloudTalkPlugin: ChannelPlugin<ResolvedNextcloudTalkAccount> =
     pairing: {
       text: {
         idLabel: "nextcloudUserId",
-        message: "OpenClaw: your access has been approved.",
+        message: "QuantClaw: your access has been approved.",
         normalizeAllowEntry: createPairingPrefixStripper(
           /^(nextcloud-talk|nc-talk|nc):/i,
           (entry) => entry.toLowerCase(),

@@ -120,7 +120,7 @@ export function resolveTrustedHttpOperatorScopes(
     return [];
   }
 
-  const raw = getHeader(req, "x-openclaw-scopes")?.trim();
+  const raw = getHeader(req, "x-quantclaw-scopes")?.trim();
   if (!raw) {
     return [];
   }
@@ -168,8 +168,8 @@ export function resolveOpenAiCompatibleHttpSenderIsOwner(
 
 export function resolveAgentIdFromHeader(req: IncomingMessage): string | undefined {
   const raw =
-    getHeader(req, "x-openclaw-agent-id")?.trim() ||
-    getHeader(req, "x-openclaw-agent")?.trim() ||
+    getHeader(req, "x-quantclaw-agent-id")?.trim() ||
+    getHeader(req, "x-quantclaw-agent")?.trim() ||
     "";
   if (!raw) {
     return undefined;
@@ -191,7 +191,7 @@ export function resolveAgentIdFromModel(
   }
 
   const m =
-    raw.match(/^openclaw[:/](?<agentId>[a-z0-9][a-z0-9_-]{0,63})$/i) ??
+    raw.match(/^quantclaw[:/](?<agentId>[a-z0-9][a-z0-9_-]{0,63})$/i) ??
     raw.match(/^agent:(?<agentId>[a-z0-9][a-z0-9_-]{0,63})$/i);
   const agentId = m?.groups?.agentId;
   if (!agentId) {
@@ -208,11 +208,11 @@ export async function resolveOpenAiCompatModelOverride(params: {
   const requestModel = params.model?.trim();
   if (requestModel && !resolveAgentIdFromModel(requestModel)) {
     return {
-      errorMessage: "Invalid `model`. Use `openclaw` or `openclaw/<agentId>`.",
+      errorMessage: "Invalid `model`. Use `quantclaw` or `quantclaw/<agentId>`.",
     };
   }
 
-  const raw = getHeader(params.req, "x-openclaw-model")?.trim();
+  const raw = getHeader(params.req, "x-quantclaw-model")?.trim();
   if (!raw) {
     return {};
   }
@@ -222,7 +222,7 @@ export async function resolveOpenAiCompatModelOverride(params: {
   const defaultProvider = defaultModelRef.provider;
   const parsed = parseModelRef(raw, defaultProvider);
   if (!parsed) {
-    return { errorMessage: "Invalid `x-openclaw-model`." };
+    return { errorMessage: "Invalid `x-quantclaw-model`." };
   }
 
   const catalog = await loadGatewayModelCatalog();
@@ -262,7 +262,7 @@ export function resolveSessionKey(params: {
   user?: string | undefined;
   prefix: string;
 }): string {
-  const explicit = getHeader(params.req, "x-openclaw-session-key")?.trim();
+  const explicit = getHeader(params.req, "x-quantclaw-session-key")?.trim();
   if (explicit) {
     return explicit;
   }
@@ -289,7 +289,7 @@ export function resolveGatewayRequestContext(params: {
   });
 
   const messageChannel = params.useMessageChannelHeader
-    ? (normalizeMessageChannel(getHeader(params.req, "x-openclaw-message-channel")) ??
+    ? (normalizeMessageChannel(getHeader(params.req, "x-quantclaw-message-channel")) ??
       params.defaultMessageChannel)
     : params.defaultMessageChannel;
 

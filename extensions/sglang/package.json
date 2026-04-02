@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/sglang-provider",
+  "name": "@quantclaw/sglang-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw SGLang provider plugin",
+  "description": "QuantClaw SGLang provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

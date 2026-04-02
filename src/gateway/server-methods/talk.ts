@@ -2,7 +2,7 @@ import { readConfigFileSnapshot } from "../../config/config.js";
 import { redactConfigObject } from "../../config/redact-snapshot.js";
 import { buildTalkConfigResponse, resolveActiveTalkProviderConfig } from "../../config/talk.js";
 import type { TalkProviderConfig } from "../../config/types.gateway.js";
-import type { OpenClawConfig, TtsConfig, TtsProviderConfigMap } from "../../config/types.js";
+import type { QuantClawConfig, TtsConfig, TtsProviderConfigMap } from "../../config/types.js";
 import { canonicalizeSpeechProviderId, getSpeechProvider } from "../../tts/provider-registry.js";
 import { synthesizeSpeech, type TtsDirectiveOverrides } from "../../tts/tts.js";
 import {
@@ -63,9 +63,9 @@ function resolveTalkVoiceId(
 }
 
 function buildTalkTtsConfig(
-  config: OpenClawConfig,
+  config: QuantClawConfig,
 ):
-  | { cfg: OpenClawConfig; provider: string; providerConfig: TalkProviderConfig }
+  | { cfg: QuantClawConfig; provider: string; providerConfig: TalkProviderConfig }
   | { error: string } {
   const resolved = resolveActiveTalkProviderConfig(config.talk);
   const provider = canonicalizeSpeechProviderId(resolved?.provider, config);
@@ -115,7 +115,7 @@ function buildTalkTtsConfig(
 function buildTalkSpeakOverrides(
   provider: string,
   providerConfig: TalkProviderConfig,
-  config: OpenClawConfig,
+  config: QuantClawConfig,
   params: Record<string, unknown>,
 ): TtsDirectiveOverrides {
   const speechProvider = getSpeechProvider(provider, config);

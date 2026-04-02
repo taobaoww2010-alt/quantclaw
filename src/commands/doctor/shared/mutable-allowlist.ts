@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../../config/config.js";
+import type { QuantClawConfig } from "../../../config/config.js";
 import { collectProviderDangerousNameMatchingScopes } from "../../../config/dangerous-name-matching.js";
 import {
   isDiscordMutableAllowEntry,
@@ -47,7 +47,7 @@ function addMutableAllowlistHits(params: {
   }
 }
 
-export function scanMutableAllowlistEntries(cfg: OpenClawConfig): MutableAllowlistHit[] {
+export function scanMutableAllowlistEntries(cfg: QuantClawConfig): MutableAllowlistHit[] {
   const hits: MutableAllowlistHit[] = [];
 
   for (const scope of collectProviderDangerousNameMatchingScopes(cfg, "discord")) {

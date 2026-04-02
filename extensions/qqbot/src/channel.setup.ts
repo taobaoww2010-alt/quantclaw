@@ -1,10 +1,10 @@
-import type { ChannelPlugin } from "openclaw/plugin-sdk/core";
+import type { ChannelPlugin } from "quantclaw/plugin-sdk/core";
 import {
   applyAccountNameToChannelSection,
   deleteAccountFromConfigSection,
   setAccountEnabledInConfigSection,
-} from "openclaw/plugin-sdk/core";
-import { hasConfiguredSecretInput } from "openclaw/plugin-sdk/secret-input";
+} from "quantclaw/plugin-sdk/core";
+import { hasConfiguredSecretInput } from "quantclaw/plugin-sdk/secret-input";
 import { qqbotChannelConfigSchema } from "./config-schema.js";
 import {
   DEFAULT_ACCOUNT_ID,
@@ -17,8 +17,8 @@ import { qqbotSetupWizard } from "./setup-surface.js";
 import type { ResolvedQQBotAccount } from "./types.js";
 
 /**
- * Setup-only QQBot plugin — lightweight subset used during `openclaw onboard`
- * and `openclaw configure` without pulling the full runtime dependencies.
+ * Setup-only QQBot plugin — lightweight subset used during `quantclaw onboard`
+ * and `quantclaw configure` without pulling the full runtime dependencies.
  */
 export const qqbotSetupPlugin: ChannelPlugin<ResolvedQQBotAccount> = {
   id: "qqbot",

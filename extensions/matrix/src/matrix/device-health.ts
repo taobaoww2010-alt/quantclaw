@@ -6,13 +6,13 @@ export type MatrixManagedDeviceInfo = {
 
 export type MatrixDeviceHealthSummary = {
   currentDeviceId: string | null;
-  staleOpenClawDevices: MatrixManagedDeviceInfo[];
-  currentOpenClawDevices: MatrixManagedDeviceInfo[];
+  staleQuantClawDevices: MatrixManagedDeviceInfo[];
+  currentQuantClawDevices: MatrixManagedDeviceInfo[];
 };
 
-const OPENCLAW_DEVICE_NAME_PREFIX = "OpenClaw ";
+const OPENCLAW_DEVICE_NAME_PREFIX = "QuantClaw ";
 
-export function isOpenClawManagedMatrixDevice(displayName: string | null | undefined): boolean {
+export function isQuantClawManagedMatrixDevice(displayName: string | null | undefined): boolean {
   return displayName?.startsWith(OPENCLAW_DEVICE_NAME_PREFIX) === true;
 }
 
@@ -21,11 +21,11 @@ export function summarizeMatrixDeviceHealth(
 ): MatrixDeviceHealthSummary {
   const currentDeviceId = devices.find((device) => device.current)?.deviceId ?? null;
   const openClawDevices = devices.filter((device) =>
-    isOpenClawManagedMatrixDevice(device.displayName),
+    isQuantClawManagedMatrixDevice(device.displayName),
   );
   return {
     currentDeviceId,
-    staleOpenClawDevices: openClawDevices.filter((device) => !device.current),
-    currentOpenClawDevices: openClawDevices.filter((device) => device.current),
+    staleQuantClawDevices: openClawDevices.filter((device) => !device.current),
+    currentQuantClawDevices: openClawDevices.filter((device) => device.current),
   };
 }

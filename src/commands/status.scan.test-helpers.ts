@@ -1,5 +1,5 @@
 import { vi } from "vitest";
-import type { OpenClawConfig } from "../config/types.js";
+import type { QuantClawConfig } from "../config/types.js";
 
 export function createStatusScanSharedMocks(configPathLabel: string) {
   return {
@@ -196,14 +196,14 @@ export async function loadStatusScanModuleForTest(
   return await import("./status.scan.js");
 }
 
-export function createStatusScanConfig<T extends object = OpenClawConfig>(
+export function createStatusScanConfig<T extends object = QuantClawConfig>(
   overrides: T = {} as T,
-): OpenClawConfig & T {
+): QuantClawConfig & T {
   return {
     session: {},
     gateway: {},
     ...overrides,
-  } as OpenClawConfig & T;
+  } as QuantClawConfig & T;
 }
 
 export function createStatusSummary(
@@ -283,7 +283,7 @@ export function createStatusGatewayProbeFailure() {
   };
 }
 
-export function createStatusMemorySearchConfig(): OpenClawConfig {
+export function createStatusMemorySearchConfig(): QuantClawConfig {
   return createStatusScanConfig({
     agents: {
       defaults: {
@@ -311,8 +311,8 @@ export function applyStatusScanDefaults(
   mocks: StatusScanSharedMocks,
   options: {
     hasConfiguredChannels?: boolean;
-    sourceConfig?: OpenClawConfig;
-    resolvedConfig?: OpenClawConfig;
+    sourceConfig?: QuantClawConfig;
+    resolvedConfig?: QuantClawConfig;
     summary?: ReturnType<typeof createStatusSummary>;
     update?: ReturnType<typeof createStatusUpdateResult> | false;
     gatewayProbe?: ReturnType<typeof createStatusGatewayProbeFailure> | false;

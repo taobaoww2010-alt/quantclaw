@@ -1,8 +1,8 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { discoverOpenAICompatibleLocalModels } from "openclaw/plugin-sdk/provider-setup";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { discoverOpenAICompatibleLocalModels } from "quantclaw/plugin-sdk/provider-setup";
 import { VLLM_DEFAULT_BASE_URL, VLLM_PROVIDER_LABEL } from "./defaults.js";
 
-type ModelsConfig = NonNullable<OpenClawConfig["models"]>;
+type ModelsConfig = NonNullable<QuantClawConfig["models"]>;
 type ProviderConfig = NonNullable<ModelsConfig["providers"]>[string];
 
 export async function buildVllmProvider(params?: {

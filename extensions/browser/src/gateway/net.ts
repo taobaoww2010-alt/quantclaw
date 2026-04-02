@@ -1,1 +1,1 @@
-export { isLoopbackHost } from "openclaw/plugin-sdk/browser-support";
+export { isLoopbackHost } from "quantclaw/plugin-sdk/browser-support";

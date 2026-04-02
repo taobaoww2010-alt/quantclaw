@@ -1,4 +1,4 @@
-import type { loadConfig } from "openclaw/plugin-sdk/config-runtime";
+import type { loadConfig } from "quantclaw/plugin-sdk/config-runtime";
 import {
   evaluateSessionFreshness,
   loadSessionStore,
@@ -8,8 +8,8 @@ import {
   resolveSessionResetType,
   resolveSessionKey,
   resolveStorePath,
-} from "openclaw/plugin-sdk/config-runtime";
-import { normalizeMainKey } from "openclaw/plugin-sdk/routing";
+} from "quantclaw/plugin-sdk/config-runtime";
+import { normalizeMainKey } from "quantclaw/plugin-sdk/routing";
 
 export function getSessionSnapshot(
   cfg: ReturnType<typeof loadConfig>,

@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/perplexity-plugin",
+  "name": "@quantclaw/perplexity-plugin",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Perplexity plugin",
+  "description": "QuantClaw Perplexity plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

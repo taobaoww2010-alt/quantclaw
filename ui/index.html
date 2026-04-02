@@ -24,7 +24,7 @@
           var keys = Object.keys(localStorage);
           var raw;
           for (var i = 0; i < keys.length; i++) {
-            if (keys[i].indexOf("openclaw.control.settings.v1") === 0) {
+            if (keys[i].indexOf("quantclaw.control.settings.v1") === 0) {
               raw = localStorage.getItem(keys[i]);
               if (raw) break;
             }
@@ -63,7 +63,7 @@
     </script>
   </head>
   <body>
-    <openclaw-app></openclaw-app>
+    <quantclaw-app></quantclaw-app>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

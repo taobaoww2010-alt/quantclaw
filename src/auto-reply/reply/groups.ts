@@ -1,5 +1,5 @@
 import type { ChannelId } from "../../channels/plugins/types.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { QuantClawConfig } from "../../config/config.js";
 import { resolveChannelGroupRequireMention } from "../../config/group-policy.js";
 import type { GroupKeyResolution, SessionEntry } from "../../config/sessions.js";
 import { isInternalMessageChannel } from "../../utils/message-channel.js";
@@ -63,7 +63,7 @@ async function resolveRuntimeChannelId(raw?: string | null): Promise<ChannelId |
 }
 
 async function resolveBuiltInRequireMentionFromConfig(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   channel: ChannelId;
   groupChannel?: string;
   groupId?: string;
@@ -82,7 +82,7 @@ async function resolveBuiltInRequireMentionFromConfig(params: {
 }
 
 export async function resolveGroupRequireMention(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   ctx: TemplateContext;
   groupResolution?: GroupKeyResolution;
 }): Promise<boolean> {
@@ -170,7 +170,7 @@ export function buildGroupChatContext(params: { sessionCtx: TemplateContext }): 
 }
 
 export function buildGroupIntro(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   sessionCtx: TemplateContext;
   sessionEntry?: SessionEntry;
   defaultActivation: "always" | "mention";
@@ -186,7 +186,7 @@ export function buildGroupIntro(params: {
   const providerIdsLine = providerId === "whatsapp" ? WHATSAPP_GROUP_INTRO_HINT : undefined;
   const silenceLine =
     activation === "always"
-      ? `If no response is needed, reply with exactly "${params.silentToken}" (and nothing else) so OpenClaw stays silent. Do not add any other words, punctuation, tags, markdown/code blocks, or explanations.`
+      ? `If no response is needed, reply with exactly "${params.silentToken}" (and nothing else) so QuantClaw stays silent. Do not add any other words, punctuation, tags, markdown/code blocks, or explanations.`
       : undefined;
   const cautionLine =
     activation === "always"

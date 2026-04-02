@@ -1,13 +1,13 @@
 import {
   resolveApprovalApprovers,
-} from "openclaw/plugin-sdk/approval-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+} from "quantclaw/plugin-sdk/approval-runtime";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
 import type {
   ExecApprovalRequest,
   PluginApprovalRequest,
-} from "openclaw/plugin-sdk/infra-runtime";
-import type { ReplyPayload } from "openclaw/plugin-sdk/reply-runtime";
-import { normalizeAccountId } from "openclaw/plugin-sdk/routing";
+} from "quantclaw/plugin-sdk/infra-runtime";
+import type { ReplyPayload } from "quantclaw/plugin-sdk/reply-runtime";
+import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
 import { resolveSlackAccount } from "./accounts.js";
 
 type ApprovalRequest = ExecApprovalRequest | PluginApprovalRequest;
@@ -43,7 +43,7 @@ function matchesSlackApprovalSessionFilter(sessionKey: string, patterns: string[
 }
 
 export function shouldHandleSlackExecApprovalRequest(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   request: ApprovalRequest;
 }): boolean {
@@ -70,7 +70,7 @@ export function shouldHandleSlackExecApprovalRequest(params: {
 }
 
 export function getSlackExecApprovalApprovers(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
 }): string[] {
   const account = resolveSlackAccount(params).config;
@@ -85,7 +85,7 @@ export function getSlackExecApprovalApprovers(params: {
 }
 
 export function isSlackExecApprovalClientEnabled(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
 }): boolean {
   const config = resolveSlackAccount(params).config.execApprovals;
@@ -93,7 +93,7 @@ export function isSlackExecApprovalClientEnabled(params: {
 }
 
 export function isSlackExecApprovalApprover(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   senderId?: string | null;
 }): boolean {
@@ -104,7 +104,7 @@ export function isSlackExecApprovalApprover(params: {
   return getSlackExecApprovalApprovers(params).includes(senderId);
 }
 
-function isSlackExecApprovalTargetsMode(cfg: OpenClawConfig): boolean {
+function isSlackExecApprovalTargetsMode(cfg: QuantClawConfig): boolean {
   const execApprovals = cfg.approvals?.exec;
   if (!execApprovals?.enabled) {
     return false;
@@ -113,7 +113,7 @@ function isSlackExecApprovalTargetsMode(cfg: OpenClawConfig): boolean {
 }
 
 export function isSlackExecApprovalTargetRecipient(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   senderId?: string | null;
   accountId?: string | null;
 }): boolean {
@@ -138,7 +138,7 @@ export function isSlackExecApprovalTargetRecipient(params: {
 }
 
 export function isSlackExecApprovalAuthorizedSender(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   senderId?: string | null;
 }): boolean {
@@ -146,14 +146,14 @@ export function isSlackExecApprovalAuthorizedSender(params: {
 }
 
 export function resolveSlackExecApprovalTarget(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
 }): "dm" | "channel" | "both" {
   return resolveSlackAccount(params).config.execApprovals?.target ?? "dm";
 }
 
 export function shouldSuppressLocalSlackExecApprovalPrompt(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   payload: ReplyPayload;
 }): boolean {

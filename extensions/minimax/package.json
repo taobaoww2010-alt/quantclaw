@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/minimax-provider",
+  "name": "@quantclaw/minimax-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw MiniMax provider and OAuth plugin",
+  "description": "QuantClaw MiniMax provider and OAuth plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

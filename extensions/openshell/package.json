@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/openshell-sandbox",
+  "name": "@quantclaw/openshell-sandbox",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw OpenShell sandbox backend",
+  "description": "QuantClaw OpenShell sandbox backend",
   "type": "module",
   "quantclaw": {
     "extensions": [

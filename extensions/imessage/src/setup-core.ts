@@ -8,15 +8,15 @@ import {
   promptParsedAllowFromForAccount,
   setAccountAllowFromForChannel,
   setSetupChannelEnabled,
-  type OpenClawConfig,
+  type QuantClawConfig,
   type WizardPrompter,
-} from "openclaw/plugin-sdk/setup";
+} from "quantclaw/plugin-sdk/setup";
 import type {
   ChannelSetupAdapter,
   ChannelSetupWizard,
   ChannelSetupWizardTextInput,
-} from "openclaw/plugin-sdk/setup";
-import { formatDocsLink } from "openclaw/plugin-sdk/setup-tools";
+} from "quantclaw/plugin-sdk/setup";
+import { formatDocsLink } from "quantclaw/plugin-sdk/setup-tools";
 import {
   listIMessageAccountIds,
   resolveDefaultIMessageAccountId,
@@ -70,10 +70,10 @@ function buildIMessageSetupPatch(input: {
 }
 
 export async function promptIMessageAllowFrom(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   prompter: WizardPrompter;
   accountId?: string;
-}): Promise<OpenClawConfig> {
+}): Promise<QuantClawConfig> {
   return promptParsedAllowFromForAccount({
     cfg: params.cfg,
     accountId: params.accountId,
@@ -110,11 +110,11 @@ export const imessageDmPolicy = createTopLevelChannelDmPolicy({
   channel,
   policyKey: "channels.imessage.dmPolicy",
   allowFromKey: "channels.imessage.allowFrom",
-  getCurrent: (cfg: OpenClawConfig) => cfg.channels?.imessage?.dmPolicy ?? "pairing",
+  getCurrent: (cfg: QuantClawConfig) => cfg.channels?.imessage?.dmPolicy ?? "pairing",
   promptAllowFrom: promptIMessageAllowFrom,
 });
 
-function resolveIMessageCliPath(params: { cfg: OpenClawConfig; accountId: string }) {
+function resolveIMessageCliPath(params: { cfg: QuantClawConfig; accountId: string }) {
   return resolveIMessageAccount(params).config.cliPath ?? "imsg";
 }
 
@@ -135,7 +135,7 @@ export const imessageCompletionNote = {
   title: "iMessage next steps",
   lines: [
     "This is still a work in progress.",
-    "Ensure OpenClaw has Full Disk Access to Messages DB.",
+    "Ensure QuantClaw has Full Disk Access to Messages DB.",
     "Grant Automation permission for Messages when prompted.",
     "List chats with: imsg chats --limit 20",
     `Docs: ${formatDocsLink("/imessage", "imessage")}`,
@@ -154,7 +154,7 @@ export const imessageSetupStatusBase = {
   unconfiguredHint: "imsg missing",
   configuredScore: 1,
   unconfiguredScore: 0,
-  resolveConfigured: ({ cfg }: { cfg: OpenClawConfig }) =>
+  resolveConfigured: ({ cfg }: { cfg: QuantClawConfig }) =>
     listIMessageAccountIds(cfg).some((accountId) => {
       const account = resolveIMessageAccount({ cfg, accountId });
       return Boolean(
@@ -190,6 +190,6 @@ export function createIMessageSetupWizardProxy(loadWizard: () => Promise<Channel
     ],
     completionNote: imessageCompletionNote,
     dmPolicy: imessageDmPolicy,
-    disable: (cfg: OpenClawConfig) => setSetupChannelEnabled(cfg, channel, false),
+    disable: (cfg: QuantClawConfig) => setSetupChannelEnabled(cfg, channel, false),
   });
 }

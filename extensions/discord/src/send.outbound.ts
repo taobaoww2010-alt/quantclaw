@@ -3,18 +3,18 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { serializePayload, type MessagePayloadObject, type RequestClient } from "@buape/carbon";
 import { ChannelType, Routes } from "discord-api-types/v10";
-import { recordChannelActivity } from "openclaw/plugin-sdk/channel-runtime";
-import { loadConfig, type OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
-import { maxBytesForKind } from "openclaw/plugin-sdk/media-runtime";
-import { extensionForMime } from "openclaw/plugin-sdk/media-runtime";
-import { unlinkIfExists } from "openclaw/plugin-sdk/media-runtime";
-import type { PollInput } from "openclaw/plugin-sdk/media-runtime";
-import { resolveChunkMode } from "openclaw/plugin-sdk/reply-runtime";
-import type { RetryConfig } from "openclaw/plugin-sdk/retry-runtime";
-import { resolvePreferredOpenClawTmpDir } from "openclaw/plugin-sdk/temp-path";
-import { convertMarkdownTables } from "openclaw/plugin-sdk/text-runtime";
-import { loadWebMediaRaw } from "openclaw/plugin-sdk/web-media";
+import { recordChannelActivity } from "quantclaw/plugin-sdk/channel-runtime";
+import { loadConfig, type QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { resolveMarkdownTableMode } from "quantclaw/plugin-sdk/config-runtime";
+import { maxBytesForKind } from "quantclaw/plugin-sdk/media-runtime";
+import { extensionForMime } from "quantclaw/plugin-sdk/media-runtime";
+import { unlinkIfExists } from "quantclaw/plugin-sdk/media-runtime";
+import type { PollInput } from "quantclaw/plugin-sdk/media-runtime";
+import { resolveChunkMode } from "quantclaw/plugin-sdk/reply-runtime";
+import type { RetryConfig } from "quantclaw/plugin-sdk/retry-runtime";
+import { resolvePreferredQuantClawTmpDir } from "quantclaw/plugin-sdk/temp-path";
+import { convertMarkdownTables } from "quantclaw/plugin-sdk/text-runtime";
+import { loadWebMediaRaw } from "quantclaw/plugin-sdk/web-media";
 import { resolveDiscordAccount } from "./accounts.js";
 import { rewriteDiscordKnownMentions } from "./mentions.js";
 import {
@@ -44,7 +44,7 @@ import {
 } from "./voice-message.js";
 
 type DiscordSendOpts = {
-  cfg?: OpenClawConfig;
+  cfg?: QuantClawConfig;
   token?: string;
   accountId?: string;
   mediaUrl?: string;
@@ -320,7 +320,7 @@ export async function sendMessageDiscord(
 }
 
 type DiscordWebhookSendOpts = {
-  cfg?: OpenClawConfig;
+  cfg?: QuantClawConfig;
   webhookId: string;
   webhookToken: string;
   accountId?: string;
@@ -475,7 +475,7 @@ export async function sendPollDiscord(
 }
 
 type VoiceMessageOpts = {
-  cfg?: OpenClawConfig;
+  cfg?: QuantClawConfig;
   token?: string;
   accountId?: string;
   verbose?: boolean;
@@ -492,7 +492,7 @@ async function materializeVoiceMessageInput(mediaUrl: string): Promise<{ filePat
   const extFromName = media.fileName ? path.extname(media.fileName) : "";
   const extFromMime = media.contentType ? extensionForMime(media.contentType) : "";
   const ext = extFromName || extFromMime || ".bin";
-  const tempDir = resolvePreferredOpenClawTmpDir();
+  const tempDir = resolvePreferredQuantClawTmpDir();
   const filePath = path.join(tempDir, `voice-src-${crypto.randomUUID()}${ext}`);
   await fs.writeFile(filePath, media.buffer, { mode: 0o600 });
   return { filePath };

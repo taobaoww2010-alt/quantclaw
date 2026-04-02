@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import { callGateway } from "../gateway/call.js";
 import { resolvePluginTools } from "../plugins/tools.js";
 import {
@@ -35,18 +35,18 @@ import { createTtsTool } from "./tools/tts-tool.js";
 import { createWebFetchTool, createWebSearchTool } from "./tools/web-tools.js";
 import { resolveWorkspaceRoot } from "./workspace-dir.js";
 
-type OpenClawToolsDeps = {
+type QuantClawToolsDeps = {
   callGateway: typeof callGateway;
-  config?: OpenClawConfig;
+  config?: QuantClawConfig;
 };
 
-const defaultOpenClawToolsDeps: OpenClawToolsDeps = {
+const defaultQuantClawToolsDeps: QuantClawToolsDeps = {
   callGateway,
 };
 
-let openClawToolsDeps: OpenClawToolsDeps = defaultOpenClawToolsDeps;
+let openClawToolsDeps: QuantClawToolsDeps = defaultQuantClawToolsDeps;
 
-export function createOpenClawTools(
+export function createQuantClawTools(
   options?: {
     sandboxBrowserBridgeUrl?: string;
     allowHostBrowserControl?: boolean;
@@ -62,7 +62,7 @@ export function createOpenClawTools(
     sandboxFsBridge?: SandboxFsBridge;
     fsPolicy?: ToolFsPolicy;
     sandboxed?: boolean;
-    config?: OpenClawConfig;
+    config?: QuantClawConfig;
     pluginToolAllowlist?: string[];
     /** Current channel ID for auto-threading (Slack). */
     currentChannelId?: string;
@@ -298,12 +298,12 @@ export function createOpenClawTools(
 }
 
 export const __testing = {
-  setDepsForTest(overrides?: Partial<OpenClawToolsDeps>) {
+  setDepsForTest(overrides?: Partial<QuantClawToolsDeps>) {
     openClawToolsDeps = overrides
       ? {
-          ...defaultOpenClawToolsDeps,
+          ...defaultQuantClawToolsDeps,
           ...overrides,
         }
-      : defaultOpenClawToolsDeps;
+      : defaultQuantClawToolsDeps;
   },
 };

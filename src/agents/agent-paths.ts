@@ -12,7 +12,7 @@ export function resolveQuantClawAgentDir(env: NodeJS.ProcessEnv = process.env): 
   return resolveUserPath(defaultAgentDir, env);
 }
 
-export function ensureOpenClawAgentEnv(): string {
+export function ensureQuantClawAgentEnv(): string {
   const dir = resolveQuantClawAgentDir();
   if (!process.env.QUANTCLAW_AGENT_DIR) {
     process.env.QUANTCLAW_AGENT_DIR = dir;

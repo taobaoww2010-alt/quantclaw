@@ -216,7 +216,7 @@ export class GatewayClient {
           (allowPrivateWs
             ? ""
             : "Break-glass (trusted private networks only): set OPENCLAW_ALLOW_INSECURE_PRIVATE_WS=1. ") +
-          "Run `openclaw doctor --fix` for guidance.",
+          "Run `quantclaw doctor --fix` for guidance.",
       );
       this.opts.onConnectError?.(error);
       return;

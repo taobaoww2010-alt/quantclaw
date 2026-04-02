@@ -3,13 +3,13 @@ import {
   ListFoundationModelsCommand,
   type ListFoundationModelsCommandOutput,
 } from "@aws-sdk/client-bedrock";
-import { createSubsystemLogger } from "openclaw/plugin-sdk/core";
-import { resolveAwsSdkEnvVarName } from "openclaw/plugin-sdk/provider-auth-runtime";
+import { createSubsystemLogger } from "quantclaw/plugin-sdk/core";
+import { resolveAwsSdkEnvVarName } from "quantclaw/plugin-sdk/provider-auth-runtime";
 import type {
   BedrockDiscoveryConfig,
   ModelDefinitionConfig,
   ModelProviderConfig,
-} from "openclaw/plugin-sdk/provider-model-shared";
+} from "quantclaw/plugin-sdk/provider-model-shared";
 
 const log = createSubsystemLogger("bedrock-discovery");
 

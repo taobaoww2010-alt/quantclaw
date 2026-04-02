@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import type { PinnedDispatcherPolicy } from "openclaw/plugin-sdk/infra-runtime";
+import type { PinnedDispatcherPolicy } from "quantclaw/plugin-sdk/infra-runtime";
 import type { SsrFPolicy } from "../../runtime-api.js";
 import { MatrixClient } from "../sdk.js";
 import { resolveValidatedMatrixHomeserverUrl } from "./config.js";
@@ -55,7 +55,7 @@ export async function createMatrixClient(params: {
     deviceId: params.deviceId,
   });
 
-  const cryptoDatabasePrefix = `openclaw-matrix-${storagePaths.accountKey}-${storagePaths.tokenHash}`;
+  const cryptoDatabasePrefix = `quantclaw-matrix-${storagePaths.accountKey}-${storagePaths.tokenHash}`;
 
   return new MatrixClient(homeserver, params.accessToken, {
     userId: matrixClientUserId,

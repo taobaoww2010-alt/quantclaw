@@ -1,7 +1,7 @@
 {
-  "name": "@openclaw/image-generation-core",
+  "name": "@quantclaw/image-generation-core",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw image generation runtime package",
+  "description": "QuantClaw image generation runtime package",
   "type": "module"
 }

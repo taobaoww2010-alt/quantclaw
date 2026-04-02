@@ -1,6 +1,6 @@
-import { generateSecureUuid } from "openclaw/plugin-sdk/core";
-import { resolveFetch } from "openclaw/plugin-sdk/fetch-runtime";
-import { fetchWithTimeout } from "openclaw/plugin-sdk/text-runtime";
+import { generateSecureUuid } from "quantclaw/plugin-sdk/core";
+import { resolveFetch } from "quantclaw/plugin-sdk/fetch-runtime";
+import { fetchWithTimeout } from "quantclaw/plugin-sdk/text-runtime";
 
 export type SignalRpcOptions = {
   baseUrl: string;

@@ -1,6 +1,6 @@
 import { normalizeProviderId } from "../agents/model-selection.js";
 import { formatCliCommand } from "../cli/command-format.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import { resolvePluginProviders } from "../plugins/providers.runtime.js";
 
 function matchesProviderId(
@@ -19,7 +19,7 @@ function matchesProviderId(
 
 export function resolveProviderAuthLoginCommand(params: {
   provider: string;
-  config?: OpenClawConfig;
+  config?: QuantClawConfig;
   workspaceDir?: string;
   env?: NodeJS.ProcessEnv;
 }): string | undefined {
@@ -33,12 +33,12 @@ export function resolveProviderAuthLoginCommand(params: {
   if (!provider || provider.auth.length === 0) {
     return undefined;
   }
-  return formatCliCommand(`openclaw models auth login --provider ${provider.id}`);
+  return formatCliCommand(`quantclaw models auth login --provider ${provider.id}`);
 }
 
 export function buildProviderAuthRecoveryHint(params: {
   provider: string;
-  config?: OpenClawConfig;
+  config?: QuantClawConfig;
   workspaceDir?: string;
   env?: NodeJS.ProcessEnv;
   includeConfigure?: boolean;

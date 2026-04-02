@@ -1,6 +1,6 @@
-import type { ChannelSetupAdapter, ChannelSetupInput } from "openclaw/plugin-sdk/channel-setup";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "openclaw/plugin-sdk/routing";
+import type { ChannelSetupAdapter, ChannelSetupInput } from "quantclaw/plugin-sdk/channel-setup";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "quantclaw/plugin-sdk/routing";
 import {
   createSetupInputPresenceValidator,
   mergeAllowFromEntries,
@@ -11,8 +11,8 @@ import {
   type ChannelSetupDmPolicy,
   type ChannelSetupWizard,
   type WizardPrompter,
-} from "openclaw/plugin-sdk/setup-runtime";
-import { formatDocsLink } from "openclaw/plugin-sdk/setup-tools";
+} from "quantclaw/plugin-sdk/setup-runtime";
+import { formatDocsLink } from "quantclaw/plugin-sdk/setup-tools";
 import { applyAccountNameToChannelSection, patchScopedAccountConfig } from "../runtime-api.js";
 import {
   listNextcloudTalkAccountIds,
@@ -146,10 +146,10 @@ async function promptNextcloudTalkAllowFrom(params: {
 }
 
 async function promptNextcloudTalkAllowFromForAccount(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   prompter: WizardPrompter;
   accountId?: string;
-}): Promise<OpenClawConfig> {
+}): Promise<QuantClawConfig> {
   const accountId = resolveSetupAccountId({
     accountId: params.accountId,
     defaultAccountId: resolveDefaultNextcloudTalkAccountId(params.cfg as CoreConfig),

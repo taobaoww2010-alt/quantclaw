@@ -1,7 +1,7 @@
-const SETTINGS_KEY_PREFIX = "openclaw.control.settings.v1:";
-const LEGACY_SETTINGS_KEY = "openclaw.control.settings.v1";
-const LEGACY_TOKEN_SESSION_KEY = "openclaw.control.token.v1";
-const TOKEN_SESSION_KEY_PREFIX = "openclaw.control.token.v1:";
+const SETTINGS_KEY_PREFIX = "quantclaw.control.settings.v1:";
+const LEGACY_SETTINGS_KEY = "quantclaw.control.settings.v1";
+const LEGACY_TOKEN_SESSION_KEY = "quantclaw.control.token.v1";
+const TOKEN_SESSION_KEY_PREFIX = "quantclaw.control.token.v1:";
 const MAX_SCOPED_SESSION_ENTRIES = 10;
 
 function settingsKeyForGateway(gatewayUrl: string): string {
@@ -291,7 +291,7 @@ function persistSettings(next: UiSettings) {
     const raw =
       storage?.getItem(scopedKey) ??
       storage?.getItem(SETTINGS_KEY_PREFIX + "default") ??
-      storage?.getItem("openclaw.control.settings.v1");
+      storage?.getItem("quantclaw.control.settings.v1");
     if (raw) {
       const parsed = JSON.parse(raw) as PersistedUiSettings;
       if (parsed.sessionsByGateway && typeof parsed.sessionsByGateway === "object") {

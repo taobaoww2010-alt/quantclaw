@@ -1,1 +1,1 @@
-export { resolvePreferredOpenClawTmpDir } from "openclaw/plugin-sdk/temp-path";
+export { resolvePreferredQuantClawTmpDir } from "quantclaw/plugin-sdk/temp-path";

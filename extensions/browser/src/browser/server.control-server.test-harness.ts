@@ -18,7 +18,7 @@ type HarnessState = {
       cdpPort?: number;
       cdpUrl?: string;
       color: string;
-      driver?: "openclaw" | "existing-session";
+      driver?: "quantclaw" | "existing-session";
       attachOnly?: boolean;
     }
   >;
@@ -34,7 +34,7 @@ const state: HarnessState = {
   reachable: false,
   cfgAttachOnly: false,
   cfgEvaluateEnabled: true,
-  cfgDefaultProfile: "openclaw",
+  cfgDefaultProfile: "quantclaw",
   cfgProfiles: {},
   createTargetId: null,
   prevGatewayPort: undefined,
@@ -76,7 +76,7 @@ export function setBrowserControlServerReachable(reachable: boolean): void {
 
 export function setBrowserControlServerProfiles(
   profiles: HarnessState["cfgProfiles"],
-  defaultProfile = Object.keys(profiles)[0] ?? "openclaw",
+  defaultProfile = Object.keys(profiles)[0] ?? "quantclaw",
 ): void {
   state.cfgProfiles = profiles;
   state.cfgDefaultProfile = defaultProfile;
@@ -181,7 +181,7 @@ export function getChromeMcpMocks(): Record<string, MockFn> {
   return chromeMcpMocks as unknown as Record<string, MockFn>;
 }
 
-const chromeUserDataDir = vi.hoisted(() => ({ dir: "/tmp/openclaw" }));
+const chromeUserDataDir = vi.hoisted(() => ({ dir: "/tmp/quantclaw" }));
 installChromeUserDataDirHooks(chromeUserDataDir);
 
 type BrowserServerModule = typeof import("./server.js");
@@ -221,7 +221,7 @@ const proc = makeProc();
 
 function defaultProfilesForState(testPort: number): HarnessState["cfgProfiles"] {
   return {
-    openclaw: { cdpPort: testPort + 9, color: "#FF4500" },
+    quantclaw: { cdpPort: testPort + 9, color: "#FF4500" },
   };
 }
 
@@ -265,7 +265,7 @@ export function getLaunchCalls() {
 vi.mock("./chrome.js", () => ({
   isChromeCdpReady: vi.fn(async () => state.reachable),
   isChromeReachable: vi.fn(async () => state.reachable),
-  launchOpenClawChrome: vi.fn(async (_resolved: unknown, profile: { cdpPort: number }) => {
+  launchQuantClawChrome: vi.fn(async (_resolved: unknown, profile: { cdpPort: number }) => {
     launchCalls.push({ port: profile.cdpPort });
     state.reachable = true;
     return {
@@ -277,8 +277,8 @@ vi.mock("./chrome.js", () => ({
       proc,
     };
   }),
-  resolveOpenClawUserDataDir: vi.fn(() => chromeUserDataDir.dir),
-  stopOpenClawChrome: vi.fn(async () => {
+  resolveQuantClawUserDataDir: vi.fn(() => chromeUserDataDir.dir),
+  stopQuantClawChrome: vi.fn(async () => {
     state.reachable = false;
   }),
 }));
@@ -354,7 +354,7 @@ export async function resetBrowserControlServerTestContext(): Promise<void> {
   state.reachable = false;
   state.cfgAttachOnly = false;
   state.cfgEvaluateEnabled = true;
-  state.cfgDefaultProfile = "openclaw";
+  state.cfgDefaultProfile = "quantclaw";
   state.cfgProfiles = defaultProfilesForState(state.testPort);
   state.createTargetId = null;
 

@@ -1,25 +1,25 @@
 import { Type } from "@sinclair/typebox";
-import { describeAccountSnapshot } from "openclaw/plugin-sdk/account-helpers";
-import { formatNormalizedAllowFromEntries } from "openclaw/plugin-sdk/allow-from";
-import { createMessageToolButtonsSchema } from "openclaw/plugin-sdk/channel-actions";
+import { describeAccountSnapshot } from "quantclaw/plugin-sdk/account-helpers";
+import { formatNormalizedAllowFromEntries } from "quantclaw/plugin-sdk/allow-from";
+import { createMessageToolButtonsSchema } from "quantclaw/plugin-sdk/channel-actions";
 import {
   adaptScopedAccountAccessor,
   createScopedChannelConfigAdapter,
-} from "openclaw/plugin-sdk/channel-config-helpers";
+} from "quantclaw/plugin-sdk/channel-config-helpers";
 import type {
   ChannelMessageActionAdapter,
   ChannelMessageActionName,
   ChannelMessageToolDiscovery,
-} from "openclaw/plugin-sdk/channel-contract";
-import { createLoggedPairingApprovalNotifier } from "openclaw/plugin-sdk/channel-pairing";
-import { createRestrictSendersChannelSecurity } from "openclaw/plugin-sdk/channel-policy";
-import { createChatChannelPlugin } from "openclaw/plugin-sdk/core";
-import { createChannelDirectoryAdapter } from "openclaw/plugin-sdk/directory-runtime";
-import { buildPassiveProbedChannelStatusSummary } from "openclaw/plugin-sdk/extension-shared";
+} from "quantclaw/plugin-sdk/channel-contract";
+import { createLoggedPairingApprovalNotifier } from "quantclaw/plugin-sdk/channel-pairing";
+import { createRestrictSendersChannelSecurity } from "quantclaw/plugin-sdk/channel-policy";
+import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
+import { createChannelDirectoryAdapter } from "quantclaw/plugin-sdk/directory-runtime";
+import { buildPassiveProbedChannelStatusSummary } from "quantclaw/plugin-sdk/extension-shared";
 import {
   createComputedAccountStatusAdapter,
   createDefaultChannelRuntimeState,
-} from "openclaw/plugin-sdk/status-helpers";
+} from "quantclaw/plugin-sdk/status-helpers";
 import { mattermostApprovalAuth } from "./approval-auth.js";
 import { MattermostChannelConfigSchema } from "./config-surface.js";
 import { resolveMattermostGroupRequireMention } from "./group-mentions.js";
@@ -416,7 +416,7 @@ export const mattermostPlugin: ChannelPlugin<ResolvedMattermostAccount> = create
   pairing: {
     text: {
       idLabel: "mattermostUserId",
-      message: "OpenClaw: your access has been approved.",
+      message: "QuantClaw: your access has been approved.",
       normalizeAllowEntry: (entry) => normalizeAllowEntry(entry),
       notify: createLoggedPairingApprovalNotifier(
         ({ id }) => `[mattermost] User ${id} approved for pairing`,

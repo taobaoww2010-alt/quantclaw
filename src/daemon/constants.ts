@@ -1,10 +1,10 @@
 // Default service labels (canonical + legacy compatibility)
-export const GATEWAY_LAUNCH_AGENT_LABEL = "ai.openclaw.gateway";
+export const GATEWAY_LAUNCH_AGENT_LABEL = "ai.quantclaw.gateway";
 export const GATEWAY_SYSTEMD_SERVICE_NAME = "quantclaw-gateway";
 export const GATEWAY_WINDOWS_TASK_NAME = "☯️ QuantClaw Gateway";
 export const GATEWAY_SERVICE_MARKER = "quantclaw";
 export const GATEWAY_SERVICE_KIND = "gateway";
-export const NODE_LAUNCH_AGENT_LABEL = "ai.openclaw.node";
+export const NODE_LAUNCH_AGENT_LABEL = "ai.quantclaw.node";
 export const NODE_SYSTEMD_SERVICE_NAME = "quantclaw-node";
 export const NODE_WINDOWS_TASK_NAME = "☯️ QuantClaw Node";
 export const NODE_SERVICE_MARKER = "quantclaw";
@@ -32,7 +32,7 @@ export function resolveGatewayLaunchAgentLabel(profile?: string): string {
   if (!normalized) {
     return GATEWAY_LAUNCH_AGENT_LABEL;
   }
-  return `ai.openclaw.${normalized}`;
+  return `ai.quantclaw.${normalized}`;
 }
 
 export function resolveLegacyGatewayLaunchAgentLabels(profile?: string): string[] {
@@ -45,7 +45,7 @@ export function resolveGatewaySystemdServiceName(profile?: string): string {
   if (!suffix) {
     return GATEWAY_SYSTEMD_SERVICE_NAME;
   }
-  return `openclaw-gateway${suffix}`;
+  return `quantclaw-gateway${suffix}`;
 }
 
 export function resolveGatewayWindowsTaskName(profile?: string): string {
@@ -53,7 +53,7 @@ export function resolveGatewayWindowsTaskName(profile?: string): string {
   if (!normalized) {
     return GATEWAY_WINDOWS_TASK_NAME;
   }
-  return `OpenClaw Gateway (${normalized})`;
+  return `QuantClaw Gateway (${normalized})`;
 }
 
 export function formatGatewayServiceDescription(params?: {
@@ -72,7 +72,7 @@ export function formatGatewayServiceDescription(params?: {
   if (parts.length === 0) {
     return "☯️ QuantClaw Gateway";
   }
-  return `OpenClaw Gateway (${parts.join(", ")})`;
+  return `QuantClaw Gateway (${parts.join(", ")})`;
 }
 
 export function resolveGatewayServiceDescription(params: {
@@ -83,8 +83,8 @@ export function resolveGatewayServiceDescription(params: {
   return (
     params.description ??
     formatGatewayServiceDescription({
-      profile: params.env.OPENCLAW_PROFILE,
-      version: params.environment?.OPENCLAW_SERVICE_VERSION ?? params.env.OPENCLAW_SERVICE_VERSION,
+      profile: params.env.QUANTCLAW_PROFILE,
+      version: params.environment?.QUANTCLAW_SERVICE_VERSION ?? params.env.QUANTCLAW_SERVICE_VERSION,
     })
   );
 }
@@ -106,5 +106,5 @@ export function formatNodeServiceDescription(params?: { version?: string }): str
   if (!version) {
     return "☯️ QuantClaw Node Host";
   }
-  return `OpenClaw Node Host (v${version})`;
+  return `QuantClaw Node Host (v${version})`;
 }

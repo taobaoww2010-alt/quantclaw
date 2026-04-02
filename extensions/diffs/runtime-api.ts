@@ -1,1 +1,1 @@
-export { resolveRequestClientIp } from "openclaw/plugin-sdk/webhook-ingress";
+export { resolveRequestClientIp } from "quantclaw/plugin-sdk/webhook-ingress";

@@ -1,9 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildPluginConfigSchema } from "openclaw/plugin-sdk/core";
-import { z } from "openclaw/plugin-sdk/zod";
-import type { OpenClawPluginConfigSchema } from "../runtime-api.js";
+import { buildPluginConfigSchema } from "quantclaw/plugin-sdk/core";
+import { z } from "quantclaw/plugin-sdk/zod";
+import type { QuantClawPluginConfigSchema } from "../runtime-api.js";
 
 export const ACPX_PERMISSION_MODES = ["approve-all", "approve-reads", "deny-all"] as const;
 export type AcpxPermissionMode = (typeof ACPX_PERMISSION_MODES)[number];
@@ -12,12 +12,12 @@ export const ACPX_NON_INTERACTIVE_POLICIES = ["deny", "fail"] as const;
 export type AcpxNonInteractivePermissionPolicy = (typeof ACPX_NON_INTERACTIVE_POLICIES)[number];
 
 export const ACPX_VERSION_ANY = "any";
-export const ACPX_PLUGIN_TOOLS_MCP_SERVER_NAME = "openclaw-plugin-tools";
+export const ACPX_PLUGIN_TOOLS_MCP_SERVER_NAME = "quantclaw-plugin-tools";
 const ACPX_BIN_NAME = process.platform === "win32" ? "acpx.cmd" : "acpx";
 
 function isAcpxPluginRoot(dir: string): boolean {
   return (
-    fs.existsSync(path.join(dir, "openclaw.plugin.json")) &&
+    fs.existsSync(path.join(dir, "quantclaw.plugin.json")) &&
     fs.existsSync(path.join(dir, "package.json"))
   );
 }
@@ -212,7 +212,7 @@ function resolveConfiguredCommand(params: { configured?: string; workspaceDir?: 
   return configured;
 }
 
-function resolveOpenClawRoot(currentRoot: string): string {
+function resolveQuantClawRoot(currentRoot: string): string {
   if (
     path.basename(currentRoot) === "acpx" &&
     path.basename(path.dirname(currentRoot)) === "extensions"
@@ -230,7 +230,7 @@ export function resolvePluginToolsMcpServerConfig(
   moduleUrl: string = import.meta.url,
 ): McpServerConfig {
   const pluginRoot = resolveAcpxPluginRoot(moduleUrl);
-  const openClawRoot = resolveOpenClawRoot(pluginRoot);
+  const openClawRoot = resolveQuantClawRoot(pluginRoot);
   const distEntry = path.join(openClawRoot, "dist", "mcp", "plugin-tools-serve.js");
   if (fs.existsSync(distEntry)) {
     return {
@@ -263,7 +263,7 @@ function resolveConfiguredMcpServers(params: {
   return resolved;
 }
 
-export function createAcpxPluginConfigSchema(): OpenClawPluginConfigSchema {
+export function createAcpxPluginConfigSchema(): QuantClawPluginConfigSchema {
   return buildPluginConfigSchema(AcpxPluginConfigSchema);
 }
 

@@ -1,13 +1,13 @@
 import { Type } from "@sinclair/typebox";
-import { getRuntimeConfigSnapshot } from "openclaw/plugin-sdk/config-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/plugin-entry";
+import { getRuntimeConfigSnapshot } from "quantclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/plugin-entry";
 import {
   jsonResult,
   readConfiguredSecretString,
   readProviderEnvValue,
   readStringParam,
   resolveProviderWebSearchPluginConfig,
-} from "openclaw/plugin-sdk/provider-web-search";
+} from "quantclaw/plugin-sdk/provider-web-search";
 import {
   buildXaiCodeExecutionPayload,
   requestXaiCodeExecution,
@@ -16,7 +16,7 @@ import {
 } from "./src/code-execution-shared.js";
 
 type XaiPluginConfig = NonNullable<
-  NonNullable<OpenClawConfig["plugins"]>["entries"]
+  NonNullable<QuantClawConfig["plugins"]>["entries"]
 >["xai"] extends {
   config?: infer Config;
 }
@@ -36,7 +36,7 @@ function readCodeExecutionConfigRecord(
   return config && typeof config === "object" ? (config as Record<string, unknown>) : undefined;
 }
 
-function readLegacyGrokApiKey(cfg?: OpenClawConfig): string | undefined {
+function readLegacyGrokApiKey(cfg?: QuantClawConfig): string | undefined {
   const search = cfg?.tools?.web?.search;
   if (!search || typeof search !== "object") {
     return undefined;
@@ -48,7 +48,7 @@ function readLegacyGrokApiKey(cfg?: OpenClawConfig): string | undefined {
   );
 }
 
-function readPluginCodeExecutionConfig(cfg?: OpenClawConfig): CodeExecutionConfig | undefined {
+function readPluginCodeExecutionConfig(cfg?: QuantClawConfig): CodeExecutionConfig | undefined {
   const entries = cfg?.plugins?.entries;
   if (!entries || typeof entries !== "object") {
     return undefined;
@@ -68,7 +68,7 @@ function readPluginCodeExecutionConfig(cfg?: OpenClawConfig): CodeExecutionConfi
   return codeExecution as CodeExecutionConfig;
 }
 
-function resolveFallbackXaiApiKey(cfg?: OpenClawConfig): string | undefined {
+function resolveFallbackXaiApiKey(cfg?: QuantClawConfig): string | undefined {
   return (
     readConfiguredSecretString(
       resolveProviderWebSearchPluginConfig(cfg as Record<string, unknown> | undefined, "xai")
@@ -79,8 +79,8 @@ function resolveFallbackXaiApiKey(cfg?: OpenClawConfig): string | undefined {
 }
 
 function resolveCodeExecutionEnabled(params: {
-  sourceConfig?: OpenClawConfig;
-  runtimeConfig?: OpenClawConfig;
+  sourceConfig?: QuantClawConfig;
+  runtimeConfig?: QuantClawConfig;
   config?: CodeExecutionConfig;
 }): boolean {
   if (readCodeExecutionConfigRecord(params.config)?.enabled === false) {
@@ -94,8 +94,8 @@ function resolveCodeExecutionEnabled(params: {
 }
 
 export function createCodeExecutionTool(options?: {
-  config?: OpenClawConfig;
-  runtimeConfig?: OpenClawConfig | null;
+  config?: QuantClawConfig;
+  runtimeConfig?: QuantClawConfig | null;
 }) {
   const runtimeConfig = options?.runtimeConfig ?? getRuntimeConfigSnapshot();
   const codeExecutionConfig =
@@ -132,7 +132,7 @@ export function createCodeExecutionTool(options?: {
           error: "missing_xai_api_key",
           message:
             "code_execution needs an xAI API key. Set XAI_API_KEY in the Gateway environment, or configure plugins.entries.xai.config.webSearch.apiKey.",
-          docs: "https://docs.openclaw.ai/tools/code-execution",
+          docs: "https://docs.quantclaw.ai/tools/code-execution",
         });
       }
 

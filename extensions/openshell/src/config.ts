@@ -1,6 +1,6 @@
 import path from "node:path";
-import { buildPluginConfigSchema, type OpenClawPluginConfigSchema } from "openclaw/plugin-sdk/core";
-import { z } from "openclaw/plugin-sdk/zod";
+import { buildPluginConfigSchema, type QuantClawPluginConfigSchema } from "quantclaw/plugin-sdk/core";
+import { z } from "quantclaw/plugin-sdk/zod";
 
 export type OpenShellPluginConfig = {
   mode?: "mirror" | "remote";
@@ -34,7 +34,7 @@ export type ResolvedOpenShellPluginConfig = {
 
 const DEFAULT_COMMAND = "openshell";
 const DEFAULT_MODE = "mirror";
-const DEFAULT_SOURCE = "openclaw";
+const DEFAULT_SOURCE = "quantclaw";
 const DEFAULT_REMOTE_WORKSPACE_DIR = "/sandbox";
 const DEFAULT_REMOTE_AGENT_WORKSPACE_DIR = "/agent";
 const DEFAULT_TIMEOUT_MS = 120_000;
@@ -109,7 +109,7 @@ function normalizeRemotePath(value: string | undefined, fallback: string): strin
   return normalized;
 }
 
-export function createOpenShellPluginConfigSchema(): OpenClawPluginConfigSchema {
+export function createOpenShellPluginConfigSchema(): QuantClawPluginConfigSchema {
   return buildPluginConfigSchema(OpenShellPluginConfigSchema, {
     safeParse(value) {
       if (value === undefined) {

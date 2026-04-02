@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/amazon-bedrock-provider",
+  "name": "@quantclaw/amazon-bedrock-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Amazon Bedrock provider plugin",
+  "description": "QuantClaw Amazon Bedrock provider plugin",
   "type": "module",
   "dependencies": {
     "@aws-sdk/client-bedrock": "3.1018.0"

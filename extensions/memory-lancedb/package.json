@@ -1,7 +1,7 @@
 {
-  "name": "@openclaw/memory-lancedb",
+  "name": "@quantclaw/memory-lancedb",
   "version": "2026.3.30",
-  "description": "OpenClaw LanceDB-backed long-term memory plugin with auto-recall/capture",
+  "description": "QuantClaw LanceDB-backed long-term memory plugin with auto-recall/capture",
   "type": "module",
   "dependencies": {
     "@lancedb/lancedb": "^0.27.1",
@@ -13,7 +13,7 @@
       "./index.ts"
     ],
     "install": {
-      "npmSpec": "@openclaw/memory-lancedb",
+      "npmSpec": "@quantclaw/memory-lancedb",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.3.30"
     },

@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import { getTailnetHostname } from "../infra/tailscale.js";
 import { isIpv6Address, parseCanonicalIpAddress } from "../shared/net/ip.js";
 
@@ -64,10 +64,10 @@ export function appendAllowedOrigin(existing: string[] | undefined, origin: stri
 }
 
 export async function maybeAddTailnetOriginToControlUiAllowedOrigins(params: {
-  config: OpenClawConfig;
+  config: QuantClawConfig;
   tailscaleMode: string;
   tailscaleBin?: string | null;
-}): Promise<OpenClawConfig> {
+}): Promise<QuantClawConfig> {
   if (params.tailscaleMode !== "serve" && params.tailscaleMode !== "funnel") {
     return params.config;
   }

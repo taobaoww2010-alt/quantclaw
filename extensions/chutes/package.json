@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/chutes-provider",
+  "name": "@quantclaw/chutes-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Chutes.ai provider plugin",
+  "description": "QuantClaw Chutes.ai provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

@@ -154,7 +154,7 @@ export function createExecutionArtifacts(env = process.env) {
   let tempArtifactDir = null;
   const ensureTempArtifactDir = () => {
     if (tempArtifactDir === null) {
-      tempArtifactDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-test-parallel-"));
+      tempArtifactDir = fs.mkdtempSync(path.join(os.tmpdir(), "quantclaw-test-parallel-"));
     }
     return tempArtifactDir;
   };
@@ -388,7 +388,7 @@ export async function executePlan(plan, options = {}) {
   const heapSnapshotBaseDir = heapSnapshotEnabled
     ? path.resolve(
         env.OPENCLAW_TEST_HEAPSNAPSHOT_DIR?.trim() ||
-          path.join(os.tmpdir(), `openclaw-heapsnapshots-${Date.now()}`),
+          path.join(os.tmpdir(), `quantclaw-heapsnapshots-${Date.now()}`),
       )
     : null;
   const maxOldSpaceSizeMb = (() => {

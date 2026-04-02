@@ -8,7 +8,7 @@ import {
   withBundledPluginVitestCompat,
 } from "./bundled-compat.js";
 import { createCapturedPluginRegistration } from "./captured-registration.js";
-import { discoverOpenClawPlugins } from "./discovery.js";
+import { discoverQuantClawPlugins } from "./discovery.js";
 import type { PluginLoadOptions } from "./loader.js";
 import { loadPluginManifestRegistry } from "./manifest-registry.js";
 import { createEmptyPluginRegistry } from "./registry-empty.js";
@@ -19,7 +19,7 @@ import {
   shouldPreferNativeJiti,
   type PluginSdkResolutionPreference,
 } from "./sdk-alias.js";
-import type { OpenClawPluginDefinition, OpenClawPluginModule } from "./types.js";
+import type { QuantClawPluginDefinition, QuantClawPluginModule } from "./types.js";
 
 const log = createSubsystemLogger("plugins");
 
@@ -72,8 +72,8 @@ export function buildBundledCapabilityRuntimeConfig(
 }
 
 function resolvePluginModuleExport(moduleExport: unknown): {
-  definition?: OpenClawPluginDefinition;
-  register?: OpenClawPluginDefinition["register"];
+  definition?: QuantClawPluginDefinition;
+  register?: QuantClawPluginDefinition["register"];
 } {
   const resolved =
     moduleExport &&
@@ -83,11 +83,11 @@ function resolvePluginModuleExport(moduleExport: unknown): {
       : moduleExport;
   if (typeof resolved === "function") {
     return {
-      register: resolved as OpenClawPluginDefinition["register"],
+      register: resolved as QuantClawPluginDefinition["register"],
     };
   }
   if (resolved && typeof resolved === "object") {
-    const definition = resolved as OpenClawPluginDefinition;
+    const definition = resolved as QuantClawPluginDefinition;
     return {
       definition,
       register: definition.register ?? definition.activate,
@@ -191,7 +191,7 @@ export function loadBundledCapabilityRuntimeRegistry(params: {
     return loader;
   };
 
-  const discovery = discoverOpenClawPlugins({
+  const discovery = discoverQuantClawPlugins({
     cache: false,
     env,
   });
@@ -248,9 +248,9 @@ export function loadBundledCapabilityRuntimeRegistry(params: {
     const safeSource = opened.path;
     fs.closeSync(opened.fd);
 
-    let mod: OpenClawPluginModule | null = null;
+    let mod: QuantClawPluginModule | null = null;
     try {
-      mod = getJiti(safeSource)(safeSource) as OpenClawPluginModule;
+      mod = getJiti(safeSource)(safeSource) as QuantClawPluginModule;
     } catch (error) {
       recordCapabilityLoadError(registry, record, String(error));
       continue;

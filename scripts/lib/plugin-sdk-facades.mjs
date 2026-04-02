@@ -4,7 +4,7 @@ import ts from "typescript";
 import { bundledPluginFile } from "./bundled-plugin-paths.mjs";
 
 function pluginSource(dirName, artifactBasename = "api.js") {
-  return `@openclaw/${dirName}/${artifactBasename}`;
+  return `@quantclaw/${dirName}/${artifactBasename}`;
 }
 
 function runtimeApiSourcePath(dirName) {
@@ -227,9 +227,9 @@ export const GENERATED_PLUGIN_SDK_FACADES = [
       "DEFAULT_OPENCLAW_BROWSER_COLOR",
       "DEFAULT_OPENCLAW_BROWSER_PROFILE_NAME",
       "DEFAULT_UPLOAD_DIR",
-      "OpenClawPluginApi",
-      "OpenClawPluginToolContext",
-      "OpenClawPluginToolFactory",
+      "QuantClawPluginApi",
+      "QuantClawPluginToolContext",
+      "QuantClawPluginToolFactory",
       "ProfileStatus",
       "ResolvedBrowserConfig",
       "ResolvedBrowserProfile",
@@ -308,9 +308,9 @@ export const GENERATED_PLUGIN_SDK_FACADES = [
       "BrowserStatus",
       "BrowserTab",
       "BrowserTransport",
-      "OpenClawPluginApi",
-      "OpenClawPluginToolContext",
-      "OpenClawPluginToolFactory",
+      "QuantClawPluginApi",
+      "QuantClawPluginToolContext",
+      "QuantClawPluginToolFactory",
       "ProfileStatus",
       "ResolvedBrowserConfig",
       "ResolvedBrowserProfile",
@@ -1252,7 +1252,7 @@ function isArrayTypeLike(checker, type) {
 }
 
 function normalizeFacadeSourceParts(sourcePath) {
-  const packageSourceMatch = /^@openclaw\/([^/]+)\/([^/]+)$/u.exec(sourcePath);
+  const packageSourceMatch = /^@quantclaw\/([^/]+)\/([^/]+)$/u.exec(sourcePath);
   if (packageSourceMatch) {
     return {
       dirName: packageSourceMatch[1],
@@ -1289,7 +1289,7 @@ function collectRuntimeApiPreExports(repoRoot, runtimeApiPath) {
     if (statement.isTypeOnly) {
       continue;
     }
-    if (moduleSpecifier === "openclaw/plugin-sdk/line-runtime") {
+    if (moduleSpecifier === "quantclaw/plugin-sdk/line-runtime") {
       break;
     }
     if (!moduleSpecifier.startsWith("./src/")) {
@@ -1309,7 +1309,7 @@ function collectRuntimeApiPreExports(repoRoot, runtimeApiPath) {
 }
 
 function resolveFacadeSourceTypescriptPath(repoRoot, sourcePath) {
-  const packageSourceMatch = /^@openclaw\/([^/]+)\/(.+)$/u.exec(sourcePath);
+  const packageSourceMatch = /^@quantclaw\/([^/]+)\/(.+)$/u.exec(sourcePath);
   const absolutePath = packageSourceMatch
     ? path.resolve(repoRoot, "extensions", packageSourceMatch[1], packageSourceMatch[2])
     : path.resolve(repoRoot, "src/plugin-sdk", sourcePath);

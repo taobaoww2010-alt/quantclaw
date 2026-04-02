@@ -10,17 +10,17 @@ import {
   type TopLevelComponents,
 } from "@buape/carbon";
 import { ButtonStyle, Routes } from "discord-api-types/v10";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { loadSessionStore, resolveStorePath } from "openclaw/plugin-sdk/config-runtime";
-import type { DiscordExecApprovalConfig } from "openclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { loadSessionStore, resolveStorePath } from "quantclaw/plugin-sdk/config-runtime";
+import type { DiscordExecApprovalConfig } from "quantclaw/plugin-sdk/config-runtime";
 import {
   createExecApprovalChannelRuntime,
   type ExecApprovalChannelRuntime,
   resolveChannelNativeApprovalDeliveryPlan,
-} from "openclaw/plugin-sdk/infra-runtime";
-import { buildExecApprovalActionDescriptors } from "openclaw/plugin-sdk/infra-runtime";
-import { resolveExecApprovalCommandDisplay } from "openclaw/plugin-sdk/infra-runtime";
-import { getExecApprovalApproverDmNoticeText } from "openclaw/plugin-sdk/infra-runtime";
+} from "quantclaw/plugin-sdk/infra-runtime";
+import { buildExecApprovalActionDescriptors } from "quantclaw/plugin-sdk/infra-runtime";
+import { resolveExecApprovalCommandDisplay } from "quantclaw/plugin-sdk/infra-runtime";
+import { getExecApprovalApproverDmNoticeText } from "quantclaw/plugin-sdk/infra-runtime";
 import type {
   ExecApprovalActionDescriptor,
   ExecApprovalDecision,
@@ -28,15 +28,15 @@ import type {
   ExecApprovalResolved,
   PluginApprovalRequest,
   PluginApprovalResolved,
-} from "openclaw/plugin-sdk/infra-runtime";
+} from "quantclaw/plugin-sdk/infra-runtime";
 import {
   normalizeAccountId,
   normalizeMessageChannel,
   resolveAgentIdFromSessionKey,
-} from "openclaw/plugin-sdk/routing";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
-import { compileSafeRegex, testRegexWithBoundedInput } from "openclaw/plugin-sdk/security-runtime";
-import { logDebug, logError } from "openclaw/plugin-sdk/text-runtime";
+} from "quantclaw/plugin-sdk/routing";
+import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
+import { compileSafeRegex, testRegexWithBoundedInput } from "quantclaw/plugin-sdk/security-runtime";
+import { logDebug, logError } from "quantclaw/plugin-sdk/text-runtime";
 import { createDiscordNativeApprovalAdapter } from "../approval-native.js";
 import { createDiscordClient, stripUndefinedFields } from "../send.shared.js";
 import { DiscordUiContainer } from "../ui.js";
@@ -119,7 +119,7 @@ export function parseExecApprovalData(
 }
 
 type ExecApprovalContainerParams = {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
   title: string;
   description?: string;
@@ -196,7 +196,7 @@ class ExecApprovalActionRow extends Row<Button> {
 }
 
 function resolveExecApprovalAccountId(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   request: ExecApprovalRequest;
 }): string | null {
   const sessionKey = params.request.request.sessionKey?.trim();
@@ -220,7 +220,7 @@ function resolveExecApprovalAccountId(params: {
 }
 
 function resolvePluginApprovalAccountId(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   request: PluginApprovalRequest;
 }): string | null {
   const fromSession = resolveExecApprovalAccountId({
@@ -242,7 +242,7 @@ function resolvePluginApprovalAccountId(params: {
 }
 
 function resolveApprovalAccountId(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   request: ApprovalRequest;
 }): string | null {
   return isPluginApprovalRequest(params.request)
@@ -329,7 +329,7 @@ function resolveExecApprovalPreviews(
 
 function createExecApprovalRequestContainer(params: {
   request: ExecApprovalRequest;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
   actionRow?: Row<Button>;
 }): ExecApprovalContainer {
@@ -356,7 +356,7 @@ function createExecApprovalRequestContainer(params: {
 
 function createPluginApprovalRequestContainer(params: {
   request: PluginApprovalRequest;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
   actionRow?: Row<Button>;
 }): ExecApprovalContainer {
@@ -382,7 +382,7 @@ function createExecResolvedContainer(params: {
   request: ExecApprovalRequest;
   decision: ExecApprovalDecision;
   resolvedBy?: string | null;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
 }): ExecApprovalContainer {
   const { commandPreview, commandSecondaryPreview } = resolveExecApprovalPreviews(
@@ -421,7 +421,7 @@ function createPluginResolvedContainer(params: {
   request: PluginApprovalRequest;
   decision: ExecApprovalDecision;
   resolvedBy?: string | null;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
 }): ExecApprovalContainer {
   const decisionLabel =
@@ -453,7 +453,7 @@ function createPluginResolvedContainer(params: {
 
 function createExecExpiredContainer(params: {
   request: ExecApprovalRequest;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
 }): ExecApprovalContainer {
   const { commandPreview, commandSecondaryPreview } = resolveExecApprovalPreviews(
@@ -476,7 +476,7 @@ function createExecExpiredContainer(params: {
 
 function createPluginExpiredContainer(params: {
   request: PluginApprovalRequest;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
 }): ExecApprovalContainer {
   return new ExecApprovalContainer({
@@ -497,7 +497,7 @@ export type DiscordExecApprovalHandlerOpts = {
   accountId: string;
   config: DiscordExecApprovalConfig;
   gatewayUrl?: string;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   runtime?: RuntimeEnv;
   onResolve?: (id: string, decision: ExecApprovalDecision) => Promise<void>;
 };

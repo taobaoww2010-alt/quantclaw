@@ -17,10 +17,10 @@ export const DEFAULT_AI_SNAPSHOT_MAX_CHARS: FacadeModule["DEFAULT_AI_SNAPSHOT_MA
   loadFacadeModule()["DEFAULT_AI_SNAPSHOT_MAX_CHARS"];
 export const DEFAULT_BROWSER_EVALUATE_ENABLED: FacadeModule["DEFAULT_BROWSER_EVALUATE_ENABLED"] =
   loadFacadeModule()["DEFAULT_BROWSER_EVALUATE_ENABLED"];
-export const DEFAULT_OPENCLAW_BROWSER_COLOR: FacadeModule["DEFAULT_OPENCLAW_BROWSER_COLOR"] =
-  loadFacadeModule()["DEFAULT_OPENCLAW_BROWSER_COLOR"];
-export const DEFAULT_OPENCLAW_BROWSER_PROFILE_NAME: FacadeModule["DEFAULT_OPENCLAW_BROWSER_PROFILE_NAME"] =
-  loadFacadeModule()["DEFAULT_OPENCLAW_BROWSER_PROFILE_NAME"];
+export const DEFAULT_QUANTCLAW_BROWSER_COLOR: FacadeModule["DEFAULT_QUANTCLAW_BROWSER_COLOR"] =
+  loadFacadeModule()["DEFAULT_QUANTCLAW_BROWSER_COLOR"];
+export const DEFAULT_QUANTCLAW_BROWSER_PROFILE_NAME: FacadeModule["DEFAULT_QUANTCLAW_BROWSER_PROFILE_NAME"] =
+  loadFacadeModule()["DEFAULT_QUANTCLAW_BROWSER_PROFILE_NAME"];
 export const DEFAULT_UPLOAD_DIR: FacadeModule["DEFAULT_UPLOAD_DIR"] =
   loadFacadeModule()["DEFAULT_UPLOAD_DIR"];
 export const applyBrowserProxyPaths: FacadeModule["applyBrowserProxyPaths"] = ((...args) =>
@@ -236,9 +236,9 @@ export type BrowserServerState = FacadeEntry["types"]["BrowserServerState"];
 export type BrowserStatus = FacadeEntry["types"]["BrowserStatus"];
 export type BrowserTab = FacadeEntry["types"]["BrowserTab"];
 export type BrowserTransport = FacadeEntry["types"]["BrowserTransport"];
-export type OpenClawPluginApi = FacadeEntry["types"]["OpenClawPluginApi"];
-export type OpenClawPluginToolContext = FacadeEntry["types"]["OpenClawPluginToolContext"];
-export type OpenClawPluginToolFactory = FacadeEntry["types"]["OpenClawPluginToolFactory"];
+export type QuantClawPluginApi = FacadeEntry["types"]["QuantClawPluginApi"];
+export type QuantClawPluginToolContext = FacadeEntry["types"]["QuantClawPluginToolContext"];
+export type QuantClawPluginToolFactory = FacadeEntry["types"]["QuantClawPluginToolFactory"];
 export type ProfileStatus = FacadeEntry["types"]["ProfileStatus"];
 export type ResolvedBrowserConfig = FacadeEntry["types"]["ResolvedBrowserConfig"];
 export type ResolvedBrowserProfile = FacadeEntry["types"]["ResolvedBrowserProfile"];

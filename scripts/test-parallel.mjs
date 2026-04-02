@@ -133,7 +133,7 @@ if (rawCli.showHelp) {
     [
       "Usage: node scripts/test-parallel.mjs [wrapper flags] [-- vitest args]",
       "",
-      "Runs the planner-backed OpenClaw test wrapper.",
+      "Runs the planner-backed QuantClaw test wrapper.",
       "",
       "Wrapper flags:",
       "  --plan                 Print the resolved execution plan and exit",

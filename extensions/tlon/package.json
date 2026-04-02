@@ -1,7 +1,7 @@
 {
-  "name": "@openclaw/tlon",
+  "name": "@quantclaw/tlon",
   "version": "2026.3.30",
-  "description": "OpenClaw Tlon/Urbit channel plugin",
+  "description": "QuantClaw Tlon/Urbit channel plugin",
   "type": "module",
   "dependencies": {
     "@aws-sdk/client-s3": "3.1019.0",
@@ -10,13 +10,13 @@
     "@urbit/aura": "^3.0.0"
   },
   "devDependencies": {
-    "openclaw": "workspace:*"
+    "quantclaw": "workspace:*"
   },
   "peerDependencies": {
-    "openclaw": ">=2026.3.30"
+    "quantclaw": ">=2026.3.30"
   },
   "peerDependenciesMeta": {
-    "openclaw": {
+    "quantclaw": {
       "optional": true
     }
   },
@@ -36,7 +36,7 @@
       "quickstartAllowFrom": true
     },
     "install": {
-      "npmSpec": "@openclaw/tlon",
+      "npmSpec": "@quantclaw/tlon",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.3.30"
     }

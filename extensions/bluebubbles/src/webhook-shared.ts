@@ -1,4 +1,4 @@
-import { normalizeWebhookPath } from "openclaw/plugin-sdk/webhook-path";
+import { normalizeWebhookPath } from "quantclaw/plugin-sdk/webhook-path";
 import type { BlueBubblesAccountConfig } from "./types.js";
 
 export { normalizeWebhookPath };

@@ -28,7 +28,7 @@ const EXTRA_MARKERS = ["quantclaw", "clawdbot"] as const;
 export function renderGatewayServiceCleanupHints(
   env: Record<string, string | undefined> = process.env as Record<string, string | undefined>,
 ): string[] {
-  const profile = env.OPENCLAW_PROFILE;
+  const profile = env.QUANTCLAW_PROFILE;
   switch (process.platform) {
     case "darwin": {
       const label = resolveGatewayLaunchAgentLabel(profile);
@@ -94,7 +94,7 @@ function hasGatewayServiceMarker(content: string): boolean {
   );
 }
 
-function isOpenClawGatewayLaunchdService(label: string, contents: string): boolean {
+function isQuantClawGatewayLaunchdService(label: string, contents: string): boolean {
   if (hasGatewayServiceMarker(contents)) {
     return true;
   }
@@ -102,10 +102,10 @@ function isOpenClawGatewayLaunchdService(label: string, contents: string): boole
   if (!lowerContents.includes("gateway")) {
     return false;
   }
-  return label.startsWith("ai.openclaw.");
+  return label.startsWith("ai.quantclaw.");
 }
 
-function isOpenClawGatewaySystemdService(name: string, contents: string): boolean {
+function isQuantClawGatewaySystemdService(name: string, contents: string): boolean {
   if (hasGatewayServiceMarker(contents)) {
     return true;
   }
@@ -115,7 +115,7 @@ function isOpenClawGatewaySystemdService(name: string, contents: string): boolea
   return contents.toLowerCase().includes("gateway");
 }
 
-function isOpenClawGatewayTaskName(name: string): boolean {
+function isQuantClawGatewayTaskName(name: string): boolean {
   const normalized = name.trim().toLowerCase();
   if (!normalized) {
     return false;
@@ -225,7 +225,7 @@ async function scanLaunchdDir(params: {
     if (isIgnoredLaunchdLabel(label)) {
       continue;
     }
-    if (marker === "quantclaw" && isOpenClawGatewayLaunchdService(label, contents)) {
+    if (marker === "quantclaw" && isQuantClawGatewayLaunchdService(label, contents)) {
       continue;
     }
     results.push({
@@ -257,7 +257,7 @@ async function scanSystemdDir(params: {
     if (!marker) {
       continue;
     }
-    if (marker === "quantclaw" && isOpenClawGatewaySystemdService(name, contents)) {
+    if (marker === "quantclaw" && isQuantClawGatewaySystemdService(name, contents)) {
       continue;
     }
     results.push({
@@ -410,7 +410,7 @@ export async function findExtraGatewayServices(
       if (!name) {
         continue;
       }
-      if (isOpenClawGatewayTaskName(name)) {
+      if (isQuantClawGatewayTaskName(name)) {
         continue;
       }
       const lowerName = name.toLowerCase();

@@ -27,9 +27,9 @@ function resolveCurrentPrimaryModel(model: unknown): string | undefined {
 }
 
 export function applyOpencodeZenModelDefault(
-  cfg: import("openclaw/plugin-sdk/provider-onboard").OpenClawConfig,
+  cfg: import("quantclaw/plugin-sdk/provider-onboard").QuantClawConfig,
 ): {
-  next: import("openclaw/plugin-sdk/provider-onboard").OpenClawConfig;
+  next: import("quantclaw/plugin-sdk/provider-onboard").QuantClawConfig;
   changed: boolean;
 } {
   const current = resolveCurrentPrimaryModel(cfg.agents?.defaults?.model);

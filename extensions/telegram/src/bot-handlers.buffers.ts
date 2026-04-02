@@ -3,9 +3,9 @@ import {
   createInboundDebouncer,
   resolveInboundDebounceMs,
   shouldDebounceTextInbound,
-} from "openclaw/plugin-sdk/channel-inbound";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { danger, logVerbose, warn } from "openclaw/plugin-sdk/runtime-env";
+} from "quantclaw/plugin-sdk/channel-inbound";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { danger, logVerbose, warn } from "quantclaw/plugin-sdk/runtime-env";
 import {
   hasInboundMedia,
   isRecoverableMediaGroupError,
@@ -49,7 +49,7 @@ type TelegramBotApi = {
 export function createTelegramInboundBufferRuntime(params: {
   accountId?: string | null;
   bot: { api: TelegramBotApi };
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   logger: { warn: (...args: unknown[]) => void };
   mediaMaxBytes: number;
   opts: {

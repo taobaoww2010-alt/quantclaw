@@ -1,7 +1,7 @@
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
+import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
 import type { Mock } from "vitest";
 import { expect, vi } from "vitest";
-import type { OpenClawConfig } from "../../../../src/plugin-sdk/discord.js";
+import type { QuantClawConfig } from "../../../../src/plugin-sdk/discord.js";
 
 export type NativeCommandSpecMock = {
   name: string;
@@ -29,7 +29,7 @@ type ProviderMonitorTestMocks = {
   createdBindingManagers: Array<{ stop: ReturnType<typeof vi.fn> }>;
   getAcpSessionStatusMock: Mock<
     (params: {
-      cfg: OpenClawConfig;
+      cfg: QuantClawConfig;
       sessionKey: string;
       signal?: AbortSignal;
     }) => Promise<{ state: string }>
@@ -110,7 +110,7 @@ const providerMonitorTestMocks: ProviderMonitorTestMocks = vi.hoisted(() => {
     })),
     createdBindingManagers,
     getAcpSessionStatusMock: vi.fn(
-      async (_params: { cfg: OpenClawConfig; sessionKey: string; signal?: AbortSignal }) => ({
+      async (_params: { cfg: QuantClawConfig; sessionKey: string; signal?: AbortSignal }) => ({
         state: "idle",
       }),
     ),
@@ -261,7 +261,7 @@ export const baseRuntime = (): RuntimeEnv => ({
   exit: vi.fn(),
 });
 
-export const baseConfig = (): OpenClawConfig =>
+export const baseConfig = (): QuantClawConfig =>
   ({
     channels: {
       discord: {
@@ -272,7 +272,7 @@ export const baseConfig = (): OpenClawConfig =>
         },
       },
     },
-  }) as OpenClawConfig;
+  }) as QuantClawConfig;
 
 vi.mock("@buape/carbon", async (importOriginal) => {
   const actual = await importOriginal<typeof import("@buape/carbon")>();
@@ -323,9 +323,9 @@ vi.mock("@buape/carbon/voice", () => ({
   VoicePlugin: class VoicePlugin {},
 }));
 
-vi.mock("openclaw/plugin-sdk/acp-runtime", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/acp-runtime")>(
-    "openclaw/plugin-sdk/acp-runtime",
+vi.mock("quantclaw/plugin-sdk/acp-runtime", async () => {
+  const actual = await vi.importActual<typeof import("quantclaw/plugin-sdk/acp-runtime")>(
+    "quantclaw/plugin-sdk/acp-runtime",
   );
   return {
     ...actual,
@@ -337,9 +337,9 @@ vi.mock("openclaw/plugin-sdk/acp-runtime", async () => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/command-auth", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/command-auth")>(
-    "openclaw/plugin-sdk/command-auth",
+vi.mock("quantclaw/plugin-sdk/command-auth", async () => {
+  const actual = await vi.importActual<typeof import("quantclaw/plugin-sdk/command-auth")>(
+    "quantclaw/plugin-sdk/command-auth",
   );
   return {
     ...actual,
@@ -347,9 +347,9 @@ vi.mock("openclaw/plugin-sdk/command-auth", async () => {
     listSkillCommandsForAgents: listSkillCommandsForAgentsMock,
   };
 });
-vi.mock("openclaw/plugin-sdk/reply-runtime", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/reply-runtime")>(
-    "openclaw/plugin-sdk/reply-runtime",
+vi.mock("quantclaw/plugin-sdk/reply-runtime", async () => {
+  const actual = await vi.importActual<typeof import("quantclaw/plugin-sdk/reply-runtime")>(
+    "quantclaw/plugin-sdk/reply-runtime",
   );
   return {
     ...actual,
@@ -357,9 +357,9 @@ vi.mock("openclaw/plugin-sdk/reply-runtime", async () => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/config-runtime", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/config-runtime")>(
-    "openclaw/plugin-sdk/config-runtime",
+vi.mock("quantclaw/plugin-sdk/config-runtime", async () => {
+  const actual = await vi.importActual<typeof import("quantclaw/plugin-sdk/config-runtime")>(
+    "quantclaw/plugin-sdk/config-runtime",
   );
   return {
     ...actual,
@@ -370,9 +370,9 @@ vi.mock("openclaw/plugin-sdk/config-runtime", async () => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/runtime-env", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/runtime-env")>(
-    "openclaw/plugin-sdk/runtime-env",
+vi.mock("quantclaw/plugin-sdk/runtime-env", async () => {
+  const actual = await vi.importActual<typeof import("quantclaw/plugin-sdk/runtime-env")>(
+    "quantclaw/plugin-sdk/runtime-env",
   );
   return {
     ...actual,
@@ -395,9 +395,9 @@ vi.mock("openclaw/plugin-sdk/runtime-env", async () => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/infra-runtime", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/infra-runtime")>(
-    "openclaw/plugin-sdk/infra-runtime",
+vi.mock("quantclaw/plugin-sdk/infra-runtime", async () => {
+  const actual = await vi.importActual<typeof import("quantclaw/plugin-sdk/infra-runtime")>(
+    "quantclaw/plugin-sdk/infra-runtime",
   );
   return {
     ...actual,

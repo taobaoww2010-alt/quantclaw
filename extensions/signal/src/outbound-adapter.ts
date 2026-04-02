@@ -1,16 +1,16 @@
-import type { ChannelOutboundAdapter } from "openclaw/plugin-sdk/channel-send-result";
+import type { ChannelOutboundAdapter } from "quantclaw/plugin-sdk/channel-send-result";
 import {
   attachChannelToResult,
   attachChannelToResults,
   createAttachedChannelResultAdapter,
-} from "openclaw/plugin-sdk/channel-send-result";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
-import { createScopedChannelMediaMaxBytesResolver } from "openclaw/plugin-sdk/media-runtime";
+} from "quantclaw/plugin-sdk/channel-send-result";
+import { resolveMarkdownTableMode } from "quantclaw/plugin-sdk/config-runtime";
+import { createScopedChannelMediaMaxBytesResolver } from "quantclaw/plugin-sdk/media-runtime";
 import {
   resolveOutboundSendDep,
   type OutboundSendDeps,
-} from "openclaw/plugin-sdk/outbound-runtime";
-import { resolveTextChunkLimit } from "openclaw/plugin-sdk/reply-runtime";
+} from "quantclaw/plugin-sdk/outbound-runtime";
+import { resolveTextChunkLimit } from "quantclaw/plugin-sdk/reply-runtime";
 import { markdownToSignalTextChunks } from "./format.js";
 import { sendMessageSignal } from "./send.js";
 

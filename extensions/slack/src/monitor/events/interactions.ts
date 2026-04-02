@@ -11,8 +11,8 @@ import {
   type RegisterSlackModalHandler,
 } from "./interactions.modal.js";
 
-// Prefix for OpenClaw-generated action IDs to scope our handler
-const OPENCLAW_ACTION_PREFIX = "openclaw:";
+// Prefix for QuantClaw-generated action IDs to scope our handler
+const OPENCLAW_ACTION_PREFIX = "quantclaw:";
 const SLACK_INTERACTION_EVENT_PREFIX = "Slack interaction: ";
 const REDACTED_INTERACTION_VALUE = "[redacted]";
 const SLACK_INTERACTION_EVENT_MAX_CHARS = 2400;
@@ -191,7 +191,7 @@ export function registerSlackInteractionEvents(params: { ctx: SlackMonitorContex
   }
   const modalMatcher = new RegExp(`^${OPENCLAW_ACTION_PREFIX}`);
 
-  // Handle OpenClaw modal submissions with callback_ids scoped by our prefix.
+  // Handle QuantClaw modal submissions with callback_ids scoped by our prefix.
   registerModalLifecycleHandler({
     register: (matcher, handler) => ctx.app.view(matcher, handler),
     matcher: modalMatcher,

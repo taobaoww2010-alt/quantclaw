@@ -54,7 +54,7 @@ type DiscordUser = {
 
 const execFileAsync = promisify(execFile);
 
-type DriverMode = "token" | "webhook" | "openclaw";
+type DriverMode = "token" | "webhook" | "quantclaw";
 
 type Args = {
   channelId: string;
@@ -69,7 +69,7 @@ type Args = {
   mentionUserId?: string;
   instruction?: string;
   threadBindingsPath: string;
-  openclawBin: string;
+  quantclawBin: string;
   json: boolean;
 };
 
@@ -133,14 +133,14 @@ function parseNumber(value: string | undefined, fallback: number): number {
 }
 
 function resolveStateDir(): string {
-  const override = process.env.OPENCLAW_STATE_DIR?.trim();
+  const override = process.env.QUANTCLAW_STATE_DIR?.trim();
   if (override) {
     return override.startsWith("~")
       ? path.resolve(process.env.HOME || "", override.slice(1))
       : path.resolve(override);
   }
   const home = process.env.OPENCLAW_HOME?.trim() || process.env.HOME || "";
-  return path.join(home, ".openclaw");
+  return path.join(home, ".quantclaw");
 }
 
 function resolveArg(flag: string): string | undefined {
@@ -163,13 +163,13 @@ function hasFlag(flag: string): boolean {
 function usage(): string {
   return (
     "Usage: bun scripts/dev/discord-acp-plain-language-smoke.ts " +
-    "--channel <discord-channel-id> [--token <driver-token> | --driver webhook --bot-token <bot-token> | --driver openclaw] [options]\n\n" +
+    "--channel <discord-channel-id> [--token <driver-token> | --driver webhook --bot-token <bot-token> | --driver quantclaw] [options]\n\n" +
     "Manual live smoke only (not CI). Sends a plain-language instruction in Discord and verifies:\n" +
-    "1) OpenClaw spawned an ACP thread binding\n" +
+    "1) QuantClaw spawned an ACP thread binding\n" +
     "2) agent replied in that bound thread with the expected ACK token\n\n" +
     "Options:\n" +
     "  --channel <id>               Parent Discord channel id (required)\n" +
-    "  --driver <token|webhook|openclaw> Driver transport mode (default: token)\n" +
+    "  --driver <token|webhook|quantclaw> Driver transport mode (default: token)\n" +
     "  --token <token>              Driver Discord token (required for driver=token)\n" +
     "  --token-prefix <prefix>      Auth prefix for --token (default: Bot)\n" +
     "  --bot-token <token>          Bot token for webhook driver mode\n" +
@@ -180,7 +180,7 @@ function usage(): string {
     "  --timeout-ms <n>             Total timeout in ms (default: 240000)\n" +
     "  --poll-ms <n>                Poll interval in ms (default: 1500)\n" +
     "  --thread-bindings-path <p>   Override thread-bindings json path\n" +
-    "  --openclaw-bin <path>        OpenClaw CLI binary for driver=openclaw (default: openclaw)\n" +
+    "  --quantclaw-bin <path>        QuantClaw CLI binary for driver=quantclaw (default: quantclaw)\n" +
     "  --json                       Emit JSON output\n" +
     "\n" +
     "Environment fallbacks:\n" +
@@ -207,8 +207,8 @@ function parseArgs(): Args {
   const driverMode: DriverMode =
     normalizedDriverMode === "webhook"
       ? "webhook"
-      : normalizedDriverMode === "openclaw"
-        ? "openclaw"
+      : normalizedDriverMode === "quantclaw"
+        ? "quantclaw"
         : normalizedDriverMode === "token"
           ? "token"
           : "token";
@@ -243,8 +243,8 @@ function parseArgs(): Args {
     resolveArg("--thread-bindings-path") ||
     process.env.OPENCLAW_DISCORD_SMOKE_THREAD_BINDINGS_PATH ||
     defaultBindingsPath;
-  const openclawBin =
-    resolveArg("--openclaw-bin") || process.env.OPENCLAW_DISCORD_SMOKE_OPENCLAW_BIN || "openclaw";
+  const quantclawBin =
+    resolveArg("--quantclaw-bin") || process.env.OPENCLAW_DISCORD_SMOKE_OPENCLAW_BIN || "quantclaw";
   const json = hasFlag("--json");
 
   if (!channelId) {
@@ -270,34 +270,34 @@ function parseArgs(): Args {
     mentionUserId,
     instruction,
     threadBindingsPath,
-    openclawBin,
+    quantclawBin,
     json,
   };
 }
 
-async function openclawCliJson<T>(params: { openclawBin: string; args: string[] }): Promise<T> {
-  const result = await execFileAsync(params.openclawBin, params.args, {
+async function quantclawCliJson<T>(params: { quantclawBin: string; args: string[] }): Promise<T> {
+  const result = await execFileAsync(params.quantclawBin, params.args, {
     maxBuffer: 8 * 1024 * 1024,
     env: process.env,
   });
   const stdout = (result.stdout || "").trim();
   if (!stdout) {
-    throw new Error(`openclaw ${params.args.join(" ")} returned empty stdout`);
+    throw new Error(`quantclaw ${params.args.join(" ")} returned empty stdout`);
   }
   return JSON.parse(stdout) as T;
 }
 
 async function readMessagesWithOpenclaw(params: {
-  openclawBin: string;
+  quantclawBin: string;
   target: string;
   limit: number;
 }): Promise<DiscordMessage[]> {
-  const response = await openclawCliJson<{
+  const response = await quantclawCliJson<{
     payload?: {
       messages?: DiscordMessage[];
     };
   }>({
-    openclawBin: params.openclawBin,
+    quantclawBin: params.quantclawBin,
     args: [
       "message",
       "read",
@@ -478,9 +478,9 @@ async function loadParentRecentMessages(params: {
   args: Args;
   readAuthHeader: string;
 }): Promise<DiscordMessage[]> {
-  if (params.args.driverMode === "openclaw") {
+  if (params.args.driverMode === "quantclaw") {
     return await readMessagesWithOpenclaw({
-      openclawBin: params.args.openclawBin,
+      quantclawBin: params.args.quantclawBin,
       target: params.args.channelId,
       limit: 20,
     });
@@ -612,7 +612,7 @@ async function run(): Promise<SuccessResult | FailureResult> {
         path: `/channels/${encodeURIComponent(args.channelId)}/webhooks`,
         authHeader: botAuthHeader,
         body: {
-          name: `openclaw-acp-smoke-${smokeId.slice(-8)}`,
+          name: `quantclaw-acp-smoke-${smokeId.slice(-8)}`,
         },
       });
       if (!webhook.id || !webhook.token) {
@@ -642,14 +642,14 @@ async function run(): Promise<SuccessResult | FailureResult> {
       senderAuthorId = sent.author?.id;
     } else {
       setupStage = "send-message";
-      const sent = await openclawCliJson<{
+      const sent = await quantclawCliJson<{
         payload?: {
           result?: {
             messageId?: string;
           };
         };
       }>({
-        openclawBin: args.openclawBin,
+        quantclawBin: args.quantclawBin,
         args: [
           "message",
           "send",
@@ -664,7 +664,7 @@ async function run(): Promise<SuccessResult | FailureResult> {
       });
       sentMessageId = String(sent.payload?.result?.messageId || "");
       if (!sentMessageId) {
-        throw new Error("openclaw message send did not return payload.result.messageId");
+        throw new Error("quantclaw message send did not return payload.result.messageId");
       }
     }
   } catch (err) {
@@ -730,9 +730,9 @@ async function run(): Promise<SuccessResult | FailureResult> {
     while (Date.now() < deadline && !ackMessage) {
       try {
         const threadMessages =
-          args.driverMode === "openclaw"
+          args.driverMode === "quantclaw"
             ? await readMessagesWithOpenclaw({
-                openclawBin: args.openclawBin,
+                quantclawBin: args.quantclawBin,
                 target: threadId,
                 limit: 50,
               })
@@ -769,7 +769,7 @@ async function run(): Promise<SuccessResult | FailureResult> {
         ok: false,
         stage: "wait-ack",
         smokeId,
-        error: `Thread bound (${threadId}) but timed out waiting for ACK token "${ackToken}" from OpenClaw.`,
+        error: `Thread bound (${threadId}) but timed out waiting for ACK token "${ackToken}" from QuantClaw.`,
         diagnostics: {
           bindingCandidates: [
             {

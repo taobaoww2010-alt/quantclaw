@@ -7,7 +7,7 @@ import { maybeRepairUiProtocolFreshness } from "../commands/doctor-ui.js";
 import { maybeOfferUpdateBeforeDoctor } from "../commands/doctor-update.js";
 import { printWizardHeader } from "../commands/onboard-helpers.js";
 import { CONFIG_PATH } from "../config/config.js";
-import { resolveQuantClawPackageRoot } from "../infra/openclaw-root.js";
+import { resolveQuantClawPackageRoot } from "../infra/quantclaw-root.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { defaultRuntime } from "../runtime.js";
 import { stylePromptTitle } from "../terminal/prompt-style.js";

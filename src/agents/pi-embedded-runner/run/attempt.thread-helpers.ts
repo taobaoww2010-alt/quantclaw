@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../../config/config.js";
+import type { QuantClawConfig } from "../../../config/config.js";
 import { joinPresentTextSegments } from "../../../shared/text/join-segments.js";
 
 export const ATTEMPT_CACHE_TTL_CUSTOM_TYPE = "quantclaw.cache-ttl";
@@ -44,7 +44,7 @@ export function shouldUseOpenAIWebSocketTransport(params: {
 export function shouldAppendAttemptCacheTtl(params: {
   timedOutDuringCompaction: boolean;
   compactionOccurredThisAttempt: boolean;
-  config?: OpenClawConfig;
+  config?: QuantClawConfig;
   provider: string;
   modelId: string;
   isCacheTtlEligibleProvider: (provider: string, modelId: string) => boolean;
@@ -64,7 +64,7 @@ export function appendAttemptCacheTtlIfNeeded(params: {
   };
   timedOutDuringCompaction: boolean;
   compactionOccurredThisAttempt: boolean;
-  config?: OpenClawConfig;
+  config?: QuantClawConfig;
   provider: string;
   modelId: string;
   isCacheTtlEligibleProvider: (provider: string, modelId: string) => boolean;

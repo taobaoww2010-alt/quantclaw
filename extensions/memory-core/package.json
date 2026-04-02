@@ -1,17 +1,17 @@
 {
-  "name": "@openclaw/memory-core",
+  "name": "@quantclaw/memory-core",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw core memory search plugin",
+  "description": "QuantClaw core memory search plugin",
   "type": "module",
   "devDependencies": {
-    "openclaw": "workspace:*"
+    "quantclaw": "workspace:*"
   },
   "peerDependencies": {
-    "openclaw": ">=2026.3.30"
+    "quantclaw": ">=2026.3.30"
   },
   "peerDependenciesMeta": {
-    "openclaw": {
+    "quantclaw": {
       "optional": true
     }
   },

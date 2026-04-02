@@ -6,7 +6,7 @@
  */
 
 import { parseExplicitTargetForChannel } from "../channels/plugins/target-parsing.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import { logVerbose } from "../globals.js";
 import {
   clearPluginCommands,
@@ -28,7 +28,7 @@ import {
   requestPluginConversationBinding,
 } from "./conversation-binding.js";
 import type {
-  OpenClawPluginCommandDefinition,
+  QuantClawPluginCommandDefinition,
   PluginCommandContext,
   PluginCommandResult,
 } from "./types.js";
@@ -220,7 +220,7 @@ export async function executePluginCommand(params: {
   isAuthorizedSender: boolean;
   gatewayClientScopes?: PluginCommandContext["gatewayClientScopes"];
   commandBody: string;
-  config: OpenClawConfig;
+  config: QuantClawConfig;
   from?: PluginCommandContext["from"];
   to?: PluginCommandContext["to"];
   accountId?: PluginCommandContext["accountId"];
@@ -333,7 +333,7 @@ export function listPluginCommands(): Array<{
   }));
 }
 
-function listPluginInvocationNames(command: OpenClawPluginCommandDefinition): string[] {
+function listPluginInvocationNames(command: QuantClawPluginCommandDefinition): string[] {
   return listPluginInvocationKeys(command);
 }
 

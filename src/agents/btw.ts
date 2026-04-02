@@ -8,7 +8,7 @@ import {
 import { SessionManager } from "@mariozechner/pi-coding-agent";
 import type { ReasoningLevel, ThinkLevel } from "../auto-reply/thinking.js";
 import type { GetReplyOptions, ReplyPayload } from "../auto-reply/types.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import {
   resolveSessionFilePath,
   resolveSessionFilePathOptions,
@@ -117,7 +117,7 @@ function resolveSessionTranscriptPath(params: {
 }
 
 async function resolveRuntimeModel(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   provider: string;
   model: string;
   agentDir: string;
@@ -162,7 +162,7 @@ async function resolveRuntimeModel(params: {
 }
 
 type RunBtwSideQuestionParams = {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   agentDir: string;
   provider: string;
   model: string;

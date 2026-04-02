@@ -1,11 +1,11 @@
 import {
   coerceSecretRef,
   resolveNonEnvSecretRefApiKeyMarker,
-} from "openclaw/plugin-sdk/provider-auth";
-import { defineSingleProviderPluginEntry } from "openclaw/plugin-sdk/provider-entry";
-import { createToolStreamWrapper } from "openclaw/plugin-sdk/provider-stream";
-import { resolveProviderWebSearchPluginConfig } from "openclaw/plugin-sdk/provider-web-search";
-import { normalizeSecretInputString } from "openclaw/plugin-sdk/secret-input";
+} from "quantclaw/plugin-sdk/provider-auth";
+import { defineSingleProviderPluginEntry } from "quantclaw/plugin-sdk/provider-entry";
+import { createToolStreamWrapper } from "quantclaw/plugin-sdk/provider-stream";
+import { resolveProviderWebSearchPluginConfig } from "quantclaw/plugin-sdk/provider-web-search";
+import { normalizeSecretInputString } from "quantclaw/plugin-sdk/secret-input";
 import {
   applyXaiModelCompat,
   normalizeXaiModelId,

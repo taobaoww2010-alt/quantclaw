@@ -6,7 +6,7 @@ export { handleBrowserGatewayRequest } from "./src/gateway/browser-request.js";
 export { browserHandlers } from "./src/gateway/browser-request.js";
 export {
   definePluginEntry,
-  type OpenClawPluginApi,
-  type OpenClawPluginToolContext,
-  type OpenClawPluginToolFactory,
-} from "openclaw/plugin-sdk/plugin-entry";
+  type QuantClawPluginApi,
+  type QuantClawPluginToolContext,
+  type QuantClawPluginToolFactory,
+} from "quantclaw/plugin-sdk/plugin-entry";

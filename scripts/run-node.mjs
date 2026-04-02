@@ -254,10 +254,10 @@ const logRunner = (message, deps) => {
   if (deps.env.OPENCLAW_RUNNER_LOG === "0") {
     return;
   }
-  deps.stderr.write(`[openclaw] ${message}\n`);
+  deps.stderr.write(`[quantclaw] ${message}\n`);
 };
 
-const runOpenClaw = async (deps) => {
+const runQuantClaw = async (deps) => {
   const nodeProcess = deps.spawn(deps.execPath, ["quantclaw.mjs", ...deps.args], {
     cwd: deps.cwd,
     env: deps.env,
@@ -326,7 +326,7 @@ export async function runNodeMain(params = {}) {
     if (!syncRuntimeArtifacts(deps)) {
       return 1;
     }
-    return await runOpenClaw(deps);
+    return await runQuantClaw(deps);
   }
 
   logRunner(
@@ -354,7 +354,7 @@ export async function runNodeMain(params = {}) {
     return 1;
   }
   writeBuildStamp(deps);
-  return await runOpenClaw(deps);
+  return await runQuantClaw(deps);
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {

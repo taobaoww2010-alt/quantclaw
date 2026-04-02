@@ -2,8 +2,8 @@ import {
   findModelInCatalog,
   loadModelCatalog,
   modelSupportsVision,
-} from "openclaw/plugin-sdk/agent-runtime";
-import { resolveDefaultModelForAgent } from "openclaw/plugin-sdk/agent-runtime";
+} from "quantclaw/plugin-sdk/agent-runtime";
+import { resolveDefaultModelForAgent } from "quantclaw/plugin-sdk/agent-runtime";
 import {
   buildMentionRegexes,
   formatLocationText,
@@ -11,21 +11,21 @@ import {
   matchesMentionWithExplicit,
   resolveMentionGatingWithBypass,
   type NormalizedLocation,
-} from "openclaw/plugin-sdk/channel-inbound";
-import { resolveControlCommandGate } from "openclaw/plugin-sdk/command-auth";
-import { hasControlCommand } from "openclaw/plugin-sdk/command-auth";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+} from "quantclaw/plugin-sdk/channel-inbound";
+import { resolveControlCommandGate } from "quantclaw/plugin-sdk/command-auth";
+import { hasControlCommand } from "quantclaw/plugin-sdk/command-auth";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
 import type {
   TelegramDirectConfig,
   TelegramGroupConfig,
   TelegramTopicConfig,
-} from "openclaw/plugin-sdk/config-runtime";
+} from "quantclaw/plugin-sdk/config-runtime";
 import {
   recordPendingHistoryEntryIfEnabled,
   type HistoryEntry,
-} from "openclaw/plugin-sdk/reply-history";
-import type { MsgContext } from "openclaw/plugin-sdk/reply-runtime";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
+} from "quantclaw/plugin-sdk/reply-history";
+import type { MsgContext } from "quantclaw/plugin-sdk/reply-runtime";
+import { logVerbose } from "quantclaw/plugin-sdk/runtime-env";
 import type { NormalizedAllowFrom } from "./bot-access.js";
 import { isSenderAllowed } from "./bot-access.js";
 import type {
@@ -58,7 +58,7 @@ export type TelegramInboundBodyResult = {
 };
 
 async function resolveStickerVisionSupport(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   agentId?: string;
 }): Promise<boolean> {
   try {
@@ -78,7 +78,7 @@ async function resolveStickerVisionSupport(params: {
 }
 
 export async function resolveTelegramInboundBody(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   primaryCtx: TelegramContext;
   msg: TelegramContext["message"];
   allMedia: TelegramMediaRef[];

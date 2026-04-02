@@ -1,1 +1,1 @@
-export * from "openclaw/plugin-sdk/speech-core";
+export * from "quantclaw/plugin-sdk/speech-core";

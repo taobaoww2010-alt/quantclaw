@@ -1,12 +1,12 @@
 import {
   startLazyPluginServiceModule,
   type LazyPluginServiceHandle,
-  type OpenClawPluginService,
-} from "openclaw/plugin-sdk/browser-support";
+  type QuantClawPluginService,
+} from "quantclaw/plugin-sdk/browser-support";
 
 type BrowserControlHandle = LazyPluginServiceHandle | null;
 
-export function createBrowserPluginService(): OpenClawPluginService {
+export function createBrowserPluginService(): QuantClawPluginService {
   let handle: BrowserControlHandle = null;
 
   return {

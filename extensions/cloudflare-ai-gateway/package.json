@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/cloudflare-ai-gateway-provider",
+  "name": "@quantclaw/cloudflare-ai-gateway-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Cloudflare AI Gateway provider plugin",
+  "description": "QuantClaw Cloudflare AI Gateway provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

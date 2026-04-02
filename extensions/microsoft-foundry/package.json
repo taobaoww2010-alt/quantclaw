@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/microsoft-foundry",
+  "name": "@quantclaw/microsoft-foundry",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Microsoft Foundry provider plugin",
+  "description": "QuantClaw Microsoft Foundry provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

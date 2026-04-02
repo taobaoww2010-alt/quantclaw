@@ -1,6 +1,6 @@
 import { ensureAuthProfileStore } from "../agents/auth-profiles.js";
 import { resolveDefaultAgentWorkspaceDir } from "../agents/workspace.js";
-import type { OpenClawConfig, GatewayAuthConfig } from "../config/config.js";
+import type { QuantClawConfig, GatewayAuthConfig } from "../config/config.js";
 import { isSecretRef, type SecretInput } from "../config/types.secrets.js";
 import { resolveProviderPluginChoice } from "../plugins/provider-wizard.js";
 import { resolvePluginProviders } from "../plugins/providers.runtime.js";
@@ -34,7 +34,7 @@ function sanitizeTokenValue(value: unknown): string | undefined {
 
 function resolveProviderChoiceModelAllowlist(params: {
   authChoice: string;
-  config: OpenClawConfig;
+  config: QuantClawConfig;
   workspaceDir?: string;
   env?: NodeJS.ProcessEnv;
 }):
@@ -96,10 +96,10 @@ export function buildGatewayAuthConfig(params: {
 }
 
 export async function promptAuthConfig(
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
   runtime: RuntimeEnv,
   prompter: WizardPrompter,
-): Promise<OpenClawConfig> {
+): Promise<QuantClawConfig> {
   const authChoice = await promptAuthChoiceGrouped({
     prompter,
     store: ensureAuthProfileStore(undefined, {

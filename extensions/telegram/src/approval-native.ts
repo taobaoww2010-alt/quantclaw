@@ -1,12 +1,12 @@
-import { createApproverRestrictedNativeApprovalAdapter } from "openclaw/plugin-sdk/approval-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+import { createApproverRestrictedNativeApprovalAdapter } from "quantclaw/plugin-sdk/approval-runtime";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
 import type {
   ExecApprovalRequest,
   ExecApprovalSessionTarget,
   PluginApprovalRequest,
-} from "openclaw/plugin-sdk/infra-runtime";
-import { resolveExecApprovalSessionTarget } from "openclaw/plugin-sdk/infra-runtime";
-import { normalizeAccountId } from "openclaw/plugin-sdk/routing";
+} from "quantclaw/plugin-sdk/infra-runtime";
+import { resolveExecApprovalSessionTarget } from "quantclaw/plugin-sdk/infra-runtime";
+import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
 import { listTelegramAccountIds } from "./accounts.js";
 import {
   getTelegramExecApprovalApprovers,
@@ -43,7 +43,7 @@ function toExecLikeRequest(request: ApprovalRequest): ExecApprovalRequest {
 }
 
 function resolveRequestSessionTarget(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   request: ApprovalRequest;
 }): ExecApprovalSessionTarget | null {
   const execLikeRequest = toExecLikeRequest(params.request);
@@ -87,7 +87,7 @@ function resolveTurnSourceTelegramOriginTarget(params: {
 }
 
 function resolveSessionTelegramOriginTarget(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
   request: ApprovalRequest;
 }): TelegramOriginTarget | null {
@@ -117,7 +117,7 @@ function telegramTargetsMatch(a: TelegramOriginTarget, b: TelegramOriginTarget):
 }
 
 function resolveTelegramOriginTarget(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
   request: ApprovalRequest;
 }) {
@@ -131,7 +131,7 @@ function resolveTelegramOriginTarget(params: {
 }
 
 function resolveTelegramApproverDmTargets(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
 }) {
   return getTelegramExecApprovalApprovers({

@@ -20,7 +20,7 @@ const outputPath = path.join(
   "apps",
   "macos",
   "Sources",
-  "OpenClaw",
+  "QuantClaw",
   "HostEnvSecurityPolicy.generated.swift",
 );
 

@@ -22,7 +22,7 @@ export {
 export type { CliMockOutputRuntime, CliRuntimeCapture } from "../cli/test-runtime-capture.js";
 export { setDefaultChannelPluginRegistryForTests } from "../commands/channel-test-helpers.js";
 export type { ChannelAccountSnapshot, ChannelGatewayContext } from "../channels/plugins/types.js";
-export type { OpenClawConfig } from "../config/config.js";
+export type { QuantClawConfig } from "../config/config.js";
 export { callGateway } from "../gateway/call.js";
 export { createEmptyPluginRegistry } from "../plugins/registry.js";
 export {

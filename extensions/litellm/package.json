@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/litellm-provider",
+  "name": "@quantclaw/litellm-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw LiteLLM provider plugin",
+  "description": "QuantClaw LiteLLM provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/mistral-provider",
+  "name": "@quantclaw/mistral-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Mistral provider plugin",
+  "description": "QuantClaw Mistral provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

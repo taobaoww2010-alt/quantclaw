@@ -9,7 +9,7 @@
  * 2. Environment variable: OPENCLAW_TWITCH_ACCESS_TOKEN (default account only)
  */
 
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId, type OpenClawConfig } from "../runtime-api.js";
+import { DEFAULT_ACCOUNT_ID, normalizeAccountId, type QuantClawConfig } from "../runtime-api.js";
 
 export type TwitchTokenSource = "env" | "config" | "none";
 
@@ -43,12 +43,12 @@ function normalizeTwitchToken(raw?: string | null): string | undefined {
  * The getAccountConfig function handles merging base-level config with accounts.default,
  * so this logic works for both simplified and multi-account patterns.
  *
- * @param cfg - OpenClaw config
+ * @param cfg - QuantClaw config
  * @param opts - Options including accountId and optional envToken override
  * @returns Token resolution with source
  */
 export function resolveTwitchToken(
-  cfg?: OpenClawConfig,
+  cfg?: QuantClawConfig,
   opts: { accountId?: string | null; envToken?: string | null } = {},
 ): TwitchTokenResolution {
   const accountId = normalizeAccountId(opts.accountId);

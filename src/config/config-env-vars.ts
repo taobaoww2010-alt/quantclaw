@@ -4,13 +4,13 @@ import {
   normalizeEnvVarKey,
 } from "../infra/host-env-security.js";
 import { containsEnvVarReference } from "./env-substitution.js";
-import type { OpenClawConfig } from "./types.js";
+import type { QuantClawConfig } from "./types.js";
 
 function isBlockedConfigEnvVar(key: string): boolean {
   return isDangerousHostEnvVarName(key) || isDangerousHostEnvOverrideVarName(key);
 }
 
-function collectConfigEnvVarsByTarget(cfg?: OpenClawConfig): Record<string, string> {
+function collectConfigEnvVarsByTarget(cfg?: QuantClawConfig): Record<string, string> {
   const envConfig = cfg?.env;
   if (!envConfig) {
     return {};
@@ -54,21 +54,21 @@ function collectConfigEnvVarsByTarget(cfg?: OpenClawConfig): Record<string, stri
   return entries;
 }
 
-export function collectConfigRuntimeEnvVars(cfg?: OpenClawConfig): Record<string, string> {
+export function collectConfigRuntimeEnvVars(cfg?: QuantClawConfig): Record<string, string> {
   return collectConfigEnvVarsByTarget(cfg);
 }
 
-export function collectConfigServiceEnvVars(cfg?: OpenClawConfig): Record<string, string> {
+export function collectConfigServiceEnvVars(cfg?: QuantClawConfig): Record<string, string> {
   return collectConfigEnvVarsByTarget(cfg);
 }
 
 /** @deprecated Use `collectConfigRuntimeEnvVars` or `collectConfigServiceEnvVars`. */
-export function collectConfigEnvVars(cfg?: OpenClawConfig): Record<string, string> {
+export function collectConfigEnvVars(cfg?: QuantClawConfig): Record<string, string> {
   return collectConfigRuntimeEnvVars(cfg);
 }
 
 export function createConfigRuntimeEnv(
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
   baseEnv: NodeJS.ProcessEnv = process.env,
 ): NodeJS.ProcessEnv {
   const env = { ...baseEnv };
@@ -77,7 +77,7 @@ export function createConfigRuntimeEnv(
 }
 
 export function applyConfigEnvVars(
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
   env: NodeJS.ProcessEnv = process.env,
 ): void {
   const entries = collectConfigRuntimeEnvVars(cfg);

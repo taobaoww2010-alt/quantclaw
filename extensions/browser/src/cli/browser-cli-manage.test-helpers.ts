@@ -23,7 +23,7 @@ const browserManageMocks = vi.hoisted(() => ({
           pid: 1,
           cdpPort: 18800,
           chosenBrowser: "chrome",
-          userDataDir: "/tmp/openclaw",
+          userDataDir: "/tmp/quantclaw",
           color: "blue",
           headless: true,
           attachOnly: false,

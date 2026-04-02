@@ -1,9 +1,9 @@
 import {
   applyModelCompatPatch,
   normalizeProviderId,
-} from "openclaw/plugin-sdk/provider-model-shared";
-import type { ModelCompatConfig } from "openclaw/plugin-sdk/provider-model-shared";
-import { XAI_UNSUPPORTED_SCHEMA_KEYWORDS } from "openclaw/plugin-sdk/provider-tools";
+} from "quantclaw/plugin-sdk/provider-model-shared";
+import type { ModelCompatConfig } from "quantclaw/plugin-sdk/provider-model-shared";
+import { XAI_UNSUPPORTED_SCHEMA_KEYWORDS } from "quantclaw/plugin-sdk/provider-tools";
 
 export { buildXaiProvider } from "./provider-catalog.js";
 export { applyXaiConfig, applyXaiProviderConfig } from "./onboard.js";

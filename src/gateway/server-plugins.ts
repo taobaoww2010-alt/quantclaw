@@ -4,7 +4,7 @@ import type { loadConfig } from "../config/config.js";
 import { applyPluginAutoEnable } from "../config/plugin-auto-enable.js";
 import { resolveGatewayStartupPluginIds } from "../plugins/channel-plugin-ids.js";
 import { normalizePluginsConfig } from "../plugins/config-state.js";
-import { loadOpenClawPlugins } from "../plugins/loader.js";
+import { loadQuantClawPlugins } from "../plugins/loader.js";
 import { getPluginRuntimeGatewayRequestScope } from "../plugins/runtime/gateway-request-scope.js";
 import type { PluginRuntime } from "../plugins/runtime/types.js";
 import { resolveGlobalSingleton } from "../shared/global-singleton.js";
@@ -395,7 +395,7 @@ export function loadGatewayPlugins(params: {
     config: params.cfg,
     env: process.env,
   }).config;
-  const pluginRegistry = loadOpenClawPlugins({
+  const pluginRegistry = loadQuantClawPlugins({
     config: resolvedConfig,
     workspaceDir: params.workspaceDir,
     onlyPluginIds: resolveGatewayStartupPluginIds({

@@ -1,6 +1,6 @@
 import type { Command } from "commander";
 import JSON5 from "json5";
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import { readConfigFileSnapshot, replaceConfigFile } from "../config/config.js";
 import { formatConfigIssueLines, normalizeConfigIssues } from "../config/issue-format.js";
 import { CONFIG_PATH } from "../config/paths.js";
@@ -80,7 +80,7 @@ const CONFIG_SET_EXAMPLE_REF = formatCliCommand(
   "quantclaw config set channels.discord.token --ref-provider default --ref-source env --ref-id DISCORD_BOT_TOKEN",
 );
 const CONFIG_SET_EXAMPLE_PROVIDER = formatCliCommand(
-  "quantclaw config set secrets.providers.vault --provider-source file --provider-path /etc/openclaw/secrets.json --provider-mode json",
+  "quantclaw config set secrets.providers.vault --provider-source file --provider-path /etc/quantclaw/secrets.json --provider-mode json",
 );
 const CONFIG_SET_EXAMPLE_BATCH = formatCliCommand(
   "quantclaw config set --batch-file ./config-set.batch.json --dry-run",
@@ -793,7 +793,7 @@ function buildSingleSetOperations(params: {
 }
 
 function collectDryRunRefs(params: {
-  config: OpenClawConfig;
+  config: QuantClawConfig;
   operations: ConfigSetOperation[];
 }): SecretRef[] {
   const refsByKey = new Map<string, SecretRef>();
@@ -835,7 +835,7 @@ function collectDryRunRefs(params: {
 
 async function collectDryRunResolvabilityErrors(params: {
   refs: SecretRef[];
-  config: OpenClawConfig;
+  config: QuantClawConfig;
 }): Promise<ConfigSetDryRunError[]> {
   const failures: ConfigSetDryRunError[] = [];
   for (const ref of params.refs) {
@@ -857,7 +857,7 @@ async function collectDryRunResolvabilityErrors(params: {
 
 function collectDryRunStaticErrorsForSkippedExecRefs(params: {
   refs: SecretRef[];
-  config: OpenClawConfig;
+  config: QuantClawConfig;
 }): ConfigSetDryRunError[] {
   const failures: ConfigSetDryRunError[] = [];
   for (const ref of params.refs) {
@@ -915,7 +915,7 @@ function selectDryRunRefsForResolution(params: { refs: SecretRef[]; allowExecInD
   return { refsToResolve, skippedExecRefs };
 }
 
-function collectDryRunSchemaErrors(config: OpenClawConfig): ConfigSetDryRunError[] {
+function collectDryRunSchemaErrors(config: QuantClawConfig): ConfigSetDryRunError[] {
   const validated = validateConfigObjectRaw(config);
   if (validated.ok) {
     return [];
@@ -1023,7 +1023,7 @@ export async function runConfigSet(opts: {
       root: next,
       operations,
     });
-    const nextConfig = next as OpenClawConfig;
+    const nextConfig = next as QuantClawConfig;
     const policyIssues = collectUnsupportedSecretRefPolicyIssues(nextConfig);
     const policyIssueLines = formatConfigIssueLines(policyIssues, "", { normalizeRoot: true }).map(
       (line) => line.trim(),
@@ -1343,7 +1343,7 @@ export function registerConfigCli(program: Command) {
     .option("--json", "Legacy alias for --strict-json", false)
     .option(
       "--dry-run",
-      "Validate changes without writing openclaw.json (checks run in builder/json/batch modes; exec SecretRefs are skipped unless --allow-exec is set)",
+      "Validate changes without writing quantclaw.json (checks run in builder/json/batch modes; exec SecretRefs are skipped unless --allow-exec is set)",
       false,
     )
     .option(
@@ -1430,7 +1430,7 @@ export function registerConfigCli(program: Command) {
 
   cmd
     .command("schema")
-    .description("Print the JSON schema for openclaw.json")
+    .description("Print the JSON schema for quantclaw.json")
     .action(async () => {
       await runConfigSchema({});
     });

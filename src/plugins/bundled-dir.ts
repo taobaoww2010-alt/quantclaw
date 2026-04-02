@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { resolveQuantClawPackageRootSync } from "../infra/openclaw-root.js";
+import { resolveQuantClawPackageRootSync } from "../infra/quantclaw-root.js";
 import { resolveUserPath } from "../utils.js";
 
 function isSourceCheckoutRoot(packageRoot: string): boolean {

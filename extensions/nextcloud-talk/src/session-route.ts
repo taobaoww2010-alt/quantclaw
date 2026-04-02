@@ -1,7 +1,7 @@
 import {
   buildChannelOutboundSessionRoute,
   type ChannelOutboundSessionRouteParams,
-} from "openclaw/plugin-sdk/core";
+} from "quantclaw/plugin-sdk/core";
 import { stripNextcloudTalkTargetPrefix } from "./normalize.js";
 
 export function resolveNextcloudTalkOutboundSessionRoute(

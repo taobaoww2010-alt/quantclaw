@@ -1,9 +1,9 @@
-import { getExecApprovalReplyMetadata } from "openclaw/plugin-sdk/approval-runtime";
-import { resolveApprovalApprovers } from "openclaw/plugin-sdk/approval-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { TelegramExecApprovalConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { ReplyPayload } from "openclaw/plugin-sdk/reply-runtime";
-import { normalizeAccountId } from "openclaw/plugin-sdk/routing";
+import { getExecApprovalReplyMetadata } from "quantclaw/plugin-sdk/approval-runtime";
+import { resolveApprovalApprovers } from "quantclaw/plugin-sdk/approval-runtime";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { TelegramExecApprovalConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { ReplyPayload } from "quantclaw/plugin-sdk/reply-runtime";
+import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
 import { resolveTelegramAccount } from "./accounts.js";
 import { resolveTelegramInlineButtonsConfigScope } from "./inline-buttons.js";
 import { normalizeTelegramChatId, resolveTelegramTargetChatType } from "./targets.js";
@@ -22,14 +22,14 @@ function normalizeTelegramDirectApproverId(value: string | number): string | und
 }
 
 export function resolveTelegramExecApprovalConfig(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
 }): TelegramExecApprovalConfig | undefined {
   return resolveTelegramAccount(params).config.execApprovals;
 }
 
 export function getTelegramExecApprovalApprovers(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
 }): string[] {
   const account = resolveTelegramAccount(params).config;
@@ -42,7 +42,7 @@ export function getTelegramExecApprovalApprovers(params: {
 }
 
 export function isTelegramExecApprovalClientEnabled(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
 }): boolean {
   const config = resolveTelegramExecApprovalConfig(params);
@@ -50,7 +50,7 @@ export function isTelegramExecApprovalClientEnabled(params: {
 }
 
 export function isTelegramExecApprovalApprover(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   senderId?: string | null;
 }): boolean {
@@ -62,7 +62,7 @@ export function isTelegramExecApprovalApprover(params: {
   return approvers.includes(senderId);
 }
 
-function isTelegramExecApprovalTargetsMode(cfg: OpenClawConfig): boolean {
+function isTelegramExecApprovalTargetsMode(cfg: QuantClawConfig): boolean {
   const execApprovals = cfg.approvals?.exec;
   if (!execApprovals?.enabled) {
     return false;
@@ -71,7 +71,7 @@ function isTelegramExecApprovalTargetsMode(cfg: OpenClawConfig): boolean {
 }
 
 export function isTelegramExecApprovalTargetRecipient(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   senderId?: string | null;
   accountId?: string | null;
 }): boolean {
@@ -101,7 +101,7 @@ export function isTelegramExecApprovalTargetRecipient(params: {
 }
 
 export function isTelegramExecApprovalAuthorizedSender(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   senderId?: string | null;
 }): boolean {
@@ -109,14 +109,14 @@ export function isTelegramExecApprovalAuthorizedSender(params: {
 }
 
 export function resolveTelegramExecApprovalTarget(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
 }): "dm" | "channel" | "both" {
   return resolveTelegramExecApprovalConfig(params)?.target ?? "dm";
 }
 
 export function shouldInjectTelegramExecApprovalButtons(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   to: string;
 }): boolean {
@@ -135,7 +135,7 @@ export function shouldInjectTelegramExecApprovalButtons(params: {
 }
 
 function resolveExecApprovalButtonsExplicitlyDisabled(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
 }): boolean {
   const capabilities = resolveTelegramAccount(params).config.capabilities;
@@ -143,7 +143,7 @@ function resolveExecApprovalButtonsExplicitlyDisabled(params: {
 }
 
 export function shouldEnableTelegramExecApprovalButtons(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   to: string;
 }): boolean {
@@ -154,7 +154,7 @@ export function shouldEnableTelegramExecApprovalButtons(params: {
 }
 
 export function shouldSuppressLocalTelegramExecApprovalPrompt(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   payload: ReplyPayload;
 }): boolean {

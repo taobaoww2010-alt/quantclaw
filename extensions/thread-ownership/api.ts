@@ -1,1 +1,1 @@
-export * from "openclaw/plugin-sdk/thread-ownership";
+export * from "quantclaw/plugin-sdk/thread-ownership";

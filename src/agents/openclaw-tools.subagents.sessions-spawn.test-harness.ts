@@ -17,7 +17,7 @@ type SessionsSpawnTestConfig = ReturnType<(typeof import("../config/config.js"))
 type SessionsSpawnHookRunner = SubagentLifecycleHookRunner | null;
 type CreateSessionsSpawnTool =
   (typeof import("./tools/sessions-spawn-tool.js"))["createSessionsSpawnTool"];
-export type CreateOpenClawToolsOpts = Parameters<CreateSessionsSpawnTool>[0];
+export type CreateQuantClawToolsOpts = Parameters<CreateSessionsSpawnTool>[0];
 export type GatewayRequest = { method?: string; params?: unknown };
 export type AgentWaitCall = { runId?: string; timeoutMs?: number };
 type SessionsSpawnGatewayMockOptions = {
@@ -133,7 +133,7 @@ export function setSessionsSpawnAnnounceFlowOverride(next: typeof runSubagentAnn
   hoisted.state.runSubagentAnnounceFlowOverride = next;
 }
 
-export async function getSessionsSpawnTool(opts: CreateOpenClawToolsOpts) {
+export async function getSessionsSpawnTool(opts: CreateQuantClawToolsOpts) {
   subagentSpawnTesting.setDepsForTest({
     callGateway: (optsUnknown) => hoisted.callGatewayMock(optsUnknown),
     getGlobalHookRunner: () => hoisted.state.hookRunnerOverride,

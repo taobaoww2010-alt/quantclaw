@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/byteplus-provider",
+  "name": "@quantclaw/byteplus-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw BytePlus provider plugin",
+  "description": "QuantClaw BytePlus provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

@@ -2,13 +2,13 @@ import {
   buildExecApprovalPendingReplyPayload,
   resolveExecApprovalCommandDisplay,
   type ExecApprovalRequest,
-} from "openclaw/plugin-sdk/approval-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { normalizeMessageChannel } from "openclaw/plugin-sdk/routing";
+} from "quantclaw/plugin-sdk/approval-runtime";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { normalizeMessageChannel } from "quantclaw/plugin-sdk/routing";
 import { isTelegramExecApprovalClientEnabled } from "./exec-approvals.js";
 
 export function shouldSuppressTelegramExecApprovalForwardingFallback(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   target: { channel: string; accountId?: string | null };
   request: ExecApprovalRequest;
 }): boolean {

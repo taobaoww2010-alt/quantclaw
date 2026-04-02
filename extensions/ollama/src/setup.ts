@@ -1,9 +1,9 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/provider-auth";
-import { upsertAuthProfileWithLock } from "openclaw/plugin-sdk/provider-auth";
-import { applyAgentDefaultModelPrimary } from "openclaw/plugin-sdk/provider-onboard";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime";
-import { WizardCancelledError, type WizardPrompter } from "openclaw/plugin-sdk/setup";
-import { fetchWithSsrFGuard } from "openclaw/plugin-sdk/ssrf-runtime";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/provider-auth";
+import { upsertAuthProfileWithLock } from "quantclaw/plugin-sdk/provider-auth";
+import { applyAgentDefaultModelPrimary } from "quantclaw/plugin-sdk/provider-onboard";
+import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime";
+import { WizardCancelledError, type WizardPrompter } from "quantclaw/plugin-sdk/setup";
+import { fetchWithSsrFGuard } from "quantclaw/plugin-sdk/ssrf-runtime";
 import { OLLAMA_DEFAULT_BASE_URL, OLLAMA_DEFAULT_MODEL } from "./defaults.js";
 import {
   buildOllamaBaseUrlSsrFPolicy,
@@ -251,11 +251,11 @@ function buildOllamaModelsConfig(
 }
 
 function applyOllamaProviderConfig(
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
   baseUrl: string,
   modelNames: string[],
   discoveredModelsByName?: Map<string, OllamaModelWithContext>,
-): OpenClawConfig {
+): QuantClawConfig {
   return {
     ...cfg,
     models: {
@@ -304,11 +304,11 @@ export async function buildOllamaProvider(
 }
 
 export async function promptAndConfigureOllama(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   prompter: WizardPrompter;
   isRemote: boolean;
   openUrl: (url: string) => Promise<void>;
-}): Promise<{ config: OpenClawConfig }> {
+}): Promise<{ config: QuantClawConfig }> {
   const baseUrlRaw = await params.prompter.text({
     message: "Ollama base URL",
     initialValue: OLLAMA_DEFAULT_BASE_URL,
@@ -406,11 +406,11 @@ export async function promptAndConfigureOllama(params: {
 }
 
 export async function configureOllamaNonInteractive(params: {
-  nextConfig: OpenClawConfig;
+  nextConfig: QuantClawConfig;
   opts: OllamaSetupOptions;
   runtime: RuntimeEnv;
   agentDir?: string;
-}): Promise<OpenClawConfig> {
+}): Promise<QuantClawConfig> {
   const baseUrl = resolveOllamaApiBase(
     (params.opts.customBaseUrl?.trim() || OLLAMA_DEFAULT_BASE_URL).replace(/\/+$/, ""),
   );
@@ -499,7 +499,7 @@ export async function configureOllamaNonInteractive(params: {
 }
 
 export async function ensureOllamaModelPulled(params: {
-  config: OpenClawConfig;
+  config: QuantClawConfig;
   model: string;
   prompter: WizardPrompter;
 }): Promise<void> {

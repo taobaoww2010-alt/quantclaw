@@ -1,39 +1,39 @@
-import { describeAccountSnapshot } from "openclaw/plugin-sdk/account-helpers";
-import { DEFAULT_ACCOUNT_ID } from "openclaw/plugin-sdk/account-id";
+import { describeAccountSnapshot } from "quantclaw/plugin-sdk/account-helpers";
+import { DEFAULT_ACCOUNT_ID } from "quantclaw/plugin-sdk/account-id";
 import {
   adaptScopedAccountAccessor,
   createScopedChannelConfigAdapter,
   createScopedDmSecurityResolver,
-} from "openclaw/plugin-sdk/channel-config-helpers";
+} from "quantclaw/plugin-sdk/channel-config-helpers";
 import {
   createPairingPrefixStripper,
   createTextPairingAdapter,
-} from "openclaw/plugin-sdk/channel-pairing";
+} from "quantclaw/plugin-sdk/channel-pairing";
 import {
   createAllowlistProviderOpenWarningCollector,
   projectAccountConfigWarningCollector,
-} from "openclaw/plugin-sdk/channel-policy";
-import { PAIRING_APPROVED_MESSAGE } from "openclaw/plugin-sdk/channel-status";
-import { createScopedAccountReplyToModeResolver } from "openclaw/plugin-sdk/conversation-runtime";
+} from "quantclaw/plugin-sdk/channel-policy";
+import { PAIRING_APPROVED_MESSAGE } from "quantclaw/plugin-sdk/channel-status";
+import { createScopedAccountReplyToModeResolver } from "quantclaw/plugin-sdk/conversation-runtime";
 import {
   buildChannelConfigSchema,
   createChatChannelPlugin,
   type ChannelPlugin,
-} from "openclaw/plugin-sdk/core";
+} from "quantclaw/plugin-sdk/core";
 import {
   createChannelDirectoryAdapter,
   createResolvedDirectoryEntriesLister,
   createRuntimeDirectoryLiveAdapter,
-} from "openclaw/plugin-sdk/directory-runtime";
-import { buildTrafficStatusSummary } from "openclaw/plugin-sdk/extension-shared";
-import { createLazyRuntimeNamedExport } from "openclaw/plugin-sdk/lazy-runtime";
-import { createRuntimeOutboundDelegates } from "openclaw/plugin-sdk/outbound-runtime";
+} from "quantclaw/plugin-sdk/directory-runtime";
+import { buildTrafficStatusSummary } from "quantclaw/plugin-sdk/extension-shared";
+import { createLazyRuntimeNamedExport } from "quantclaw/plugin-sdk/lazy-runtime";
+import { createRuntimeOutboundDelegates } from "quantclaw/plugin-sdk/outbound-runtime";
 import {
   buildProbeChannelStatusSummary,
   collectStatusIssuesFromLastError,
   createComputedAccountStatusAdapter,
   createDefaultChannelRuntimeState,
-} from "openclaw/plugin-sdk/status-helpers";
+} from "quantclaw/plugin-sdk/status-helpers";
 import { matrixMessageActions } from "./actions.js";
 import { matrixApprovalAuth } from "./approval-auth.js";
 import { MatrixConfigSchema } from "./config-schema.js";

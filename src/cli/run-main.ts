@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import { resolveStateDir } from "../config/paths.js";
 import { normalizeEnv } from "../infra/env.js";
 import { formatUncaughtError } from "../infra/errors.js";
@@ -88,7 +88,7 @@ export function shouldUseRootHelpFastPath(argv: string[]): boolean {
   return isRootHelpInvocation(argv);
 }
 
-export function resolveMissingBrowserCommandMessage(config?: OpenClawConfig): string | null {
+export function resolveMissingBrowserCommandMessage(config?: QuantClawConfig): string | null {
   const allow =
     Array.isArray(config?.plugins?.allow) && config.plugins.allow.length > 0
       ? config.plugins.allow
@@ -97,13 +97,13 @@ export function resolveMissingBrowserCommandMessage(config?: OpenClawConfig): st
       : [];
   if (allow.length > 0 && !allow.includes("browser")) {
     return (
-      'The `openclaw browser` command is unavailable because `plugins.allow` excludes "browser". ' +
+      'The `quantclaw browser` command is unavailable because `plugins.allow` excludes "browser". ' +
       'Add "browser" to `plugins.allow` if you want the bundled browser CLI and tool.'
     );
   }
   if (config?.plugins?.entries?.browser?.enabled === false) {
     return (
-      "The `openclaw browser` command is unavailable because `plugins.entries.browser.enabled=false`. " +
+      "The `quantclaw browser` command is unavailable because `plugins.entries.browser.enabled=false`. " +
       "Re-enable that entry if you want the bundled browser CLI and tool."
     );
   }
@@ -131,7 +131,7 @@ export async function runCli(argv: string[] = process.argv) {
     applyCliProfileEnv({ profile: parsedProfile.profile });
   }
   const containerTargetName =
-    parsedContainer.container ?? process.env.OPENCLAW_CONTAINER?.trim() ?? null;
+    parsedContainer.container ?? process.env.QUANTCLAW_CONTAINER?.trim() ?? null;
   if (containerTargetName && parsedProfile.profile) {
     throw new Error("--container cannot be combined with --profile/--dev");
   }

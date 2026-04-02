@@ -5,7 +5,7 @@ import { createTempHomeEnv } from "../test-utils/temp-home.js";
 
 export function setTempStateDir(workspaceDir: string): string {
   const stateDir = path.join(workspaceDir, "state");
-  process.env.OPENCLAW_STATE_DIR = stateDir;
+  process.env.QUANTCLAW_STATE_DIR = stateDir;
   return stateDir;
 }
 
@@ -35,7 +35,7 @@ export async function writeDownloadSkill(params: {
   const skillDir = path.join(params.workspaceDir, "skills", params.name);
   await fs.mkdir(skillDir, { recursive: true });
   const meta = {
-    openclaw: {
+    quantclaw: {
       install: [
         {
           id: params.installId,

@@ -10,17 +10,17 @@ import {
 } from "@buape/carbon";
 import type { APIStringSelectComponent } from "discord-api-types/v10";
 import { ChannelType } from "discord-api-types/v10";
-import { createChannelPairingChallengeIssuer } from "openclaw/plugin-sdk/channel-pairing";
-import { resolveCommandAuthorizedFromAuthorizers } from "openclaw/plugin-sdk/command-auth";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { DiscordAccountConfig } from "openclaw/plugin-sdk/config-runtime";
-import { isDangerousNameMatchingEnabled } from "openclaw/plugin-sdk/config-runtime";
-import { resolveOpenProviderRuntimeGroupPolicy } from "openclaw/plugin-sdk/config-runtime";
-import * as conversationRuntime from "openclaw/plugin-sdk/conversation-runtime";
-import { resolveAgentRoute } from "openclaw/plugin-sdk/routing";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import * as securityRuntime from "openclaw/plugin-sdk/security-runtime";
-import { logError } from "openclaw/plugin-sdk/text-runtime";
+import { createChannelPairingChallengeIssuer } from "quantclaw/plugin-sdk/channel-pairing";
+import { resolveCommandAuthorizedFromAuthorizers } from "quantclaw/plugin-sdk/command-auth";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { DiscordAccountConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { isDangerousNameMatchingEnabled } from "quantclaw/plugin-sdk/config-runtime";
+import { resolveOpenProviderRuntimeGroupPolicy } from "quantclaw/plugin-sdk/config-runtime";
+import * as conversationRuntime from "quantclaw/plugin-sdk/conversation-runtime";
+import { resolveAgentRoute } from "quantclaw/plugin-sdk/routing";
+import { logVerbose } from "quantclaw/plugin-sdk/runtime-env";
+import * as securityRuntime from "quantclaw/plugin-sdk/security-runtime";
+import { logError } from "quantclaw/plugin-sdk/text-runtime";
 import {
   createDiscordFormModal,
   parseDiscordComponentCustomId,
@@ -68,10 +68,10 @@ export type DiscordChannelContext = {
 };
 
 export type AgentComponentContext = {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
   discordConfig?: DiscordAccountConfig;
-  runtime?: import("openclaw/plugin-sdk/runtime-env").RuntimeEnv;
+  runtime?: import("quantclaw/plugin-sdk/runtime-env").RuntimeEnv;
   token?: string;
   guildEntries?: Record<string, DiscordGuildEntryResolved>;
   allowFrom?: string[];

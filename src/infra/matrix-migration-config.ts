@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import os from "node:os";
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import { resolveStateDir } from "../config/paths.js";
 import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "../routing/session-key.js";
 import {
@@ -129,14 +129,14 @@ function resolveGlobalMatrixEnvConfig(env: NodeJS.ProcessEnv): {
 }
 
 function resolveMatrixAccountConfigEntry(
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
   accountId: string,
 ): Record<string, unknown> | null {
   return findMatrixAccountEntry(cfg, accountId);
 }
 
 function resolveMatrixFlatStoreSelectionNote(
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
   accountId: string,
 ): string | undefined {
   if (resolveConfiguredMatrixAccountIds(cfg).length <= 1) {
@@ -149,7 +149,7 @@ function resolveMatrixFlatStoreSelectionNote(
 }
 
 export function resolveMatrixMigrationConfigFields(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   env: NodeJS.ProcessEnv;
   accountId: string;
 }): {
@@ -240,7 +240,7 @@ export function credentialsMatchResolvedIdentity(
 }
 
 export function resolveMatrixMigrationAccountTarget(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   env: NodeJS.ProcessEnv;
   accountId: string;
 }): MatrixMigrationAccountTarget | null {
@@ -280,7 +280,7 @@ export function resolveMatrixMigrationAccountTarget(params: {
 }
 
 export function resolveLegacyMatrixFlatStoreTarget(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   env: NodeJS.ProcessEnv;
   detectedPath: string;
   detectedKind: MatrixLegacyFlatStoreKind;

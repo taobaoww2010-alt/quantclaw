@@ -4,9 +4,9 @@ import os from "node:os";
 import path from "node:path";
 import type { AgentTool } from "@mariozechner/pi-agent-core";
 import type { ImageContent } from "@mariozechner/pi-ai";
-import { KeyedAsyncQueue } from "@openclaw/plugin-sdk/keyed-async-queue";
+import { KeyedAsyncQueue } from "@quantclaw/plugin-sdk/keyed-async-queue";
 import type { ThinkLevel } from "../../auto-reply/thinking.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { QuantClawConfig } from "../../config/config.js";
 import type { CliBackendConfig } from "../../config/types.js";
 import { MAX_IMAGE_BYTES } from "../../media/constants.js";
 import { buildTtsSystemPromptHint } from "../../tts/tts.js";
@@ -29,7 +29,7 @@ export function enqueueCliRun<T>(key: string, task: () => Promise<T>): Promise<T
 
 export function buildSystemPrompt(params: {
   workspaceDir: string;
-  config?: OpenClawConfig;
+  config?: QuantClawConfig;
   defaultThinkLevel?: ThinkLevel;
   extraSystemPrompt?: string;
   ownerNumbers?: string[];

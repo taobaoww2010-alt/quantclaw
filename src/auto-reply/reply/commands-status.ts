@@ -12,7 +12,7 @@ import {
   resolveInternalSessionKey,
   resolveMainSessionAlias,
 } from "../../agents/tools/sessions-helpers.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { QuantClawConfig } from "../../config/config.js";
 import { toAgentModelListLike } from "../../config/model-input.js";
 import type { SessionEntry, SessionScope } from "../../config/sessions.js";
 import { logVerbose } from "../../globals.js";
@@ -55,7 +55,7 @@ function shouldLoadUsageSummary(params: {
 }
 
 export async function buildStatusReply(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   command: CommandContext;
   sessionEntry?: SessionEntry;
   sessionKey: string;

@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
 import {
   createFlowForTask,
@@ -285,7 +285,7 @@ function isTerminalFlowStatus(status: FlowRecord["status"]): boolean {
 }
 
 export async function cancelFlowById(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   flowId: string;
 }): Promise<CancelFlowResult> {
   const flow = getFlowById(params.flowId);
@@ -443,6 +443,6 @@ export function setDetachedTaskDeliveryStatusByRunId(params: {
   return setTaskRunDeliveryStatusByRunId(params);
 }
 
-export async function cancelDetachedTaskRunById(params: { cfg: OpenClawConfig; taskId: string }) {
+export async function cancelDetachedTaskRunById(params: { cfg: QuantClawConfig; taskId: string }) {
   return cancelTaskById(params);
 }

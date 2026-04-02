@@ -1,11 +1,11 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
 import {
   createStandardChannelSetupStatus,
   hasConfiguredSecretInput,
   setSetupChannelEnabled,
-} from "openclaw/plugin-sdk/setup";
-import type { ChannelSetupWizard } from "openclaw/plugin-sdk/setup";
-import { formatDocsLink } from "openclaw/plugin-sdk/setup-tools";
+} from "quantclaw/plugin-sdk/setup";
+import type { ChannelSetupWizard } from "quantclaw/plugin-sdk/setup";
+import { formatDocsLink } from "quantclaw/plugin-sdk/setup-tools";
 import {
   DEFAULT_ACCOUNT_ID,
   listQQBotAccountIds,
@@ -23,10 +23,10 @@ type QQBotEnvCredentialField = "appId" | "clientSecret";
  * AppID + env AppSecret.
  */
 function clearQQBotCredentialField(
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
   accountId: string,
   field: QQBotEnvCredentialField,
-): OpenClawConfig {
+): QuantClawConfig {
   const next = { ...cfg };
   const qqbot = { ...((next.channels?.qqbot as Record<string, unknown>) || {}) };
 

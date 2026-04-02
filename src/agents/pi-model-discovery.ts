@@ -102,7 +102,7 @@ function normalizeRegistryModel<T>(value: T, agentDir: string): T {
   return normalizeModelCompat(transportNormalized as Model<Api>) as T;
 }
 
-class OpenClawModelRegistry extends PiModelRegistryClass {
+class QuantClawModelRegistry extends PiModelRegistryClass {
   constructor(
     authStorage: PiAuthStorage,
     modelsJsonPath: string,
@@ -243,5 +243,5 @@ export function discoverAuthStorage(agentDir: string): PiAuthStorage {
 }
 
 export function discoverModels(authStorage: PiAuthStorage, agentDir: string): PiModelRegistry {
-  return new OpenClawModelRegistry(authStorage, path.join(agentDir, "models.json"), agentDir);
+  return new QuantClawModelRegistry(authStorage, path.join(agentDir, "models.json"), agentDir);
 }

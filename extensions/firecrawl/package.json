@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/firecrawl-plugin",
+  "name": "@quantclaw/firecrawl-plugin",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Firecrawl plugin",
+  "description": "QuantClaw Firecrawl plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

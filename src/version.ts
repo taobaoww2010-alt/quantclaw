@@ -116,7 +116,7 @@ function resolveVersionFromRuntimeSources(params: {
   return (
     firstNonEmpty(
       ...preferredCandidates,
-      params.env["OPENCLAW_SERVICE_VERSION"],
+      params.env["QUANTCLAW_SERVICE_VERSION"],
       params.env["npm_package_version"],
     ) ?? params.fallback
   );
@@ -146,11 +146,11 @@ export function resolveCompatibilityHostVersion(
   });
 }
 
-// Single source of truth for the current OpenClaw version.
+// Single source of truth for the current QuantClaw version.
 // - Embedded/bundled builds: injected define or env var.
 // - Dev/npm builds: package.json.
 export const VERSION = resolveBinaryVersion({
   moduleUrl: import.meta.url,
   injectedVersion: typeof __QUANTCLAW_VERSION__ === "string" ? __QUANTCLAW_VERSION__ : undefined,
-  bundledVersion: process.env.OPENCLAW_BUNDLED_VERSION,
+  bundledVersion: process.env.QUANTCLAW_BUNDLED_VERSION,
 });

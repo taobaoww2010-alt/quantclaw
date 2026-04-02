@@ -2,7 +2,7 @@ import fsSync from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { resolveQuantClawPackageRootSync } from "../infra/openclaw-root.js";
+import { resolveQuantClawPackageRootSync } from "../infra/quantclaw-root.js";
 import { loadPluginManifestRegistry } from "../plugins/manifest-registry.js";
 import {
   collectChannelSchemaMetadata,
@@ -333,7 +333,7 @@ async function loadBundledConfigSchemaResponse(): Promise<ConfigSchemaResponse> 
   const env = {
     ...process.env,
     HOME: os.tmpdir(),
-    OPENCLAW_STATE_DIR: path.join(os.tmpdir(), "quantclaw-config-doc-baseline-state"),
+    QUANTCLAW_STATE_DIR: path.join(os.tmpdir(), "quantclaw-config-doc-baseline-state"),
     OPENCLAW_BUNDLED_PLUGINS_DIR: path.join(repoRoot, "extensions"),
   };
 

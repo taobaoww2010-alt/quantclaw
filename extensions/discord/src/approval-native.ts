@@ -1,11 +1,11 @@
-import { createApproverRestrictedNativeApprovalAdapter, resolveExecApprovalSessionTarget } from "openclaw/plugin-sdk/approval-runtime";
-import type { DiscordExecApprovalConfig, OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+import { createApproverRestrictedNativeApprovalAdapter, resolveExecApprovalSessionTarget } from "quantclaw/plugin-sdk/approval-runtime";
+import type { DiscordExecApprovalConfig, QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
 import type {
   ExecApprovalRequest,
   ExecApprovalSessionTarget,
   PluginApprovalRequest,
-} from "openclaw/plugin-sdk/infra-runtime";
-import { normalizeAccountId } from "openclaw/plugin-sdk/routing";
+} from "quantclaw/plugin-sdk/infra-runtime";
+import { normalizeAccountId } from "quantclaw/plugin-sdk/routing";
 import { listDiscordAccountIds, resolveDiscordAccount } from "./accounts.js";
 import {
   getDiscordExecApprovalApprovers,
@@ -73,7 +73,7 @@ function normalizeDiscordOriginChannelId(value?: string | null): string | null {
 }
 
 function resolveRequestSessionTarget(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   request: ApprovalRequest;
 }): ExecApprovalSessionTarget | null {
   const execLikeRequest = toExecLikeRequest(params.request);
@@ -88,7 +88,7 @@ function resolveRequestSessionTarget(params: {
 }
 
 function resolveDiscordOriginTarget(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   request: ApprovalRequest;
 }) {
@@ -153,7 +153,7 @@ function resolveDiscordOriginTarget(params: {
 }
 
 function resolveDiscordApproverDmTargets(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   configOverride?: DiscordExecApprovalConfig | null;
 }) {

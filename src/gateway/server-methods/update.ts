@@ -1,6 +1,6 @@
 import { loadConfig } from "../../config/config.js";
 import { extractDeliveryInfo } from "../../config/sessions.js";
-import { resolveQuantClawPackageRoot } from "../../infra/openclaw-root.js";
+import { resolveQuantClawPackageRoot } from "../../infra/quantclaw-root.js";
 import {
   formatDoctorNonInteractiveHint,
   type RestartSentinelPayload,

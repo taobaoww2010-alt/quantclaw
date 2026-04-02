@@ -3,7 +3,7 @@ import path from "node:path";
 import { createJiti } from "jiti";
 import type { ChannelPlugin } from "../channels/plugins/types.js";
 import { isChannelConfigured } from "../config/channel-configured.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import type { PluginInstallRecord } from "../config/types.plugins.js";
 import type { GatewayRequestHandler } from "../gateway/server-methods/types.js";
 import { openBoundaryFileSync } from "../infra/boundary-file-read.js";
@@ -19,7 +19,7 @@ import {
   resolveMemorySlotDecision,
   type NormalizedPluginsConfig,
 } from "./config-state.js";
-import { discoverOpenClawPlugins } from "./discovery.js";
+import { discoverQuantClawPlugins } from "./discovery.js";
 import { initializeGlobalHookRunner } from "./hook-runner-global.js";
 import { clearPluginInteractiveHandlers } from "./interactive.js";
 import { loadPluginManifestRegistry } from "./manifest-registry.js";
@@ -61,8 +61,8 @@ import {
 } from "./sdk-alias.js";
 import { hasKind, kindsEqual } from "./slots.js";
 import type {
-  OpenClawPluginDefinition,
-  OpenClawPluginModule,
+  QuantClawPluginDefinition,
+  QuantClawPluginModule,
   PluginDiagnostic,
   PluginBundleFormat,
   PluginFormat,
@@ -72,7 +72,7 @@ import type {
 export type PluginLoadResult = PluginRegistry;
 
 export type PluginLoadOptions = {
-  config?: OpenClawConfig;
+  config?: QuantClawConfig;
   workspaceDir?: string;
   // Allows callers to resolve plugin roots and load paths against an explicit env
   // instead of the process-global environment.
@@ -364,7 +364,7 @@ export function resolveRuntimePluginRegistry(
   if (!options || !hasExplicitCompatibilityInputs(options)) {
     return getCompatibleActivePluginRegistry();
   }
-  return getCompatibleActivePluginRegistry(options) ?? loadOpenClawPlugins(options);
+  return getCompatibleActivePluginRegistry(options) ?? loadQuantClawPlugins(options);
 }
 
 function validatePluginConfig(params: {
@@ -390,8 +390,8 @@ function validatePluginConfig(params: {
 }
 
 function resolvePluginModuleExport(moduleExport: unknown): {
-  definition?: OpenClawPluginDefinition;
-  register?: OpenClawPluginDefinition["register"];
+  definition?: QuantClawPluginDefinition;
+  register?: QuantClawPluginDefinition["register"];
 } {
   const resolved =
     moduleExport &&
@@ -401,11 +401,11 @@ function resolvePluginModuleExport(moduleExport: unknown): {
       : moduleExport;
   if (typeof resolved === "function") {
     return {
-      register: resolved as OpenClawPluginDefinition["register"],
+      register: resolved as QuantClawPluginDefinition["register"],
     };
   }
   if (resolved && typeof resolved === "object") {
-    const def = resolved as OpenClawPluginDefinition;
+    const def = resolved as QuantClawPluginDefinition;
     const register = def.register ?? def.activate;
     return { definition: def, register };
   }
@@ -439,7 +439,7 @@ function shouldLoadChannelPluginInSetupRuntime(params: {
   manifestChannels: string[];
   setupSource?: string;
   startupDeferConfiguredChannelFullLoadUntilAfterListen?: boolean;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   env: NodeJS.ProcessEnv;
   preferSetupRuntimeForChannelPlugins?: boolean;
 }): boolean {
@@ -519,7 +519,7 @@ function recordPluginError(params: {
   diagnosticMessagePrefix: string;
 }) {
   const errorText =
-    process.env.OPENCLAW_PLUGIN_LOADER_DEBUG_STACKS === "1" &&
+    process.env.QUANTCLAW_PLUGIN_LOADER_DEBUG_STACKS === "1" &&
     params.error instanceof Error &&
     typeof params.error.stack === "string"
       ? params.error.stack
@@ -610,7 +610,7 @@ function matchesPathMatcher(matcher: PathMatcher, sourcePath: string): boolean {
 }
 
 function buildProvenanceIndex(params: {
-  config: OpenClawConfig;
+  config: QuantClawConfig;
   normalizedLoadPaths: string[];
   env: NodeJS.ProcessEnv;
 }): PluginProvenanceIndex {
@@ -676,7 +676,7 @@ function matchesExplicitInstallRule(params: {
 }
 
 function resolveCandidateDuplicateRank(params: {
-  candidate: ReturnType<typeof discoverOpenClawPlugins>["candidates"][number];
+  candidate: ReturnType<typeof discoverQuantClawPlugins>["candidates"][number];
   manifestByRoot: Map<string, ReturnType<typeof loadPluginManifestRegistry>["plugins"][number]>;
   provenance: PluginProvenanceIndex;
   env: NodeJS.ProcessEnv;
@@ -710,8 +710,8 @@ function resolveCandidateDuplicateRank(params: {
 }
 
 function compareDuplicateCandidateOrder(params: {
-  left: ReturnType<typeof discoverOpenClawPlugins>["candidates"][number];
-  right: ReturnType<typeof discoverOpenClawPlugins>["candidates"][number];
+  left: ReturnType<typeof discoverQuantClawPlugins>["candidates"][number];
+  right: ReturnType<typeof discoverQuantClawPlugins>["candidates"][number];
   manifestByRoot: Map<string, ReturnType<typeof loadPluginManifestRegistry>["plugins"][number]>;
   provenance: PluginProvenanceIndex;
   env: NodeJS.ProcessEnv;
@@ -811,12 +811,12 @@ function activatePluginRegistry(
   initializeGlobalHookRunner(registry);
 }
 
-export function loadOpenClawPlugins(options: PluginLoadOptions = {}): PluginRegistry {
+export function loadQuantClawPlugins(options: PluginLoadOptions = {}): PluginRegistry {
   // Snapshot (non-activating) loads must disable the cache to avoid storing a registry
   // whose commands were never globally registered.
   if (options.activate === false && options.cache !== false) {
     throw new Error(
-      "loadOpenClawPlugins: activate:false requires cache:false to prevent command registry divergence",
+      "loadQuantClawPlugins: activate:false requires cache:false to prevent command registry divergence",
     );
   }
   const {
@@ -942,7 +942,7 @@ export function loadOpenClawPlugins(options: PluginLoadOptions = {}): PluginRegi
     activateGlobalSideEffects: shouldActivate,
   });
 
-  const discovery = discoverOpenClawPlugins({
+  const discovery = discoverQuantClawPlugins({
     workspaceDir: options.workspaceDir,
     extraPaths: normalized.loadPaths,
     cache: options.cache,
@@ -1121,7 +1121,7 @@ export function loadOpenClawPlugins(options: PluginLoadOptions = {}): PluginRegi
           level: "warn",
           pluginId: record.id,
           source: record.source,
-          message: `bundle capability detected but not wired into OpenClaw yet: ${capability}`,
+          message: `bundle capability detected but not wired into QuantClaw yet: ${capability}`,
         });
       }
       if (
@@ -1206,9 +1206,9 @@ export function loadOpenClawPlugins(options: PluginLoadOptions = {}): PluginRegi
     const safeSource = opened.path;
     fs.closeSync(opened.fd);
 
-    let mod: OpenClawPluginModule | null = null;
+    let mod: QuantClawPluginModule | null = null;
     try {
-      mod = getJiti(safeSource)(safeSource) as OpenClawPluginModule;
+      mod = getJiti(safeSource)(safeSource) as QuantClawPluginModule;
     } catch (err) {
       recordPluginError({
         logger,
@@ -1412,7 +1412,7 @@ export function loadOpenClawPlugins(options: PluginLoadOptions = {}): PluginRegi
   return registry;
 }
 
-export async function loadOpenClawPluginCliRegistry(
+export async function loadQuantClawPluginCliRegistry(
   options: PluginLoadOptions = {},
 ): Promise<PluginRegistry> {
   const { env, cfg, normalized, onlyPluginIds, cacheKey } = resolvePluginLoadCacheContext({
@@ -1430,7 +1430,7 @@ export async function loadOpenClawPluginCliRegistry(
     activateGlobalSideEffects: false,
   });
 
-  const discovery = discoverOpenClawPlugins({
+  const discovery = discoverQuantClawPlugins({
     workspaceDir: options.workspaceDir,
     extraPaths: normalized.loadPaths,
     cache: false,
@@ -1596,9 +1596,9 @@ export async function loadOpenClawPluginCliRegistry(
     const safeSource = opened.path;
     fs.closeSync(opened.fd);
 
-    let mod: OpenClawPluginModule | null = null;
+    let mod: QuantClawPluginModule | null = null;
     try {
-      mod = getJiti(safeSource)(safeSource) as OpenClawPluginModule;
+      mod = getJiti(safeSource)(safeSource) as QuantClawPluginModule;
     } catch (err) {
       recordPluginError({
         logger,

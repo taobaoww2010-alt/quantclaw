@@ -1,20 +1,20 @@
 {
-  "name": "@openclaw/googlechat",
+  "name": "@quantclaw/googlechat",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Google Chat channel plugin",
+  "description": "QuantClaw Google Chat channel plugin",
   "type": "module",
   "dependencies": {
     "google-auth-library": "^10.6.2"
   },
   "devDependencies": {
-    "openclaw": "workspace:*"
+    "quantclaw": "workspace:*"
   },
   "peerDependencies": {
-    "openclaw": ">=2026.3.30"
+    "quantclaw": ">=2026.3.30"
   },
   "peerDependenciesMeta": {
-    "openclaw": {
+    "quantclaw": {
       "optional": true
     }
   },
@@ -40,7 +40,7 @@
       "markdownCapable": true
     },
     "install": {
-      "npmSpec": "@openclaw/googlechat",
+      "npmSpec": "@quantclaw/googlechat",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.3.30"
     }

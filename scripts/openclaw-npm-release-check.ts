@@ -47,7 +47,7 @@ export type NpmPublishPlan = {
   publishTag: "latest" | "beta";
   mirrorDistTags: ("latest" | "beta")[];
 };
-const EXPECTED_REPOSITORY_URL = "https://github.com/openclaw/openclaw";
+const EXPECTED_REPOSITORY_URL = "https://github.com/quantclaw/quantclaw";
 const MAX_CALVER_DISTANCE_DAYS = 2;
 const REQUIRED_PACKED_PATHS = ["dist/control-ui/index.html"];
 const CONTROL_UI_ASSET_PREFIX = "dist/control-ui/assets/";
@@ -115,8 +115,8 @@ export function collectReleasePackageMetadataErrors(pkg: PackageJson): string[] 
   );
   const errors: string[] = [];
 
-  if (pkg.name !== "openclaw") {
-    errors.push(`package.json name must be "openclaw"; found "${pkg.name ?? ""}".`);
+  if (pkg.name !== "quantclaw") {
+    errors.push(`package.json name must be "quantclaw"; found "${pkg.name ?? ""}".`);
   }
   if (!pkg.description?.trim()) {
     errors.push("package.json description must be non-empty.");
@@ -131,9 +131,9 @@ export function collectReleasePackageMetadataErrors(pkg: PackageJson): string[] 
       }.`,
     );
   }
-  if (pkg.bin?.openclaw !== "openclaw.mjs") {
+  if (pkg.bin?.quantclaw !== "quantclaw.mjs") {
     errors.push(
-      `package.json bin.openclaw must be "openclaw.mjs"; found "${pkg.bin?.openclaw ?? ""}".`,
+      `package.json bin.quantclaw must be "quantclaw.mjs"; found "${pkg.bin?.quantclaw ?? ""}".`,
     );
   }
   if (pkg.peerDependencies?.["node-llama-cpp"] !== "3.18.1") {
@@ -406,7 +406,7 @@ function main(): number {
 
   if (errors.length > 0) {
     for (const error of errors) {
-      console.error(`openclaw-npm-release-check: ${error}`);
+      console.error(`quantclaw-npm-release-check: ${error}`);
     }
     return 1;
   }
@@ -416,7 +416,7 @@ function main(): number {
   const dayDistance =
     parsedVersion === null ? "unknown" : String(utcCalendarDayDistance(parsedVersion.date, now));
   console.log(
-    `openclaw-npm-release-check: validated ${channel} release ${pkg.version} (${dayDistance} day UTC delta).`,
+    `quantclaw-npm-release-check: validated ${channel} release ${pkg.version} (${dayDistance} day UTC delta).`,
   );
   return 0;
 }

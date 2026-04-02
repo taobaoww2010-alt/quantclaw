@@ -1,1 +1,1 @@
-export type { OpenClawConfig } from "openclaw/plugin-sdk/memory-core";
+export type { QuantClawConfig } from "quantclaw/plugin-sdk/memory-core";

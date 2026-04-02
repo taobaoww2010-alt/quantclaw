@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { withTempHome as withTempHomeBase } from "../../test/helpers/temp-home.js";
-import { resetConfigRuntimeState, type OpenClawConfig } from "./config.js";
+import { resetConfigRuntimeState, type QuantClawConfig } from "./config.js";
 
 export async function withTempHome<T>(fn: (home: string) => Promise<T>): Promise<T> {
   resetConfigRuntimeState();
@@ -12,8 +12,8 @@ export async function withTempHome<T>(fn: (home: string) => Promise<T>): Promise
   }
 }
 
-export async function writeOpenClawConfig(home: string, config: unknown): Promise<string> {
-  const configPath = path.join(home, ".openclaw", "quantclaw.json");
+export async function writeQuantClawConfig(home: string, config: unknown): Promise<string> {
+  const configPath = path.join(home, ".quantclaw", "quantclaw.json");
   await fs.mkdir(path.dirname(configPath), { recursive: true });
   await fs.writeFile(configPath, JSON.stringify(config, null, 2), "utf-8");
   return configPath;
@@ -26,9 +26,9 @@ export async function writeStateDirDotEnv(
     stateDir?: string;
   },
 ): Promise<{ dotEnvPath: string; stateDir: string }> {
-  const stateDir = params?.stateDir ?? params?.env?.OPENCLAW_STATE_DIR?.trim();
+  const stateDir = params?.stateDir ?? params?.env?.QUANTCLAW_STATE_DIR?.trim();
   if (!stateDir) {
-    throw new Error("Expected OPENCLAW_STATE_DIR or explicit stateDir for .env test setup");
+    throw new Error("Expected QUANTCLAW_STATE_DIR or explicit stateDir for .env test setup");
   }
   const dotEnvPath = path.join(stateDir, ".env");
   await fs.mkdir(path.dirname(dotEnvPath), { recursive: true });
@@ -41,7 +41,7 @@ export async function withTempHomeConfig<T>(
   fn: (params: { home: string; configPath: string }) => Promise<T>,
 ): Promise<T> {
   return withTempHome(async (home) => {
-    const configPath = await writeOpenClawConfig(home, config);
+    const configPath = await writeQuantClawConfig(home, config);
     return fn({ home, configPath });
   });
 }
@@ -77,7 +77,7 @@ export async function withEnvOverride<T>(
 
 export function buildWebSearchProviderConfig(params: {
   provider: NonNullable<
-    NonNullable<NonNullable<NonNullable<OpenClawConfig["tools"]>["web"]>["search"]>["provider"]
+    NonNullable<NonNullable<NonNullable<QuantClawConfig["tools"]>["web"]>["search"]>["provider"]
   >;
   enabled?: boolean;
   providerConfig?: Record<string, unknown>;

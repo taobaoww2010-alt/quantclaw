@@ -3,12 +3,12 @@ import path from "node:path";
 import {
   getRuntimeConfigSourceSnapshot,
   projectConfigOntoRuntimeSourceSnapshot,
-  type OpenClawConfig,
+  type QuantClawConfig,
   loadConfig,
 } from "../config/config.js";
 import { createConfigRuntimeEnv } from "../config/env-vars.js";
 import { resolveQuantClawAgentDir } from "./agent-paths.js";
-import { planOpenClawModelsJson } from "./models-config.plan.js";
+import { planQuantClawModelsJson } from "./models-config.plan.js";
 
 const MODELS_JSON_WRITE_LOCKS = new Map<string, Promise<void>>();
 const MODELS_JSON_READY_CACHE = new Map<
@@ -41,8 +41,8 @@ function stableStringify(value: unknown): string {
 }
 
 async function buildModelsJsonFingerprint(params: {
-  config: OpenClawConfig;
-  sourceConfigForSecrets: OpenClawConfig;
+  config: QuantClawConfig;
+  sourceConfigForSecrets: QuantClawConfig;
   agentDir: string;
 }): Promise<string> {
   const authProfilesMtimeMs = await readFileMtimeMs(
@@ -89,9 +89,9 @@ async function writeModelsFileAtomic(targetPath: string, contents: string): Prom
   await fs.rename(tempPath, targetPath);
 }
 
-function resolveModelsConfigInput(config?: OpenClawConfig): {
-  config: OpenClawConfig;
-  sourceConfigForSecrets: OpenClawConfig;
+function resolveModelsConfigInput(config?: QuantClawConfig): {
+  config: QuantClawConfig;
+  sourceConfigForSecrets: QuantClawConfig;
 } {
   const runtimeSource = getRuntimeConfigSourceSnapshot();
   if (!config) {
@@ -136,7 +136,7 @@ async function withModelsJsonWriteLock<T>(targetPath: string, run: () => Promise
 }
 
 export async function ensureQuantClawModelsJson(
-  config?: OpenClawConfig,
+  config?: QuantClawConfig,
   agentDirOverride?: string,
 ): Promise<{ agentDir: string; wrote: boolean }> {
   const resolved = resolveModelsConfigInput(config);
@@ -162,7 +162,7 @@ export async function ensureQuantClawModelsJson(
     // are available to provider discovery without mutating process.env.
     const env = createConfigRuntimeEnv(cfg);
     const existingModelsFile = await readExistingModelsFile(targetPath);
-    const plan = await planOpenClawModelsJson({
+    const plan = await planQuantClawModelsJson({
       cfg,
       sourceConfigForSecrets: resolved.sourceConfigForSecrets,
       agentDir,

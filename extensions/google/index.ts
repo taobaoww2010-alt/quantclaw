@@ -1,14 +1,14 @@
-import type { ImageGenerationProvider } from "openclaw/plugin-sdk/image-generation";
-import type { MediaUnderstandingProvider } from "openclaw/plugin-sdk/media-understanding";
+import type { ImageGenerationProvider } from "quantclaw/plugin-sdk/image-generation";
+import type { MediaUnderstandingProvider } from "quantclaw/plugin-sdk/media-understanding";
 import {
   definePluginEntry,
-  type OpenClawPluginApi,
+  type QuantClawPluginApi,
   type ProviderAuthContext,
   type ProviderFetchUsageSnapshotContext,
-} from "openclaw/plugin-sdk/plugin-entry";
-import { createProviderApiKeyAuthMethod } from "openclaw/plugin-sdk/provider-auth-api-key";
-import type { ProviderPlugin } from "openclaw/plugin-sdk/provider-model-shared";
-import { createGoogleThinkingPayloadWrapper } from "openclaw/plugin-sdk/provider-stream";
+} from "quantclaw/plugin-sdk/plugin-entry";
+import { createProviderApiKeyAuthMethod } from "quantclaw/plugin-sdk/provider-auth-api-key";
+import type { ProviderPlugin } from "quantclaw/plugin-sdk/provider-model-shared";
+import { createGoogleThinkingPayloadWrapper } from "quantclaw/plugin-sdk/provider-stream";
 import {
   GOOGLE_GEMINI_DEFAULT_MODEL,
   applyGoogleGeminiModelDefault,
@@ -65,7 +65,7 @@ async function loadGoogleGeminiCliProvider(): Promise<ProviderPlugin> {
         registerProvider(entry) {
           provider = entry;
         },
-      } as Pick<OpenClawPluginApi, "registerProvider"> as OpenClawPluginApi);
+      } as Pick<QuantClawPluginApi, "registerProvider"> as QuantClawPluginApi);
       if (!provider) {
         throw new Error("google gemini cli provider missing provider registration");
       }

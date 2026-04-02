@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import { resolveBrewExecutable } from "../infra/brew.js";
 import { getGlobalHookRunner } from "../plugins/hook-runner-global.js";
 import { createBeforeInstallHookPayload } from "../plugins/install-policy-context.js";
@@ -24,7 +24,7 @@ export type SkillInstallRequest = {
   skillName: string;
   installId: string;
   timeoutMs?: number;
-  config?: OpenClawConfig;
+  config?: QuantClawConfig;
 };
 
 export type SkillInstallResult = {

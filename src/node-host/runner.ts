@@ -1,4 +1,4 @@
-import { loadConfig, type OpenClawConfig } from "../config/config.js";
+import { loadConfig, type QuantClawConfig } from "../config/config.js";
 import { GatewayClient } from "../gateway/client.js";
 import { resolveGatewayConnectionAuth } from "../gateway/connection-auth.js";
 import { loadOrCreateDeviceIdentity } from "../infra/device-identity.js";
@@ -114,7 +114,7 @@ function ensureNodePathEnv(): string {
 }
 
 export async function resolveNodeHostGatewayCredentials(params: {
-  config: OpenClawConfig;
+  config: QuantClawConfig;
   env?: NodeJS.ProcessEnv;
 }): Promise<{ token?: string; password?: string }> {
   const mode = params.config.gateway?.mode === "remote" ? "remote" : "local";
@@ -130,7 +130,7 @@ export async function resolveNodeHostGatewayCredentials(params: {
   });
 }
 
-function buildNodeHostLocalAuthConfig(config: OpenClawConfig): OpenClawConfig {
+function buildNodeHostLocalAuthConfig(config: QuantClawConfig): QuantClawConfig {
   if (!config.gateway?.remote?.token && !config.gateway?.remote?.password) {
     return config;
   }

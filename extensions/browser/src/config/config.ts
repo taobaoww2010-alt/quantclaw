@@ -5,5 +5,5 @@ export {
   writeConfigFile,
   type BrowserConfig,
   type BrowserProfileConfig,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/browser-support";
+  type QuantClawConfig,
+} from "quantclaw/plugin-sdk/browser-support";

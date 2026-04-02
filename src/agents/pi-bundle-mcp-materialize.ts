@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import type { AgentToolResult } from "@mariozechner/pi-agent-core";
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import { logWarn } from "../logger.js";
 import {
   buildSafeToolName,
@@ -111,7 +111,7 @@ export async function materializeBundleMcpToolsForRun(params: {
 
 export async function createBundleMcpToolRuntime(params: {
   workspaceDir: string;
-  cfg?: OpenClawConfig;
+  cfg?: QuantClawConfig;
   reservedToolNames?: Iterable<string>;
 }): Promise<BundleMcpToolRuntime> {
   const runtime = createSessionMcpRuntime({

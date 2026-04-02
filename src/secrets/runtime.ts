@@ -15,7 +15,7 @@ import {
   clearRuntimeConfigSnapshot,
   setRuntimeConfigSnapshotRefreshHandler,
   setRuntimeConfigSnapshot,
-  type OpenClawConfig,
+  type QuantClawConfig,
 } from "../config/config.js";
 import { migrateLegacyConfig } from "../config/legacy-migrate.js";
 import { loadPluginManifestRegistry } from "../plugins/manifest-registry.js";
@@ -38,8 +38,8 @@ import { resolveRuntimeWebTools, type RuntimeWebToolsMetadata } from "./runtime-
 export type { SecretResolverWarning } from "./runtime-shared.js";
 
 export type PreparedSecretsRuntimeSnapshot = {
-  sourceConfig: OpenClawConfig;
-  config: OpenClawConfig;
+  sourceConfig: QuantClawConfig;
+  config: QuantClawConfig;
   authStores: Array<{ agentDir: string; store: AuthProfileStore }>;
   warnings: SecretResolverWarning[];
   webTools: RuntimeWebToolsMetadata;
@@ -57,12 +57,12 @@ const RUNTIME_PATH_ENV_KEYS = [
   "USERPROFILE",
   "HOMEDRIVE",
   "HOMEPATH",
-  "OPENCLAW_HOME",
-  "OPENCLAW_STATE_DIR",
-  "OPENCLAW_CONFIG_PATH",
+  "QUANTCLAW_HOME",
+  "QUANTCLAW_STATE_DIR",
+  "QUANTCLAW_CONFIG_PATH",
   "QUANTCLAW_AGENT_DIR",
   "PI_CODING_AGENT_DIR",
-  "OPENCLAW_TEST_FAST",
+  "QUANTCLAW_TEST_FAST",
 ] as const;
 
 let activeSnapshot: PreparedSecretsRuntimeSnapshot | null = null;
@@ -103,7 +103,7 @@ function clearActiveSecretsRuntimeState(): void {
 }
 
 function collectCandidateAgentDirs(
-  config: OpenClawConfig,
+  config: QuantClawConfig,
   env: NodeJS.ProcessEnv = process.env,
 ): string[] {
   const dirs = new Set<string>();
@@ -115,7 +115,7 @@ function collectCandidateAgentDirs(
 }
 
 function resolveRefreshAgentDirs(
-  config: OpenClawConfig,
+  config: QuantClawConfig,
   context: SecretsRuntimeRefreshContext,
 ): string[] {
   const configDerived = collectCandidateAgentDirs(config, context.env);
@@ -126,7 +126,7 @@ function resolveRefreshAgentDirs(
 }
 
 function resolveLoadablePluginOrigins(params: {
-  config: OpenClawConfig;
+  config: QuantClawConfig;
   env: NodeJS.ProcessEnv;
 }): ReadonlyMap<string, PluginOrigin> {
   const workspaceDir = resolveAgentWorkspaceDir(
@@ -159,7 +159,7 @@ function mergeSecretsRuntimeEnv(
 }
 
 export async function prepareSecretsRuntimeSnapshot(params: {
-  config: OpenClawConfig;
+  config: QuantClawConfig;
   env?: NodeJS.ProcessEnv;
   agentDirs?: string[];
   includeAuthStoreRefs?: boolean;

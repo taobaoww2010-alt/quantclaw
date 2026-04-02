@@ -1,17 +1,17 @@
-import { createScopedDmSecurityResolver } from "openclaw/plugin-sdk/channel-config-helpers";
-import { createAccountStatusSink } from "openclaw/plugin-sdk/channel-lifecycle";
-import { createPairingPrefixStripper } from "openclaw/plugin-sdk/channel-pairing";
+import { createScopedDmSecurityResolver } from "quantclaw/plugin-sdk/channel-config-helpers";
+import { createAccountStatusSink } from "quantclaw/plugin-sdk/channel-lifecycle";
+import { createPairingPrefixStripper } from "quantclaw/plugin-sdk/channel-pairing";
 import {
   createOpenGroupPolicyRestrictSendersWarningCollector,
   projectAccountWarningCollector,
-} from "openclaw/plugin-sdk/channel-policy";
-import { createAttachedChannelResultAdapter } from "openclaw/plugin-sdk/channel-send-result";
-import { createChatChannelPlugin } from "openclaw/plugin-sdk/core";
-import { createLazyRuntimeNamedExport } from "openclaw/plugin-sdk/lazy-runtime";
+} from "quantclaw/plugin-sdk/channel-policy";
+import { createAttachedChannelResultAdapter } from "quantclaw/plugin-sdk/channel-send-result";
+import { createChatChannelPlugin } from "quantclaw/plugin-sdk/core";
+import { createLazyRuntimeNamedExport } from "quantclaw/plugin-sdk/lazy-runtime";
 import {
   createComputedAccountStatusAdapter,
   createDefaultChannelRuntimeState,
-} from "openclaw/plugin-sdk/status-helpers";
+} from "quantclaw/plugin-sdk/status-helpers";
 import {
   listBlueBubblesAccountIds,
   type ResolvedBlueBubblesAccount,

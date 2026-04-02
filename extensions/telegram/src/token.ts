@@ -1,10 +1,10 @@
-import { resolveNormalizedAccountEntry } from "openclaw/plugin-sdk/account-core";
-import type { BaseTokenResolution } from "openclaw/plugin-sdk/channel-contract";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { tryReadSecretFileSync } from "openclaw/plugin-sdk/core";
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "openclaw/plugin-sdk/routing";
-import { normalizeResolvedSecretInputString } from "openclaw/plugin-sdk/secret-input";
-import type { TelegramAccountConfig } from "openclaw/plugin-sdk/telegram-core";
+import { resolveNormalizedAccountEntry } from "quantclaw/plugin-sdk/account-core";
+import type { BaseTokenResolution } from "quantclaw/plugin-sdk/channel-contract";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { tryReadSecretFileSync } from "quantclaw/plugin-sdk/core";
+import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "quantclaw/plugin-sdk/routing";
+import { normalizeResolvedSecretInputString } from "quantclaw/plugin-sdk/secret-input";
+import type { TelegramAccountConfig } from "quantclaw/plugin-sdk/telegram-core";
 
 export type TelegramTokenSource = "env" | "tokenFile" | "config" | "none";
 
@@ -19,7 +19,7 @@ type ResolveTelegramTokenOpts = {
 };
 
 export function resolveTelegramToken(
-  cfg?: OpenClawConfig,
+  cfg?: QuantClawConfig,
   opts: ResolveTelegramTokenOpts = {},
 ): TelegramTokenResolution {
   const accountId = normalizeAccountId(opts.accountId);
@@ -47,7 +47,7 @@ export function resolveTelegramToken(
   //
   // Single-bot: no accounts section (or empty) → allow fallthrough so that
   // binding-created accountIds inherit the channel-level token.
-  // See: https://github.com/openclaw/openclaw/issues/53876
+  // See: https://github.com/quantclaw/quantclaw/issues/53876
   if (accountId !== DEFAULT_ACCOUNT_ID && !accountCfg) {
     const accounts = telegramCfg?.accounts;
     const hasConfiguredAccounts =

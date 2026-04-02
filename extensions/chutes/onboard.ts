@@ -1,8 +1,8 @@
 import {
   applyAgentDefaultModelPrimary,
   applyProviderConfigWithModelCatalogPreset,
-  type OpenClawConfig,
-} from "openclaw/plugin-sdk/provider-onboard";
+  type QuantClawConfig,
+} from "quantclaw/plugin-sdk/provider-onboard";
 import {
   CHUTES_BASE_URL,
   CHUTES_DEFAULT_MODEL_REF,
@@ -16,7 +16,7 @@ export { CHUTES_DEFAULT_MODEL_REF };
  * Apply Chutes provider configuration without changing the default model.
  * Registers all catalog models and sets provider aliases (chutes-fast, etc.).
  */
-export function applyChutesProviderConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyChutesProviderConfig(cfg: QuantClawConfig): QuantClawConfig {
   return applyProviderConfigWithModelCatalogPreset(cfg, {
     providerId: "chutes",
     api: "openai-completions",
@@ -37,7 +37,7 @@ export function applyChutesProviderConfig(cfg: OpenClawConfig): OpenClawConfig {
 /**
  * Apply Chutes provider configuration AND set Chutes as the default model.
  */
-export function applyChutesConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyChutesConfig(cfg: QuantClawConfig): QuantClawConfig {
   const next = applyChutesProviderConfig(cfg);
   return {
     ...next,
@@ -58,6 +58,6 @@ export function applyChutesConfig(cfg: OpenClawConfig): OpenClawConfig {
   };
 }
 
-export function applyChutesApiKeyConfig(cfg: OpenClawConfig): OpenClawConfig {
+export function applyChutesApiKeyConfig(cfg: QuantClawConfig): QuantClawConfig {
   return applyAgentDefaultModelPrimary(applyChutesProviderConfig(cfg), CHUTES_DEFAULT_MODEL_REF);
 }

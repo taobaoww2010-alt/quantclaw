@@ -1,5 +1,5 @@
 /**
- * Hook system for OpenClaw agent events
+ * Hook system for QuantClaw agent events
  *
  * Provides an extensible event-driven hook system for agent events
  * like command processing, session lifecycle, etc.
@@ -7,7 +7,7 @@
 
 import type { WorkspaceBootstrapFile } from "../agents/workspace.js";
 import type { CliDeps } from "../cli/deps.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import type { SessionEntry } from "../config/sessions.js";
 import type { SessionsPatchParams } from "../gateway/protocol/index.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
@@ -18,7 +18,7 @@ export type InternalHookEventType = "command" | "session" | "agent" | "gateway" 
 export type AgentBootstrapHookContext = {
   workspaceDir: string;
   bootstrapFiles: WorkspaceBootstrapFile[];
-  cfg?: OpenClawConfig;
+  cfg?: QuantClawConfig;
   sessionKey?: string;
   sessionId?: string;
   agentId?: string;
@@ -31,7 +31,7 @@ export type AgentBootstrapHookEvent = InternalHookEvent & {
 };
 
 export type GatewayStartupHookContext = {
-  cfg?: OpenClawConfig;
+  cfg?: QuantClawConfig;
   deps?: CliDeps;
   workspaceDir?: string;
 };
@@ -162,7 +162,7 @@ export type MessagePreprocessedHookEvent = InternalHookEvent & {
 export type SessionPatchHookContext = {
   sessionEntry: SessionEntry;
   patch: SessionsPatchParams;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
 };
 
 export type SessionPatchHookEvent = InternalHookEvent & {

@@ -2,17 +2,17 @@ import type { Command } from "commander";
 import { resolveAgentWorkspaceDir, resolveDefaultAgentId } from "../agents/agent-scope.js";
 import { removeCommandByName } from "../cli/program/command-tree.js";
 import { registerLazyCommand } from "../cli/program/register-lazy-command.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import { loadConfig } from "../config/config.js";
 import { applyPluginAutoEnable } from "../config/plugin-auto-enable.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
 import {
-  loadOpenClawPluginCliRegistry,
-  loadOpenClawPlugins,
+  loadQuantClawPluginCliRegistry,
+  loadQuantClawPlugins,
   type PluginLoadOptions,
 } from "./loader.js";
 import type { PluginRegistry } from "./registry.js";
-import type { OpenClawPluginCliCommandDescriptor } from "./types.js";
+import type { QuantClawPluginCliCommandDescriptor } from "./types.js";
 import type { PluginLogger } from "./types.js";
 
 const log = createSubsystemLogger("plugins");
@@ -26,7 +26,7 @@ type RegisterPluginCliOptions = {
 
 function canRegisterPluginCliLazily(entry: {
   commands: string[];
-  descriptors: OpenClawPluginCliCommandDescriptor[];
+  descriptors: QuantClawPluginCliCommandDescriptor[];
 }): boolean {
   if (entry.descriptors.length === 0) {
     return false;
@@ -57,7 +57,7 @@ function mergeCliRegistrars(params: {
   ];
 }
 
-function resolvePluginCliLoadContext(cfg?: OpenClawConfig, env?: NodeJS.ProcessEnv) {
+function resolvePluginCliLoadContext(cfg?: QuantClawConfig, env?: NodeJS.ProcessEnv) {
   const config = cfg ?? loadConfig();
   const resolvedConfig = applyPluginAutoEnable({ config, env: env ?? process.env }).config;
   const workspaceDir = resolveAgentWorkspaceDir(
@@ -78,14 +78,14 @@ function resolvePluginCliLoadContext(cfg?: OpenClawConfig, env?: NodeJS.ProcessE
 }
 
 async function loadPluginCliMetadataRegistry(
-  cfg?: OpenClawConfig,
+  cfg?: QuantClawConfig,
   env?: NodeJS.ProcessEnv,
   loaderOptions?: Pick<PluginLoadOptions, "pluginSdkResolution">,
 ) {
   const context = resolvePluginCliLoadContext(cfg, env);
   return {
     ...context,
-    registry: await loadOpenClawPluginCliRegistry({
+    registry: await loadQuantClawPluginCliRegistry({
       config: context.config,
       workspaceDir: context.workspaceDir,
       env,
@@ -96,12 +96,12 @@ async function loadPluginCliMetadataRegistry(
 }
 
 async function loadPluginCliCommandRegistry(
-  cfg?: OpenClawConfig,
+  cfg?: QuantClawConfig,
   env?: NodeJS.ProcessEnv,
   loaderOptions?: Pick<PluginLoadOptions, "pluginSdkResolution">,
 ) {
   const context = resolvePluginCliLoadContext(cfg, env);
-  const runtimeRegistry = loadOpenClawPlugins({
+  const runtimeRegistry = loadQuantClawPlugins({
     config: context.config,
     workspaceDir: context.workspaceDir,
     env,
@@ -117,7 +117,7 @@ async function loadPluginCliCommandRegistry(
   }
 
   try {
-    const metadataRegistry = await loadOpenClawPluginCliRegistry({
+    const metadataRegistry = await loadQuantClawPluginCliRegistry({
       config: context.config,
       workspaceDir: context.workspaceDir,
       env,
@@ -144,13 +144,13 @@ async function loadPluginCliCommandRegistry(
 }
 
 export async function getPluginCliCommandDescriptors(
-  cfg?: OpenClawConfig,
+  cfg?: QuantClawConfig,
   env?: NodeJS.ProcessEnv,
-): Promise<OpenClawPluginCliCommandDescriptor[]> {
+): Promise<QuantClawPluginCliCommandDescriptor[]> {
   try {
     const { registry } = await loadPluginCliMetadataRegistry(cfg, env);
     const seen = new Set<string>();
-    const descriptors: OpenClawPluginCliCommandDescriptor[] = [];
+    const descriptors: QuantClawPluginCliCommandDescriptor[] = [];
     for (const entry of registry.cliRegistrars) {
       for (const descriptor of entry.descriptors) {
         if (seen.has(descriptor.name)) {
@@ -168,7 +168,7 @@ export async function getPluginCliCommandDescriptors(
 
 export async function registerPluginCliCommands(
   program: Command,
-  cfg?: OpenClawConfig,
+  cfg?: QuantClawConfig,
   env?: NodeJS.ProcessEnv,
   loaderOptions?: Pick<PluginLoadOptions, "pluginSdkResolution">,
   options?: RegisterPluginCliOptions,

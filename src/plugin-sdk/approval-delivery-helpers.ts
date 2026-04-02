@@ -1,6 +1,6 @@
 import type { ExecApprovalRequest } from "../infra/exec-approvals.js";
 import type { PluginApprovalRequest } from "../infra/plugin-approvals.js";
-import type { OpenClawConfig } from "./config-runtime.js";
+import type { QuantClawConfig } from "./config-runtime.js";
 import { normalizeMessageChannel } from "./routing.js";
 
 type ApprovalKind = "exec" | "plugin";
@@ -10,13 +10,13 @@ type NativeApprovalTarget = { to: string; threadId?: string | number | null };
 type NativeApprovalSurface = "origin" | "approver-dm";
 
 type ApprovalAdapterParams = {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId?: string | null;
   senderId?: string | null;
 };
 
 type DeliverySuppressionParams = {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   target: { channel: string; accountId?: string | null };
   request: { request: { turnSourceChannel?: string | null; turnSourceAccountId?: string | null } };
 };
@@ -24,25 +24,25 @@ type DeliverySuppressionParams = {
 export function createApproverRestrictedNativeApprovalAdapter(params: {
   channel: string;
   channelLabel: string;
-  listAccountIds: (cfg: OpenClawConfig) => string[];
+  listAccountIds: (cfg: QuantClawConfig) => string[];
   hasApprovers: (params: ApprovalAdapterParams) => boolean;
   isExecAuthorizedSender: (params: ApprovalAdapterParams) => boolean;
   isPluginAuthorizedSender?: (params: ApprovalAdapterParams) => boolean;
-  isNativeDeliveryEnabled: (params: { cfg: OpenClawConfig; accountId?: string | null }) => boolean;
+  isNativeDeliveryEnabled: (params: { cfg: QuantClawConfig; accountId?: string | null }) => boolean;
   resolveNativeDeliveryMode: (params: {
-    cfg: OpenClawConfig;
+    cfg: QuantClawConfig;
     accountId?: string | null;
   }) => NativeApprovalDeliveryMode;
   requireMatchingTurnSourceChannel?: boolean;
   resolveSuppressionAccountId?: (params: DeliverySuppressionParams) => string | undefined;
   resolveOriginTarget?: (params: {
-    cfg: OpenClawConfig;
+    cfg: QuantClawConfig;
     accountId?: string | null;
     approvalKind: ApprovalKind;
     request: NativeApprovalRequest;
   }) => NativeApprovalTarget | null | Promise<NativeApprovalTarget | null>;
   resolveApproverDmTargets?: (params: {
-    cfg: OpenClawConfig;
+    cfg: QuantClawConfig;
     accountId?: string | null;
     approvalKind: ApprovalKind;
     request: NativeApprovalRequest;
@@ -63,7 +63,7 @@ export function createApproverRestrictedNativeApprovalAdapter(params: {
         senderId,
         approvalKind,
       }: {
-        cfg: OpenClawConfig;
+        cfg: QuantClawConfig;
         accountId?: string | null;
         senderId?: string | null;
         action: "approve";
@@ -84,7 +84,7 @@ export function createApproverRestrictedNativeApprovalAdapter(params: {
         cfg,
         accountId,
       }: {
-        cfg: OpenClawConfig;
+        cfg: QuantClawConfig;
         accountId?: string | null;
         action: "approve";
       }) =>
@@ -93,7 +93,7 @@ export function createApproverRestrictedNativeApprovalAdapter(params: {
           : ({ kind: "disabled" } as const),
     },
     delivery: {
-      hasConfiguredDmRoute: ({ cfg }: { cfg: OpenClawConfig }) =>
+      hasConfiguredDmRoute: ({ cfg }: { cfg: QuantClawConfig }) =>
         params.listAccountIds(cfg).some((accountId) => {
           if (!params.hasApprovers({ cfg, accountId })) {
             return false;
@@ -132,7 +132,7 @@ export function createApproverRestrictedNativeApprovalAdapter(params: {
               cfg,
               accountId,
             }: {
-              cfg: OpenClawConfig;
+              cfg: QuantClawConfig;
               accountId?: string | null;
               approvalKind: ApprovalKind;
               request: NativeApprovalRequest;

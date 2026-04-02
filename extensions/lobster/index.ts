@@ -1,19 +1,19 @@
-import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
-import type { AnyAgentTool, OpenClawPluginApi, OpenClawPluginToolFactory } from "./runtime-api.js";
+import { definePluginEntry } from "quantclaw/plugin-sdk/plugin-entry";
+import type { AnyAgentTool, QuantClawPluginApi, QuantClawPluginToolFactory } from "./runtime-api.js";
 import { createLobsterTool } from "./src/lobster-tool.js";
 
 export default definePluginEntry({
   id: "lobster",
   name: "Lobster",
   description: "Optional local shell helper tools",
-  register(api: OpenClawPluginApi) {
+  register(api: QuantClawPluginApi) {
     api.registerTool(
       ((ctx) => {
         if (ctx.sandboxed) {
           return null;
         }
         return createLobsterTool(api) as AnyAgentTool;
-      }) as OpenClawPluginToolFactory,
+      }) as QuantClawPluginToolFactory,
       { optional: true },
     );
   },

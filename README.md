@@ -1,4 +1,4 @@
-# 🦞 QuantClaw — OpenClaw A股量化版
+# 🦞 QuantClaw — QuantClaw A股量化版
 
 <p align="center">
     <a href="https://github.com/taobaoww2010-alt/quantclaw">
@@ -9,13 +9,13 @@
     </a>
 </p>
 
-> 基于 [OpenClaw](https://github.com/openclaw/openclaw) (MIT License) 的 A 股量化交易扩展版本。
+> 基于开源项目 (MIT License) 的 A 股量化交易扩展版本。
 
 ## 核心功能
 
 ### 🤖 AI 智能体
 
-继承 OpenClaw 的多渠道 AI 网关，支持 Telegram、Discord、Slack、微信等主流平台。
+继承原项目的多渠道 AI 网关，支持 Telegram、Discord、Slack、微信等主流平台。
 
 ### 📈 量化交易工具
 
@@ -60,7 +60,7 @@ pnpm build
 ### 运行
 
 ```bash
-pnpm openclaw
+pnpm quantclaw
 ```
 
 ### 数据层配置
@@ -87,4 +87,4 @@ QuantClaw/
 
 ## 许可证
 
-基于 [OpenClaw MIT License](https://github.com/openclaw/openclaw/blob/main/LICENSE) 开源。
+基于原项目 MIT License 开源。

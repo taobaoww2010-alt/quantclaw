@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/xiaomi-provider",
+  "name": "@quantclaw/xiaomi-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Xiaomi provider plugin",
+  "description": "QuantClaw Xiaomi provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

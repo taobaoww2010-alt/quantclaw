@@ -227,12 +227,12 @@ export function copyBundledPluginMetadata(params = {}) {
       removeFileIfExists(distPackageJsonPath);
       continue;
     }
-    if (packageJson.openclaw && "extensions" in packageJson.openclaw) {
-      packageJson.openclaw = {
-        ...packageJson.openclaw,
-        extensions: rewritePackageExtensions(packageJson.openclaw.extensions),
-        ...(typeof packageJson.openclaw.setupEntry === "string"
-          ? { setupEntry: rewritePackageEntry(packageJson.openclaw.setupEntry) }
+    if (packageJson.quantclaw && "extensions" in packageJson.quantclaw) {
+      packageJson.quantclaw = {
+        ...packageJson.quantclaw,
+        extensions: rewritePackageExtensions(packageJson.quantclaw.extensions),
+        ...(typeof packageJson.quantclaw.setupEntry === "string"
+          ? { setupEntry: rewritePackageEntry(packageJson.quantclaw.setupEntry) }
           : {}),
       };
     }

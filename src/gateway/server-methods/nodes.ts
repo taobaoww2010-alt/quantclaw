@@ -411,7 +411,7 @@ export async function maybeSendNodeWakeNudge(nodeId: string): Promise<NodeWakeNu
         registration,
         nodeId,
         title: "☯️ QuantClaw needs a quick reopen",
-        body: "Tap to reopen OpenClaw and restore the node connection.",
+        body: "Tap to reopen QuantClaw and restore the node connection.",
         relayConfig: relay.relayConfig,
       });
     } else {
@@ -428,7 +428,7 @@ export async function maybeSendNodeWakeNudge(nodeId: string): Promise<NodeWakeNu
         registration,
         nodeId,
         title: "☯️ QuantClaw needs a quick reopen",
-        body: "Tap to reopen OpenClaw and restore the node connection.",
+        body: "Tap to reopen QuantClaw and restore the node connection.",
         auth: auth.auth,
       });
     }

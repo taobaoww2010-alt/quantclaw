@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/volcengine-provider",
+  "name": "@quantclaw/volcengine-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Volcengine provider plugin",
+  "description": "QuantClaw Volcengine provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

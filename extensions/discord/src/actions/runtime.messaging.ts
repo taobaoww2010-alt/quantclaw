@@ -10,7 +10,7 @@ import {
   readStringParam,
   resolvePollMaxSelections,
   type DiscordActionConfig,
-  type OpenClawConfig,
+  type QuantClawConfig,
   withNormalizedTimestamp,
   readBooleanParam,
 } from "../runtime-api.js";
@@ -97,7 +97,7 @@ export async function handleDiscordMessagingAction(
   options?: {
     mediaLocalRoots?: readonly string[];
   },
-  cfg?: OpenClawConfig,
+  cfg?: QuantClawConfig,
 ): Promise<AgentToolResult<unknown>> {
   const resolveChannelId = () =>
     discordMessagingActionRuntime.resolveDiscordChannelId(

@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/venice-provider",
+  "name": "@quantclaw/venice-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Venice provider plugin",
+  "description": "QuantClaw Venice provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

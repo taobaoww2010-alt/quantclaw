@@ -8,22 +8,22 @@ import {
   buildCaseInsensitiveExtensionGlob,
   classifyMemoryMultimodalPath,
   getMemoryMultimodalExtensions,
-} from "openclaw/plugin-sdk/memory-core-host-engine-embeddings";
+} from "quantclaw/plugin-sdk/memory-core-host-engine-embeddings";
 import {
   createSubsystemLogger,
   onSessionTranscriptUpdate,
   resolveAgentDir,
   resolveSessionTranscriptsDirForAgent,
   resolveUserPath,
-  type OpenClawConfig,
+  type QuantClawConfig,
   type ResolvedMemorySearchConfig,
-} from "openclaw/plugin-sdk/memory-core-host-engine-foundation";
+} from "quantclaw/plugin-sdk/memory-core-host-engine-foundation";
 import {
   buildSessionEntry,
   listSessionFilesForAgent,
   sessionPathForFile,
   type SessionFileEntry,
-} from "openclaw/plugin-sdk/memory-core-host-engine-qmd";
+} from "quantclaw/plugin-sdk/memory-core-host-engine-qmd";
 import {
   buildFileEntry,
   ensureDir,
@@ -38,7 +38,7 @@ import {
   type MemoryFileEntry,
   type MemorySource,
   type MemorySyncProgressUpdate,
-} from "openclaw/plugin-sdk/memory-core-host-engine-storage";
+} from "quantclaw/plugin-sdk/memory-core-host-engine-storage";
 import {
   createEmbeddingProvider,
   type EmbeddingProvider,
@@ -98,7 +98,7 @@ export function runDetachedMemorySync(sync: () => Promise<void>, reason: "interv
 }
 
 export abstract class MemoryManagerSyncOps {
-  protected abstract readonly cfg: OpenClawConfig;
+  protected abstract readonly cfg: QuantClawConfig;
   protected abstract readonly agentId: string;
   protected abstract readonly workspaceDir: string;
   protected abstract readonly settings: ResolvedMemorySearchConfig;

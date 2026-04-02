@@ -1,9 +1,9 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { createOperatorApprovalsGatewayClient } from "openclaw/plugin-sdk/gateway-runtime";
-import type { ExecApprovalReplyDecision } from "openclaw/plugin-sdk/infra-runtime";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { createOperatorApprovalsGatewayClient } from "quantclaw/plugin-sdk/gateway-runtime";
+import type { ExecApprovalReplyDecision } from "quantclaw/plugin-sdk/infra-runtime";
 
 export type ResolveTelegramExecApprovalParams = {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   approvalId: string;
   decision: ExecApprovalReplyDecision;
   senderId?: string | null;

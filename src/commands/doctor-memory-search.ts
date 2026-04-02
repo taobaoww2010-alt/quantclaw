@@ -3,7 +3,7 @@ import { resolveAgentDir, resolveDefaultAgentId } from "../agents/agent-scope.js
 import { resolveMemorySearchConfig } from "../agents/memory-search.js";
 import { resolveApiKeyForProvider } from "../agents/model-auth.js";
 import { formatCliCommand } from "../cli/command-format.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import {
   getBuiltinMemoryEmbeddingProviderDoctorMetadata,
   listBuiltinAutoSelectMemoryEmbeddingProviderDoctorMetadata,
@@ -23,12 +23,12 @@ function resolveSuggestedRemoteMemoryProvider(): string | undefined {
 
 /**
  * Check whether memory search has a usable embedding provider.
- * Runs as part of `openclaw doctor` — config-only checks where possible;
+ * Runs as part of `quantclaw doctor` — config-only checks where possible;
  * may spawn a short-lived probe process when `memory.backend=qmd` to verify
  * the configured `qmd` binary is available.
  */
 export async function noteMemorySearchHealth(
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
   opts?: {
     gatewayMemoryProbe?: {
       checked: boolean;
@@ -112,7 +112,7 @@ export async function noteMemorySearchHealth(
           "Fix (pick one):",
           `- Install node-llama-cpp and set a local model path in config`,
           suggestedRemoteProvider
-            ? `- Switch to a remote provider: ${formatCliCommand(`openclaw config set agents.defaults.memorySearch.provider ${suggestedRemoteProvider}`)}`
+            ? `- Switch to a remote provider: ${formatCliCommand(`quantclaw config set agents.defaults.memorySearch.provider ${suggestedRemoteProvider}`)}`
             : `- Switch to a remote embedding provider in config`,
           "",
           `Verify: ${formatCliCommand("quantclaw memory status --deep")}`,
@@ -233,7 +233,7 @@ function hasLocalEmbeddings(local: { modelPath?: string }, useDefaultFallback = 
 
 async function hasApiKeyForProvider(
   provider: string,
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
   agentDir: string,
 ): Promise<boolean> {
   const metadata = getBuiltinMemoryEmbeddingProviderDoctorMetadata(provider);

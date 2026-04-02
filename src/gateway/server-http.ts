@@ -493,7 +493,7 @@ export function createHooksRequestHandler(
       res.statusCode = 400;
       res.setHeader("Content-Type", "text/plain; charset=utf-8");
       res.end(
-        "Hook token must be provided via Authorization: Bearer <token> or X-OpenClaw-Token header (query parameters are not allowed).",
+        "Hook token must be provided via Authorization: Bearer <token> or X-QuantClaw-Token header (query parameters are not allowed).",
       );
       return true;
     }
@@ -1100,17 +1100,17 @@ export function attachGatewayUpgradeHandler(opts: {
         wss.handleUpgrade(req, socket, head, (ws) => {
           (
             ws as unknown as import("ws").WebSocket & {
-              __openclawPreauthBudgetClaimed?: boolean;
-              __openclawPreauthBudgetKey?: string;
+              __quantclawPreauthBudgetClaimed?: boolean;
+              __quantclawPreauthBudgetKey?: string;
             }
-          ).__openclawPreauthBudgetKey = preauthBudgetKey;
+          ).__quantclawPreauthBudgetKey = preauthBudgetKey;
           wss.emit("connection", ws, req);
           const budgetClaimed = Boolean(
             (
               ws as unknown as import("ws").WebSocket & {
-                __openclawPreauthBudgetClaimed?: boolean;
+                __quantclawPreauthBudgetClaimed?: boolean;
               }
-            ).__openclawPreauthBudgetClaimed,
+            ).__quantclawPreauthBudgetClaimed,
           );
           if (budgetClaimed) {
             budgetTransferred = true;

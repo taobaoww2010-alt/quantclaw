@@ -2,7 +2,7 @@ import { resolveAgentWorkspaceDir, resolveDefaultAgentId } from "../agents/agent
 import { resolveDefaultAgentWorkspaceDir } from "../agents/workspace.js";
 import { loadConfig } from "../config/config.js";
 import { applyPluginAutoEnable } from "../config/plugin-auto-enable.js";
-import { normalizeOpenClawVersionBase } from "../config/version.js";
+import { normalizeQuantClawVersionBase } from "../config/version.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
 import { resolveCompatibilityHostVersion } from "../version.js";
 import { inspectBundleLspRuntimeSupport } from "./bundle-lsp.js";
@@ -12,7 +12,7 @@ import {
   withBundledPluginEnablementCompat,
 } from "./bundled-compat.js";
 import { normalizePluginsConfig } from "./config-state.js";
-import { loadOpenClawPlugins } from "./loader.js";
+import { loadQuantClawPlugins } from "./loader.js";
 import { createPluginLoaderLogger } from "./logger.js";
 import { resolveBundledProviderCompatPluginIds } from "./providers.js";
 import type { PluginRegistry } from "./registry.js";
@@ -141,8 +141,8 @@ function resolveReportedPluginVersion(
     return plugin.version;
   }
   return (
-    normalizeOpenClawVersionBase(resolveCompatibilityHostVersion(env)) ??
-    normalizeOpenClawVersionBase(plugin.version) ??
+    normalizeQuantClawVersionBase(resolveCompatibilityHostVersion(env)) ??
+    normalizeQuantClawVersionBase(plugin.version) ??
     plugin.version
   );
 }
@@ -180,7 +180,7 @@ export function buildPluginStatusReport(params?: {
     pluginIds: bundledProviderIds,
   });
 
-  const registry = loadOpenClawPlugins({
+  const registry = loadQuantClawPlugins({
     config: runtimeCompatConfig,
     workspaceDir,
     env: params?.env,

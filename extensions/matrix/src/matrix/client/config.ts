@@ -1,8 +1,8 @@
 import {
   coerceSecretRef,
   resolveConfiguredSecretInputString,
-} from "openclaw/plugin-sdk/config-runtime";
-import type { PinnedDispatcherPolicy } from "openclaw/plugin-sdk/infra-runtime";
+} from "quantclaw/plugin-sdk/config-runtime";
+import type { PinnedDispatcherPolicy } from "quantclaw/plugin-sdk/infra-runtime";
 import {
   requiresExplicitMatrixDefaultAccount,
   resolveMatrixDefaultOrOnlyAccountId,
@@ -810,7 +810,7 @@ export async function resolveMatrixAuth(params?: {
     identifier: { type: "m.id.user", user: resolved.userId },
     password,
     device_id: resolved.deviceId,
-    initial_device_display_name: resolved.deviceName ?? "OpenClaw Gateway",
+    initial_device_display_name: resolved.deviceName ?? "QuantClaw Gateway",
   })) as {
     access_token?: string;
     user_id?: string;

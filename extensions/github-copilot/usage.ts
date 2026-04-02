@@ -5,7 +5,7 @@ import {
   PROVIDER_LABELS,
   type ProviderUsageSnapshot,
   type UsageWindow,
-} from "openclaw/plugin-sdk/provider-usage";
+} from "quantclaw/plugin-sdk/provider-usage";
 
 type CopilotUsageResponse = {
   quota_snapshots?: {

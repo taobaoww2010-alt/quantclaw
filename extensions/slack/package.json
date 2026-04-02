@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/slack",
+  "name": "@quantclaw/slack",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Slack channel plugin",
+  "description": "QuantClaw Slack channel plugin",
   "type": "module",
   "dependencies": {
     "@slack/bolt": "^4.6.0",

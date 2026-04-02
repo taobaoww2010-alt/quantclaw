@@ -1,4 +1,4 @@
-import type { ChannelConfigUiHint } from "openclaw/plugin-sdk/core";
+import type { ChannelConfigUiHint } from "quantclaw/plugin-sdk/core";
 
 export const discordChannelConfigUiHints = {
   "": {
@@ -75,7 +75,7 @@ export const discordChannelConfigUiHints = {
   },
   "eventQueue.listenerTimeout": {
     label: "Discord EventQueue Listener Timeout (ms)",
-    help: "Canonical Discord listener timeout control in ms for gateway normalization/enqueue handlers. Default is 120000 in OpenClaw; set per account via channels.discord.accounts.<id>.eventQueue.listenerTimeout.",
+    help: "Canonical Discord listener timeout control in ms for gateway normalization/enqueue handlers. Default is 120000 in QuantClaw; set per account via channels.discord.accounts.<id>.eventQueue.listenerTimeout.",
   },
   "eventQueue.maxQueueSize": {
     label: "Discord EventQueue Max Queue Size",

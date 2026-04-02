@@ -9,7 +9,7 @@ import {
   TUI,
 } from "@mariozechner/pi-tui";
 import { resolveAgentIdByWorkspacePath, resolveDefaultAgentId } from "../agents/agent-scope.js";
-import { loadConfig, type OpenClawConfig } from "../config/config.js";
+import { loadConfig, type QuantClawConfig } from "../config/config.js";
 import {
   buildAgentMainSessionKey,
   normalizeAgentId,
@@ -75,7 +75,7 @@ export function resolveTuiSessionKey(params: {
 }
 
 export function resolveInitialTuiAgentId(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   fallbackAgentId: string;
   initialSessionInput?: string;
   cwd?: string;
@@ -467,7 +467,7 @@ export async function runTui(opts: TuiOptions) {
     const agentLabel = formatAgentLabel(currentAgentId);
     header.setText(
       theme.header(
-        `openclaw tui - ${client.connection.url} - agent ${agentLabel} - session ${sessionLabel}`,
+        `quantclaw tui - ${client.connection.url} - agent ${agentLabel} - session ${sessionLabel}`,
       ),
     );
   };

@@ -1,28 +1,28 @@
 import { ChannelType, MessageType, type Message, type User } from "@buape/carbon";
 import { Routes, type APIMessage } from "discord-api-types/v10";
-import { formatAllowlistMatchMeta } from "openclaw/plugin-sdk/allow-from";
+import { formatAllowlistMatchMeta } from "quantclaw/plugin-sdk/allow-from";
 import {
   buildMentionRegexes,
   logInboundDrop,
   matchesMentionWithExplicit,
   resolveMentionGatingWithBypass,
-} from "openclaw/plugin-sdk/channel-inbound";
-import { enqueueSystemEvent, recordChannelActivity } from "openclaw/plugin-sdk/channel-runtime";
-import { resolveControlCommandGate } from "openclaw/plugin-sdk/command-auth";
-import { hasControlCommand } from "openclaw/plugin-sdk/command-auth";
-import { shouldHandleTextCommands } from "openclaw/plugin-sdk/command-auth";
-import { loadConfig } from "openclaw/plugin-sdk/config-runtime";
-import { isDangerousNameMatchingEnabled } from "openclaw/plugin-sdk/config-runtime";
-import type { SessionBindingRecord } from "openclaw/plugin-sdk/conversation-runtime";
-import * as conversationRuntime from "openclaw/plugin-sdk/conversation-runtime";
+} from "quantclaw/plugin-sdk/channel-inbound";
+import { enqueueSystemEvent, recordChannelActivity } from "quantclaw/plugin-sdk/channel-runtime";
+import { resolveControlCommandGate } from "quantclaw/plugin-sdk/command-auth";
+import { hasControlCommand } from "quantclaw/plugin-sdk/command-auth";
+import { shouldHandleTextCommands } from "quantclaw/plugin-sdk/command-auth";
+import { loadConfig } from "quantclaw/plugin-sdk/config-runtime";
+import { isDangerousNameMatchingEnabled } from "quantclaw/plugin-sdk/config-runtime";
+import type { SessionBindingRecord } from "quantclaw/plugin-sdk/conversation-runtime";
+import * as conversationRuntime from "quantclaw/plugin-sdk/conversation-runtime";
 import {
   recordPendingHistoryEntryIfEnabled,
   type HistoryEntry,
-} from "openclaw/plugin-sdk/reply-history";
-import { DEFAULT_ACCOUNT_ID } from "openclaw/plugin-sdk/routing";
-import { logVerbose, shouldLogVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { getChildLogger } from "openclaw/plugin-sdk/runtime-env";
-import { logDebug } from "openclaw/plugin-sdk/text-runtime";
+} from "quantclaw/plugin-sdk/reply-history";
+import { DEFAULT_ACCOUNT_ID } from "quantclaw/plugin-sdk/routing";
+import { logVerbose, shouldLogVerbose } from "quantclaw/plugin-sdk/runtime-env";
+import { getChildLogger } from "quantclaw/plugin-sdk/runtime-env";
+import { logDebug } from "quantclaw/plugin-sdk/text-runtime";
 import { fetchPluralKitMessageInfo } from "../pluralkit.js";
 import { sendMessageDiscord } from "../send.js";
 import {

@@ -63,10 +63,10 @@ const GENERATED_FACADE_TYPE_MAP_SOURCE = path.join(
 const GENERATED_FACADE_TYPE_MAP_DIST_PREFIX = "../../../extensions/";
 
 function rewriteFacadeTypeMapSpecifier(specifier: string): string {
-  if (!specifier.startsWith("@openclaw/")) {
+  if (!specifier.startsWith("@quantclaw/")) {
     return specifier;
   }
-  return `${GENERATED_FACADE_TYPE_MAP_DIST_PREFIX}${specifier.slice("@openclaw/".length)}`;
+  return `${GENERATED_FACADE_TYPE_MAP_DIST_PREFIX}${specifier.slice("@quantclaw/".length)}`;
 }
 
 function rewriteGeneratedFacadeTypeMapDts(): void {
@@ -74,8 +74,8 @@ function rewriteGeneratedFacadeTypeMapDts(): void {
     return;
   }
   const source = fs.readFileSync(GENERATED_FACADE_TYPE_MAP_SOURCE, "utf8");
-  const rewritten = source.replace(/@openclaw\/([a-z0-9-]+\/[^")\s]+)/g, (_match, suffix: string) =>
-    rewriteFacadeTypeMapSpecifier(`@openclaw/${suffix}`),
+  const rewritten = source.replace(/@quantclaw\/([a-z0-9-]+\/[^")\s]+)/g, (_match, suffix: string) =>
+    rewriteFacadeTypeMapSpecifier(`@quantclaw/${suffix}`),
   );
   if (rewritten !== source) {
     fs.writeFileSync(GENERATED_FACADE_TYPE_MAP_SOURCE, rewritten, "utf8");

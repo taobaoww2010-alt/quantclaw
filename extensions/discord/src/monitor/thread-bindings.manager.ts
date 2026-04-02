@@ -1,5 +1,5 @@
 import { Routes } from "discord-api-types/v10";
-import { getRuntimeConfigSnapshot, type OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+import { getRuntimeConfigSnapshot, type QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
 import {
   registerSessionBindingAdapter,
   resolveThreadBindingConversationIdFromBindingId,
@@ -7,9 +7,9 @@ import {
   type BindingTargetKind,
   type SessionBindingAdapter,
   type SessionBindingRecord,
-} from "openclaw/plugin-sdk/conversation-runtime";
-import { normalizeAccountId, resolveAgentIdFromSessionKey } from "openclaw/plugin-sdk/routing";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
+} from "quantclaw/plugin-sdk/conversation-runtime";
+import { normalizeAccountId, resolveAgentIdFromSessionKey } from "quantclaw/plugin-sdk/routing";
+import { logVerbose } from "quantclaw/plugin-sdk/runtime-env";
 import { createDiscordRestClient } from "../client.js";
 import {
   createThreadForBinding,
@@ -172,7 +172,7 @@ export function createThreadBindingManager(
   params: {
     accountId?: string;
     token?: string;
-    cfg?: OpenClawConfig;
+    cfg?: QuantClawConfig;
     persist?: boolean;
     enableSweeper?: boolean;
     idleTimeoutMs?: number;

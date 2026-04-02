@@ -1,26 +1,26 @@
-import { buildPluginApprovalPendingReplyPayload } from "openclaw/plugin-sdk/approval-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+import { buildPluginApprovalPendingReplyPayload } from "quantclaw/plugin-sdk/approval-runtime";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
 import {
   createExecApprovalChannelRuntime,
   type ExecApprovalChannelRuntime,
   resolveChannelNativeApprovalDeliveryPlan,
   resolveExecApprovalSessionTarget,
-} from "openclaw/plugin-sdk/infra-runtime";
-import { resolveExecApprovalCommandDisplay } from "openclaw/plugin-sdk/infra-runtime";
+} from "quantclaw/plugin-sdk/infra-runtime";
+import { resolveExecApprovalCommandDisplay } from "quantclaw/plugin-sdk/infra-runtime";
 import {
   buildExecApprovalPendingReplyPayload,
   type ExecApprovalPendingReplyParams,
-} from "openclaw/plugin-sdk/infra-runtime";
+} from "quantclaw/plugin-sdk/infra-runtime";
 import type {
   ExecApprovalRequest,
   ExecApprovalResolved,
   PluginApprovalRequest,
   PluginApprovalResolved,
-} from "openclaw/plugin-sdk/infra-runtime";
-import { parseAgentSessionKey, normalizeAccountId } from "openclaw/plugin-sdk/routing";
-import { createSubsystemLogger } from "openclaw/plugin-sdk/runtime-env";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
-import { compileSafeRegex, testRegexWithBoundedInput } from "openclaw/plugin-sdk/security-runtime";
+} from "quantclaw/plugin-sdk/infra-runtime";
+import { parseAgentSessionKey, normalizeAccountId } from "quantclaw/plugin-sdk/routing";
+import { createSubsystemLogger } from "quantclaw/plugin-sdk/runtime-env";
+import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
+import { compileSafeRegex, testRegexWithBoundedInput } from "quantclaw/plugin-sdk/security-runtime";
 import { telegramNativeApprovalAdapter } from "./approval-native.js";
 import { resolveTelegramInlineButtons } from "./button-types.js";
 import {
@@ -65,7 +65,7 @@ function toExecLikeRequest(request: ApprovalRequest): ExecApprovalRequest {
 }
 
 function resolveBoundTelegramAccountId(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   request: ApprovalRequest;
 }): string | null {
   const turnSourceChannel = params.request.request.turnSourceChannel?.trim().toLowerCase();
@@ -99,7 +99,7 @@ function resolveBoundTelegramAccountId(params: {
 export type TelegramExecApprovalHandlerOpts = {
   token: string;
   accountId: string;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   gatewayUrl?: string;
   runtime?: RuntimeEnv;
 };
@@ -112,7 +112,7 @@ export type TelegramExecApprovalHandlerDeps = {
 };
 
 function matchesFilters(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
   request: ApprovalRequest;
 }): boolean {
@@ -167,7 +167,7 @@ function matchesFilters(params: {
   return true;
 }
 
-function isHandlerConfigured(params: { cfg: OpenClawConfig; accountId: string }): boolean {
+function isHandlerConfigured(params: { cfg: QuantClawConfig; accountId: string }): boolean {
   const config = resolveTelegramExecApprovalConfig({
     cfg: params.cfg,
     accountId: params.accountId,

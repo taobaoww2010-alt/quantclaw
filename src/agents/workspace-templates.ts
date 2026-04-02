@@ -1,6 +1,6 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { resolveQuantClawPackageRoot } from "../infra/openclaw-root.js";
+import { resolveQuantClawPackageRoot } from "../infra/quantclaw-root.js";
 import { pathExists } from "../utils.js";
 
 const FALLBACK_TEMPLATE_DIR = path.resolve(

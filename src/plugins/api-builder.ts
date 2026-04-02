@@ -1,6 +1,6 @@
-import type { OpenClawConfig } from "../config/config.js";
+import type { QuantClawConfig } from "../config/config.js";
 import type { PluginRuntime } from "./runtime/types.js";
-import type { OpenClawPluginApi, PluginLogger } from "./types.js";
+import type { QuantClawPluginApi, PluginLogger } from "./types.js";
 
 export type BuildPluginApiParams = {
   id: string;
@@ -9,15 +9,15 @@ export type BuildPluginApiParams = {
   description?: string;
   source: string;
   rootDir?: string;
-  registrationMode: OpenClawPluginApi["registrationMode"];
-  config: OpenClawConfig;
+  registrationMode: QuantClawPluginApi["registrationMode"];
+  config: QuantClawConfig;
   pluginConfig?: Record<string, unknown>;
   runtime: PluginRuntime;
   logger: PluginLogger;
   resolvePath: (input: string) => string;
   handlers?: Partial<
     Pick<
-      OpenClawPluginApi,
+      QuantClawPluginApi,
       | "registerTool"
       | "registerHook"
       | "registerHttpRoute"
@@ -44,34 +44,34 @@ export type BuildPluginApiParams = {
   >;
 };
 
-const noopRegisterTool: OpenClawPluginApi["registerTool"] = () => {};
-const noopRegisterHook: OpenClawPluginApi["registerHook"] = () => {};
-const noopRegisterHttpRoute: OpenClawPluginApi["registerHttpRoute"] = () => {};
-const noopRegisterChannel: OpenClawPluginApi["registerChannel"] = () => {};
-const noopRegisterGatewayMethod: OpenClawPluginApi["registerGatewayMethod"] = () => {};
-const noopRegisterCli: OpenClawPluginApi["registerCli"] = () => {};
-const noopRegisterService: OpenClawPluginApi["registerService"] = () => {};
-const noopRegisterCliBackend: OpenClawPluginApi["registerCliBackend"] = () => {};
-const noopRegisterProvider: OpenClawPluginApi["registerProvider"] = () => {};
-const noopRegisterSpeechProvider: OpenClawPluginApi["registerSpeechProvider"] = () => {};
-const noopRegisterMediaUnderstandingProvider: OpenClawPluginApi["registerMediaUnderstandingProvider"] =
+const noopRegisterTool: QuantClawPluginApi["registerTool"] = () => {};
+const noopRegisterHook: QuantClawPluginApi["registerHook"] = () => {};
+const noopRegisterHttpRoute: QuantClawPluginApi["registerHttpRoute"] = () => {};
+const noopRegisterChannel: QuantClawPluginApi["registerChannel"] = () => {};
+const noopRegisterGatewayMethod: QuantClawPluginApi["registerGatewayMethod"] = () => {};
+const noopRegisterCli: QuantClawPluginApi["registerCli"] = () => {};
+const noopRegisterService: QuantClawPluginApi["registerService"] = () => {};
+const noopRegisterCliBackend: QuantClawPluginApi["registerCliBackend"] = () => {};
+const noopRegisterProvider: QuantClawPluginApi["registerProvider"] = () => {};
+const noopRegisterSpeechProvider: QuantClawPluginApi["registerSpeechProvider"] = () => {};
+const noopRegisterMediaUnderstandingProvider: QuantClawPluginApi["registerMediaUnderstandingProvider"] =
   () => {};
-const noopRegisterImageGenerationProvider: OpenClawPluginApi["registerImageGenerationProvider"] =
+const noopRegisterImageGenerationProvider: QuantClawPluginApi["registerImageGenerationProvider"] =
   () => {};
-const noopRegisterWebSearchProvider: OpenClawPluginApi["registerWebSearchProvider"] = () => {};
-const noopRegisterInteractiveHandler: OpenClawPluginApi["registerInteractiveHandler"] = () => {};
-const noopOnConversationBindingResolved: OpenClawPluginApi["onConversationBindingResolved"] =
+const noopRegisterWebSearchProvider: QuantClawPluginApi["registerWebSearchProvider"] = () => {};
+const noopRegisterInteractiveHandler: QuantClawPluginApi["registerInteractiveHandler"] = () => {};
+const noopOnConversationBindingResolved: QuantClawPluginApi["onConversationBindingResolved"] =
   () => {};
-const noopRegisterCommand: OpenClawPluginApi["registerCommand"] = () => {};
-const noopRegisterContextEngine: OpenClawPluginApi["registerContextEngine"] = () => {};
-const noopRegisterMemoryPromptSection: OpenClawPluginApi["registerMemoryPromptSection"] = () => {};
-const noopRegisterMemoryFlushPlan: OpenClawPluginApi["registerMemoryFlushPlan"] = () => {};
-const noopRegisterMemoryRuntime: OpenClawPluginApi["registerMemoryRuntime"] = () => {};
-const noopRegisterMemoryEmbeddingProvider: OpenClawPluginApi["registerMemoryEmbeddingProvider"] =
+const noopRegisterCommand: QuantClawPluginApi["registerCommand"] = () => {};
+const noopRegisterContextEngine: QuantClawPluginApi["registerContextEngine"] = () => {};
+const noopRegisterMemoryPromptSection: QuantClawPluginApi["registerMemoryPromptSection"] = () => {};
+const noopRegisterMemoryFlushPlan: QuantClawPluginApi["registerMemoryFlushPlan"] = () => {};
+const noopRegisterMemoryRuntime: QuantClawPluginApi["registerMemoryRuntime"] = () => {};
+const noopRegisterMemoryEmbeddingProvider: QuantClawPluginApi["registerMemoryEmbeddingProvider"] =
   () => {};
-const noopOn: OpenClawPluginApi["on"] = () => {};
+const noopOn: QuantClawPluginApi["on"] = () => {};
 
-export function buildPluginApi(params: BuildPluginApiParams): OpenClawPluginApi {
+export function buildPluginApi(params: BuildPluginApiParams): QuantClawPluginApi {
   const handlers = params.handlers ?? {};
   return {
     id: params.id,

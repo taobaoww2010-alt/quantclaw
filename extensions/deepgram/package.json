@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/deepgram-provider",
+  "name": "@quantclaw/deepgram-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Deepgram media-understanding provider",
+  "description": "QuantClaw Deepgram media-understanding provider",
   "type": "module",
   "quantclaw": {
     "extensions": [

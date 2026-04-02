@@ -201,9 +201,9 @@ async function main() {
     throw new Error("No extensions selected for profiling");
   }
 
-  const tmpHome = mkdtempSync(path.join(os.tmpdir(), "openclaw-extension-memory-"));
+  const tmpHome = mkdtempSync(path.join(os.tmpdir(), "quantclaw-extension-memory-"));
   const hookPath = path.join(tmpHome, "measure-rss.mjs");
-  const jsonPath = options.jsonPath ?? path.join(os.tmpdir(), "openclaw-extension-memory.json");
+  const jsonPath = options.jsonPath ?? path.join(os.tmpdir(), "quantclaw-extension-memory.json");
 
   writeFileSync(
     hookPath,

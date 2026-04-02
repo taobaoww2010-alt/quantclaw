@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/moonshot-provider",
+  "name": "@quantclaw/moonshot-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Moonshot provider plugin",
+  "description": "QuantClaw Moonshot provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

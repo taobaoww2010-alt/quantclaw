@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/deepseek-provider",
+  "name": "@quantclaw/deepseek-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw DeepSeek provider plugin",
+  "description": "QuantClaw DeepSeek provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

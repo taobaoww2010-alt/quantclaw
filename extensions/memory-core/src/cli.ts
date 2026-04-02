@@ -3,7 +3,7 @@ import {
   formatDocsLink,
   formatHelpExamples,
   theme,
-} from "openclaw/plugin-sdk/memory-core-host-runtime-cli";
+} from "quantclaw/plugin-sdk/memory-core-host-runtime-cli";
 import type { MemoryCommandOptions, MemorySearchCommandOptions } from "./cli.types.js";
 
 type MemoryCliRuntime = typeof import("./cli.runtime.js");
@@ -38,16 +38,16 @@ export function registerMemoryCli(program: Command) {
       "after",
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
-          ["openclaw memory status", "Show index and provider status."],
-          ["openclaw memory status --deep", "Probe embedding provider readiness."],
-          ["openclaw memory index --force", "Force a full reindex."],
-          ['openclaw memory search "meeting notes"', "Quick search using positional query."],
+          ["quantclaw memory status", "Show index and provider status."],
+          ["quantclaw memory status --deep", "Probe embedding provider readiness."],
+          ["quantclaw memory index --force", "Force a full reindex."],
+          ['quantclaw memory search "meeting notes"', "Quick search using positional query."],
           [
-            'openclaw memory search --query "deployment" --max-results 20',
+            'quantclaw memory search --query "deployment" --max-results 20',
             "Limit results for focused troubleshooting.",
           ],
-          ["openclaw memory status --json", "Output machine-readable JSON (good for scripts)."],
-        ])}\n\n${theme.muted("Docs:")} ${formatDocsLink("/cli/memory", "docs.openclaw.ai/cli/memory")}\n`,
+          ["quantclaw memory status --json", "Output machine-readable JSON (good for scripts)."],
+        ])}\n\n${theme.muted("Docs:")} ${formatDocsLink("/cli/memory", "docs.quantclaw.ai/cli/memory")}\n`,
     );
 
   memory

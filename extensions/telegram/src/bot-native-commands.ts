@@ -1,10 +1,10 @@
 import type { Bot, Context } from "grammy";
-import { createChannelReplyPipeline } from "openclaw/plugin-sdk/channel-reply-pipeline";
+import { createChannelReplyPipeline } from "quantclaw/plugin-sdk/channel-reply-pipeline";
 import {
   resolveCommandAuthorization,
   resolveCommandAuthorizedFromAuthorizers,
   resolveNativeCommandSessionTargets,
-} from "openclaw/plugin-sdk/command-auth";
+} from "quantclaw/plugin-sdk/command-auth";
 import {
   buildCommandTextFromArgs,
   findCommandByNativeName,
@@ -13,40 +13,40 @@ import {
   parseCommandArgs,
   resolveCommandArgMenu,
   type CommandArgs,
-} from "openclaw/plugin-sdk/command-auth";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { ChannelGroupPolicy } from "openclaw/plugin-sdk/config-runtime";
-import { getRuntimeConfigSnapshot } from "openclaw/plugin-sdk/config-runtime";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
+} from "quantclaw/plugin-sdk/command-auth";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { ChannelGroupPolicy } from "quantclaw/plugin-sdk/config-runtime";
+import { getRuntimeConfigSnapshot } from "quantclaw/plugin-sdk/config-runtime";
+import { resolveMarkdownTableMode } from "quantclaw/plugin-sdk/config-runtime";
 import {
   normalizeTelegramCommandName,
   resolveTelegramCustomCommands,
   TELEGRAM_COMMAND_NAME_PATTERN,
-} from "openclaw/plugin-sdk/config-runtime";
+} from "quantclaw/plugin-sdk/config-runtime";
 import type {
   ReplyToMode,
   TelegramAccountConfig,
   TelegramDirectConfig,
   TelegramGroupConfig,
   TelegramTopicConfig,
-} from "openclaw/plugin-sdk/config-runtime";
+} from "quantclaw/plugin-sdk/config-runtime";
 import {
   ensureConfiguredBindingRouteReady,
   recordInboundSessionMetaSafe,
-} from "openclaw/plugin-sdk/conversation-runtime";
-import { getAgentScopedMediaLocalRoots } from "openclaw/plugin-sdk/media-runtime";
+} from "quantclaw/plugin-sdk/conversation-runtime";
+import { getAgentScopedMediaLocalRoots } from "quantclaw/plugin-sdk/media-runtime";
 import {
   executePluginCommand,
   getPluginCommandSpecs,
   matchPluginCommand,
-} from "openclaw/plugin-sdk/plugin-runtime";
-import { resolveChunkMode } from "openclaw/plugin-sdk/reply-runtime";
-import { finalizeInboundContext } from "openclaw/plugin-sdk/reply-runtime";
-import { resolveAgentRoute } from "openclaw/plugin-sdk/routing";
-import { resolveThreadSessionKeys } from "openclaw/plugin-sdk/routing";
-import { danger, logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { getChildLogger } from "openclaw/plugin-sdk/runtime-env";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
+} from "quantclaw/plugin-sdk/plugin-runtime";
+import { resolveChunkMode } from "quantclaw/plugin-sdk/reply-runtime";
+import { finalizeInboundContext } from "quantclaw/plugin-sdk/reply-runtime";
+import { resolveAgentRoute } from "quantclaw/plugin-sdk/routing";
+import { resolveThreadSessionKeys } from "quantclaw/plugin-sdk/routing";
+import { danger, logVerbose } from "quantclaw/plugin-sdk/runtime-env";
+import { getChildLogger } from "quantclaw/plugin-sdk/runtime-env";
+import type { RuntimeEnv } from "quantclaw/plugin-sdk/runtime-env";
 import { resolveTelegramAccount } from "./accounts.js";
 import { withTelegramApiErrorLogging } from "./api-logging.js";
 import { isSenderAllowed, normalizeDmAllowFromWithStore } from "./bot-access.js";
@@ -103,7 +103,7 @@ type TelegramCommandAuthResult = {
 };
 
 export type RegisterTelegramHandlerParams = {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
   bot: Bot;
   mediaMaxBytes: number;
@@ -148,7 +148,7 @@ export function parseTelegramNativeCommandCallbackData(data?: string | null): st
 
 export type RegisterTelegramNativeCommandsParams = {
   bot: Bot;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   runtime: RuntimeEnv;
   accountId: string;
   telegramCfg: TelegramAccountConfig;
@@ -173,7 +173,7 @@ export type RegisterTelegramNativeCommandsParams = {
 async function resolveTelegramCommandAuth(params: {
   msg: NonNullable<TelegramNativeCommandContext["message"]>;
   bot: Bot;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   accountId: string;
   telegramCfg: TelegramAccountConfig;
   readChannelAllowFromStore: TelegramBotDeps["readChannelAllowFromStore"];
@@ -455,8 +455,8 @@ export const registerTelegramNativeCommands = ({
   for (const issue of pluginCatalog.issues) {
     runtime.error?.(danger(issue));
   }
-  const loadFreshRuntimeConfig = (): OpenClawConfig => telegramDeps.loadConfig();
-  const resolveFreshTelegramConfig = (runtimeCfg: OpenClawConfig): TelegramAccountConfig => {
+  const loadFreshRuntimeConfig = (): QuantClawConfig => telegramDeps.loadConfig();
+  const resolveFreshTelegramConfig = (runtimeCfg: QuantClawConfig): TelegramAccountConfig => {
     try {
       return resolveTelegramAccount({
         cfg: runtimeCfg,
@@ -513,7 +513,7 @@ export const registerTelegramNativeCommands = ({
 
   const resolveCommandRuntimeContext = async (params: {
     msg: NonNullable<TelegramNativeCommandContext["message"]>;
-    runtimeCfg: OpenClawConfig;
+    runtimeCfg: QuantClawConfig;
     isGroup: boolean;
     isForum: boolean;
     resolvedThreadId?: number;

@@ -7,7 +7,7 @@ import {
 import {
   listSkillCommandsForAgents,
   parseStrictPositiveInteger,
-  type OpenClawConfig,
+  type QuantClawConfig,
   type RuntimeEnv,
 } from "./runtime-api.js";
 import {
@@ -27,7 +27,7 @@ function isLoopbackHost(hostname: string): boolean {
 }
 
 function buildSlashCommands(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   runtime: RuntimeEnv;
   nativeSkills: boolean;
 }): MattermostCommandSpec[] {
@@ -134,7 +134,7 @@ async function registerSlashCommandsAcrossTeams(params: {
 
 export async function registerMattermostMonitorSlashCommands(params: {
   client: MattermostClient;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   runtime: RuntimeEnv;
   account: ResolvedMattermostAccount;
   baseUrl: string;

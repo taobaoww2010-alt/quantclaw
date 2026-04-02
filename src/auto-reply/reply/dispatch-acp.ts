@@ -9,7 +9,7 @@ import {
   resolveSessionIdentityFromMeta,
 } from "../../acp/runtime/session-identity.js";
 import { readAcpSessionEntry } from "../../acp/runtime/session-meta.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { QuantClawConfig } from "../../config/config.js";
 import type { TtsAutoMode } from "../../config/types.tts.js";
 import { logVerbose } from "../../globals.js";
 import { emitAgentEvent } from "../../infra/agent-events.js";
@@ -72,7 +72,7 @@ const ACP_ATTACHMENT_TIMEOUT_MS = 1_000;
 
 async function resolveAcpAttachments(
   ctx: FinalizedMsgContext,
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
 ): Promise<AcpTurnAttachment[]> {
   const mediaAttachments = normalizeAttachments(ctx).map((attachment) =>
     attachment.path?.trim() ? { ...attachment, url: undefined } : attachment,
@@ -120,7 +120,7 @@ function resolveCommandCandidateText(ctx: FinalizedMsgContext): string {
 
 export function shouldBypassAcpDispatchForCommand(
   ctx: FinalizedMsgContext,
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
 ): boolean {
   const candidate = resolveCommandCandidateText(ctx);
   if (!candidate) {
@@ -236,7 +236,7 @@ async function maybeUnbindStaleBoundConversations(params: {
 }
 
 async function finalizeAcpTurnOutput(params: {
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   sessionKey: string;
   delivery: AcpDispatchDeliveryCoordinator;
   inboundAudio: boolean;
@@ -319,7 +319,7 @@ async function finalizeAcpTurnOutput(params: {
 
 export async function tryDispatchAcpReply(params: {
   ctx: FinalizedMsgContext;
-  cfg: OpenClawConfig;
+  cfg: QuantClawConfig;
   dispatcher: ReplyDispatcher;
   runId?: string;
   sessionKey?: string;

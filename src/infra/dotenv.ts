@@ -28,7 +28,7 @@ const BLOCKED_WORKSPACE_DOTENV_KEYS = new Set([
   "QUANTCLAW_LIVE_OPENAI_KEY",
   "OPENCLAW_OAUTH_DIR",
   "OPENCLAW_PROFILE",
-  "OPENCLAW_STATE_DIR",
+  "QUANTCLAW_STATE_DIR",
   "OPENAI_API_KEY",
   "OPENAI_API_KEYS",
   "PI_CODING_AGENT_DIR",
@@ -112,7 +112,7 @@ export function loadDotEnv(opts?: { quiet?: boolean }) {
   const cwdEnvPath = path.join(process.cwd(), ".env");
   loadWorkspaceDotEnvFile(cwdEnvPath, { quiet });
 
-  // Then load global fallback: ~/.openclaw/.env (or OPENCLAW_STATE_DIR/.env),
+  // Then load global fallback: ~/.quantclaw/.env (or QUANTCLAW_STATE_DIR/.env),
   // without overriding any env vars already present.
   const globalEnvPath = path.join(resolveConfigDir(process.env), ".env");
   loadRuntimeDotEnvFile(globalEnvPath, { quiet });

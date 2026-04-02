@@ -1,5 +1,5 @@
 import { resolveConfigPath, resolveGatewayPort } from "../config/paths.js";
-import type { OpenClawConfig } from "../config/types.js";
+import type { QuantClawConfig } from "../config/types.js";
 import { isSecureWebSocketUrl } from "./net.js";
 
 export type GatewayConnectionDetails = {
@@ -11,9 +11,9 @@ export type GatewayConnectionDetails = {
 };
 
 type GatewayConnectionDetailResolvers = {
-  loadConfig?: () => OpenClawConfig;
+  loadConfig?: () => QuantClawConfig;
   resolveConfigPath?: (env: NodeJS.ProcessEnv) => string;
-  resolveGatewayPort?: (cfg?: OpenClawConfig, env?: NodeJS.ProcessEnv) => number;
+  resolveGatewayPort?: (cfg?: QuantClawConfig, env?: NodeJS.ProcessEnv) => number;
 };
 
 function trimToUndefined(value: string | undefined): string | undefined {
@@ -23,7 +23,7 @@ function trimToUndefined(value: string | undefined): string | undefined {
 
 export function buildGatewayConnectionDetailsWithResolvers(
   options: {
-    config?: OpenClawConfig;
+    config?: QuantClawConfig;
     url?: string;
     configPath?: string;
     urlSource?: "cli" | "env";
@@ -71,7 +71,7 @@ export function buildGatewayConnectionDetailsWithResolvers(
     ? "Warn: gateway.mode=remote but gateway.remote.url is missing; set gateway.remote.url or switch gateway.mode=local."
     : undefined;
 
-  const allowPrivateWs = process.env.OPENCLAW_ALLOW_INSECURE_PRIVATE_WS === "1";
+  const allowPrivateWs = process.env.QUANTCLAW_ALLOW_INSECURE_PRIVATE_WS === "1";
   if (!isSecureWebSocketUrl(url, { allowPrivateWs })) {
     throw new Error(
       [
@@ -85,8 +85,8 @@ export function buildGatewayConnectionDetailsWithResolvers(
         "- or use Tailscale Serve/Funnel for HTTPS remote access",
         allowPrivateWs
           ? undefined
-          : "Break-glass (trusted private networks only): set OPENCLAW_ALLOW_INSECURE_PRIVATE_WS=1",
-        "Doctor: openclaw doctor --fix",
+          : "Break-glass (trusted private networks only): set QUANTCLAW_ALLOW_INSECURE_PRIVATE_WS=1",
+        "Doctor: quantclaw doctor --fix",
         "Docs: https://docs.quantclaw.ai/gateway/remote",
       ].join("\n"),
     );

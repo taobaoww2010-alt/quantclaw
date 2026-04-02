@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/microsoft-speech",
+  "name": "@quantclaw/microsoft-speech",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw Microsoft speech plugin",
+  "description": "QuantClaw Microsoft speech plugin",
   "type": "module",
   "dependencies": {
     "node-edge-tts": "^1.2.10"

@@ -1,31 +1,31 @@
-import { waitForTransportReady } from "openclaw/plugin-sdk/channel-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { SignalReactionNotificationMode } from "openclaw/plugin-sdk/config-runtime";
-import { loadConfig } from "openclaw/plugin-sdk/config-runtime";
+import { waitForTransportReady } from "quantclaw/plugin-sdk/channel-runtime";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
+import type { SignalReactionNotificationMode } from "quantclaw/plugin-sdk/config-runtime";
+import { loadConfig } from "quantclaw/plugin-sdk/config-runtime";
 import {
   resolveAllowlistProviderRuntimeGroupPolicy,
   resolveDefaultGroupPolicy,
   warnMissingProviderGroupPolicyFallbackOnce,
-} from "openclaw/plugin-sdk/config-runtime";
-import { saveMediaBuffer } from "openclaw/plugin-sdk/media-runtime";
-import { DEFAULT_GROUP_HISTORY_LIMIT, type HistoryEntry } from "openclaw/plugin-sdk/reply-history";
+} from "quantclaw/plugin-sdk/config-runtime";
+import { saveMediaBuffer } from "quantclaw/plugin-sdk/media-runtime";
+import { DEFAULT_GROUP_HISTORY_LIMIT, type HistoryEntry } from "quantclaw/plugin-sdk/reply-history";
 import {
   deliverTextOrMediaReply,
   resolveSendableOutboundReplyParts,
-} from "openclaw/plugin-sdk/reply-payload";
-import type { ReplyPayload } from "openclaw/plugin-sdk/reply-runtime";
+} from "quantclaw/plugin-sdk/reply-payload";
+import type { ReplyPayload } from "quantclaw/plugin-sdk/reply-runtime";
 import {
   chunkTextWithMode,
   resolveChunkMode,
   resolveTextChunkLimit,
-} from "openclaw/plugin-sdk/reply-runtime";
+} from "quantclaw/plugin-sdk/reply-runtime";
 import {
   createNonExitingRuntime,
   type BackoffPolicy,
   type RuntimeEnv,
-} from "openclaw/plugin-sdk/runtime-env";
-import { normalizeStringEntries } from "openclaw/plugin-sdk/text-runtime";
-import { normalizeE164 } from "openclaw/plugin-sdk/text-runtime";
+} from "quantclaw/plugin-sdk/runtime-env";
+import { normalizeStringEntries } from "quantclaw/plugin-sdk/text-runtime";
+import { normalizeE164 } from "quantclaw/plugin-sdk/text-runtime";
 import { resolveSignalAccount } from "./accounts.js";
 import { signalCheck, signalRpcRequest } from "./client.js";
 import { formatSignalDaemonExit, spawnSignalDaemon, type SignalDaemonHandle } from "./daemon.js";
@@ -44,7 +44,7 @@ export type MonitorSignalOpts = {
   abortSignal?: AbortSignal;
   account?: string;
   accountId?: string;
-  config?: OpenClawConfig;
+  config?: QuantClawConfig;
   baseUrl?: string;
   autoStart?: boolean;
   startupTimeoutMs?: number;

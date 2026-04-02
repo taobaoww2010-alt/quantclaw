@@ -1,8 +1,8 @@
 {
-  "name": "@openclaw/nvidia-provider",
+  "name": "@quantclaw/nvidia-provider",
   "version": "2026.3.30",
   "private": true,
-  "description": "OpenClaw NVIDIA provider plugin",
+  "description": "QuantClaw NVIDIA provider plugin",
   "type": "module",
   "quantclaw": {
     "extensions": [

@@ -1,5 +1,5 @@
-import { createAttachedChannelResultAdapter } from "openclaw/plugin-sdk/channel-send-result";
-import { resolveOutboundSendDep } from "openclaw/plugin-sdk/outbound-runtime";
+import { createAttachedChannelResultAdapter } from "quantclaw/plugin-sdk/channel-send-result";
+import { resolveOutboundSendDep } from "quantclaw/plugin-sdk/outbound-runtime";
 import type { ChannelOutboundAdapter } from "../runtime-api.js";
 import { chunkTextForOutbound } from "../runtime-api.js";
 import { createMSTeamsPollStoreFs } from "./polls.js";

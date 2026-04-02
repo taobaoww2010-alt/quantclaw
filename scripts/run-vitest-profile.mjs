@@ -38,7 +38,7 @@ export function resolveVitestProfileDir({ mode, outputDir }) {
     return path.resolve(outputDir);
   }
 
-  return fs.mkdtempSync(path.join(os.tmpdir(), `openclaw-vitest-${mode}-profile-`));
+  return fs.mkdtempSync(path.join(os.tmpdir(), `quantclaw-vitest-${mode}-profile-`));
 }
 
 export function buildVitestProfileCommand({ mode, outputDir }) {

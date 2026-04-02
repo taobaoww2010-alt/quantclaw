@@ -49,7 +49,7 @@ export interface ListKnownUsersOptions {
   sortByLastInteraction?: boolean;
   limit?: number;
 }
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+import type { QuantClawConfig } from "quantclaw/plugin-sdk/config-runtime";
 import {
   getAccessToken,
   sendProactiveC2CMessage,
@@ -96,7 +96,7 @@ export function clearKnownUsers(accountId?: string): number {
 /** Resolve account config and send a proactive message. */
 export async function sendProactive(
   options: ProactiveSendOptions,
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
 ): Promise<ProactiveSendResult> {
   const { to, text, type = "c2c", imageUrl, accountId = "default" } = options;
 
@@ -173,7 +173,7 @@ export async function sendBulkProactiveMessage(
   recipients: string[],
   text: string,
   type: "c2c" | "group",
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
   accountId = "default",
 ): Promise<Array<{ to: string; result: ProactiveSendResult }>> {
   const results: Array<{ to: string; result: ProactiveSendResult }> = [];
@@ -193,13 +193,13 @@ export async function sendBulkProactiveMessage(
  * Send a message to all known users.
  *
  * @param text Message content.
- * @param cfg OpenClaw config.
+ * @param cfg QuantClaw config.
  * @param options Optional filters.
  * @returns Aggregate send statistics.
  */
 export async function broadcastMessage(
   text: string,
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
   options?: {
     type?: "c2c" | "group";
     accountId?: string;

@@ -1,7 +1,7 @@
 import {
   buildChannelOutboundSessionRoute,
   type ChannelOutboundSessionRouteParams,
-} from "openclaw/plugin-sdk/core";
+} from "quantclaw/plugin-sdk/core";
 
 export function stripZalouserTargetPrefix(raw: string): string {
   return raw

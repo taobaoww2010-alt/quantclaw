@@ -16,7 +16,7 @@ import {
 } from "../plugins/manifest-registry.js";
 import { isRecord, resolveConfigDir, resolveUserPath } from "../utils.js";
 import { isChannelConfigured } from "./channel-configured.js";
-import type { OpenClawConfig } from "./config.js";
+import type { QuantClawConfig } from "./config.js";
 import { ensurePluginAllowlisted } from "./plugins-allowlist.js";
 
 type PluginEnableChange = {
@@ -25,7 +25,7 @@ type PluginEnableChange = {
 };
 
 export type PluginAutoEnableResult = {
-  config: OpenClawConfig;
+  config: QuantClawConfig;
   changes: string[];
 };
 
@@ -34,7 +34,7 @@ const EMPTY_PLUGIN_MANIFEST_REGISTRY: PluginManifestRegistry = {
   diagnostics: [],
 };
 
-const ENV_CATALOG_PATHS = ["OPENCLAW_PLUGIN_CATALOG_PATHS", "OPENCLAW_MPM_CATALOG_PATHS"];
+const ENV_CATALOG_PATHS = ["QUANTCLAW_PLUGIN_CATALOG_PATHS", "QUANTCLAW_MPM_CATALOG_PATHS"];
 
 function resolveAutoEnableProviderPluginIds(
   registry: PluginManifestRegistry,
@@ -50,7 +50,7 @@ function resolveAutoEnableProviderPluginIds(
   return Object.fromEntries(entries);
 }
 
-function collectModelRefs(cfg: OpenClawConfig): string[] {
+function collectModelRefs(cfg: QuantClawConfig): string[] {
   const refs: string[] = [];
   const pushModelRef = (value: unknown) => {
     if (typeof value === "string" && value.trim()) {
@@ -104,7 +104,7 @@ function extractProviderFromModelRef(value: string): string | null {
   return normalizeProviderId(trimmed.slice(0, slash));
 }
 
-function isProviderConfigured(cfg: OpenClawConfig, providerId: string): boolean {
+function isProviderConfigured(cfg: QuantClawConfig, providerId: string): boolean {
   const normalized = normalizeProviderId(providerId);
 
   const profiles = cfg.auth?.profiles;
@@ -140,7 +140,7 @@ function isProviderConfigured(cfg: OpenClawConfig, providerId: string): boolean 
   return false;
 }
 
-function hasPluginOwnedWebSearchConfig(cfg: OpenClawConfig, pluginId: string): boolean {
+function hasPluginOwnedWebSearchConfig(cfg: QuantClawConfig, pluginId: string): boolean {
   const pluginConfig = cfg.plugins?.entries?.[pluginId]?.config;
   if (!isRecord(pluginConfig)) {
     return false;
@@ -148,7 +148,7 @@ function hasPluginOwnedWebSearchConfig(cfg: OpenClawConfig, pluginId: string): b
   return isRecord(pluginConfig.webSearch);
 }
 
-function hasPluginOwnedToolConfig(cfg: OpenClawConfig, pluginId: string): boolean {
+function hasPluginOwnedToolConfig(cfg: QuantClawConfig, pluginId: string): boolean {
   if (pluginId === "xai") {
     const pluginConfig = cfg.plugins?.entries?.xai?.config;
     return Boolean(
@@ -233,10 +233,10 @@ function parseExternalCatalogChannelEntries(raw: unknown): ExternalCatalogChanne
 
   const channels: ExternalCatalogChannelEntry[] = [];
   for (const entry of list) {
-    if (!isRecord(entry) || !isRecord(entry.openclaw) || !isRecord(entry.openclaw.channel)) {
+    if (!isRecord(entry) || !isRecord(entry.quantclaw) || !isRecord(entry.quantclaw.channel)) {
       continue;
     }
-    const channel = entry.openclaw.channel;
+    const channel = entry.quantclaw.channel;
     const id = typeof channel.id === "string" ? channel.id.trim() : "";
     if (!id) {
       continue;
@@ -283,13 +283,13 @@ function resolvePluginIdForChannel(
   return channelToPluginId.get(channelId) ?? channelId;
 }
 
-function collectCandidateChannelIds(cfg: OpenClawConfig, env: NodeJS.ProcessEnv): string[] {
+function collectCandidateChannelIds(cfg: QuantClawConfig, env: NodeJS.ProcessEnv): string[] {
   return listPotentialConfiguredChannelIds(cfg, env).map(
     (channelId) => normalizeChatChannelId(channelId) ?? channelId,
   );
 }
 
-function hasConfiguredWebSearchPluginEntry(cfg: OpenClawConfig): boolean {
+function hasConfiguredWebSearchPluginEntry(cfg: QuantClawConfig): boolean {
   const entries = cfg.plugins?.entries;
   if (!entries || typeof entries !== "object") {
     return false;
@@ -299,7 +299,7 @@ function hasConfiguredWebSearchPluginEntry(cfg: OpenClawConfig): boolean {
   );
 }
 
-function configMayNeedPluginManifestRegistry(cfg: OpenClawConfig): boolean {
+function configMayNeedPluginManifestRegistry(cfg: QuantClawConfig): boolean {
   const configuredChannels = cfg.channels as Record<string, unknown> | undefined;
   if (!configuredChannels || typeof configuredChannels !== "object") {
     return false;
@@ -315,7 +315,7 @@ function configMayNeedPluginManifestRegistry(cfg: OpenClawConfig): boolean {
   return false;
 }
 
-function configMayNeedPluginAutoEnable(cfg: OpenClawConfig, env: NodeJS.ProcessEnv): boolean {
+function configMayNeedPluginAutoEnable(cfg: QuantClawConfig, env: NodeJS.ProcessEnv): boolean {
   if (hasPotentialConfiguredChannels(cfg, env)) {
     return true;
   }
@@ -360,7 +360,7 @@ function toolPolicyReferencesBrowser(value: unknown): boolean {
   return listContainsBrowser(value.allow) || listContainsBrowser(value.alsoAllow);
 }
 
-function hasBrowserToolReference(cfg: OpenClawConfig): boolean {
+function hasBrowserToolReference(cfg: QuantClawConfig): boolean {
   if (toolPolicyReferencesBrowser(cfg.tools)) {
     return true;
   }
@@ -373,13 +373,13 @@ function hasBrowserToolReference(cfg: OpenClawConfig): boolean {
   return agentList.some((entry) => isRecord(entry) && toolPolicyReferencesBrowser(entry.tools));
 }
 
-function hasExplicitBrowserPluginEntry(cfg: OpenClawConfig): boolean {
+function hasExplicitBrowserPluginEntry(cfg: QuantClawConfig): boolean {
   return Boolean(
     cfg.plugins?.entries && Object.prototype.hasOwnProperty.call(cfg.plugins.entries, "browser"),
   );
 }
 
-function resolveBrowserAutoEnableReason(cfg: OpenClawConfig): string | null {
+function resolveBrowserAutoEnableReason(cfg: QuantClawConfig): string | null {
   if (cfg.browser?.enabled === false || cfg.plugins?.entries?.browser?.enabled === false) {
     return null;
   }
@@ -400,7 +400,7 @@ function resolveBrowserAutoEnableReason(cfg: OpenClawConfig): string | null {
 }
 
 function resolveConfiguredPlugins(
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
   env: NodeJS.ProcessEnv,
   registry: PluginManifestRegistry,
 ): PluginEnableChange[] {
@@ -458,7 +458,7 @@ function resolveConfiguredPlugins(
   return changes;
 }
 
-function isPluginExplicitlyDisabled(cfg: OpenClawConfig, pluginId: string): boolean {
+function isPluginExplicitlyDisabled(cfg: QuantClawConfig, pluginId: string): boolean {
   const builtInChannelId = normalizeChatChannelId(pluginId);
   if (builtInChannelId) {
     const channels = cfg.channels as Record<string, unknown> | undefined;
@@ -476,7 +476,7 @@ function isPluginExplicitlyDisabled(cfg: OpenClawConfig, pluginId: string): bool
   return entry?.enabled === false;
 }
 
-function isPluginDenied(cfg: OpenClawConfig, pluginId: string): boolean {
+function isPluginDenied(cfg: QuantClawConfig, pluginId: string): boolean {
   const deny = cfg.plugins?.deny;
   return Array.isArray(deny) && deny.includes(pluginId);
 }
@@ -503,7 +503,7 @@ function resolvePreferredOverIds(
 }
 
 function shouldSkipPreferredPluginAutoEnable(
-  cfg: OpenClawConfig,
+  cfg: QuantClawConfig,
   entry: PluginEnableChange,
   configured: PluginEnableChange[],
   env: NodeJS.ProcessEnv,
@@ -527,7 +527,7 @@ function shouldSkipPreferredPluginAutoEnable(
   return false;
 }
 
-function registerPluginEntry(cfg: OpenClawConfig, pluginId: string): OpenClawConfig {
+function registerPluginEntry(cfg: QuantClawConfig, pluginId: string): QuantClawConfig {
   const builtInChannelId = normalizeChatChannelId(pluginId);
   if (builtInChannelId) {
     const channels = cfg.channels as Record<string, unknown> | undefined;
@@ -574,7 +574,7 @@ function formatAutoEnableChange(entry: PluginEnableChange): string {
 }
 
 export function applyPluginAutoEnable(params: {
-  config: OpenClawConfig;
+  config: QuantClawConfig;
   env?: NodeJS.ProcessEnv;
   /** Pre-loaded manifest registry. When omitted, the registry is loaded from
    *  the installed plugins on disk. Pass an explicit registry in tests to
