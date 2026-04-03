@@ -1,6 +1,84 @@
 # Changelog
 
-Docs: https://docs.openclaw.ai
+Docs: https://docs.quantclaw.ai
+
+## 2026.4.3 — QuantClaw 首个正式版本
+
+### Breaking
+
+- **品牌重命名**: 全面从 OpenClaw 重命名为 QuantClaw，包括所有源码、配置路径、环境变量、CLI 命令、文档
+  - 配置路径: `~/.openclaw/` → `~/.quantclaw/`
+  - 环境变量: `OPENCLAW_*` → `QUANTCLAW_*`
+  - CLI 命令: `openclaw` → `quantclaw`
+  - 二进制: `openclaw.mjs` → `quantclaw.mjs`
+  - 插件清单: `openclaw.plugin.json` → `quantclaw.plugin.json`
+  - 内部类型: `OpenClawConfig` → `QuantClawConfig`
+  - 84 个扩展全部完成重命名
+- **npm 包名保留**: `@openclaw/plugin-sdk` 包名不变（npm 生态兼容）
+
+### 新增 — A 股量化工具
+
+- **quant_quote** — 实时行情（腾讯财经 API）：价格、涨跌幅、成交量、换手率、市盈率、市值
+- **quant_history** — 历史 K 线 + 自动技术指标计算：
+  - MA5/10/20/60 移动平均线
+  - EMA12/26 指数移动平均
+  - MACD (DIF/DEA/HIST)
+  - RSI6/12/24 相对强弱指标
+  - KDJ (K/D/J)
+  - 布林带 (上轨/中轨/下轨)
+  - 成交量均线 VOL_MA5/10
+- **quant_screen** — 基于实时行情的条件选股（支持价格、涨跌幅、成交量、换手率、市盈率筛选）
+- **quant_pool_info** — 股票池查询：沪深 300(68 只)、中证 500(40 只)、科创 50(16 只)、创业板 50(16 只)、自选 (7 只)，共 107 只核心 A 股
+- **quant_shareholders** — 股东信息查询
+
+### 新增 — 交易日志
+
+- **list_positions** — 查询当前持仓
+- **add_position** — 记录新开仓
+- **close_position** — 平仓记录（自动计算盈亏、盈亏百分比）
+- **log_signal** — 交易信号记录（buy/sell/watch/stop_loss）
+- **performance** — 绩效统计（胜率、总盈亏、平均盈亏、盈亏比）
+- **update_capital** — 更新账户资金
+
+### 新增 — 架构优化（借鉴 Claude Code）
+
+- **buildTool() 工厂模式** — 统一工具接口，安全默认值（riskTier、isConcurrencySafe、isReadOnly、isDestructive）
+- **风险等级系统** — low/medium/high/critical 四级分类，量化交易工具按风险分级
+- **交易模式** — paper/live/backtest/monitor 四种部署模式，通过 Feature Flags 切换
+- **Pre/Post Trade Hooks** — 交易前后钩子系统，支持风控验证和交易后处理
+- **默认风控钩子** — 阻止非实盘模式下的高风险操作
+- **Feature Flag 系统** — 运行时模式切换，支持功能门控
+
+### 新增 — 消息渠道
+
+- **飞书 (Feishu)** — 中国企业级消息平台，支持 WebSocket 长连接
+  - App ID/Secret 认证
+  - allowFrom 白名单
+  - 配对支持
+
+### 新增 — 模型提供商
+
+- **vLLM** — 本地大模型部署，支持 OpenAI 兼容 API
+- **Ollama** — 本地模型自动发现
+- 新增中国模型提供商：Moonshot、MiniMax、Qianfan/百度、Volcengine/火山引擎、ModelStudio/阿里云百炼、Z.AI/智谱、Kimi Coding、Xiaomi/小米
+
+### 变更
+
+- **README** — 重写为完整用户安装指南，包含配置示例、飞书接入步骤、使用示例、常见问题
+- **股票池** — 从 20 只扩展到 107 只核心 A 股
+- **数据层** — fetcher.py 重写，支持实时行情、历史 K 线、技术指标、条件选股、股票池查询
+- **GitHub 仓库** — `https://github.com/taobaoww2010-alt/quantclaw`
+- **文档** — `https://docs.quantclaw.ai`
+
+### 修复
+
+- 量化工具从占位响应改为真实 Python 数据获取
+- 选股器从无筛选逻辑改为基于实时行情的真实筛选
+- 交易日志增加盈亏自动计算和绩效统计
+- 插件 SDK import 路径修复（`@openclaw/plugin-sdk` 保持不变）
+- 文件重命名导致的 import 断裂修复（7 个核心文件）
+
+---
 
 ## Unreleased
 
