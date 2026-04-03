@@ -1,4 +1,4 @@
-# 🦞 QuantClaw — QuantClaw A股量化版
+# ☯️ QuantClaw — A股量化版
 
 <p align="center">
     <a href="https://github.com/taobaoww2010-alt/quantclaw">
