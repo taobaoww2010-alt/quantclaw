@@ -3,7 +3,13 @@ import * as path from "node:path";
 import * as fs from "node:fs";
 import { Type } from "@sinclair/typebox";
 import type { AnyAgentTool } from "./common.js";
-import { jsonResult } from "./common.js";
+import {
+  buildTool,
+  jsonResult,
+  runPreTradeHooks,
+  runPostTradeHooks,
+  resolveTradingMode,
+} from "./common.js";
 
 const PROJECT_ROOT = path.resolve(__dirname, "../../..");
 const FETCHER_PATH = path.join(PROJECT_ROOT, "data", "fetcher.py");
@@ -87,100 +93,122 @@ const QuantPoolInfoSchema = Type.Object({
 });
 
 export function createQuantTools(): AnyAgentTool[] {
+  const tradingMode = resolveTradingMode();
+
   return [
-    {
-      label: "Quant Quote",
+    buildTool({
       name: "quant_quote",
-      description: "获取A股实时行情数据（价格、涨跌幅、成交量、换手率等）",
+      label: "Quant Quote",
+      description: "获取A股实时行情数据（价格、涨跌幅、成交量、换手率、市盈率等）",
       parameters: QuantQuoteSchema,
+      riskTier: "low",
+      isConcurrencySafe: true,
+      isReadOnly: true,
+      displaySummary: "实时行情",
       execute: async (_: string, args: { code: string }) => {
         if (!ensurePythonDeps()) {
           return jsonResult({ error: "Python 数据层未就绪，请运行: pip install baostock requests" });
         }
+        const ctx = { toolName: "quant_quote", args, riskTier: "low" as const, tradingMode, timestamp: Date.now() };
+        const gate = await runPreTradeHooks(ctx);
+        if (!gate.approved) return jsonResult({ error: gate.reason });
         const raw = runFetcher(["quote", args.code]);
-        return jsonResult(safeParseJson(raw));
+        const result = safeParseJson(raw);
+        await runPostTradeHooks(ctx, result);
+        return jsonResult(result);
       },
-    },
-    {
-      label: "Quant History",
+    }),
+    buildTool({
       name: "quant_history",
-      description: "获取A股历史K线数据（OHLCV、涨跌幅、后复权等），自动计算 MA/RSI/MACD/KDJ/布林带等技术指标",
+      label: "Quant History",
+      description: "获取A股历史K线数据（OHLCV），自动计算 MA/RSI/MACD/KDJ/布林带等技术指标",
       parameters: QuantHistorySchema,
+      riskTier: "low",
+      isConcurrencySafe: true,
+      isReadOnly: true,
+      displaySummary: "历史K线+技术指标",
       execute: async (
         _: string,
-        args: {
-          code: string;
-          start_date?: string;
-          end_date?: string;
-          frequency?: string;
-          limit?: number;
-        },
+        args: { code: string; start_date?: string; end_date?: string; frequency?: string; limit?: number },
       ) => {
-        if (!ensurePythonDeps()) {
-          return jsonResult({ error: "Python 数据层未就绪" });
-        }
+        if (!ensurePythonDeps()) return jsonResult({ error: "Python 数据层未就绪" });
         const freq = args.frequency || "d";
         const limit = String(args.limit || 30);
-        const raw = runFetcher([
-          "history",
-          args.code,
-          args.start_date || "",
-          args.end_date || "",
-          "--freq", freq,
-          "--limit", limit,
-        ]);
-        return jsonResult(safeParseJson(raw));
+        const ctx = { toolName: "quant_history", args, riskTier: "low" as const, tradingMode, timestamp: Date.now() };
+        const gate = await runPreTradeHooks(ctx);
+        if (!gate.approved) return jsonResult({ error: gate.reason });
+        const raw = runFetcher(["history", args.code, args.start_date || "", args.end_date || "", "--freq", freq, "--limit", limit]);
+        const result = safeParseJson(raw);
+        await runPostTradeHooks(ctx, result);
+        return jsonResult(result);
       },
-    },
-    {
-      label: "Quant Shareholders",
+    }),
+    buildTool({
       name: "quant_shareholders",
+      label: "Quant Shareholders",
       description: "获取股票股东信息（股东户数、十大流通股东、机构持仓）",
       parameters: QuantShareholdersSchema,
+      riskTier: "low",
+      isConcurrencySafe: true,
+      isReadOnly: true,
+      displaySummary: "股东信息",
       execute: async (_: string, args: { code: string }) => {
-        if (!ensurePythonDeps()) {
-          return jsonResult({ error: "Python 数据层未就绪" });
-        }
+        if (!ensurePythonDeps()) return jsonResult({ error: "Python 数据层未就绪" });
+        const ctx = { toolName: "quant_shareholders", args, riskTier: "low" as const, tradingMode, timestamp: Date.now() };
+        const gate = await runPreTradeHooks(ctx);
+        if (!gate.approved) return jsonResult({ error: gate.reason });
         const raw = runFetcher(["shareholders", args.code]);
-        return jsonResult(safeParseJson(raw));
+        const result = safeParseJson(raw);
+        await runPostTradeHooks(ctx, result);
+        return jsonResult(result);
       },
-    },
-    {
-      label: "Quant Screen",
+    }),
+    buildTool({
       name: "quant_screen",
+      label: "Quant Screen",
       description: "基于实时行情筛选A股（支持价格、涨跌幅、成交量、换手率、市盈率等条件）",
       parameters: QuantScreenSchema,
+      riskTier: "low",
+      isConcurrencySafe: false,
+      isReadOnly: true,
+      displaySummary: "条件选股",
       execute: async (
         _: string,
-        args: {
-          market?: string;
-          conditions?: Array<{ field: string; op: string; value: number }>;
-          limit?: number;
-        },
+        args: { market?: string; conditions?: Array<{ field: string; op: string; value: number }>; limit?: number },
       ) => {
-        if (!ensurePythonDeps()) {
-          return jsonResult({ error: "Python 数据层未就绪" });
-        }
+        if (!ensurePythonDeps()) return jsonResult({ error: "Python 数据层未就绪" });
         const market = args.market || "cn";
         const limit = String(args.limit || 10);
         const condArgs = args.conditions ? ["--conditions", JSON.stringify(args.conditions)] : [];
+        const ctx = { toolName: "quant_screen", args, riskTier: "low" as const, tradingMode, timestamp: Date.now() };
+        const gate = await runPreTradeHooks(ctx);
+        if (!gate.approved) return jsonResult({ error: gate.reason });
         const raw = runFetcher(["screen", "--market", market, "--limit", limit, ...condArgs]);
-        return jsonResult(safeParseJson(raw));
+        const result = safeParseJson(raw);
+        await runPostTradeHooks(ctx, result);
+        return jsonResult(result);
       },
-    },
-    {
-      label: "Quant Pool Info",
+    }),
+    buildTool({
       name: "quant_pool_info",
+      label: "Quant Pool Info",
       description: "查询股票池成分（沪深300、中证500、科创50、创业板50、自选股等）",
       parameters: QuantPoolInfoSchema,
+      riskTier: "low",
+      isConcurrencySafe: true,
+      isReadOnly: true,
+      displaySummary: "股票池查询",
       execute: async (_: string, args: { pool_name?: string }) => {
-        if (!ensurePythonDeps()) {
-          return jsonResult({ error: "Python 数据层未就绪" });
-        }
+        if (!ensurePythonDeps()) return jsonResult({ error: "Python 数据层未就绪" });
         const poolName = args.pool_name || "沪深300";
+        const ctx = { toolName: "quant_pool_info", args, riskTier: "low" as const, tradingMode, timestamp: Date.now() };
+        const gate = await runPreTradeHooks(ctx);
+        if (!gate.approved) return jsonResult({ error: gate.reason });
         const raw = runFetcher(["pool", "--pool-name", poolName]);
-        return jsonResult(safeParseJson(raw));
+        const result = safeParseJson(raw);
+        await runPostTradeHooks(ctx, result);
+        return jsonResult(result);
       },
-    },
+    }),
   ];
 }

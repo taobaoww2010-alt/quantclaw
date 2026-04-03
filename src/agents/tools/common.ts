@@ -9,7 +9,21 @@ import { sanitizeToolResultImages } from "../tool-images.js";
 export type AnyAgentTool = AgentTool<any, unknown> & {
   ownerOnly?: boolean;
   displaySummary?: string;
+  /** Risk tier for trading/execution tools */
+  riskTier?: RiskTier;
+  /** Whether tool can run concurrently with other tools */
+  isConcurrencySafe?: boolean;
+  /** Whether tool has no side effects */
+  isReadOnly?: boolean;
+  /** Whether tool performs irreversible operations */
+  isDestructive?: boolean;
 };
+
+/** Risk classification for trading and execution tools */
+export type RiskTier = "low" | "medium" | "high" | "critical";
+
+/** Trading mode feature flags */
+export type TradingMode = "paper" | "live" | "backtest" | "monitor";
 
 export type StringParamOptions = {
   required?: boolean;
@@ -366,3 +380,140 @@ export function parseAvailableTags(raw: unknown): AvailableTag[] | undefined {
   // Return undefined instead of empty array to avoid accidentally clearing all tags
   return result.length ? result : undefined;
 }
+
+// ============================================================
+// buildTool() Factory Pattern (inspired by Claude Code Tool.ts)
+// ============================================================
+
+export type ToolBuilderInput<TParams = Record<string, unknown>> = {
+  name: string;
+  label: string;
+  description: string;
+  parameters: any;
+  execute: (input: string, args: TParams) => Promise<AgentToolResult<unknown>>;
+  /** Risk tier for trading/execution safety (default: "low") */
+  riskTier?: RiskTier;
+  /** Can run concurrently with other tools (default: false) */
+  isConcurrencySafe?: boolean;
+  /** Has no side effects (default: false) */
+  isReadOnly?: boolean;
+  /** Performs irreversible operations (default: false) */
+  isDestructive?: boolean;
+  /** Restrict to owner only (default: false) */
+  ownerOnly?: boolean;
+  /** Short display summary for UI */
+  displaySummary?: string;
+};
+
+export function buildTool<TParams = Record<string, unknown>>(
+  input: ToolBuilderInput<TParams>,
+): AnyAgentTool {
+  return {
+    name: input.name,
+    label: input.label,
+    description: input.description,
+    parameters: input.parameters,
+    execute: input.execute,
+    riskTier: input.riskTier ?? "low",
+    isConcurrencySafe: input.isConcurrencySafe ?? false,
+    isReadOnly: input.isReadOnly ?? false,
+    isDestructive: input.isDestructive ?? false,
+    ownerOnly: input.ownerOnly ?? false,
+    displaySummary: input.displaySummary,
+  };
+}
+
+// ============================================================
+// Pre/Post Trade Hooks System
+// ============================================================
+
+export type TradeHookContext = {
+  toolName: string;
+  args: Record<string, unknown>;
+  riskTier: RiskTier;
+  tradingMode: TradingMode;
+  timestamp: number;
+};
+
+export type TradeHookResult = {
+  approved: boolean;
+  reason?: string;
+  modifiedArgs?: Record<string, unknown>;
+};
+
+export type PreTradeHook = (ctx: TradeHookContext) => Promise<TradeHookResult>;
+export type PostTradeHook = (ctx: TradeHookContext, result: unknown) => Promise<void>;
+
+export type TradeHooks = {
+  preTrade: PreTradeHook[];
+  postTrade: PostTradeHook[];
+};
+
+const globalTradeHooks: TradeHooks = { preTrade: [], postTrade: [] };
+
+export function registerPreTradeHook(hook: PreTradeHook): void {
+  globalTradeHooks.preTrade.push(hook);
+}
+
+export function registerPostTradeHook(hook: PostTradeHook): void {
+  globalTradeHooks.postTrade.push(hook);
+}
+
+export async function runPreTradeHooks(ctx: TradeHookContext): Promise<TradeHookResult> {
+  for (const hook of globalTradeHooks.preTrade) {
+    const result = await hook(ctx);
+    if (!result.approved) {
+      return result;
+    }
+    if (result.modifiedArgs) {
+      ctx.args = { ...ctx.args, ...result.modifiedArgs };
+    }
+  }
+  return { approved: true };
+}
+
+export async function runPostTradeHooks(ctx: TradeHookContext, result: unknown): Promise<void> {
+  for (const hook of globalTradeHooks.postTrade) {
+    await hook(ctx, result);
+  }
+}
+
+// ============================================================
+// Feature Flag System for Trading Modes
+// ============================================================
+
+const featureFlags = new Map<string, boolean>();
+
+export function setFeatureFlag(flag: string, value: boolean): void {
+  featureFlags.set(flag, value);
+}
+
+export function getFeatureFlag(flag: string, defaultValue = false): boolean {
+  return featureFlags.get(flag) ?? defaultValue;
+}
+
+export function isTradingMode(mode: TradingMode): boolean {
+  return getFeatureFlag(`tradingMode.${mode}`, false);
+}
+
+export function resolveTradingMode(): TradingMode {
+  if (getFeatureFlag("tradingMode.live")) return "live";
+  if (getFeatureFlag("tradingMode.paper")) return "paper";
+  if (getFeatureFlag("tradingMode.backtest")) return "backtest";
+  return "monitor";
+}
+
+// ============================================================
+// Default Risk-Based Hooks
+// ============================================================
+
+registerPreTradeHook(async (ctx) => {
+  if (ctx.riskTier === "critical" && ctx.tradingMode !== "live") {
+    return { approved: false, reason: "Critical operations require live trading mode" };
+  }
+  if (ctx.riskTier === "high" && ctx.tradingMode === "monitor") {
+    return { approved: false, reason: "High-risk operations not allowed in monitor mode" };
+  }
+  return { approved: true };
+});
+
