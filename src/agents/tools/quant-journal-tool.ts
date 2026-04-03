@@ -83,7 +83,7 @@ const UpdateCapitalSchema = Type.Object({
   date: Type.Optional(Type.String()),
 });
 
-export function createQuantJournalTools(): AnyAgentTool[] {
+export function createQuantJournalTool(): AnyAgentTool[] {
   const tradingMode = resolveTradingMode();
 
   return [

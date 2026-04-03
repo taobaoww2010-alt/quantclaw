@@ -110,6 +110,7 @@ Docs: https://docs.quantclaw.ai
 - TTS: Add structured provider diagnostics and fallback attempt analytics. (#57954) Thanks @joshavant.
 - Memory/QMD: add per-agent `memorySearch.qmd.extraCollections` so agents can opt into cross-agent session search without flattening every transcript collection into one shared QMD namespace. Thanks @vincentkoc.
 - Slack/exec approvals: add native Slack approval routing and approver authorization so exec approval prompts can stay in Slack instead of falling back to the Web UI or terminal. Thanks @vincentkoc.
+- ABC Strategy: add complete quantitative trading strategy module with base position (底仓) + float position (浮仓) dual-position management, Weibi (委比) signals for trading triggers, 7 market sentiment proverbs for auxiliary signals, and strict risk control rules including stop-loss/take-profit. Includes backtest engine, Level-2 data provider, trading adapter, and Telegram/Feishu notification support.
 
 ### Fixes
 
