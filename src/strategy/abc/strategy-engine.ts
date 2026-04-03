@@ -12,12 +12,17 @@ import { StockSelector, createStockSelector } from "./stock-selector.js";
 import { RiskController, createRiskController } from "./risk-control.js";
 import { FloatTrader, createFloatTrader } from "./float-trader.js";
 import { BasePositionManager, createBasePositionManager } from "./base-position.js";
+import type { FeishuConfig } from "./notifications.js";
 
 export interface StrategyConfig {
   symbol: string;
   capital: number;
   mode: "backtest" | "paper" | "live";
   params?: Partial<StrategyParams>;
+  notifications?: {
+    telegram?: { token: string; chatId: string };
+    feishu?: FeishuConfig;
+  };
 }
 
 export interface StrategyEvent {

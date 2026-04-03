@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "code": "600519",
+    "name": "贵州茅台",
+    "side": "long",
+    "quantity": 100,
+    "avg_price": 1450,
+    "entry_date": "2026-04-03",
+    "strategy": "价值投资",
+    "closed": false
+  },
+  {
+    "code": "600519",
+    "name": "贵州茅台",
+    "side": "long",
+    "quantity": 100,
+    "avg_price": 1450,
+    "entry_date": "2026-04-03",
+    "strategy": "价值投资",
+    "closed": false
+  }
+]

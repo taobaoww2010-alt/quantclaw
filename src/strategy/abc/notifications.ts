@@ -425,30 +425,114 @@ export class TelegramNotifier {
 
 export const createTelegramNotifier = () => new TelegramNotifier();
 
+export type FeishuConfig = {
+  mode: "webhook" | "sdk";
+  webhookUrl?: string;
+  appId?: string;
+  appSecret?: string;
+  chatId?: string;
+};
+
 export class FeishuNotifier {
-  private webhookUrl?: string;
+  private config?: FeishuConfig;
   private enabled = false;
 
-  configure(webhookUrl: string): void {
-    this.webhookUrl = webhookUrl;
+  configure(config: FeishuConfig): void {
+    this.config = config;
     this.enabled = true;
+    console.log(`[Feishu] 已配置，模式: ${config.mode}`);
+  }
+
+  private buildTradeMessage(action: "buy" | "sell", symbol: string, price: number, quantity: number, pnl?: number): string {
+    const emoji = action === "buy" ? "🟢" : "🔴";
+    const side = action === "buy" ? "买入" : "卖出";
+    const pnlText = pnl !== undefined ? `\n💰 盈亏: ${pnl >= 0 ? "+" : ""}¥${pnl.toFixed(2)}` : "";
+
+    return `${emoji} ABC策略交易\n\n` +
+      `📌 ${side}: ${symbol}\n` +
+      `💵 价格: ¥${price.toFixed(2)}\n` +
+      `📊 数量: ${quantity}股\n` +
+      `${pnlText}\n` +
+      `⏰ ${new Date().toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" })}`;
+  }
+
+  private buildRiskMessage(type: "stop_loss" | "take_profit" | "forced_rest" | "pause", symbol: string, details: string): string {
+    const emoji = type === "forced_rest" ? "⚠️" : "🚨";
+    const titles: Record<string, string> = {
+      stop_loss: "止损触发",
+      take_profit: "止盈触发",
+      forced_rest: "强制休息",
+      pause: "交易暂停",
+    };
+
+    return `${emoji} ${titles[type]}\n\n` +
+      `📌 标的: ${symbol}\n` +
+      `📝 详情: ${details}\n` +
+      `⏰ ${new Date().toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" })}`;
+  }
+
+  private buildSummaryMessage(summary: { equity: number; dailyPnl: number; trades: number; winRate: number }): string {
+    const pnlEmoji = summary.dailyPnl >= 0 ? "🟢" : "🔴";
+
+    return `📊 每日总结\n\n` +
+      `💰 总资产: ¥${summary.equity.toFixed(2)}\n` +
+      `${pnlEmoji} 日盈亏: ${summary.dailyPnl >= 0 ? "+" : ""}¥${summary.dailyPnl.toFixed(2)}\n` +
+      `📈 交易次数: ${summary.trades}\n` +
+      `🎯 胜率: ${summary.winRate.toFixed(1)}%\n` +
+      `⏰ ${new Date().toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" })}`;
   }
 
   async send(message: string): Promise<boolean> {
-    if (!this.enabled || !this.webhookUrl) {
+    if (!this.enabled || !this.config) {
       console.log("[Feishu] 模拟发送:", message);
       return true;
     }
 
+    if (this.config.mode === "webhook" && this.config.webhookUrl) {
+      return this.sendViaWebhook(message);
+    } else if (this.config.mode === "sdk" && this.config.appId && this.config.appSecret && this.config.chatId) {
+      return this.sendViaSdk(message);
+    }
+
+    console.warn("[Feishu] 未配置完整，请配置webhook或sdk");
+    return false;
+  }
+
+  private async sendViaWebhook(message: string): Promise<boolean> {
     try {
-      const response = await fetch(this.webhookUrl, {
+      const response = await fetch(this.config!.webhookUrl!, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ msg_type: "text", content: { text: message } }),
       });
       return response.ok;
     } catch (error) {
-      console.error("[Feishu] 发送失败:", error);
+      console.error("[Feishu Webhook] 发送失败:", error);
+      return false;
+    }
+  }
+
+  private async sendViaSdk(message: string): Promise<boolean> {
+    try {
+      const { sendMessageFeishu } = await import("../../../extensions/feishu/src/send.js");
+      const { createFeishuClient } = await import("../../../extensions/feishu/src/client.js");
+
+      const client = createFeishuClient({
+        appId: this.config!.appId!,
+        appSecret: this.config!.appSecret!,
+      });
+
+      await client.im.message.create({
+        params: { receive_id_type: "chat_id" },
+        data: {
+          receive_id: this.config!.chatId!,
+          msg_type: "text",
+          content: JSON.stringify({ text: message }),
+        },
+      });
+      return true;
+    } catch (error) {
+      console.error("[Feishu SDK] 发送失败:", error);
       return false;
     }
   }
@@ -460,18 +544,7 @@ export class FeishuNotifier {
     quantity: number,
     pnl?: number,
   ): Promise<boolean> {
-    const emoji = action === "buy" ? "🟢" : "🔴";
-    const side = action === "buy" ? "买入" : "卖出";
-    const pnlText = pnl !== undefined ? `\n💰 盈亏: ${pnl >= 0 ? "+" : ""}¥${pnl.toFixed(2)}` : "";
-
-    return this.send(
-      `${emoji} <b>ABC策略交易</b>\n\n` +
-        `📌 ${side}: ${symbol}\n` +
-        `💵 价格: ¥${price.toFixed(2)}\n` +
-        `📊 数量: ${quantity}股\n` +
-        `${pnlText}\n` +
-        `⏰ ${new Date().toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" })}`,
-    );
+    return this.send(this.buildTradeMessage(action, symbol, price, quantity, pnl));
   }
 
   async sendRiskAlert(
@@ -479,47 +552,24 @@ export class FeishuNotifier {
     symbol: string,
     details: string,
   ): Promise<boolean> {
-    const emoji = type === "forced_rest" ? "⚠️" : "🚨";
-    const titles: Record<string, string> = {
-      stop_loss: "止损触发",
-      take_profit: "止盈触发",
-      forced_rest: "强制休息",
-      pause: "交易暂停",
-    };
-
-    return this.send(
-      `${emoji} <b>${titles[type]}</b>\n\n` +
-        `📌 标的: ${symbol}\n` +
-        `📝 详情: ${details}\n` +
-        `⏰ ${new Date().toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" })}`,
-    );
+    return this.send(this.buildRiskMessage(type, symbol, details));
   }
 
-  async sendDailySummary(summary: {
-    equity: number;
-    dailyPnl: number;
-    trades: number;
-    winRate: number;
-  }): Promise<boolean> {
-    const pnlEmoji = summary.dailyPnl >= 0 ? "🟢" : "🔴";
-
-    return this.send(
-      `📊 <b>每日总结</b>\n\n` +
-        `💰 总资产: ¥${summary.equity.toFixed(2)}\n` +
-        `${pnlEmoji} 日盈亏: ${summary.dailyPnl >= 0 ? "+" : ""}¥${summary.dailyPnl.toFixed(2)}\n` +
-        `📈 交易次数: ${summary.trades}\n` +
-        `🎯 胜率: ${summary.winRate.toFixed(1)}%\n` +
-        `⏰ ${new Date().toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" })}`,
-    );
+  async sendDailySummary(summary: { equity: number; dailyPnl: number; trades: number; winRate: number }): Promise<boolean> {
+    return this.send(this.buildSummaryMessage(summary));
   }
 
   disable(): void {
     this.enabled = false;
-    this.webhookUrl = undefined;
+    this.config = undefined;
   }
 
   isEnabled(): boolean {
     return this.enabled;
+  }
+
+  getMode(): string | undefined {
+    return this.config?.mode;
   }
 }
 
