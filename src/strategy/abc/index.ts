@@ -4,9 +4,10 @@ export * from "./risk-control.js";
 export * from "./float-trader.js";
 export * from "./base-position.js";
 export * from "./strategy-engine.js";
-export * from "./backtest.js";
 export * from "./level2-data.js";
 export * from "./trading-adapter.js";
 export * from "./monitor.js";
 export * from "./notifications.js";
-export * from "./enhanced-backtest.js";
+
+export { ABCBacktestEngine, BacktestExecutionTrade } from "./backtest.js";
+export { EnhancedBacktestEngine, EnhancedBacktestTrade } from "./enhanced-backtest.js";

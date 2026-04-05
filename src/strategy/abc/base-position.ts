@@ -1,8 +1,5 @@
-import type {
-  BasePosition,
-  StrategyParams,
-  DEFAULT_STRATEGY_PARAMS,
-} from "./types.js";
+import type { BasePosition, StrategyParams } from "./types.js";
+import { DEFAULT_STRATEGY_PARAMS } from "./types.js";
 
 export interface BasePositionCheckResult {
   canBuild: boolean;
@@ -43,7 +40,7 @@ export class BasePositionManager {
       marketData.low,
     );
 
-    const avgBid = (marketData.bid1Volume + marketData.bid2Volume + marketData.bid3Volume) / 3;
+    const _avgBid = (marketData.bid1Volume + marketData.bid2Volume + marketData.bid3Volume) / 3;
     const pilingCount = this.countPilingEvents(
       marketData.bid1Volume,
       marketData.bid2Volume,
@@ -92,15 +89,23 @@ export class BasePositionManager {
     const multiple = this.params.pilingMultiple;
     let count = 0;
 
-    if (bid1 > avgBidVolume5min * multiple) count++;
-    if (bid2 > avgBidVolume5min * multiple) count++;
-    if (bid3 > avgBidVolume5min * multiple) count++;
+    if (bid1 > avgBidVolume5min * multiple) {
+      count++;
+    }
+    if (bid2 > avgBidVolume5min * multiple) {
+      count++;
+    }
+    if (bid3 > avgBidVolume5min * multiple) {
+      count++;
+    }
 
     return count;
   }
 
   calculatePricePosition(currentPrice: number, high: number, low: number): number {
-    if (high === low) return 0.5;
+    if (high === low) {
+      return 0.5;
+    }
     return (currentPrice - low) / (high - low);
   }
 
@@ -176,7 +181,7 @@ export class BasePositionManager {
     position: BasePosition,
     exitPrice: number,
     exitDate: string,
-    reason: string,
+    _reason: string,
   ): { position: BasePosition; realizedPnl: number } {
     const realizedPnl = (exitPrice - position.avgPrice) * position.quantity;
 
@@ -197,7 +202,9 @@ export class BasePositionManager {
   }
 
   calculateUnrealizedPnl(position: BasePosition, currentPrice: number): number {
-    if (position.closed) return position.pnl || 0;
+    if (position.closed) {
+      return position.pnl || 0;
+    }
     return (currentPrice - position.avgPrice) * position.quantity;
   }
 

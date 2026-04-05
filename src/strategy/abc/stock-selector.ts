@@ -1,11 +1,7 @@
 import { execFileSync } from "node:child_process";
 import * as path from "node:path";
-import type {
-  StockFundamental,
-  StockMarketData,
-  StockSelectionCriteria,
-  DEFAULT_SELECTION_CRITERIA,
-} from "./types.js";
+import type { StockFundamental, StockMarketData, StockSelectionCriteria } from "./types.js";
+import { DEFAULT_SELECTION_CRITERIA } from "./types.js";
 
 const PROJECT_ROOT = path.resolve(import.meta.dirname, "../../..");
 const FETCHER_PATH = path.join(PROJECT_ROOT, "data", "fetcher.py");
@@ -28,7 +24,7 @@ export class StockSelector {
       });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
-      throw new Error(`Fetcher error: ${msg}`);
+      throw new Error(`Fetcher error: ${msg}`, { cause: err });
     }
   }
 
@@ -51,25 +47,25 @@ export class StockSelector {
 
   async getStockQuote(code: string): Promise<StockMarketData | null> {
     const output = this.runFetcher(["quote", code]);
-    const data = this.parseJsonSafe(output);
+    const data = this.parseJsonSafe(output) as Record<string, unknown> | null;
     if (!data || data.error) {
       return null;
     }
     return {
-      code: data.code,
-      name: data.name,
-      price: data.price,
-      prevClose: data.prev_close,
-      open: data.open,
-      high: data.high,
-      low: data.low,
-      volume: data.volume,
-      amount: data.amount,
-      turnoverRate: data.turnover_rate,
-      avgTurnoverRate20: data.avg_turnover_rate_20 || 0,
-      avgAmount20: data.avg_amount_20 || 0,
-      high20: data.high_20 || data.high,
-      low20: data.low_20 || data.low,
+      code: data.code as string,
+      name: data.name as string,
+      price: data.price as number,
+      prevClose: data.prev_close as number,
+      open: data.open as number,
+      high: data.high as number,
+      low: data.low as number,
+      volume: data.volume as number,
+      amount: data.amount as number,
+      turnoverRate: data.turnover_rate as number,
+      avgTurnoverRate20: (data.avg_turnover_rate_20 as number) || 0,
+      avgAmount20: (data.avg_amount_20 as number) || 0,
+      high20: (data.high_20 as number) || (data.high as number),
+      low20: (data.low_20 as number) || (data.low as number),
       position: 0,
     };
   }
@@ -91,28 +87,36 @@ export class StockSelector {
     indicators?: Record<string, number>;
   } | null> {
     const output = this.runFetcher(["history", code, startDate, endDate]);
-    const data = this.parseJsonSafe(output);
+    const data = this.parseJsonSafe(output) as Record<string, unknown> | null;
     if (!data || data.error || !data.data) {
       return null;
     }
     return {
-      data: data.data,
-      indicators: data.indicators,
+      data: data.data as {
+        date: string;
+        open: number;
+        high: number;
+        low: number;
+        close: number;
+        volume: number;
+        turnover: number;
+      }[],
+      indicators: data.indicators as Record<string, number> | undefined,
     };
   }
 
   async getShareholderInfo(code: string): Promise<StockFundamental | null> {
     const output = this.runFetcher(["shareholders", code]);
-    const data = this.parseJsonSafe(output);
+    const data = this.parseJsonSafe(output) as Record<string, unknown> | null;
     if (!data || data.error) {
       return null;
     }
     return {
-      code: data.code,
-      name: data.name,
-      shareholderCount: data.shareholder_count || 0,
-      floatMarketCap: data.float_market_cap || 0,
-      avgHoldingPerAccount: data.avg_holding_per_account || 0,
+      code: data.code as string,
+      name: data.name as string,
+      shareholderCount: (data.shareholder_count as number) || 0,
+      floatMarketCap: (data.float_market_cap as number) || 0,
+      avgHoldingPerAccount: (data.avg_holding_per_account as number) || 0,
     };
   }
 
@@ -224,7 +228,9 @@ export class StockSelector {
   }
 
   calculatePricePosition(currentPrice: number, high: number, low: number): number {
-    if (high === low) return 0.5;
+    if (high === low) {
+      return 0.5;
+    }
     return (currentPrice - low) / (high - low);
   }
 }

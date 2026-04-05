@@ -1,15 +1,8 @@
 import { execFileSync } from "node:child_process";
 import * as path from "node:path";
-import type {
-  StrategyParams,
-  DEFAULT_STRATEGY_PARAMS,
-  OrderSide,
-} from "./types.js";
-import {
-  createRiskController,
-  createFloatTrader,
-  createBasePositionManager,
-} from "./index.js";
+import { createRiskController, createFloatTrader, createBasePositionManager } from "./index.js";
+import type { StrategyParams, OrderSide } from "./types.js";
+import { DEFAULT_STRATEGY_PARAMS } from "./types.js";
 
 const PROJECT_ROOT = path.resolve(import.meta.dirname, "../../..");
 const FETCHER_PATH = path.join(PROJECT_ROOT, "data", "fetcher.py");
@@ -28,7 +21,7 @@ export interface EnhancedBacktestConfig {
   };
 }
 
-export interface BacktestTrade {
+export interface EnhancedBacktestTrade {
   id: string;
   date: string;
   time: string;
@@ -61,7 +54,7 @@ export interface EnhancedBacktestResult {
     tradingDays: number;
   };
   equityCurve: Array<{ date: string; equity: number; drawdown: number }>;
-  trades: BacktestTrade[];
+  trades: EnhancedBacktestTrade[];
   dailyReturns: Array<{ date: string; return: number }>;
   monthlyReturns: Array<{ month: string; return: number; pnl: number }>;
   tradeAnalysis: {
@@ -93,7 +86,7 @@ export class EnhancedBacktestEngine {
   private avgPrice: number = 0;
   private positionEntryDate?: string;
 
-  private trades: BacktestTrade[] = [];
+  private trades: EnhancedBacktestTrade[] = [];
   private equityCurve: EnhancedBacktestResult["equityCurve"] = [];
   private dailyReturns: EnhancedBacktestResult["dailyReturns"] = [];
   private monthlyPnL: Map<string, number> = new Map();
@@ -160,7 +153,7 @@ export class EnhancedBacktestEngine {
       this.config.endDate,
     ]);
 
-    const data = this.parseJsonSafe(output);
+    const data = this.parseJsonSafe(output) as { data?: Record<string, unknown>[] } | null;
     if (data && Array.isArray(data.data)) {
       this.dailyData = data.data.map((d: Record<string, unknown>) => ({
         date: d.date as string,
@@ -186,9 +179,7 @@ export class EnhancedBacktestEngine {
   }
 
   private applySlippage(price: number, side: OrderSide): number {
-    return side === "buy"
-      ? price * (1 + this.config.slippage)
-      : price * (1 - this.config.slippage);
+    return side === "buy" ? price * (1 + this.config.slippage) : price * (1 - this.config.slippage);
   }
 
   private simulateOrder(
@@ -201,7 +192,7 @@ export class EnhancedBacktestEngine {
     const adjustedPrice = this.applySlippage(price, side);
     const commission = this.calculateCommission(adjustedPrice, quantity, side);
 
-    const trade: BacktestTrade = {
+    const trade: EnhancedBacktestTrade = {
       id: `trade_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`,
       date,
       time: "14:30:00",
@@ -288,12 +279,16 @@ export class EnhancedBacktestEngine {
   private simulateDay(date: string, open: number, close: number): void {
     const prevEquity = this.cash + this.position * open;
     this.updateEquity(date, close);
-    const return_pct = prevEquity > 0 ? (this.cash + this.position * close - prevEquity) / prevEquity : 0;
+    const return_pct =
+      prevEquity > 0 ? (this.cash + this.position * close - prevEquity) / prevEquity : 0;
     this.dailyReturns.push({ date, return: return_pct });
 
     const month = date.substring(0, 7);
     const currentMonthPnl = this.monthlyPnL.get(month) || 0;
-    this.monthlyPnL.set(month, currentMonthPnl + (this.position > 0 ? (close - open) * this.position : 0));
+    this.monthlyPnL.set(
+      month,
+      currentMonthPnl + (this.position > 0 ? (close - open) * this.position : 0),
+    );
   }
 
   async run(): Promise<EnhancedBacktestResult> {
@@ -321,7 +316,7 @@ export class EnhancedBacktestEngine {
       }
 
       if (this.position === 0 && Math.random() < 0.02) {
-        const quantity = Math.floor(this.config.initialCapital * 0.1 / day.close / 100) * 100;
+        const quantity = Math.floor((this.config.initialCapital * 0.1) / day.close / 100) * 100;
         if (quantity > 0) {
           this.simulateOrder("buy", day.close, quantity, day.date, "base");
         }
@@ -351,14 +346,23 @@ export class EnhancedBacktestEngine {
         }
 
         if (day.weibi >= buyWeibiThreshold && day.weibi <= 0.6) {
-          if (Math.random() < 0.15 && this.position < this.config.initialCapital * 0.45 / day.close) {
+          if (
+            Math.random() < 0.15 &&
+            this.position < (this.config.initialCapital * 0.45) / day.close
+          ) {
             this.simulateOrder("buy", day.close, 100, day.date, "float");
           }
         }
       }
 
       if (i === this.dailyData.length - 1 && this.position > 0) {
-        this.simulateOrder("sell", day.close, this.position, day.date, this.positionType || "float");
+        this.simulateOrder(
+          "sell",
+          day.close,
+          this.position,
+          day.date,
+          this.positionType || "float",
+        );
       }
     }
 
@@ -369,7 +373,8 @@ export class EnhancedBacktestEngine {
   }
 
   private calculateResults(): EnhancedBacktestResult {
-    const finalCapital = this.cash + this.position * (this.dailyData[this.dailyData.length - 1]?.close || 0);
+    const finalCapital =
+      this.cash + this.position * (this.dailyData[this.dailyData.length - 1]?.close || 0);
     const totalReturn = (finalCapital - this.config.initialCapital) / this.config.initialCapital;
 
     const winningTrades = this.trades.filter((t) => t.side === "sell" && (t.pnl || 0) > 0).length;
@@ -378,7 +383,8 @@ export class EnhancedBacktestEngine {
     const sellTrades = this.trades.filter((t) => t.side === "sell");
     const totalPnl = sellTrades.reduce((sum, t) => sum + (t.pnl || 0), 0);
     const avgWin = winningTrades > 0 ? totalPnl / winningTrades : 0;
-    const avgLoss = losingTrades > 0 ? Math.abs(totalPnl - avgWin * winningTrades) / losingTrades : 0;
+    const avgLoss =
+      losingTrades > 0 ? Math.abs(totalPnl - avgWin * winningTrades) / losingTrades : 0;
     const profitLossRatio = avgLoss > 0 ? avgWin / avgLoss : 0;
 
     const returns = this.dailyReturns.map((r) => r.return);
@@ -392,7 +398,8 @@ export class EnhancedBacktestEngine {
     const downsideDeviation = Math.sqrt(
       downsideReturns.reduce((sum, r) => sum + r ** 2, 0) / (downsideReturns.length || 1),
     );
-    const sortinoRatio = downsideDeviation > 0 ? (avgReturn / downsideDeviation) * Math.sqrt(252) : 0;
+    const sortinoRatio =
+      downsideDeviation > 0 ? (avgReturn / downsideDeviation) * Math.sqrt(252) : 0;
 
     const days = this.dailyData.length || 1;
     const annualizedReturn = Math.pow(1 + totalReturn, 365 / days) - 1;
@@ -413,7 +420,10 @@ export class EnhancedBacktestEngine {
         totalTrades: this.trades.length,
         winningTrades,
         losingTrades,
-        winRate: this.trades.length > 0 ? winningTrades / this.trades.filter((t) => t.side === "sell").length : 0,
+        winRate:
+          this.trades.length > 0
+            ? winningTrades / this.trades.filter((t) => t.side === "sell").length
+            : 0,
         avgWin,
         avgLoss,
         profitLossRatio,
@@ -520,7 +530,7 @@ export class EnhancedBacktestEngine {
     console.log("============================\n");
   }
 
-  getTrades(): BacktestTrade[] {
+  getTrades(): EnhancedBacktestTrade[] {
     return [...this.trades];
   }
 }
@@ -528,7 +538,9 @@ export class EnhancedBacktestEngine {
 export const createEnhancedBacktest = (config: EnhancedBacktestConfig) =>
   new EnhancedBacktestEngine(config);
 
-export async function runEnhancedBacktest(config: EnhancedBacktestConfig): Promise<EnhancedBacktestResult> {
+export async function runEnhancedBacktest(
+  config: EnhancedBacktestConfig,
+): Promise<EnhancedBacktestResult> {
   const engine = createEnhancedBacktest(config);
   return engine.run();
 }

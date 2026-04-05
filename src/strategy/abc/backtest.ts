@@ -1,14 +1,8 @@
 import { execFileSync } from "node:child_process";
 import * as path from "node:path";
-import type {
-  BacktestResult,
-  StrategyConfig,
-  StrategyParams,
-  MarketSnapshot,
-  FloatTrade,
-} from "./types.js";
-import { createABCStrategyEngine, ABCStrategyEngine } from "./strategy-engine.js";
 import { createStockSelector } from "./stock-selector.js";
+import { createABCStrategyEngine, ABCStrategyEngine } from "./strategy-engine.js";
+import type { BacktestResult, StrategyParams, MarketSnapshot } from "./types.js";
 
 const PROJECT_ROOT = path.resolve(import.meta.dirname, "../../..");
 const FETCHER_PATH = path.join(PROJECT_ROOT, "data", "fetcher.py");
@@ -22,7 +16,7 @@ export interface BacktestConfig {
   slippage?: number;
 }
 
-export interface BacktestTrade {
+export interface BacktestExecutionTrade {
   id: string;
   date: string;
   time: string;
@@ -36,7 +30,7 @@ export interface BacktestTrade {
 export class ABCBacktestEngine {
   private config: BacktestConfig;
   private strategy: ABCStrategyEngine;
-  private trades: BacktestTrade[] = [];
+  private trades: BacktestExecutionTrade[] = [];
   private selector = createStockSelector();
   private currentDate: string = "";
   private dailyData: {
@@ -69,7 +63,7 @@ export class ABCBacktestEngine {
         cwd: PROJECT_ROOT,
         timeout: 30_000,
       });
-    } catch (err: unknown) {
+    } catch {
       return "{}";
     }
   }
@@ -90,7 +84,7 @@ export class ABCBacktestEngine {
       this.config.endDate,
     ]);
 
-    const data = this.parseJsonSafe(output);
+    const data = this.parseJsonSafe(output) as { data?: typeof this.dailyData } | null;
     if (data && Array.isArray(data.data)) {
       this.dailyData = data.data;
     }
@@ -105,8 +99,7 @@ export class ABCBacktestEngine {
     const basePrice = dayData.open;
     const priceRange = dayData.high - dayData.low;
 
-    const simulatedPrice =
-      basePrice + priceRange * Math.sin(intradayProgress * Math.PI);
+    const simulatedPrice = basePrice + priceRange * Math.sin(intradayProgress * Math.PI);
 
     const weibi = (Math.random() - 0.5) * 1.0;
     const weinei = (Math.random() - 0.5) * 0.5;
@@ -141,9 +134,7 @@ export class ABCBacktestEngine {
 
   private applySlippage(price: number, side: "buy" | "sell"): number {
     const slippage = this.config.slippage || 0.0002;
-    return side === "buy"
-      ? price * (1 + slippage)
-      : price * (1 - slippage);
+    return side === "buy" ? price * (1 + slippage) : price * (1 - slippage);
   }
 
   private executeTrade(
@@ -157,7 +148,7 @@ export class ABCBacktestEngine {
     const adjustedPrice = this.applySlippage(price, side);
     const commission = this.calculateCommission(adjustedPrice, quantity, side);
 
-    const trade: BacktestTrade = {
+    const trade: BacktestExecutionTrade = {
       id: `trade_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`,
       date,
       time,
@@ -227,7 +218,9 @@ export class ABCBacktestEngine {
             const quantity = Math.floor(1000 / dayData.close / 100) * 100;
             if (quantity > 0 && this.cash > dayData.close * quantity * 1.001) {
               this.executeTrade("buy", dayData.close, quantity, dayData.date, buyTimes[i], "float");
-              console.log(`[Buy] ${dayData.date} ${buyTimes[i]} @ ¥${dayData.close.toFixed(2)} x ${quantity}`);
+              console.log(
+                `[Buy] ${dayData.date} ${buyTimes[i]} @ ¥${dayData.close.toFixed(2)} x ${quantity}`,
+              );
             }
           }
         }
@@ -244,12 +237,24 @@ export class ABCBacktestEngine {
         this.strategy.onMarketSnapshot(snapshot);
 
         if (Math.random() > 0.9 && this.position > 0) {
-          this.executeTrade("sell", dayData.close, this.position, dayData.date, sellTimes[i], "base");
-          console.log(`[Sell] ${dayData.date} ${sellTimes[i]} @ ¥${dayData.close.toFixed(2)} x ${this.position}`);
+          this.executeTrade(
+            "sell",
+            dayData.close,
+            this.position,
+            dayData.date,
+            sellTimes[i],
+            "base",
+          );
+          console.log(
+            `[Sell] ${dayData.date} ${sellTimes[i]} @ ¥${dayData.close.toFixed(2)} x ${this.position}`,
+          );
           break;
         }
 
-        if (Math.random() > 0.95 && this.trades.some((t) => t.date === dayData.date && t.side === "buy")) {
+        if (
+          Math.random() > 0.95 &&
+          this.trades.some((t) => t.date === dayData.date && t.side === "buy")
+        ) {
           const todayBuys = this.trades.filter((t) => t.date === dayData.date && t.side === "buy");
           if (todayBuys.length > 0) {
             const qty = Math.min(100, todayBuys[0].quantity);
@@ -295,13 +300,12 @@ export class ABCBacktestEngine {
     };
   }
 
-  getTrades(): BacktestTrade[] {
+  getTrades(): BacktestExecutionTrade[] {
     return [...this.trades];
   }
 }
 
-export const createABCBacktestEngine = (config: BacktestConfig) =>
-  new ABCBacktestEngine(config);
+export const createABCBacktestEngine = (config: BacktestConfig) => new ABCBacktestEngine(config);
 
 export async function runBacktest(config: BacktestConfig): Promise<BacktestResult> {
   const engine = createABCBacktestEngine(config);

@@ -1,5 +1,5 @@
 import { EventEmitter } from "node:events";
-import type { Level2Data, MarketSnapshot, AuctionData } from "./types.js";
+import type { Level2Data, AuctionData } from "./types.js";
 
 export interface Level2Config {
   symbol: string;
@@ -113,7 +113,7 @@ export class Level2DataProvider extends EventEmitter {
     const totalAsk = this.askVolumes.reduce((a, b) => a + b, 0);
 
     const weibi = (totalBid - totalAsk) / (totalBid + totalAsk);
-    const weinei = (totalBid - totalAsk) / (totalBid + totalAsk) * 0.5;
+    const weinei = ((totalBid - totalAsk) / (totalBid + totalAsk)) * 0.5;
 
     return {
       timestamp: now,
@@ -162,16 +162,18 @@ export class Level2DataProvider extends EventEmitter {
   calculateAverageBidVolume(windowSeconds: number = 300): number {
     const cutoff = Date.now() - windowSeconds * 1000;
     const recentTicks = this.tickHistory.filter((t) => t.timestamp > cutoff);
-    
-    if (recentTicks.length === 0) return this.avgBidVolume5min;
 
-    const avgBuyVolume = recentTicks
-      .filter((t) => t.direction === "buy")
-      .reduce((sum, t) => sum + t.volume, 0) / windowSeconds;
+    if (recentTicks.length === 0) {
+      return this.avgBidVolume5min;
+    }
 
-    const avgSellVolume = recentTicks
-      .filter((t) => t.direction === "sell")
-      .reduce((sum, t) => sum + t.volume, 0) / windowSeconds;
+    const avgBuyVolume =
+      recentTicks.filter((t) => t.direction === "buy").reduce((sum, t) => sum + t.volume, 0) /
+      windowSeconds;
+
+    const avgSellVolume =
+      recentTicks.filter((t) => t.direction === "sell").reduce((sum, t) => sum + t.volume, 0) /
+      windowSeconds;
 
     return (avgBuyVolume + avgSellVolume) / 2;
   }
@@ -193,11 +195,7 @@ export class Level2DataProvider extends EventEmitter {
     };
   }
 
-  detectPiling(
-    currentBidVolumes: number[],
-    avgBidVolume: number,
-    multiple: number = 2.5,
-  ): number {
+  detectPiling(currentBidVolumes: number[], avgBidVolume: number, multiple: number = 2.5): number {
     let count = 0;
     const levelsToCheck = Math.min(3, currentBidVolumes.length);
 
@@ -288,7 +286,7 @@ export class Level2DataProvider extends EventEmitter {
   }
 }
 
-export class AuctionDataProvider {
+export class AuctionDataProvider extends EventEmitter {
   private auctionData: AuctionData[] = [];
 
   recordAuction(data: AuctionData): void {

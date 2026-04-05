@@ -74,12 +74,7 @@ export abstract class BaseTradingAdapter extends EventEmitter {
     return this.account;
   }
 
-  protected createOrder(
-    symbol: string,
-    side: OrderSide,
-    price: number,
-    quantity: number,
-  ): Order {
+  protected createOrder(symbol: string, side: OrderSide, price: number, quantity: number): Order {
     const order: Order = {
       id: `order_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       symbol,
@@ -193,10 +188,10 @@ export class SimulatedTradingAdapter extends BaseTradingAdapter {
   }
 
   async placeOrder(
-    symbol: string,
-    side: OrderSide,
-    price: number,
-    quantity: number,
+    _symbol: string,
+    _side: OrderSide,
+    _price: number,
+    _quantity: number,
   ): Promise<Order> {
     if (!this.connected || !this.account) {
       throw new Error("未连接账户");
@@ -205,9 +200,7 @@ export class SimulatedTradingAdapter extends BaseTradingAdapter {
     const order = this.createOrder(symbol, side, price, quantity);
 
     const slippagePrice =
-      side === "buy"
-        ? price * (1 + this.config.slippage)
-        : price * (1 - this.config.slippage);
+      side === "buy" ? price * (1 + this.config.slippage) : price * (1 - this.config.slippage);
 
     const commission = this.calculateCommission(slippagePrice, quantity, side);
 
@@ -261,9 +254,11 @@ export class SimulatedTradingAdapter extends BaseTradingAdapter {
     return order;
   }
 
-  async cancelOrder(orderId: string): Promise<boolean> {
+  async cancelOrder(_orderId: string): Promise<boolean> {
     const order = this.orders.get(orderId);
-    if (!order) return false;
+    if (!order) {
+      return false;
+    }
 
     if (order.status === "filled") {
       return false;
@@ -276,16 +271,11 @@ export class SimulatedTradingAdapter extends BaseTradingAdapter {
     return true;
   }
 
-  async getOrderStatus(orderId: string): Promise<Order | null> {
+  async getOrderStatus(_orderId: string): Promise<Order | null> {
     return this.orders.get(orderId) || null;
   }
 
-  private updatePosition(
-    symbol: string,
-    side: OrderSide,
-    price: number,
-    quantity: number,
-  ): void {
+  private updatePosition(symbol: string, side: OrderSide, price: number, quantity: number): void {
     const existing = this.simulatedPositions.get(symbol);
 
     if (side === "buy") {
@@ -319,11 +309,7 @@ export class SimulatedTradingAdapter extends BaseTradingAdapter {
     }
   }
 
-  private calculateCommission(
-    price: number,
-    quantity: number,
-    side: OrderSide,
-  ): number {
+  private calculateCommission(price: number, quantity: number, side: OrderSide): number {
     const turnover = price * quantity;
     let commission = turnover * 0.00015;
     if (side === "sell") {
@@ -399,34 +385,32 @@ export class XTPTradingAdapter extends BaseTradingAdapter {
   }
 
   async placeOrder(
-    symbol: string,
-    side: OrderSide,
-    price: number,
-    quantity: number,
+    _symbol: string,
+    _side: OrderSide,
+    _price: number,
+    _quantity: number,
   ): Promise<Order> {
     throw new Error("未实现");
   }
 
-  async cancelOrder(orderId: string): Promise<boolean> {
+  async cancelOrder(_orderId: string): Promise<boolean> {
     throw new Error("未实现");
   }
 
-  async getOrderStatus(orderId: string): Promise<Order | null> {
+  async getOrderStatus(_orderId: string): Promise<Order | null> {
     throw new Error("未实现");
   }
 }
 
-export const createTradingAdapter = (
-  config: Partial<TradingConfig>,
-): BaseTradingAdapter => {
-  switch (config.broker) {
+export const createTradingAdapter = (config: Partial<TradingConfig>): BaseTradingAdapter => {
+  const broker = config.broker ?? "simulate";
+  switch (broker) {
     case "simulate":
-    case undefined:
-      return new SimulatedTradingAdapter(config);
+      return new SimulatedTradingAdapter({ ...config, broker: "simulate" });
     case "xt":
-      return new XTPTradingAdapter(config);
+      return new XTPTradingAdapter({ ...config, broker: "xt" });
     default:
-      console.warn(`[Adapter] 未知的券商 ${config.broker}，使用模拟账户`);
-      return new SimulatedTradingAdapter(config);
+      console.warn(`[Adapter] 未知的券商 ${broker}，使用模拟账户`);
+      return new SimulatedTradingAdapter({ ...config, broker: "simulate" });
   }
 };

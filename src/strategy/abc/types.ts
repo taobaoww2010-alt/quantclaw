@@ -79,8 +79,11 @@ export interface Order {
   status: OrderStatus;
   createdAt: string;
   filledAt?: string;
+  filledPrice?: number;
+  filledQuantity?: number;
   cancelledAt?: string;
   reason?: string;
+  commission?: number;
 }
 
 export interface StockFundamental {
@@ -122,6 +125,7 @@ export interface Level2Data {
 export interface MarketSnapshot {
   timestamp: string;
   openPrice: number;
+  open?: number;
   currentPrice: number;
   high: number;
   low: number;
@@ -215,6 +219,33 @@ export const DEFAULT_STRATEGY_PARAMS = {
   positionSizePerTrade: 100,
   priceDropForPause: 0.03,
   baseHoldMaxDays: 30,
+  shareholderCountMin: 100000,
 };
 
 export type StrategyParams = typeof DEFAULT_STRATEGY_PARAMS;
+
+export interface BacktestResult {
+  totalReturn: number;
+  annualizedReturn: number;
+  winRate: number;
+  profitLossRatio: number;
+  maxDrawdown: number;
+  sharpeRatio: number;
+  totalTrades: number;
+  finalEquity: number;
+  equityCurve: { date: string; equity: number }[];
+  trades: BacktestTrade[];
+}
+
+export interface BacktestTrade {
+  entryDate: string;
+  exitDate: string;
+  pnl: number;
+  pnlPct: number;
+}
+
+export interface StrategyConfig {
+  symbol: string;
+  capital: number;
+  mode: "backtest" | "paper" | "live";
+}

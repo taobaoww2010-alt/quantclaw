@@ -4,9 +4,9 @@ import type {
   MarketSnapshot,
   AuctionData,
   StrategyParams,
-  DEFAULT_STRATEGY_PARAMS,
   OrderSide,
 } from "./types.js";
+import { DEFAULT_STRATEGY_PARAMS } from "./types.js";
 
 export interface SignalResult {
   action: "buy" | "sell" | "hold";
@@ -17,7 +17,7 @@ export interface SignalResult {
 
 export interface FloatTradeDecision {
   shouldTrade: boolean;
-  action: "buy" | "sell";
+  action: "buy" | "sell" | "hold";
   quantity: number;
   reason: string;
   checks: {
@@ -101,10 +101,8 @@ export class FloatTrader {
     const weineiSignal =
       snapshot.weinei > 0.3 ? "positive" : snapshot.weinei < -0.3 ? "negative" : "neutral";
 
-    const avgBid =
-      (snapshot.bid1Volume + snapshot.bid2Volume + snapshot.bid3Volume) / 3;
-    const avgAsk =
-      (snapshot.ask1Volume + snapshot.ask2Volume + snapshot.ask3Volume) / 3;
+    const avgBid = (snapshot.bid1Volume + snapshot.bid2Volume + snapshot.bid3Volume) / 3;
+    const avgAsk = (snapshot.ask1Volume + snapshot.ask2Volume + snapshot.ask3Volume) / 3;
 
     let crowding: "greedy" | "fearful" | "balanced" = "balanced";
     if (avgBid > avgAsk * 2.5) {
@@ -116,23 +114,16 @@ export class FloatTrader {
     return { weibiSignal, weineiSignal, crowding };
   }
 
-  matchProverbSignals(
-    snapshot: MarketSnapshot,
-    prevSnapshot?: MarketSnapshot,
-  ): SignalResult {
+  matchProverbSignals(snapshot: MarketSnapshot, prevSnapshot?: MarketSnapshot): SignalResult {
     const { weibiSignal, weineiSignal, crowding } = this.analyzeMarketSentiment(snapshot);
 
-    const priceRising = snapshot.currentPrice > snapshot.open;
-    const priceFalling = snapshot.currentPrice < snapshot.open;
+    const openPrice = snapshot.open ?? snapshot.openPrice;
+    const priceRising = snapshot.currentPrice > openPrice;
+    const priceFalling = snapshot.currentPrice < openPrice;
     const volumeIncreasing = snapshot.volume > snapshot.amount * 0.001;
     const volumeDecreasing = snapshot.volume < snapshot.amount * 0.0005;
 
-    if (
-      weibiSignal === "positive" &&
-      crowding === "greedy" &&
-      priceRising &&
-      volumeIncreasing
-    ) {
+    if (weibiSignal === "positive" && crowding === "greedy" && priceRising && volumeIncreasing) {
       return {
         action: "sell",
         confidence: 0.85,
@@ -141,12 +132,7 @@ export class FloatTrader {
       };
     }
 
-    if (
-      weibiSignal === "positive" &&
-      crowding === "balanced" &&
-      !priceRising &&
-      volumeDecreasing
-    ) {
+    if (weibiSignal === "positive" && crowding === "balanced" && !priceRising && volumeDecreasing) {
       return {
         action: "sell",
         confidence: 0.75,
@@ -155,12 +141,7 @@ export class FloatTrader {
       };
     }
 
-    if (
-      weibiSignal === "negative" &&
-      crowding === "fearful" &&
-      priceFalling &&
-      volumeIncreasing
-    ) {
+    if (weibiSignal === "negative" && crowding === "fearful" && priceFalling && volumeIncreasing) {
       return {
         action: "buy",
         confidence: 0.8,
@@ -169,11 +150,7 @@ export class FloatTrader {
       };
     }
 
-    if (
-      weibiSignal === "negative" &&
-      crowding === "balanced" &&
-      !priceFalling
-    ) {
+    if (weibiSignal === "negative" && crowding === "balanced" && !priceFalling) {
       return {
         action: "hold",
         confidence: 0.6,
@@ -245,19 +222,17 @@ export class FloatTrader {
   }
 
   checkWeibiForBuy(weibi: number): boolean {
-    return (
-      weibi >= this.params.weibiBuyRange.min && weibi <= this.params.weibiBuyRange.max
-    );
+    return weibi >= this.params.weibiBuyRange.min && weibi <= this.params.weibiBuyRange.max;
   }
 
   checkWeibiForSell(weibi: number): boolean {
-    return (
-      weibi >= this.params.weibiSellRange.min && weibi <= this.params.weibiSellRange.max
-    );
+    return weibi >= this.params.weibiSellRange.min && weibi <= this.params.weibiSellRange.max;
   }
 
   calculatePricePosition(currentPrice: number, dayHigh: number, dayLow: number): number {
-    if (dayHigh === dayLow) return 0.5;
+    if (dayHigh === dayLow) {
+      return 0.5;
+    }
     return (currentPrice - dayLow) / (dayHigh - dayLow);
   }
 
@@ -354,10 +329,14 @@ export class FloatTrader {
   }
 
   shouldCloseAtEndOfDay(position: FloatPosition, hasSignal: boolean): boolean {
-    if (hasSignal) return false;
+    if (hasSignal) {
+      return false;
+    }
 
     const lastTrade = position.trades[position.trades.length - 1];
-    if (!lastTrade) return true;
+    if (!lastTrade) {
+      return true;
+    }
 
     const tradeDate = new Date(lastTrade.time).toDateString();
     const today = new Date().toDateString();
@@ -375,7 +354,9 @@ export class FloatTrader {
   }
 
   isBuyingPaused(): boolean {
-    if (!this.pauseUntil) return false;
+    if (!this.pauseUntil) {
+      return false;
+    }
     return new Date() < this.pauseUntil;
   }
 
@@ -422,7 +403,12 @@ export class FloatTrader {
             action: "sell",
             quantity: sellPosition.quantity,
             reason: `卖出信号: ${checkRisk.reason || "符合卖出条件"}`,
-            checks: { ...checks, timeOk: checkSellTime, weibiOk: checkWeibiSell, riskOk: checkRisk.allowed },
+            checks: {
+              ...checks,
+              timeOk: checkSellTime,
+              weibiOk: checkWeibiSell,
+              riskOk: checkRisk.allowed,
+            },
           };
         }
       }
@@ -431,16 +417,11 @@ export class FloatTrader {
     const checkBuyTime = this.checkBuyTime(currentTime);
     const checkWeibiBuy = this.checkWeibiForBuy(snapshot.weibi);
     const checkPosition = this.isGoodBuyPricePosition(pricePosition);
-    const checkDailyLimit = todayTrades.filter((t) => t.side === "buy").length < this.params.dailyMaxFloatTrades;
+    const checkDailyLimit =
+      todayTrades.filter((t) => t.side === "buy").length < this.params.dailyMaxFloatTrades;
     const checkPaused = !this.isBuyingPaused();
 
-    if (
-      checkBuyTime &&
-      checkWeibiBuy &&
-      checkPosition &&
-      checkDailyLimit &&
-      checkPaused
-    ) {
+    if (checkBuyTime && checkWeibiBuy && checkPosition && checkDailyLimit && checkPaused) {
       return {
         shouldTrade: true,
         action: "buy",
@@ -476,7 +457,9 @@ export class FloatTrader {
     currentPrice: number,
   ): { allowed: boolean; reason?: string } {
     for (const position of positions) {
-      if (position.closed) continue;
+      if (position.closed) {
+        continue;
+      }
 
       const pnlPct = (currentPrice - position.avgPrice) / position.avgPrice;
 
@@ -493,5 +476,4 @@ export class FloatTrader {
   }
 }
 
-export const createFloatTrader = (params?: Partial<StrategyParams>) =>
-  new FloatTrader(params);
+export const createFloatTrader = (params?: Partial<StrategyParams>) => new FloatTrader(params);

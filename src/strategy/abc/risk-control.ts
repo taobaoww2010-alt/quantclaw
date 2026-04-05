@@ -2,11 +2,10 @@ import type {
   BasePosition,
   FloatPosition,
   FloatTrade,
-  WeeklyStats,
   StrategyParams,
-  DEFAULT_STRATEGY_PARAMS,
   OrderSide,
 } from "./types.js";
+import { DEFAULT_STRATEGY_PARAMS } from "./types.js";
 
 export interface RiskCheckResult {
   allowed: boolean;
@@ -50,12 +49,16 @@ export class RiskController {
   }
 
   isInForcedRest(): boolean {
-    if (!this.forcedRestUntil) return false;
+    if (!this.forcedRestUntil) {
+      return false;
+    }
     return new Date() < this.forcedRestUntil;
   }
 
   getForcedRestDaysRemaining(): number {
-    if (!this.forcedRestUntil) return 0;
+    if (!this.forcedRestUntil) {
+      return 0;
+    }
     const remaining = this.forcedRestUntil.getTime() - Date.now();
     return Math.max(0, Math.ceil(remaining / (24 * 60 * 60 * 1000)));
   }
@@ -72,10 +75,7 @@ export class RiskController {
     return { allowed: true };
   }
 
-  checkBasePositionRisk(
-    basePosition: BasePosition,
-    currentPrice: number,
-  ): RiskCheckResult {
+  checkBasePositionRisk(basePosition: BasePosition, currentPrice: number): RiskCheckResult {
     if (basePosition.closed) {
       return { allowed: true };
     }
@@ -103,16 +103,12 @@ export class RiskController {
     return { allowed: true };
   }
 
-  checkFloatPositionRisk(
-    floatPosition: FloatPosition,
-    currentPrice: number,
-  ): RiskCheckResult {
+  checkFloatPositionRisk(floatPosition: FloatPosition, currentPrice: number): RiskCheckResult {
     if (floatPosition.closed) {
       return { allowed: true };
     }
 
-    const pnlPct =
-      (currentPrice - floatPosition.avgPrice) / floatPosition.avgPrice;
+    const pnlPct = (currentPrice - floatPosition.avgPrice) / floatPosition.avgPrice;
 
     if (pnlPct <= -this.params.floatStopLoss) {
       return {
@@ -143,10 +139,7 @@ export class RiskController {
     return { allowed: true };
   }
 
-  checkPriceDropPause(
-    entryPrice: number,
-    currentPrice: number,
-  ): RiskCheckResult {
+  checkPriceDropPause(entryPrice: number, currentPrice: number): RiskCheckResult {
     const dropPct = (entryPrice - currentPrice) / entryPrice;
 
     if (dropPct >= this.params.priceDropForPause) {
@@ -189,7 +182,11 @@ export class RiskController {
           allowed: false,
           action: "forced_rest",
           reason: `周胜率 ${(winRate * 100).toFixed(1)}% 低于 ${(this.params.winRateThreshold * 100).toFixed(1)}%，强制休息复盘`,
-          details: { winRate, threshold: this.params.winRateThreshold, totalTrades: recentTrades.length },
+          details: {
+            winRate,
+            threshold: this.params.winRateThreshold,
+            totalTrades: recentTrades.length,
+          },
         };
       }
     }
@@ -203,10 +200,7 @@ export class RiskController {
     currentPrice: number,
     accountValue: number,
   ): RiskCheckResult {
-    const totalFloatValue = currentPositions.reduce(
-      (sum, p) => sum + p.quantity * currentPrice,
-      0,
-    );
+    const totalFloatValue = currentPositions.reduce((sum, p) => sum + p.quantity * currentPrice, 0);
     const totalPositionRatio = totalFloatValue / accountValue;
 
     if (totalPositionRatio > this.params.maxPositionRatio) {
@@ -236,10 +230,7 @@ export class RiskController {
     return { allowed: true };
   }
 
-  checkSamePriceLimit(
-    trades: FloatTrade[],
-    price: number,
-  ): RiskCheckResult {
+  checkSamePriceLimit(trades: FloatTrade[], price: number): RiskCheckResult {
     const samePriceTrades = trades.filter((t) => {
       const priceDiff = Math.abs(t.price - price) / price;
       return priceDiff <= this.params.samePriceRange && t.side === "buy";
@@ -250,7 +241,10 @@ export class RiskController {
         allowed: false,
         action: "pause",
         reason: `同一价位附近 (±0.5%) 已买 ${samePriceTrades.length} 手，最多 ${this.params.samePriceMaxTrades} 手`,
-        details: { samePriceCount: samePriceTrades.length, threshold: this.params.samePriceMaxTrades },
+        details: {
+          samePriceCount: samePriceTrades.length,
+          threshold: this.params.samePriceMaxTrades,
+        },
       };
     }
 
@@ -263,9 +257,7 @@ export class RiskController {
     const elapsed = now - lastTime;
 
     if (elapsed < this.params.minTradeInterval) {
-      const remainingSeconds = Math.ceil(
-        (this.params.minTradeInterval - elapsed) / 1000,
-      );
+      const remainingSeconds = Math.ceil((this.params.minTradeInterval - elapsed) / 1000);
       return {
         allowed: false,
         action: "pause",
@@ -321,11 +313,7 @@ export class RiskController {
     return Math.max(5, totalCost);
   }
 
-  calculateNetPnl(
-    entryPrice: number,
-    exitPrice: number,
-    quantity: number,
-  ): number {
+  calculateNetPnl(entryPrice: number, exitPrice: number, quantity: number): number {
     const grossPnl = (exitPrice - entryPrice) * quantity;
     const buyCommission = this.calculateCommission(entryPrice, quantity, "buy");
     const sellCommission = this.calculateCommission(exitPrice, quantity, "sell");
